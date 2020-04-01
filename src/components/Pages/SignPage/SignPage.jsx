@@ -3,7 +3,7 @@ import styles from './SignPage.module.css'
 import {Link} from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 
-const SignPage=()=>{
+const SignPage=(props)=>{
     return(
         <div>
    <HeaderBottom/>

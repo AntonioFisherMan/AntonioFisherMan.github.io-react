@@ -10,7 +10,6 @@ import FrontPage from '../src/components/Pages/FrontPage/FrontPage'
 import CatalogPage from '../src/components/Pages/CatalogPage/CatalogPage'
 import DetailsPage from '../src/components/Pages/DetailsPage/DetailsPage'
 import CardPage from './components/Pages/CardPage/CardPage'
-import Nav from '../src/components/Nav/Nav'
 import Footer from '../src/components/Footer/Footer'
 import ChangepassPage from './components/Pages/ChangepassPage/ChangepassPage';
 import CheckoutPage from './components/Pages/CheckoutPage/CheckoutPage';
@@ -20,15 +19,20 @@ import InformPage from './components/Pages/InformPage/InformPage';
 import OrdersPage from './components/Pages/OrdersPage/OrdersPage';
 import ReturnPage from './components/Pages/ReturnPage/ReturnPage';
 import SignPage from './components/Pages/SignPage/SignPage';
+import {Provider} from 'react-redux'
+import usersContainer from './components/Users/UsersContainer';
+import NavContainer from './components/Nav/NavContainer';
 
 
 
-
-function App() {
+const App=(props)=> {
   return (
     <Router>
-    <Nav>
-    <Switch>
+   
+   <Switch>
+     <Provider store={props.store}>
+        
+     <NavContainer>
       <Route exact path="/" component={FrontPage}/>
       <Route  path="/catalog" component={CatalogPage}/>
       <Route  path="/details" component={DetailsPage}/>
@@ -41,9 +45,14 @@ function App() {
       <Route  path="/orders" component={OrdersPage}/>
       <Route  path="/return" component={ReturnPage}/>
       <Route  path="/sign" component={SignPage}/>
-    </Switch>
-    </Nav>
+      <Route path="/users/:id?" component={usersContainer}/>
+      </NavContainer>
+      
+      </Provider>
+      </Switch>
+   
     <Footer/>
+    
   </Router>
   );
 }

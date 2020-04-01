@@ -2,24 +2,12 @@ import React from 'react'
 import styles from './ReturnPage.module.css'
 import {Link} from 'react-router-dom'
 import Sidebar from '../../Sidebar/Sidebar'
+import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 
 const ReturnPage=()=>{
     return(
         <div>
-<section className="link__block">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <ul className="link__inform">
-                            <li><Link>Home / </Link></li>
-                            <li><Link> All our products / </Link></li>
-                            <li><Link> Maxi dress / </Link></li>
-                            <li><Link> Sussex Copper Fait Maxi dress</Link></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
- </section>
+        <HeaderBottom/>
         <section className="bag__headline">
             <div className="container">
                 <div className="row">

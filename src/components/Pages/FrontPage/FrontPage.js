@@ -6,10 +6,12 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Item from "./Item/Item";
 import Slider from "../../Slider/Slider";
 import Slider2 from "../../Slider/Slider2";
+import SamuraiSlider from "../../Slider/SamuraiSlider";
 
 const FrontPage = () => {
   return (
     <div>
+     {/* // <SamuraiSlider/> */}
       <section className={styles.introBlock}>
         <div className="container">
           <div className="row">

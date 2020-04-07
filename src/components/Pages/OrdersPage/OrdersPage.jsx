@@ -3,6 +3,8 @@ import styles from './OrdersPage.module.css'
 import {Link} from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import Button3 from '../../SiteButtons/Button3/Button3'
 
 const OrdersPage=()=>{
     return(
@@ -13,9 +15,7 @@ const OrdersPage=()=>{
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <div className="card__headline">
-                            <p style={{marginTop:'35px !important'}}>Profile</p>
-                        </div>
+                        <SiteHeadline text="Profile"/>
                     </div>
                 </div>
             </div>
@@ -151,14 +151,9 @@ const OrdersPage=()=>{
                         </div>
                     </div>
                 </div>
-
-
                 <div className="row">
                     <div className="col-12">
-                        <div className="d-flex orders__return">
-                            <i className="carousel-control-prev-icon fas fa-chevron-left" aria-hidden="true"></i>
-                            <p>Return to cart</p>
-                        </div>
+                       <Button3 link="/catalog" text="Return to catalogue"/>
                     </div>
                 </div>
 

@@ -1,34 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Users from './Users'
-import * as axios from 'axios'
-import { FollowActionCreator, UnFollowActionCreator, SetUsersActionCreator, SetPageActionCreator, SetTotalCountActionCreator, SetFetchActionCreator } from '../../redux/UsersReducer'
+import {setPage,getUsersThunkCreator,follow,unfollow,getStatus,updateStatus} from '../../redux/UsersReducer'
 import Preloader from '../common/Preloader'
-import {usersAPI} from '../../api/api'
-
+import {WithAuthRedirect}  from '../../hoc/WithAuthRedirect'
+import { compose } from 'redux'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setIsFeching(true);
-        this.id = this.props.match.params.id;
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            debugger;
-            this.props.setIsFeching(false);
-            this.props.setUsers(data.items)
-            this.props.setTotalCount(data.totalCount);
-
-        })
+        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize);
+        this.props.getStatus(this.props.auth.id)
     }
     onPageChanged = (pageNumber) => {
-        this.props.setIsFeching(true);
-        this.props.setPage(pageNumber)
-        usersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.setIsFeching(false);
-                this.props.setUsers(data.items)
-            })
+        this.props.setPage(pageNumber);
+        this.props.getUsersThunkCreator(pageNumber,this.props.pageSize);
     }
     render() {
+       
         return <>
             <div className="row justify-content-center">
                 {this.props.isFetching ? <Preloader /> : null}
@@ -44,46 +32,31 @@ class UsersContainer extends React.Component {
                 users={this.props.users}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
-
+                auth={this.props.auth}
+                status={this.props.status}
+                updateStatus={this.props.updateStatus}
             />
 
         </>
     }
 }
 
-
 let mapStateToProps = (state) => {
-
     return {
         users: state.users.users,
         pageSize: state.users.pageSize,
         totalUsersCount: state.users.totalUsersCount,
         currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching
+        isFetching: state.users.isFetching,
+        auth:state.auth,
+        status:state.users.status
     }
 }
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (user_id) => {
-            dispatch(FollowActionCreator(user_id))
-        },
-        unfollow: (user_id) => {
-            dispatch(UnFollowActionCreator(user_id))
-        },
-        setUsers: (users) => {
-            dispatch(SetUsersActionCreator(users))
-        },
-        setPage: (page_id) => {
-            dispatch(SetPageActionCreator(page_id))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(SetTotalCountActionCreator(totalCount))
-        },
-        setIsFeching: (isFetching) => {
-            dispatch(SetFetchActionCreator(isFetching))
-        }
-    }
-}
-let usersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
 
-export default usersContainer
+
+export default compose(
+    WithAuthRedirect,
+    connect(mapStateToProps,{setPage,follow,unfollow,getStatus,updateStatus,
+        getUsersThunkCreator})
+)(UsersContainer)
+

@@ -1,27 +1,24 @@
 import React from 'react'
 import styles from './ChangepassPage.module.css'
-import {Link} from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
-
+import Button3 from '../../SiteButtons/Button3/Button3'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 const ChangepassPage=()=>{
     return(
         <div>
        <HeaderBottom/>
-        <section className="bag__headline">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card__headline">
-                            <p style={{marginTop: '35px !important'}}>Profile</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      
+               
+          
 
         <section className="changePass">
             <div className="container">
+            <div className="row">
+                    <div className="col-12">
+                        <SiteHeadline text="Profile"/>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-12 col-md-3">
                         <Sidebar/>
@@ -49,11 +46,8 @@ const ChangepassPage=()=>{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12">
-                        <div className="d-flex form__returnText" style={{marginTop: '51px', marginBottom: '52px'}}>
-                            <i className="carousel-control-prev-icon fas fa-chevron-left"  aria-hidden="true"></i>
-                            <p >Return to cart</p>
-                        </div>
+                    <div className="col-12 linkBtn">
+                        <Button3 link="/catalog"text="Return to catalogue"/>
                     </div>
                 </div>
 </div>

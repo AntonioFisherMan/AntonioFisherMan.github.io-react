@@ -3,24 +3,23 @@ import styles from './HelpPage.module.css'
 import {Link} from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import Button3 from '../../SiteButtons/Button3/Button3'
 
 const HelpPage=()=>{
     return(
         <div>
         <HeaderBottom/>
-        <section className="bag__headline">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card__headline">
-                            <p style={{marginTop: '35px !important'}}>Help & Contact</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
+               
+           
         <section className="helpBlock">
             <div className="container">
+            <div className="row">
+                    <div className="col-12">
+                       <SiteHeadline text="Help & Contact"/>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-12 col-md-3">
                         <Sidebar/>
@@ -34,10 +33,7 @@ const HelpPage=()=>{
                 </div>
                 <div className="row">
                     <div className="col-12">
-                      <div className="d-flex orders__return" style={{marginTop:'51px' ,width:'227px'}}>
-                          <i className="carousel-control-prev-icon fas fa-chevron-left"  aria-hidden="true"></i>
-                          <p>Return to catalogue</p>
-                      </div>   
+                     <Button3 link="/catalog" text="Return to catalogue"/>
                     </div>
                 </div>
             </div>

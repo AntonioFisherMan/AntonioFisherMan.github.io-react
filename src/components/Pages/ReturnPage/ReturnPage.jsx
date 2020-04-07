@@ -1,27 +1,25 @@
 import React from 'react'
 import styles from './ReturnPage.module.css'
-import {Link} from 'react-router-dom'
 import Sidebar from '../../Sidebar/Sidebar'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import Button3 from '../../SiteButtons/Button3/Button3'
 
 const ReturnPage=()=>{
     return(
         <div>
         <HeaderBottom/>
-        <section className="bag__headline">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card__headline">
-                            <p style={{marginTop: '35px !important'}}>My returns</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+   
+      
 
         <section className="returnBlock">
             <div className="container">
+
+            <div className="row">
+                    <div className="col-12">
+                        <SiteHeadline text="My returns"/>
+                    </div>
+                </div>
                 <div className="returnBlock__inform">
                     <div>
                         <div className="row">
@@ -175,10 +173,7 @@ const ReturnPage=()=>{
             <div className="row">
                 <div className="container">
                     <div className="col-12">
-                        <div className="d-flex orders__return">
-                            <i className="carousel-control-prev-icon fas fa-chevron-left" aria-hidden="true"></i>
-                            <p>Return to catalogue</p>
-                        </div>
+                        <Button3 link="/catalog" text="Return to catalogue"/>
                     </div>  
                 </div>
                

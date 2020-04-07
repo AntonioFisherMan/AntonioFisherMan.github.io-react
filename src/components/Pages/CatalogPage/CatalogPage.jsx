@@ -1,21 +1,25 @@
 import React from 'react'
-import styles from './CatalogPage.module.css'
+import './CatalogPage.css'
 import { Link } from 'react-router-dom'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import userPhoto from '../../../assets/user.png'
+import Button1 from '../../SiteButtons/Button1/Button1'
 
-const CatalogPage = () => {
+
+const CatalogPage = (props) => {
     return (
         <div>
             <section className="linkBlock">
                 <div className="container">
                     <div className="row">
                         <div className="col-6 d-flex align-items-center">
-                            <div className="link__item">
+                            <div className="linkItem">
                                 <p>Show</p>
-                                <div className="dropdown show" id="dd">
-                                    <Link className="btn dropdown-toggle link__btn" href="#" role="button" id="dropdownMenuLink"
+                                <div className="dropdown show">
+                                    <Link className="btn dropdown-toggle linkBtn"  href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         24
-                               </Link>
+                                    </Link>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <Link className="dropdown-item" href="#">Action</Link>
                                         <Link className="dropdown-item" href="#">Another action</Link>
@@ -24,13 +28,13 @@ const CatalogPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6 d-flex align-items">
-                            <div className="link__item ml-auto">
-                                <div className="dropdown show ">
-                                    <Link className="btn dropdown-toggle sort__btn" href="#" role="button" id="dropdownMenuLink"
+                        <div className="col-6 d-flex align-items ">
+                            <div className="ml-auto" >
+                                <div className="dropdown show">
+                                    <Link className="btn dropdown-toggle sortBtn"  href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         SORT BY
-                               </Link>
+                                   </Link>
                                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <Link className="dropdown-item" href="#">Action</Link>
                                         <Link className="dropdown-item" href="#">Another action</Link>
@@ -46,199 +50,93 @@ const CatalogPage = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-sm-2">
-                            <div className="products__filter">
+                            <div className="productsFilter">
                                 <h4> Filter</h4>
                             </div>
                         </div>
                         <div className="col-12 col-sm-10">
-                            <div className="site__headline ">
-                                <p> All our products</p>
-                            </div>
+                            <SiteHeadline text="All our products" />
                         </div>
                     </div>
 
-                    <div className="catalog">
-                        <div className="products__side-bar">
-                            <div className="products__side-barItem">
+                    <div className="catalog">                      
+                      <div className="sidebar">                           
+                       <div className="sidebarItem">
                                 <hr />
-                                <div className="products__side-barText">
+                                <div className="sidebarText">
                                     <p>Size</p>
                                     <img src="images/svg/Vector (7).svg" alt="" />
                                 </div>
-                                <ul className="products__side-barItemMenu">
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">34</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
+                                <ul className="sidebarMenu">
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">34</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">36</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">38</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">40</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">42</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">S</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">M</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">L</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">XL</span></label>
                                 </ul>
                             </div>
-                            <div className="products__side-barItem">
+                            <div className="sidebarItem">
                                 <hr />
-                                <div className="products__side-barText">
+                                <div className="sidebarText">
                                     <p>Colour</p>
-
                                 </div>
-                                <ul className="products__side-barItemMenu">
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
+                                <ul className="sidebarMenu">
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Black</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Blue</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">White</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Cream</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Floral</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Pink</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Red</span></label>
                                 </ul>
                             </div>
-                            <div className="products__side-barItem">
+                            <div className="sidebarItem">
                                 <hr />
-                                <div className="products__side-barText">
+                                <div className="sidebarText">
                                     <p>Style</p>
 
                                 </div>
-                                <ul className="products__side-barItemMenu">
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
-                                    <label><input type="checkbox" className="checkbox" /><span className="fake"></span><span className="check__text">36</span></label>
+                                <ul className="sidebarMenu">
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Mini</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Maxi</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Midi</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Jumsuit</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Tops</span></label>
+                                    <label><input type="checkbox" className="checkbox"/><span className="fake"></span><span className="checkText">Bottoms</span></label>
                                 </ul>
                             </div>
-                            <div className="products__btn">
+                            <div className="productsBtn">
                                 <button>Apply</button>
                             </div>
                         </div>
 
-                        <div className="catalog__list">
-
-                            <div className="style__item">
-                                <img src="images/Mask.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className="style__item">
-                                <img src="images/Mask-4.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className="style__item">
-                                <img src="images/Mask-2.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className="style__item">
-                                <img src="images/Mask-3.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className="style__item">
-                                <img src="images/Mask-4.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className="style__item">
-                                <img src="images/Mask-5.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className="style__item">
-                                <img src="images/Mask-2.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-
-
-                            <div className="style__item">
-                                <img src="images/Mask.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-
-
-                            <div className=" style__item">
-                                <img src="images/Mask-3.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-
-
-                            <div className=" style__item">
-                                <img src="images/Mask-5.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className=" style__item">
-                                <img src="images/Mask-2.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <div className=" style__item">
-                                <img src="images/Mask-4.png" alt="" />
-                                <h4>Shake It Off Embellished</h4>
-                                <p>MINI DRESS</p>
-                                <h5>€61.17</h5>
-                                <div className="style__btn">
-                                    <button>ADD TO CART</button>
-                                </div>
-                            </div>
-                            <nav aria-label="Page navigation example" className="products__paginaion">
-                                <ul className="pagination">
-                                    <li className="page-item">
-                                        <Link className="page-link" href="#" aria-label="Previous">
+                        <div className="catalogList">
+                              {
+                                 props.goods.map(item=><div className="goodsItem" key={item.goods_id}>
+                                         <img src={item.img} alt=""/>
+                                  <h4>{item.headline}</h4>
+                                  <p>{item.slogan}</p>
+                                  <h5>{item.price}</h5>
+                                  <Button1 text="Add to cart "/>
+                                  </div>)
+                              }
+                                    <nav aria-label="Page navigation example" className="productsPagination">
+                                <ul className="productsPagination">
+                                    <li className="pageItem">
+                                    <Link className="pageLink" href="#" aria-label="Previous">
                                             <i className="fas fa-chevron-left" aria-hidden="true"></i>
                                             <span className="sr-only">Previous</span>
                                         </Link>
                                     </li>
-                                    <li className="page-item"><Link className="page-link" href="#">1</Link></li>
-                                    <li className="page-item"><Link className="page-link" href="#">2</Link></li>
-                                    <li className="page-item"><Link className="page-link" href="#">3</Link></li>
-                                    <li className="page-item">
-                                        <Link className="page-link" href="#" aria-label="Next">
+                                    <li className="pageItem"><Link className="pageLink" href="#">1</Link></li>
+                                    <li className="pageItem"><Link className="pageLink" href="#">2</Link></li>
+                                    <li className="pageItem"><Link className="pageLink" href="#">3</Link></li>
+                                    <li className="pageItem">
+                                        <Link className="pageLink"href="#" aria-label="Next">
                                             <i className="fas fa-chevron-right" aria-hidden="true"></i>
                                             <span className="sr-only">Next</span>
                                         </Link>
@@ -253,5 +151,4 @@ const CatalogPage = () => {
         </div>
     )
 }
-
 export default CatalogPage

@@ -1,11 +1,13 @@
 import './NavBar.css';
 import React  from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink,Link, Redirect} from 'react-router-dom'
 import NavLogo from '../NavLogo/NavLogo'
 
 
 const NavBar=(props) =>{
-    debugger;
+     function red(){
+      return <Redirect to="asd"/>
+     }
     return(
         <nav className="navbar navbar-expand-lg">
             <NavLogo/>
@@ -26,7 +28,7 @@ const NavBar=(props) =>{
                             <NavLink activeStyle={{color:"#E77E83"}} to="/details">Details</NavLink>
                         </li>
                         <li className="">
-                            <NavLink activeStyle={{color:"#E77E83"}} to="/Benefits">Benefits</NavLink>
+                            <NavLink activeStyle={{color:"#E77E83"}} to="/users">Benefits</NavLink>
                         </li>
                     </ul>
 
@@ -42,11 +44,12 @@ const NavBar=(props) =>{
                     <p>Search</p>
                 </div>
                 <div className=" nav__account col-2 col-sm-2 col-lg-1 d-flex align-items flex-column">
-                    {props.props.isAuth?<NavLink activeStyle={{color:"#E77E83"}} to="/orders">{props.props.login}</NavLink>:<NavLink activeStyle={{color:"#E77E83"}} to="/sign"><img src="images/svg/Vector (6).svg" className="ml-auto" alt="Account"/></NavLink>}
+    {props.props.isAuth?<NavLink activeStyle={{color:"#E77E83"}} to="/orders">{props.props.login}<Link onClick={props.logout} >Logout</Link></NavLink>:<NavLink activeStyle={{color:"#E77E83"}} to="/sign"><img src="images/svg/Vector (6).svg" className="ml-auto" alt="Account"/></NavLink>}
                 </div>
 
             </nav>
     )
+    
 
 }
 export default NavBar

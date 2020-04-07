@@ -2,25 +2,22 @@ import React from 'react'
 import styles from './CheckoutPage.module.css'
 import {Link} from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import Button3 from '../../SiteButtons/Button3/Button3'
 
 const CheckoutPage=()=>{
     return(
         <div>
       <HeaderBottom/>
-        <section className="bag__headline">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card__headline">
-                            <p style={{marginTop:'35px !important'}}>Check out</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+         
 
         <section className="checkout">
             <div className="container">
+            <div className="row">
+                    <div className="col-12">
+                        <SiteHeadline text="Check Out"/>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-12 col-md-9">
                         <form className="checkout__form">
@@ -69,10 +66,7 @@ const CheckoutPage=()=>{
                             </div>
                             <div className="form-row">
                                 <div className="col-12 d-flex align-items-center">
-                                    <div className="d-flex form__returnText">
-                                        <i className="carousel-control-prev-icon fas fa-chevron-left"  aria-hidden="true"></i>
-                                        <p >Return to cart</p>
-                                    </div>
+                                    <Button3 link="/catalog"text="Return to catalogue"/>
                                 </div>
                                 <div className="col-12 d-flex align-items-center justify-content-end">
                                     <button type="submit" className="form__btn ">Continue</button>

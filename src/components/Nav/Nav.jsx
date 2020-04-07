@@ -8,7 +8,7 @@ const Nav=(props)=>{
         <div>
       <div className="container">
         <div className="row">
-            <NavBar props={props}/>
+            <NavBar props={props} logout={props.logoutThunk}/>
         </div>
     </div>
 {props.children}

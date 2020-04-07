@@ -3,24 +3,24 @@ import styles from './FeedbackPage.module.css'
 import {Link} from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
+import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 
 const FeedbackPage=()=>{
     return(
         <div>
     <HeaderBottom/>
-        <section className="bag__headline">
+      
+            
+          
+    
+        <section className="feedbackBlock">
+     
             <div className="container">
-                <div className="row">
+            <div className="row">
                     <div className="col-12">
-                        <div className="card__headline">
-                            <p style={{marginTop: '35px !important'}}>Profile</p>
-                        </div>
+                         <SiteHeadline text="Profile"/>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section className="feedbackBlock">
-            <div className="container">
                 <div className="returnBlock__inform">
                     <div>
                         <div className="row">

@@ -17,3 +17,15 @@
     }
 }
 
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .headlineBlock{
+        font-size:40px;
+        white-space: normal;
+        width: 300px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+

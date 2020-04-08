@@ -1,21 +1,26 @@
+import { testAPI } from "../api/api"
 
+const GET_GOODS_AC="GET_GOODS_AC"
 let initialState={
-    goods:[
-        {goods_id:1,img:"/images/Mask-2.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:2,img:"/images/Mask-3.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:3,img:"/images/Mask-4.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:4,img:"/images/Mask-5.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:5,img:"/images/Mask.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:6,img:"/images/Mask-3.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:7,img:"/images/Mask-4.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-        {goods_id:8,img:"/images/Mask-2.png",headline:"Shake It Off Embellished",slogan:"MINI DRESS",price:"€61.17"},
-    ]
+    goods:[]
 }
 
 const CatalogReducer=(state=initialState,action)=>{
     switch(action.type){
+        case GET_GOODS_AC:
+            return{...state,goods:[...action.dataGoods]}
         default: return state
     }
+}
+const getGoods=(dataGoods)=>({type:GET_GOODS_AC,dataGoods})
+
+
+export const getGoodsThunk=()=>(dispatch)=>{
+    testAPI.getGoods()
+    .then(response=>{
+        debugger
+        dispatch(getGoods(response))
+    })
 }
 
 export default CatalogReducer

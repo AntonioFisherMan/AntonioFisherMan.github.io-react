@@ -1,7 +1,8 @@
 import * as axios from "axios";
+
 const baseUrl="https://social-network.samuraijs.com/api/1.0/";
 let instance = axios.create({
-  baseUrl: "https://social-network.samuraijs.com/api/1.0/",
+  baseUrl: baseUrl,
   withCredentials: true
 });
 
@@ -15,12 +16,12 @@ export const usersAPI = {
     return instance.get(baseUrl+'profile/status/'+2)
     .then(response=>response.data)
   },
-  updateStatus(status){
-    return instance.put(baseUrl+'profile/status/',{status:status})
-    .then(response=>response.data)
-   
+  updateStatus(status) {
+    return instance.put(baseUrl + 'profile/status/', {status: status})
+        .then(response => response.data)
   }
-};
+}
+;
 
 export const authAPI = {
   getAuth:()=>instance.get(baseUrl+"/auth/me"),
@@ -30,5 +31,18 @@ export const authAPI = {
   logout(){
     return instance.delete(baseUrl+"/auth/login")
   }
-
 };
+
+export const testAPI={
+  getMyUsers(){
+    return axios.get("http://localhost:5000/users")
+    .then(response=>response.data)
+  },
+  getGoods(){
+    return axios.get("http://localhost:5000/goods")
+    .then(response=>response.data)
+ 
+  }
+}
+
+

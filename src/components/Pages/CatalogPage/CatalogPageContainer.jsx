@@ -1,19 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CatalogPage from './CatalogPage'
-import {} from '../../../redux/UsersReducer'
-import Preloader from '../../common/Preloader'
 import  {WithAuthRedirect}  from '../../../hoc/WithAuthRedirect'
 import { compose } from 'redux'
+import {getGoodsThunk} from '../../../redux/CatalogReducer'
 
 
 
 class CatalogPageContainer extends React.Component{
-  
+  componentDidMount(){
+    this.props.getGoodsThunk();
+  }
   render(){
       return(
         <>
-        <CatalogPage {...this.props}
+        <CatalogPage  {...this.props}
         />
         </>
       )
@@ -28,6 +29,6 @@ let mapStateToProps=(state)=>{
 
 export default  compose(
   WithAuthRedirect,
-  connect(mapStateToProps)
+  connect(mapStateToProps,{getGoodsThunk})
 )(CatalogPageContainer)
 

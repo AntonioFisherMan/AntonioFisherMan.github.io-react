@@ -6,13 +6,15 @@ import CatalogReducer from './CatalogReducer';
 import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import AppReducer from './AppReducer';
+import TestReducer from './TestReducer';
 
 let reducers=combineReducers({
     users:usersReducer,
     auth:AuthReducer,
     goods:CatalogReducer,
     form: formReducer,
-    app:AppReducer
+    app:AppReducer,
+    test:TestReducer
 });
 
 let store=createStore(reducers,applyMiddleware(thunkMiddleware));

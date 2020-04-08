@@ -21,7 +21,8 @@ connection.once('open',()=>{
 
 const userRouter=require('./routes/userRouter')
 app.use('/users',userRouter)
-
+const goodsRouter=require('./routes/goodsRouter')
+app.use('/goods',goodsRouter)
 
 
 app.listen(port,()=>{

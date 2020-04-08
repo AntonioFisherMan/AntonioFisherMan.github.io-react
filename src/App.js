@@ -20,6 +20,7 @@ import NavContainer from "./components/Nav/NavContainer";
 import CatalogPageContainer from "./components/Pages/CatalogPage/CatalogPageContainer";
 import SignPageContainer from "./components/Pages/SignPage/SignPageContainer";
 import Preloader from "./components/common/Preloader";
+import MyUsersContainer from "./components/TEST/MyUsers/MyUsersContainer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -49,6 +50,7 @@ class App extends React.Component {
               <Route path="/return" component={ReturnPage} />
               <Route path="/sign" component={SignPageContainer} />
               <Route path="/users/:id?" component={usersContainer} />
+              <Route path="/test" component={MyUsersContainer}/>
             </NavContainer>
             <Footer />
           </Provider>

@@ -118,9 +118,9 @@ const CatalogPage = (props) => {
                               {
                                  props.goods.map(item=><div className="goodsItem" key={item.goods_id}>
                                          <img src={item.img} alt=""/>
-                                  <h4>{item.headline}</h4>
+                                  <h4>{item.text}</h4>
                                   <p>{item.slogan}</p>
-                                  <h5>{item.price}</h5>
+                                  <h5>€{item.price}</h5>
                                   <Button1 text="Add to cart "/>
                                   </div>)
                               }

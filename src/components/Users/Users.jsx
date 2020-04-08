@@ -29,7 +29,7 @@ const Users = (props) => {
                             <h1>{u.name}</h1>
                             <Link to={'/catalog/' + u.id}><img src={u.photos.small != null ? u.photos.small : userPhoto} alt="" /></Link>
                             <div>
-                                {u.followed ? <button type="button" className="btn btn-primary" onClick={() => { props.unfollow(u.id) }}>Folloswed</button> : <button type="button" className="btn btn-success" onClick={() => { props.follow(u.id) }}>UnFollowed</button>}
+                                {u.followed ? <button type="button" className="btn btn-primary" onClick={() => { props.unfollow(u.id) }}>Followed</button> : <button type="button" className="btn btn-success" onClick={() => { props.follow(u.id) }}>UnFollowed</button>}
                             </div>
                         </div>
                     )}

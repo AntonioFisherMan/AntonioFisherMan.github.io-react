@@ -58,6 +58,7 @@ const userReducer=(state=initialState,action)=>{
   }
 }
 
+//ACTION 
 
 export const follow=(user_id)=>({type:FOLLOW_AC,user_id})
 export const unfollow=(user_id)=>({type:UN_FOLLOW_AC,user_id})
@@ -67,6 +68,9 @@ export const setTotalCount=(totalCount)=>({type:SETTOTAL_AC,totalCount})
 export const setFetch=(isFetching)=>({type:SETFETCH_AC,isFetching})
 export const setStatus=(status)=>({type:SETSTATUS_AC,status})
 
+
+
+//THUNK 
 export const getUsersThunkCreator=(currentPage,pageSize)=>(dispatch)=>{
     dispatch(setFetch(true));
     usersAPI.getUsers(currentPage,pageSize).then(data => {
@@ -76,7 +80,7 @@ export const getUsersThunkCreator=(currentPage,pageSize)=>(dispatch)=>{
       
     })
 }
-export const getStatus=(user_id)=>(dispatch)=>{
+export const getStatusThunkCreator=(user_id)=>(dispatch)=>{
     usersAPI.getStatus(user_id)
     .then(data=>{
         debugger

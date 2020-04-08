@@ -1,22 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Users from './Users'
-import {setPage,getUsersThunkCreator,follow,unfollow,getStatus,updateStatus} from '../../redux/UsersReducer'
+import { setPage, getUsersThunkCreator, follow, unfollow, getStatusThunkCreator, updateStatus } from '../../redux/UsersReducer'
 import Preloader from '../common/Preloader'
-import {WithAuthRedirect}  from '../../hoc/WithAuthRedirect'
+import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { compose } from 'redux'
+import { getPageSize,getStatus, getTotalUsersCount, getCurrentPage, getIsFetching, getAuth,getUsers} from '../../redux/UsersSelectors'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize);
-        this.props.getStatus(this.props.auth.id)
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+        this.props.getStatusThunkCreator(this.props.auth.id)
     }
     onPageChanged = (pageNumber) => {
         this.props.setPage(pageNumber);
-        this.props.getUsersThunkCreator(pageNumber,this.props.pageSize);
+        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
     }
     render() {
-       
+
         return <>
             <div className="row justify-content-center">
                 {this.props.isFetching ? <Preloader /> : null}
@@ -41,22 +42,35 @@ class UsersContainer extends React.Component {
     }
 }
 
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.users.users,
+//         pageSize: state.users.pageSize,
+//         totalUsersCount: state.users.totalUsersCount,
+//         currentPage: state.users.currentPage,
+//         isFetching: state.users.isFetching,
+//         auth:state.auth,
+//         status:state.users.status
+//     }
+// }
 let mapStateToProps = (state) => {
+    debugger
     return {
-        users: state.users.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching,
-        auth:state.auth,
-        status:state.users.status
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        auth: getAuth(state),
+        status: getStatus(state)
     }
 }
 
-
 export default compose(
     WithAuthRedirect,
-    connect(mapStateToProps,{setPage,follow,unfollow,getStatus,updateStatus,
-        getUsersThunkCreator})
+    connect(mapStateToProps, {
+        setPage, follow, unfollow, getStatusThunkCreator, updateStatus,
+        getUsersThunkCreator
+    })
 )(UsersContainer)
 

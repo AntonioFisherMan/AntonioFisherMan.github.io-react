@@ -2,13 +2,12 @@
     display: flex;
     margin-top: 64px;
 }
-.button a{
+.button p{
     font-weight: normal;
 font-size: 15px;
 line-height: 18px;
 display: flex;
 align-items: center;
 color: #000000;
-margin-left: 21px;
-
+margin-left: 21px !important;
 }

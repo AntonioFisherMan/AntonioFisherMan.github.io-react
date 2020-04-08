@@ -34,141 +34,6 @@
 
 
 
-/****** BAG PAGE ***************/
-.bagLink{
-    display: flex;
-    align-items: center;
-    height: 45px;
-    background: #E9EBF0;
-    margin-top: 22px;
-    
-}
-.bagLink p{
-    font-weight: normal;
-font-size: 15px !important;
-color: #000000;
-}
-.bagCard{
-    margin-bottom: 32px;
-    margin-top: 30px;
-}
-.bagCard p{
-    font-weight: normal;
-font-size: 15px !important;
-line-height: 18px;
-color: #000000;
-}
-.bagCard__photo{
-border: 1px solid #EFEFEF;
-box-sizing: border-box;
-transform: matrix(-1, 0, 0, 1, 0, 0);
-width: 285px;
-height: 345px;
-margin-bottom: 32px;
-}
-.bagCard__slogan{
-font-size: 10px !important;
-line-height: 12px !important;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-color: #E77E83 !important;
-margin-bottom: 7px !important;
-}
-.bagCard__list{
-    display: flex;
-    justify-content: space-between;
-}
-.bagCard__listPrice{
-   
-font-size: 17px !important;
-line-height: 21px !important;
-color: #111111 !important;
-
-}
-.bagCard__size p
-{
-    margin-right: 8px !important;
-   
-}
-.bagCard__p{
-    margin-bottom: 11px !important;
-}
-.bagCard__discount{
-    display: flex;
-    margin-top: 33px;
-}
-.bagCard__discount img{
-    margin-right: 17px;
-}
-.bagCard__discount span{
-    font-weight: normal;
-font-size: 14px;
-line-height: 150%;
-color: #E77E83;
-}
-.bagCard__grey{
-    font-weight: normal;
-font-size: 14px !important;
-line-height: 150% !important;
-color: #979797 !important;
-}
-
-.bagCard__text{
-    display: flex;
-    align-items: center;
-    padding:25px 20px;
-    background: #F7F8FC;
-    margin-top: 28px;
-}
-.bagCard__text p{
-    font-weight: normal;
-font-size: 15px;
-line-height: 200%;
-color: #000000;
-margin-left: 45px !important;
-
-}
-.bagCard__inform{
-    margin-top: 36px;
-}
-.bagCard__informText p{
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 18px;
-    color: #E77E83;
-    margin-left: 21px !important;
-}
-.bagCard__informText2{
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-}
-.bagCard__informText2 h5{
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    color: #111111;
-    margin-bottom: 23px;
-}
-#bagCard__btn{
-    width: 180px;
-    height: 55px;
-   margin:0;
-   margin-top: 30px;
-}
-.bagCard__informText2 p{
-    font-weight: normal;
-font-size: 14px;
-line-height: 150%;
-color: #979797;
-margin-top: 20px !important;
-}
-
-.bagCard__informText2 span{
-    color: #E77E83;
-}
-
-
 
 
 
@@ -242,71 +107,7 @@ color: #FFFFFF;
 
 
 
-/********** orders PAGE *********/
-.orders__text{
-margin:22px 0px 15px 0px !important;
-font-weight: 600;
-font-size: 15px;
-line-height: 18px;
-color: #000000 !important   ;
 
-}
-
-
-.orders__price{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-.orders button{
-    margin-top: 51px;
-    margin-bottom: 6px;
-    width: 178px;
-    height: 50px;
-    font-weight: 600;
-font-size: 12px;
-line-height: 15px;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-color: #FFFFFF ;
-}
-.orders__btn p{
-    font-weight: normal;
-font-size: 12px;
-line-height: 250%;
-color: #666666;
-
-}
-.orders__photo{
-    border: 1px solid #EFEFEF !important;
-    width: 180px;
-    height: 225px;
-}
-.orders__item{
-    margin-bottom: 29px;
-    padding-top: 32px;
-    margin-left: 40px;
-}
-.orders__item-active{
-    display:none !important;
-}
-.orders__item-active p{
-font-size: 12px;
-}
-.orders__item:last-child{
-    border-top:2px solid #E9EBF0;
-  
-}
-.orders__return p{
-    font-size: 15px;
-    line-height: 18px;
-    color: #000000;
-    margin-left:21px !important;
-}
-.orders__return{
-    margin:28px 0px 42px 0px;
-
-}
 
 
 
@@ -795,25 +596,7 @@ margin-bottom: 110px !important;
     #multiCarousel_3{
         display: none;
     }
-    .bagLink , .bagCard__item{
-        display: none;
-    }
-    .bagCard__informList{
-        display: flex;
-       flex-direction: column-reverse;
-    }
-    .bagCard__informText, .bagCard__informText2 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .bagCard__informText2 p{
-        text-align: center;
-        padding-bottom: 20px;
-    }
-    .bagCard__item{
-        display: none !important;
-    }
+    
 }
 
 
@@ -951,10 +734,6 @@ margin-bottom: 110px !important;
     #multiCarousel_3{
         display: none;
     }
-    .bagCard__item{
-        display: none !important;
-    }
-   
 }
 .returnBlock__list-active{
     display: none;

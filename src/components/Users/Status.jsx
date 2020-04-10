@@ -8,15 +8,14 @@ class Status extends React.Component{
     }
     state={
         editMode:false,
-    }
-   
+  }
+   shouldComponentUpdate(nextProps,nextState){
+     return nextProps!==this.props||nextState!==this.state
+   }
     componentDidUpdate(prevProps,prevState){
-      console.log("ASDSA")
-      debugger;
       if(prevProps.status!==this.props.status){
         this.setState({status:this.props.status})
       }
-   
     }
     activateEditMode(){
       this.setState({editMode:true})
@@ -27,7 +26,6 @@ class Status extends React.Component{
     }
     onStatusChange=(e)=>{
       this.setState({status:e.currentTarget.value});
-    
     }
   render(){
       return(

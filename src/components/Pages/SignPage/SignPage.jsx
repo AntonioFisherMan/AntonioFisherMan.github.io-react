@@ -40,7 +40,7 @@ const SignPage=(props)=>{
                         <div className="form-group">
                            
                                 <input type="image" alt="" src="images/svg/Vector (22).svg" className="form-control " value="adas"placeholder="Facebook"
-                               autofocus/>
+                               autoFocus/>
                            
                             
                         </div>
@@ -57,7 +57,7 @@ const SignPage=(props)=>{
                         
                         <div className="form-group">
                             <input type="email" id="inputEmail" className="form-control" placeholder="Email"
-                                required autofocus/>
+                                required autoFocus/>
                         </div>
                         <p className="sign__formGrey">By joining I agree to receive emails from DressItBox</p>
                         <input type="submit"  id="sign__formBtn" value="register"/>

@@ -1,13 +1,10 @@
 import './NavBar.css';
 import React  from 'react'
-import {NavLink,Link, Redirect} from 'react-router-dom'
+import {NavLink,Link} from 'react-router-dom'
 import NavLogo from '../NavLogo/NavLogo'
 
 
 const NavBar=(props) =>{
-     function red(){
-      return <Redirect to="asd"/>
-     }
     return(
         <nav className="navbar navbar-expand-lg">
             <NavLogo/>
@@ -18,16 +15,16 @@ const NavBar=(props) =>{
                 </button>
                 <div className="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul className="navbar-nav col-lg-6">
-                        <li className="">
+                        <li >
                             <NavLink to="/">Rent Outfits<span className="sr-only">(current)</span></NavLink>
                         </li>
-                        <li className="">
+                        <li >
                             <NavLink activeStyle={{color:"#E77E83"}} to="/catalog">Our Products</NavLink>
                         </li>
-                        <li className="">
+                        <li >
                             <NavLink activeStyle={{color:"#E77E83"}} to="/details">Details</NavLink>
                         </li>
-                        <li className="">
+                        <li >
                             <NavLink activeStyle={{color:"#E77E83"}} to="/users">Benefits</NavLink>
                         </li>
                     </ul>
@@ -44,7 +41,7 @@ const NavBar=(props) =>{
                     <p>Search</p>
                 </div>
                 <div className=" nav__account col-2 col-sm-2 col-lg-1 d-flex align-items flex-column">
-    {props.props.isAuth?<NavLink activeStyle={{color:"#E77E83"}} to="/orders">{props.props.login}<Link onClick={props.logout} >Logout</Link></NavLink>:<NavLink activeStyle={{color:"#E77E83"}} to="/sign"><img src="images/svg/Vector (6).svg" className="ml-auto" alt="Account"/></NavLink>}
+    {props.props.isAuth?<NavLink activeStyle={{color:"#E77E83"}} to="/orders">{props.props.login}<Link to="/" onClick={props.logout} >Logout</Link></NavLink>:<NavLink activeStyle={{color:"#E77E83"}} to="/sign"><img src="images/svg/Vector (6).svg" className="ml-auto" alt="Account"/></NavLink>}
                 </div>
 
             </nav>

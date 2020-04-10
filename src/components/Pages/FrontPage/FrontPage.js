@@ -170,7 +170,7 @@ const FrontPage = () => {
             </div>
             <div className="col-12 col-md-6">
               <div className={styles.styleBtn}>
-              <Button2 text="follow us"/>
+              <Button2 to="/follow"text="follow us"/>
               </div>
             </div>
           </div>

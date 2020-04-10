@@ -18,12 +18,9 @@
 
  export const getMyUsers=(dataUsers)=>({type:GET_MYUSERS_AC,dataUsers})
 
- export const getMyUsersThunk=()=>(dispatch)=>{
-     testAPI.getMyUsers()
-         .then(data=>{
-        
-             dispatch(getMyUsers(data))
-         })
+ export const getMyUsersThunk=()=>async(dispatch)=>{
+     let data= await testAPI.getMyUsers()
+    dispatch(getMyUsers(data))
 
 
  }

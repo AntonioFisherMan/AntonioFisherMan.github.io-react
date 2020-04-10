@@ -25,12 +25,9 @@ export const setInitialize=()=>({type:SET_INITIALIZED})
 
 export const initializeThunkApp=()=>(dispatch)=>{
     let promise=dispatch(getAuthThunkCreator())
-
     Promise.all([promise]).then(()=>{
         dispatch(setInitialize());
     })
-
-
 }
 
 export default AppReducer

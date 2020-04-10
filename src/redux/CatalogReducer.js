@@ -15,12 +15,10 @@ const CatalogReducer=(state=initialState,action)=>{
 const getGoods=(dataGoods)=>({type:GET_GOODS_AC,dataGoods})
 
 
-export const getGoodsThunk=()=>(dispatch)=>{
-    testAPI.getGoods()
-    .then(response=>{
-        debugger
+export const getGoodsThunk=()=>async(dispatch)=>{
+    let response= await testAPI.getGoods()
         dispatch(getGoods(response))
-    })
+
 }
 
 export default CatalogReducer

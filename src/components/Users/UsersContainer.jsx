@@ -5,7 +5,7 @@ import { setPage, getUsersThunkCreator, follow, unfollow, getStatusThunkCreator,
 import Preloader from '../common/Preloader'
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { compose } from 'redux'
-import { getPageSize,getStatus, getTotalUsersCount, getCurrentPage, getIsFetching, getAuth,getUsers} from '../../redux/UsersSelectors'
+import { getPageSize,getStatus, getTotalItemsCount, getCurrentPage, getIsFetching, getAuth,getUsers} from '../../redux/UsersSelectors'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -26,7 +26,7 @@ class UsersContainer extends React.Component {
                 {this.id}
             </div>
             <Users
-                totalUsersCount={this.props.totalUsersCount}
+                totalItemsCount={this.props.totalItemsCount}
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
                 onPageChanged={this.onPageChanged}
@@ -54,11 +54,10 @@ class UsersContainer extends React.Component {
 //     }
 // }
 let mapStateToProps = (state) => {
-    debugger
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
+        totalItemsCount: getTotalItemsCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         auth: getAuth(state),

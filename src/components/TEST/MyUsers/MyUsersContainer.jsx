@@ -2,6 +2,7 @@ import  React from 'react'
 import MyUsers from "./MyUsers";
 import {connect} from "react-redux";
 import {getMyUsersThunk} from '../../../redux/TestReducer'
+import MyErrorBoundary from '../../../errors/MyErrorBoundary';
 
 class MyUsersContainer extends  React.Component{
     componentDidMount(){
@@ -9,7 +10,9 @@ class MyUsersContainer extends  React.Component{
     }
     render(){
         return(
-            <MyUsers users={this.props.users}/>
+    <MyErrorBoundary>
+ <MyUsers users={this.props.users}/>
+    </MyErrorBoundary>
         )
     }
 }

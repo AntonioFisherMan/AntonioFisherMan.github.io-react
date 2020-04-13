@@ -121,7 +121,7 @@ const CatalogPage = (props) => {
                                   <h4>{item.text}</h4>
                                   <p>{item.slogan}</p>
                                   <h5>€{item.price}</h5>
-                                  <Button1 text="Add to cart "/>
+                                  <Button1 text="Add to cart"/>
                                   </div>)
                               }
                                     <nav aria-label="Page navigation example" className="productsPagination">

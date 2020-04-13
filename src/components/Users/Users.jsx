@@ -7,7 +7,7 @@ import User from './User'
 const Users = (props) => {
     return (
         <div>
-           <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
+           
             <div className="row">
                 {
                     props.users.map(u =>
@@ -15,6 +15,7 @@ const Users = (props) => {
                     )
                 }
             </div>
+            <Paginator totalItemsCount={props.totalItemsCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
             <StatusHook status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )

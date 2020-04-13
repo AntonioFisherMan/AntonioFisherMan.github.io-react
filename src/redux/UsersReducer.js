@@ -13,8 +13,8 @@ const DELETEUSER_AC = "DeleteUser";
 
 let initialState = {
   users: [],
-  pageSize: 4,
-  totalUsersCount: 0,
+  pageSize: 15,
+  totalItemsCount: 0,
   currentPage: 1,
   isFetching: false,
   status: null,
@@ -39,7 +39,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, currentPage: action.page_id };
     }
     case SETTOTAL_AC: {
-      return { ...state, totalUsersCount: action.totalCount };
+      return { ...state, totalItemsCount: action.totalCount };
     }
     case SETFETCH_AC: {
       return { ...state, isFetching: action.isFetching };
@@ -58,10 +58,7 @@ export const follow = (user_id) => ({ type: FOLLOW_AC, user_id });
 export const unfollow = (user_id) => ({ type: UN_FOLLOW_AC, user_id });
 export const setUsers = (users) => ({ type: SETUSERS_AC, users });
 export const setPage = (page_id) => ({ type: SETPAGE_AC, page_id });
-export const setTotalCount = (totalCount) => ({
-  type: SETTOTAL_AC,
-  totalCount,
-});
+export const setTotalCount = (totalCount) => ({type: SETTOTAL_AC,totalCount,});
 export const setFetch = (isFetching) => ({ type: SETFETCH_AC, isFetching });
 export const setStatus = (status) => ({ type: SETSTATUS_AC, status });
 export const deleteUser = (user_id) => ({ type: DELETEUSER_AC, user_id });

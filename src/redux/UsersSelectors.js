@@ -2,8 +2,8 @@ import {createSelector} from 'reselect'
 export const getPageSize=(state)=>{
     return state.users.pageSize;
 }
-export const getTotalUsersCount=(state)=>{
-     return state.users.totalUsersCount;
+export const getTotalItemsCount=(state)=>{
+     return state.users.totalItemsCount;
 }
 export const getCurrentPage=(state)=>{
     return  state.users.currentPage;

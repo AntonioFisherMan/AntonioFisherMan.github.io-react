@@ -1,5 +1,5 @@
 import React from 'react'
-import {createStore,combineReducers, applyMiddleware} from 'redux'
+import {createStore,combineReducers, applyMiddleware,compose} from 'redux'
 import usersReducer from './UsersReducer'
 import AuthReducer from './AuthReducer';
 import CatalogReducer from './CatalogReducer';
@@ -17,7 +17,10 @@ let reducers=combineReducers({
     test:TestReducer
 });
 
-let store=createStore(reducers,applyMiddleware(thunkMiddleware));
-window.store=store;
 
+
+ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+ const store = createStore(reducers,composeEnhancers( applyMiddleware(thunkMiddleware)))
+
+//window.store=store;
 export default store

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {initializeThunkApp} from './redux/AppReducer'
 
 //PAGES
-import FrontPage from "../src/components/Pages/FrontPage/FrontPage";
-import DetailsPage from "../src/components/Pages/DetailsPage/DetailsPage";
+
+
 import CardPage from "./components/Pages/CardPage/CardPage";
 import Footer from "../src/components/Footer/Footer";
 import ChangepassPage from "./components/Pages/ChangepassPage/ChangepassPage";
@@ -22,22 +22,26 @@ import SignPageContainer from "./components/Pages/SignPage/SignPageContainer";
 import Preloader from "./components/common/Preloader";
 import MyUsersContainer from "./components/TEST/MyUsers/MyUsersContainer";
 
+const DetailsPage=React.lazy(()=>import("../src/components/Pages/DetailsPage/DetailsPage"));
+const FrontPage=React.lazy(()=>import("../src/components/Pages/FrontPage/FrontPage"));
+
 class App extends React.Component {
   componentDidMount() {
     this.props.initializeThunkApp();
   }
   render() {
-
     if(!this.props.isInitialized)
   {
     return (<Preloader/>)
   }else{
     return (
       <Router>
+
+         <Suspense fallback={<div>Загрузка...</div>}>
         <Switch>
           <Provider store={this.props.store}>
             <NavContainer>
-              <Route exact path="/" component={FrontPage} />
+            <Route exact path="/" component={FrontPage} />
               <Route path="/catalog" component={CatalogPageContainer} />
               <Route path="/details" component={DetailsPage} />
               <Route path="/card" component={CardPage} />
@@ -55,6 +59,7 @@ class App extends React.Component {
             <Footer />
           </Provider>
         </Switch>
+       </Suspense>
       </Router>
     );
   }

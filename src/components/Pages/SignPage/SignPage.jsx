@@ -32,7 +32,6 @@ const SignPage=(props)=>{
                     </div>
                 </div>
                 <div className="col-12 col-md-5">
-                   
                    <ReduxRegisterForm/>
                     <div className="signReturnBtn-active">
                       <Button3 link="/card" text="Return to cart"/>

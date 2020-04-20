@@ -5,16 +5,16 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import userPhoto from '../../../assets/user.png'
 import Button1 from '../../SiteButtons/Button1/Button1'
 import PopUp from '../../PopUp/PopUp'
-
+import {CSSTransition} from 'react-transition-group'
 
 const CatalogPage = (props) => {
 
     setTimeout(function() {
         props.isPopUp(true)
-      },5000);
+      },3000);
     return (
         <div> 
-            {props.popUp ? <PopUp/> : null}
+            {props.popUp ? <PopUp/>: null}
             <section className="linkBlock">
                 <div className="container">
                     <div className="row">

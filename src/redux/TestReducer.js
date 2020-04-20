@@ -10,7 +10,6 @@
  const  TestReducer=(state=initialState,action)=>{
      switch (action.type) {
          case GET_MYUSERS_AC:
-             debugger
              return {...state, myUsers: [...action.dataUsers]}
          default: return state
      }

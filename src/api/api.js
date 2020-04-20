@@ -69,3 +69,10 @@ export const securityAPI={
     return instance.get(baseUrl+'security/get-captcha-url'); 
   }
 }
+
+
+export const testApi={
+  login(){
+    return axios.post("http://localhost:5000/users")
+  }
+}

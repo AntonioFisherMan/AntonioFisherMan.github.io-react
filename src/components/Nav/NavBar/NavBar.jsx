@@ -27,6 +27,9 @@ const NavBar=(props) =>{
                         <li >
                             <NavLink activeStyle={{color:"#E77E83"}} to="/users">Benefits</NavLink>
                         </li>
+                        <li >
+                            <NavLink activeStyle={{color:"#E77E83"}} to="/profile">Profile</NavLink>
+                        </li>
                     </ul>
 
                 </div>

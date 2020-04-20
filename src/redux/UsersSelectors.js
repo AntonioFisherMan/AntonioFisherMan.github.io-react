@@ -17,7 +17,9 @@ export const getAuth=(state)=>{
 export const getStatus=(state)=>{
     return state.users.status;
 }
-
+export const getProfile=(state)=>{
+    return state.users.profile
+}
  const getUsersSelector=(state)=>{
  return state.users.users
 }

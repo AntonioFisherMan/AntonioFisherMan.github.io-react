@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import AppReducer from './AppReducer';
 import TestReducer from './TestReducer';
+import ProfileReducer from './ProfileReducer';
 
 let reducers=combineReducers({
     users:usersReducer,
@@ -14,7 +15,8 @@ let reducers=combineReducers({
     goods:CatalogReducer,
     form: formReducer,
     app:AppReducer,
-    test:TestReducer
+    test:TestReducer,
+    profile:ProfileReducer
 });
 
 
@@ -22,5 +24,5 @@ let reducers=combineReducers({
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
  const store = createStore(reducers,composeEnhancers( applyMiddleware(thunkMiddleware)))
 
-//window.store=store;
+window.store=store;
 export default store

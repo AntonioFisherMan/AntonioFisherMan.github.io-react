@@ -1,5 +1,4 @@
 import React from 'react'
-import * as axios from 'axios'
 import { connect } from 'react-redux'
 import {logoutThunk} from '../../redux/AuthReducer'
 import Nav from './Nav'

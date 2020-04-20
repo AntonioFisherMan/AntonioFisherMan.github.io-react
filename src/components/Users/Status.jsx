@@ -8,7 +8,7 @@ class Status extends React.Component{
     }
     state={
         editMode:false,
-  }
+    }
    shouldComponentUpdate(nextProps,nextState){
      return nextProps!==this.props||nextState!==this.state
    }

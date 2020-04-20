@@ -1,6 +1,4 @@
 import React from 'react'
-import StatusHook from './StatusHook'
-import Status from './Status'
 import Paginator from './Paginator'
 import User from './User'
 
@@ -10,13 +8,12 @@ const Users = (props) => {
            
             <div className="row">
                 {
-                    props.users.map(u =>
-                        <User user={u} follow={props.follow} unfollow={props.unfollow} key={u.id}/>
+                    props.users.map(user =>
+                        <User user={user} follow={props.follow} unfollow={props.unfollow} key={user.id} />
                     )
                 }
             </div>
             <Paginator totalItemsCount={props.totalItemsCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
-            <StatusHook status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 }

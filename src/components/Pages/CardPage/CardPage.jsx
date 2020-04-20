@@ -5,9 +5,14 @@ import Button3 from '../../SiteButtons/Button3/Button3'
 import Button1 from '../../SiteButtons/Button1/Button1'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 
+
+
 const CardPage = () => {
+   
     return (
+      
         <div>
+             
             <HeaderBottom />
             <div className="container">
                 <div className="row">
@@ -16,7 +21,6 @@ const CardPage = () => {
                     </div>
                 </div>
             </div>
-
             <section className="cardLink">
                 <div className="container ">
 
@@ -135,6 +139,7 @@ const CardPage = () => {
                                     <h5>Subtotal: €61.17</h5>
                                     <Button1 text="order" />
                                     <p>By proceeding you are agreeing to our <span>Terms & Conditions</span></p>
+                                    
                                 </div>
                             </div>
                         </div>

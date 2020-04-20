@@ -4,6 +4,8 @@ import CatalogPage from './CatalogPage'
 import  {WithAuthRedirect}  from '../../../hoc/WithAuthRedirect'
 import { compose } from 'redux'
 import {getGoodsThunk} from '../../../redux/CatalogReducer'
+import {IsPopUpHook } from '../../../hoc/IsPopUpHook'
+import {isPopUp} from '../../../redux/AppReducer'
 
 
 
@@ -28,7 +30,7 @@ let mapStateToProps=(state)=>{
 
 
 export default  compose(
-  WithAuthRedirect,
-  connect(mapStateToProps,{getGoodsThunk})
+  IsPopUpHook,
+  connect(mapStateToProps,{getGoodsThunk,isPopUp})
 )(CatalogPageContainer)
 

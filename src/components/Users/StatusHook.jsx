@@ -10,28 +10,25 @@ const StatusHook = (props) => {
      },[props.status])
 
      const activateMode=()=>{
-         setEditMode(true)
-         console.log(props.status+"a")
+         setEditMode(true);
      }
      const deactivateMode=()=>{
          setEditMode(false);
          props.updateStatus(status)
-         console.log(props.status+"de")
      }
      const onStatusChange=(e)=>{
          setStatus(e.currentTarget.value)
      }
     return (
         <>
-    
             {!editMode &&
                 <div>
-                    <span onClick={activateMode}>{status}</span>
+                    <span onClick={activateMode}>{!status?"Status":status}</span>
                 </div>
             }
             {editMode &&
                 <div>
-                    <input onChange={onStatusChange} autoFocus onBlur={deactivateMode} value={status}/>
+                    <input onChange={onStatusChange} autoFocus onBlur={deactivateMode} placeholder={"Status"}value={status}/>
                 </div>
             }
         </>

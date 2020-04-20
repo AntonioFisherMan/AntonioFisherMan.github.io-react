@@ -9,12 +9,13 @@ import { required, MinLength, MaxLength } from '../../../utils/Validators/valida
 import Button3 from '../../SiteButtons/Button3/Button3'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 
+
 const SignPage=(props)=>{
     const onSubmit=(formData)=>{
-        props.login(formData.email,formData.password)
+        props.login(formData.email,formData.password,formData.rememberMe,formData.captcha)
     }
     return(
-        <div>
+        <>
    <HeaderBottom/>
     <section className="signBlock">
         <div className="container">
@@ -25,52 +26,23 @@ const SignPage=(props)=>{
             </div>
             <div className="row">
                 <div className="col-12 col-md-7">
-                <ReduxLoginForm isAuth={props.isAuth}onSubmit={onSubmit}/>
-                    <div className="signBlock__return-btn">
-                        <div className="d-flex form__returnText">
-                            <i className="carousel-control-prev-icon fas fa-chevron-left"  aria-hidden="true"></i>
-                            <Link to="/card">Return to cart</Link>
-                        </div>
+                <ReduxLoginForm captchaUrl={props.captchaUrl} isAuth={props.isAuth}onSubmit={onSubmit}/>
+                    <div className="signReturnBtn">
+                           <Button3 text="Return to cart"/>
                     </div>
-                    
                 </div>
                 <div className="col-12 col-md-5">
-                    <form className="sign__form ">
-                        <h5 className="sign__formHeadline">Not a member? Sign Up</h5>
-                        <div className="form-group">
-                           
-                                <input type="image" alt="" src="images/svg/Vector (22).svg" className="form-control " value="adas"placeholder="Facebook"
-                               autoFocus/>
-                           
-                            
-                        </div>
-                        <div>
-                            <input type="image" alt="" src="images/svg/Vector (23).svg" className="form-control " value="adsa"placeholder="Google"/>
-                        </div>
-                       <div className="sign__formPopUpBlock">
-                        <hr/>
-                        <div className="sign__formPopUp">
-                            <p>Or</p>
-                        </div>
-                        <hr/>
-                       </div>
-                        
-                        <div className="form-group">
-                            <input type="email" id="inputEmail" className="form-control" placeholder="Email"
-                                required autoFocus/>
-                        </div>
-                        <p className="sign__formGrey">By joining I agree to receive emails from DressItBox</p>
-                        <input type="submit"  id="sign__formBtn" value="register"/>
-                    </form>
-                    <div className="signBlock__return-btn-active">
+                   
+                   <ReduxRegisterForm/>
+                    <div className="signReturnBtn-active">
                       <Button3 link="/card" text="Return to cart"/>
                     </div>
-                  
                 </div>
+                
             </div>
         </div>
     </section>
-        </div>
+        </>
      
     )
 }
@@ -84,8 +56,8 @@ const LoginForm=(props)=>{
     }
     return(
         
-        <form className="sign__form" onSubmit={props.handleSubmit}> 
-        <h5 className="sign__formHeadline">log-in</h5>
+        <form className="signForm" onSubmit={props.handleSubmit}> 
+        <h5 className="signHeadline">log-in</h5>
         <div className="form-group">
                 <Field type="email" id="inputEmail" name={"email"} className="form-control" placeholder="Email adress"
                 required  component={Input} validate={[required,MinLengthCreator5,MaxLengthCreator20]}/>
@@ -97,13 +69,18 @@ const LoginForm=(props)=>{
         </div>
       
             <div className="custom-control custom-checkbox d-flex ">
-                <label className="d-flex align-items-center"><Field name={"remember"} type="checkbox" className="checkbox" component={"input"}/> <span className="fake fake__sign" ></span><span className="check__text span">Remember Me<span>(Privacy
+                <label className="d-flex align-items-center"><Field name={"remember"} type="checkbox" className="checkbox" component={"input"}/> <span className="fake fakeSign" ></span><span className="checkText span">Remember Me<span>(Privacy
                     Policy)</span></span></label>
-                <Link className="forgot__pass" to="/changepass">forgot password</Link>
-                <button >Login</button>
+                <Link className="forgotPass" to="/changepass">forgot password</Link>
+                <button>Login</button>
             </div>
+            {props.captchaUrl&&
+            <div>
+                <img src={props.captchaUrl}/>
+                <Field type="text"  className="form-control" placeholder="Captcha" name={"captcha"} id={"captcha"} component={Input}/>
+                </div>}
             {props.error?<div className="form-group form-error">
-                <p>{props.error}</p>
+                <p>{props.error}</p> 
             </div>:null}
             
     </form>
@@ -114,5 +91,42 @@ const ReduxLoginForm=reduxForm({
     form:'login'
 })(LoginForm)
 
+
+
+const RegisterForm=()=>{
+    return(
+        <form className="signForm">
+        <h5 className="signHeadline">Not a member? Sign Up</h5>
+        <div className="form-group">
+                <Field type="image" alt="" component={Input} src="images/svg/Vector (22).svg" className="form-control" placeholder="Facebook"
+               autoFocus/>
+        </div>
+        <div>
+            <Field type="image" alt="" component={Input} src="images/svg/Vector (23).svg" className="form-control" placeholder="Google"/>
+        </div>
+       <div className="signPopUpBlock">
+        <hr/>
+        <div className="signPopUp">
+            <p>Or</p>
+        </div>
+        <hr/>
+       </div>
+        <div className="form-group">
+            <div className="form-group">
+            <Field type="email" id="registerEmail" component={Input} validate={[required,MinLengthCreator5,MaxLengthCreator20]} name={"email"} className="form-control" placeholder="Enter  email"  required />
+            </div>
+            <div className="form-group">
+            <Field type="password" id="registerPass"  component={Input} validate={[required,MinLengthCreator5,MaxLengthCreator20]} name={"password"} className="form-control" placeholder="Enter  password"  required />
+            </div>
+        </div>
+        <p className="signGrey">By joining I agree to receive emails from DressItBox</p>
+        <button id="signBtn">Register</button>
+    </form>
+    )
+}
+const ReduxRegisterForm=reduxForm({
+    form:'register'
+})(RegisterForm)
 export default SignPage 
 
+ 

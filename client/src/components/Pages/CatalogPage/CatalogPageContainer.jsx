@@ -28,7 +28,6 @@ let mapStateToProps=(state)=>{
     }
 }
 
-
 export default  compose(
   IsPopUpHook,
   connect(mapStateToProps,{getGoodsThunk,isPopUp})

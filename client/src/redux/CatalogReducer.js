@@ -15,8 +15,9 @@ const CatalogReducer=(state=initialState,action)=>{
 const getGoods=(dataGoods)=>({type:GET_GOODS_AC,dataGoods})
 
 
-export const getGoodsThunk=()=>async(dispatch)=>{
-    let response= await testAPI.getGoods()
+export const getGoodsThunk=()=>async(dispatch,getState)=>{
+    let token =getState().auth.token
+    let response= await testAPI.getGoods(token)
         dispatch(getGoods(response))
 
 }

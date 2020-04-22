@@ -1,73 +1,86 @@
-import { authAPI, securityAPI } from "../api/api";
-import { stopSubmit } from "redux-form";
 
-const SET_AUTH_USER_DATA = "SET_USER_DATA";
-const SET_CAPTCHA_URL="SET_CAPTCHA_URL"
+import {returnErrors,clearErrors} from './ErrorReducer'
+import { testAPI } from "../api/api";
 
-let initialState = {
-  id: null,
-  email: null,
-  password: null,
-  isAuth: false,
-  captchaUrl:null
+ const USER_LOADING="USER_LOADING"
+const USER_LOADED="USER_LOADED"
+const AUTH_ERROR="AUTH_ERROR"
+const LOGIN_SUCCESS="LOGIN_SUCCESS"
+const LOGIN_FAIL="LOGIN_FAIL"
+ const LOGOUT_SUCCESS="LOGOUT_SUCCESS"
+const REGISTER_SUCCESS="REGISTER_SUCCESS"
+const REGISTER_FAIL="REGISTER_FAIL"
+
+
+
+const initialState = {
+  token: localStorage.getItem("token")||"",
+  isAuth: null,
+  isLoading: false,
+  user:null,
 };
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_AUTH_USER_DATA:
+    case USER_LOADING:
+      return { ...state, isLoading: true };
+    case USER_LOADED:
+      return { ...state, isLoading: false, isAuth: true, user: action.payload };
+    case LOGIN_SUCCESS:
+    case REGISTER_SUCCESS:
+      localStorage.setItem('token',action.payload.token)
+      return { ...state, ...action.payload, isAuth: true, isLoading: false };
+    case AUTH_ERROR:
+    case LOGIN_FAIL:
+    case REGISTER_FAIL:
+    case LOGOUT_SUCCESS:
+   localStorage.removeItem('token')
       return {
         ...state,
-        ...action.data,
-        isAuth: action.isAuth,
+        isAuth: false,
+        isLoading: false,
+        user: null,
+        token: null,
       };
-      case SET_CAPTCHA_URL:
-        return{...state,captchaUrl:action.captchaUrl}
     default:
       return state;
   }
 };
 
-const SetAuthUserData = (data, isAuth) => ({
-  type: SET_AUTH_USER_DATA,
-  data,
-  isAuth,
-});
-const SetCaptcha=(captchaUrl)=>({type:SET_CAPTCHA_URL,captchaUrl})
+export const userLoad=(payload)=>({type:USER_LOADED,payload})
 
 
-export const getAuthThunkCreator = () => async (dispatch) => {
-  let response = await authAPI.getAuth();
-  if (response.data.resultCode === 0) {
-    dispatch(SetAuthUserData(response.data.data, true));
-  } else {
-    alert(response.data.messages);
+export const getAuth=()=>async (dispatch,getState)=>{
+  try {
+    const token=getState().auth.token;
+    debugger
+     let response=await testAPI.getAuth(token)
+      dispatch(userLoad(response.data))
+  } catch (error) {
+    dispatch({type:AUTH_ERROR})
   }
+}
+export const login = (email,password) => async(dispatch) => {
+  dispatch({type:USER_LOADING})
+  testAPI.login(email,password).then(response=>{
+    dispatch(userLoad(response.data.user))
+    dispatch({type:LOGIN_SUCCESS,payload:response.data})
+    dispatch(clearErrors(null,null,null))
+  }).catch(err=>{
+    dispatch(returnErrors(err.response.data,err.response.status,'LOGIN_FAIL'))
+    dispatch({type:LOGIN_FAIL})
+  })
 };
 
-export const loginThunk = (email, password, rememberMe,captcha) => async (dispatch) => {
-  let response= await authAPI.login(email, password, rememberMe,captcha)
-    if (response.data.resultCode === 0) dispatch(getAuthThunkCreator());
-    else {
-      if(response.data.resultCode===10)
-      {
-        dispatch(getCaptchaUrlThunk())
-      }
-      let errorMessage =
-        response.data.messages.length > 0
-          ? response.data.messages[0]
-          : "some error";
-      dispatch(stopSubmit("login", { _error: errorMessage }));
-    }
-};
-
-export const getCaptchaUrlThunk=()=>async(dispatch)=>{
-  let response=await securityAPI.getCaptchaUrl();
-  dispatch(SetCaptcha(response.data.url));
+export const register=(name,email,password)=>dispatch=>{
+  testAPI.register(name,email,password).then(response=>{
+    dispatch({type:REGISTER_SUCCESS,payload:response.data})
+  }).catch(err=>{
+      dispatch(returnErrors(err.response.data,err.response.status,'REGISTER_FAIL'))
+       dispatch({type:REGISTER_FAIL})
+  })
 }
 
-export const logoutThunk = () => async(dispatch) => {
-  let response = await authAPI.logout()
-  if (response.data.resultCode === 0) dispatch(SetAuthUserData(null, false));
-};
+export const logout=()=>({type:LOGOUT_SUCCESS})
 
 export default AuthReducer;

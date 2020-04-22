@@ -14,13 +14,10 @@ import InformPage from "./components/Pages/InformPage/InformPage";
 import OrdersPage from "./components/Pages/OrdersPage/OrdersPage";
 import ReturnPage from "./components/Pages/ReturnPage/ReturnPage";
 import NotFoundPage from "./components/Pages/404/404";
-import usersContainer from "./components/Users/UsersContainer";
 import NavContainer from "./components/Nav/NavContainer";
 import CatalogPageContainer from "./components/Pages/CatalogPage/CatalogPageContainer";
-import SignPageContainer from "./components/Pages/SignPage/SignPageContainer";
+import SignPage from "./components/Pages/SignPage/SignPage";
 import Preloader from "./components/common/Preloader";
-import MyUsersContainer from "./components/TEST/MyUsers/MyUsersContainer";
-import ProfilePage from "./components/ProfilePage/ProfileContainer";
 import FrontPage from './components/Pages/FrontPage/FrontPage'
 const DetailsPage = React.lazy(() =>
   import("../src/components/Pages/DetailsPage/DetailsPage")
@@ -54,11 +51,7 @@ class App extends React.Component {
                   <Route path="/inform" component={InformPage} />
                   <Route path="/orders" component={OrdersPage} />
                   <Route path="/return" component={ReturnPage} />
-                  <Route path="/sign" component={SignPageContainer} />
-                  <Route path="/users/:id?" component={usersContainer} />
-                  <Route path="/test" component={MyUsersContainer} />
-                  <Route path="/profile/:id?" component={ProfilePage}/>
-       
+                  <Route path="/sign" component={SignPage} />
                 </NavContainer>   
             </Switch>
             <Footer />    

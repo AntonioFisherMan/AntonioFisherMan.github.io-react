@@ -2,13 +2,18 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const goodsSchema=new Schema({
-    goods:{
-      img:String,
-      text:String,
-      slogan:String,
-      price:Number,
-      button:Number
+    img:{
+      type:String,
     },
+    text:{
+      type:String,
+    },
+    slogan:{
+      type:String
+    },
+    price:{
+      type:Number
+    }
 },{
   timestamps:true,
 }); 

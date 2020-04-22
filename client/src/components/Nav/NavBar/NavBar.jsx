@@ -27,9 +27,6 @@ const NavBar=(props) =>{
                         <li >
                             <NavLink activeStyle={{color:"#E77E83"}} to="/users">Benefits</NavLink>
                         </li>
-                        <li >
-                            <NavLink activeStyle={{color:"#E77E83"}} to="/profile">Profile</NavLink>
-                        </li>
                     </ul>
 
                 </div>
@@ -44,12 +41,11 @@ const NavBar=(props) =>{
                     <p>Search</p>
                 </div>
                 <div className=" nav__account col-2 col-sm-2 col-lg-1 d-flex align-items flex-column">
-    {props.props.isAuth?<NavLink activeStyle={{color:"#E77E83"}} to="/orders">{props.props.login}<Link to="/" onClick={props.logout} >Logout</Link></NavLink>:<NavLink activeStyle={{color:"#E77E83"}} to="/sign"><img src="images/svg/Vector (6).svg" className="ml-auto" alt="Account"/></NavLink>}
+    {props.props.isAuth&&props.props.user?<NavLink activeStyle={{color:"#E77E83"}} to="/orders">{props.props.user.name}<Link to="/" onClick={props.logout} >Logout</Link></NavLink>:<NavLink activeStyle={{color:"#E77E83"}} to="/sign"><img src="images/svg/Vector (6).svg" className="ml-auto" alt="Account"/></NavLink>}
                 </div>
 
             </nav>
     )
-    
 
 }
 export default NavBar

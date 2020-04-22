@@ -1,22 +1,18 @@
 import React from 'react'
 import {createStore,combineReducers, applyMiddleware,compose} from 'redux'
-import usersReducer from './UsersReducer'
 import AuthReducer from './AuthReducer';
 import CatalogReducer from './CatalogReducer';
 import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import AppReducer from './AppReducer';
-import TestReducer from './TestReducer';
-import ProfileReducer from './ProfileReducer';
+import ErrorReducer from './ErrorReducer'
 
 let reducers=combineReducers({
-    users:usersReducer,
     auth:AuthReducer,
     goods:CatalogReducer,
     form: formReducer,
     app:AppReducer,
-    test:TestReducer,
-    profile:ProfileReducer
+    errors:ErrorReducer
 });
 
 

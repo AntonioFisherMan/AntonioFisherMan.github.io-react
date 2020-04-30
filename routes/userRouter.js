@@ -16,9 +16,12 @@ router.post("/", (req, res) => {
   //Simple validation
   if (!name || !email || !password)
     return res.status(400).json({ message: "Please enter all fields" });
+  User.findOne({name}).then((user)=>{
+    if(user) return res.status(400).json({ message: `Name already exist` });
+  })
   //Check for existing User
-  User.findOne({ email }).then((user) => {
-    if (user) return res.status(400).json({ message: `User already exist` });
+  User.findOne({email }).then((user) => {
+    if (user) return res.status(400).json({ message: `Email already exist` });
   });
   const newUser = new User({
     name,

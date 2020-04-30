@@ -6,13 +6,20 @@ import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import AppReducer from './AppReducer';
 import ErrorReducer from './ErrorReducer'
+import CardReducer from './CardReducer'
+import ReviewsReducer from './ReviewsReducer';
+import OrdersReducer from './OrdersReducer';
+
 
 let reducers=combineReducers({
     auth:AuthReducer,
     goods:CatalogReducer,
     form: formReducer,
     app:AppReducer,
-    errors:ErrorReducer
+    errors:ErrorReducer,
+   card:CardReducer,
+   reviews:ReviewsReducer,
+   orders:OrdersReducer
 });
 
 

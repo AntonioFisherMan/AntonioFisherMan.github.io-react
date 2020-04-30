@@ -17,7 +17,6 @@ class Register extends React.Component{
 
 
 let mapStateToProps=(state)=>{
-    debugger
     return{
         errors:state.errors
     }

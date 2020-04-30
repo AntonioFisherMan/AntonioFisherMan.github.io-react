@@ -1,5 +1,7 @@
 /********** orders PAGE *********/
-
+.ordersBlock{
+    display: flex;
+}
 .orders__text {
     margin: 22px 0px 15px 0px !important;
     font-weight: 600;

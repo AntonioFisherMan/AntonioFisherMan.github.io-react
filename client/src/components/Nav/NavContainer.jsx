@@ -18,7 +18,8 @@ class NavContainer extends React.Component{
 let mapStateToProps = (state) => {  
     return {
        isAuth:state.auth.isAuth,
-       user:state.auth.user
+       user:state.auth.user,
+       totalSizeCard:state.card.items.length
     }
 }
 

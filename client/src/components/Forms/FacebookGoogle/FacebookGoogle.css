@@ -1,0 +1,21 @@
+.facebookBtn{
+    width: 390px;
+    height: 45px;
+    background: #F7F8FC;
+    border: 1px solid #E9ECF0;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.facebookIcon{
+    color:#385898;
+    font-size: 30px;
+}
+.googleIcon{
+    width: 390px;
+    height: 45px;
+    background: #F7F8FC;
+    border: 1px solid #E9ECF0;
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}

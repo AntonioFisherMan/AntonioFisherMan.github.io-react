@@ -5,13 +5,16 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import userPhoto from '../../../assets/user.png'
 import Button1 from '../../SiteButtons/Button1/Button1'
 import PopUp from '../../PopUp/PopUp'
-import {CSSTransition} from 'react-transition-group'
+import  styles from'../../SiteButtons/Button1/Button1.module.css'
 
 const CatalogPage = (props) => {
 
     setTimeout(function() {
         props.isPopUp(true)
       },3000);
+    const setProduct=(payload)=>{
+          props.setProduct(payload)
+    }
     return (
         <div> 
             {props.popUp ? <PopUp/>: null}
@@ -122,12 +125,14 @@ const CatalogPage = (props) => {
 
                         <div className="catalogList">
                             {
-                                props.goods.map(item => <div className="goodsItem" key={item.goods_id}>
-                                    <img src={item.img} alt="" />
+                                props.goods.map(item => <div className="goodsItem" key={item._id}>
+                                    <Link to={`details/${item._id}`}><img src={item.img} alt="" /></Link>
                                     <h4>{item.text}</h4>
                                     <p>{item.slogan}</p>
                                     <h5>€{item.price}</h5>
-                                    <Button1 text="Add to cart" />
+                               
+                                    <Button1 to={`details/${item._id}`} text="Подробнее"/>
+                                  
                                 </div>)
                             }
                             <nav aria-label="Page navigation example" className="productsPagination">

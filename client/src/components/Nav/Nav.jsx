@@ -9,7 +9,7 @@ const Nav=(props)=>{
         <div>
       <div className="container">
         <div className="row">
-            <NavBar props={props}  logout={props.logout}/>
+            <NavBar props={props}  totalSizeCard={props.totalSizeCard} logout={props.logout}/>
         </div>
     </div>
 {props.children}

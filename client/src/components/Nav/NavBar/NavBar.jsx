@@ -22,9 +22,6 @@ const NavBar=(props) =>{
                             <NavLink activeStyle={{color:"#E77E83"}} to="/catalog">Our Products</NavLink>
                         </li>
                         <li >
-                            <NavLink activeStyle={{color:"#E77E83"}} to="/details">Details</NavLink>
-                        </li>
-                        <li >
                             <NavLink activeStyle={{color:"#E77E83"}} to="/users">Benefits</NavLink>
                         </li>
                     </ul>
@@ -33,7 +30,7 @@ const NavBar=(props) =>{
 
                 <div className="nav__cart col-2 col-sm-2 col-lg-1">
                     <img src="images/svg/Vector (4).svg" alt="Cart"/>
-                    <NavLink activeStyle={{color:"#E77E83"}} to="/card">Cart</NavLink>
+    <NavLink activeStyle={{color:"#E77E83"}} to="/card">{props.props.totalSizeCard==0?<p>Cart</p>:<div ><i style={{fontSize:'14px'}} className="fas fa-cart-arrow-down"></i>-{props.props.totalSizeCard}</div>}</NavLink>
                 
                 </div>
                 <div className="nav__search col-2 col-sm-2 col-lg-1">

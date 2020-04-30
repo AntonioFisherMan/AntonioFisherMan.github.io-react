@@ -2,6 +2,7 @@ import React from 'react'
 import './Input.css'
 
 export const Input=({input,meta:{touched,error},...props})=>{
+    debugger
     const hasError=error&&touched
     return(
         <div className="formControl">

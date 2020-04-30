@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 
 class Login extends React.Component{
     onSubmit = (formData) => {
-       this.props.login( formData.email, formData.password)
+       this.props.login(formData.email,formData.password,formData.rememberMe)
     }
  render(){
      return(
@@ -17,7 +17,6 @@ class Login extends React.Component{
 
 
 let mapStateToProps=(state)=>{
-    debugger
     return{
         errors:state.errors
     }

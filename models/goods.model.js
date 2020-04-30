@@ -1,22 +1,31 @@
-const mongoose=require('mongoose');
-const Schema=mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const goodsSchema=new Schema({
-    img:{
-      type:String,
+const goodsSchema = new Schema(
+  {
+    img: {
+      type: String,
     },
-    text:{
-      type:String,
+    text: {
+      type: String,
     },
-    slogan:{
-      type:String
+    slogan: {
+      type: String,
     },
-    price:{
-      type:Number
-    }
-},{
-  timestamps:true,
-}); 
+    price: {
+      type: Number,
+    },
+    salePrice: {
+      type: Number,
+    },
+    sizes: {
+      type: Array,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Goods=mongoose.model('Goods',goodsSchema)
-module.exports=Goods;
+const Goods = mongoose.model("Goods", goodsSchema);
+module.exports = Goods;

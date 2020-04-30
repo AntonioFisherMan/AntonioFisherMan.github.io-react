@@ -16,6 +16,9 @@ const userSchema=new Schema({
      type:String,
      required:true,
      unique:true
+   },
+   rememberMe:{
+   type:Boolean
    }
 },{
   timestamps:true,

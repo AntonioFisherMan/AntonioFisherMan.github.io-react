@@ -16,6 +16,7 @@ color: #000000;
 }
 .cardItem{
     border-bottom: 0.2px solid #979797;
+    padding-top: 10px;
 }
 .cardActive{
     display: none;

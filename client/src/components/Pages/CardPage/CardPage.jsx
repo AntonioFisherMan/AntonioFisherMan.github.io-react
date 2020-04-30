@@ -7,12 +7,15 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 
 
 
-const CardPage = () => {
-   
+const CardPage = (props) => {
+
+    debugger
+    const removeItem = (id) => {
+        props.removeProduct(id)
+    }  
     return (
-      
+
         <div>
-             
             <HeaderBottom />
             <div className="container">
                 <div className="row">
@@ -21,7 +24,7 @@ const CardPage = () => {
                     </div>
                 </div>
             </div>
-            <section className="cardLink">
+           {props.items.length?<><section className="cardLink">
                 <div className="container ">
 
                     <div className="row">
@@ -33,37 +36,37 @@ const CardPage = () => {
                             <p className="ml-auto">Price</p>
                         </div>
                         <div className="col-3 d-flex justify-content-center">
-                            <p>Price</p>
+                            <p>Quantity</p>
                         </div>
                     </div>
                 </div>
             </section>
-
             <section className="cardBlock">
                 <div className="container">
-                    <div className="row cardItem">
+               
+           { props.items.map(item=> <div className="row cardItem" key={item._id}>
                         <div className="col-12 col-sm-3">
-                            <img className="cardPhoto" src="images/Mask-3.png" alt="" />
+                            <img className="cardPhoto" src={item.img} alt="" />
                         </div>
                         <div className="col-9">
                             <p className="cardSlogan" style={{ fontSize: '10px !important' }}>maxi DRESS</p>
                             <div className="cardList">
                                 <p>A perfect flirty number for Balls and Black Tie.</p>
                                 <div className="col-3 d-flex justify-content-end">
-                                    <p className="cardPrice">€61.17</p>
+                                    <p className="cardPrice">€{item.price}</p>
                                 </div>
                                 <div className="col-3 d-flex justify-content-center">
-                                    <p className="cardPrice">€61.17</p>
+                                    <p className="cardPrice">{props.totalItemCount}</p>
                                 </div>
 
-                                <img src="images/svg/Vector (14).svg" alt="" />
+                                <img onClick={() => {removeItem(item._id)}} src="images/svg/Vector (14).svg" alt="" />
                             </div>
                             <div className="cardSize d-flex">
-                                <p>Size: XS</p>
+    <p>Size:{item.size}</p>
                                 <img src="images/svg/Vector (11).svg" alt="" />
                             </div>
-                            <p className="cardText">Rental period<span className="starSmall">*</span>  : 7 days</p>
-                            <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
+                            <p className="cardText">Rental period<span className="starSmall">*</span>{item.endDate-item.startDate} : 7 days</p>
+                            <p>Dates: {item.startDate}-{item.endDate} </p>
                             <div className="cardDiscount">
                                 <div>
                                     <img src="images/svg/Vector (15).svg" alt="" />
@@ -76,9 +79,9 @@ const CardPage = () => {
                             </div>
 
                         </div>
+                    </div>)}
 
 
-                    </div>
                     <div className="row cardActive" >
                         <div className="col-3 cardLinkActive">
                             <p >Item</p>
@@ -96,7 +99,7 @@ const CardPage = () => {
                                     <p className="cardSlogan">maxi DRESS</p>
                                     <p>A perfect flirty number for Balls and Black Tie.</p>
                                     <div className="cardSize d-flex">
-                                        <p>Size: XS</p>
+    <p>Size: XS{props.items.size}</p>
                                         <img src="images/svg/Vector (11).svg" alt="" />
                                     </div>
                                     <p className="cardText" >Rental period<span className="starSmall">*</span> : 7 days</p>
@@ -136,18 +139,20 @@ const CardPage = () => {
                             </div>
                             <div className="col-12 col-md-9">
                                 <div className="cardInformListText d-flex">
-                                    <h5>Subtotal: €61.17</h5>
-                                    <Button1 text="order" />
+                                    <h5>Subtotal: €{props.totalPrice}</h5>
+                                    <Button1 text="order" to="buy" />
                                     <p>By proceeding you are agreeing to our <span>Terms & Conditions</span></p>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section></>:<div className="row justify-content-center "style={{color:'#E77E83'}}><h4 className=" d-flex flex-column align-items-center">Ваша Корзина пуста<br/><i class="fab fa-linux"></i></h4></div>}
+            
         </div>
     )
 }
+
 
 export default CardPage

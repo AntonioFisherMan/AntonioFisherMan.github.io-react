@@ -90,13 +90,8 @@
 .detailsBtn {
     background: #F7F8FC;
     border: 1px solid #E9ECF0;
-    box-sizing: border-box;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    color: #000000;
+    width: 211px;
+height: 45px;
 }
 
 .detailsListStars {

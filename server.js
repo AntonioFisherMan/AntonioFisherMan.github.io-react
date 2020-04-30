@@ -3,10 +3,13 @@ const cors=require('cors');
 const mongoose=require('mongoose');
 const config=require('config')
 const path=require("path")
+var cookieParser = require('cookie-parser')
+
 
 const app=new express();
 //BODY-PARSER Middleware
 app.use(express.json())
+app.use(cookieParser())
 
 
 require('dotenv').config();
@@ -38,3 +41,5 @@ app.use('/goods',goodsRouter)
 const authRouter=require('./routes/authRouter')
 app.use('/auth',authRouter)
 
+const ordersRouter=require('./routes/ordersRouter')
+app.use('/orders',ordersRouter)

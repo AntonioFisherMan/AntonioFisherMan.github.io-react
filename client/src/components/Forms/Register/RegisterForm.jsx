@@ -4,6 +4,7 @@ import { Input } from '../../common/FormsControls/Input'
 import { required, MinLength, MaxLength } from '../../../utils/Validators/validators'
 import {Alert} from 'reactstrap'
 
+
 const MaxLengthCreator20 = MaxLength(20)
 const MinLengthCreator5 = MinLength(5)
 
@@ -12,13 +13,7 @@ const RegisterForm = (props) => {
     return (
         <form className="signForm" onSubmit={props.handleSubmit}>
             <h5 className="signHeadline">Not a member? Sign Up</h5>
-            <div className="form-group">
-                <Field type="image" alt="" component={Input} src="images/svg/Vector (22).svg" className="form-control" placeholder="Facebook"
-                    autoFocus />
-            </div>
-            <div>
-                <Field type="image" alt="" component={Input} src="images/svg/Vector (23).svg" className="form-control" placeholder="Google" />
-            </div>
+          
             <div className="signPopUpBlock">
                 <hr />
                 <div className="signPopUp">

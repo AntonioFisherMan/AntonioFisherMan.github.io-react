@@ -6,12 +6,6 @@ const auth=require("../middleware/auth")
 
 let User = require("../models/user.model");
 
-router.get("/", function (req, res) {
-  User.find()
-    .then((users) => res.json(users))
-    .catch(console.log("err"));
-});
-
 router.post("/", (req, res) => {
   const {email, password } = req.body;
   //Simple validation
@@ -47,12 +41,10 @@ router.post("/", (req, res) => {
 //route Get auth/user
 //desk Get user data
 //access Private
-
 router.get('/user',auth,(req,res)=>{
     User.findById(req.user.id)
     .select('-password')
     .then(user=>res.json(user))
 })
-
 
 module.exports = router;

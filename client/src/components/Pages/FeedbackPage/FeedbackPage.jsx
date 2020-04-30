@@ -4,8 +4,23 @@ import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Button1 from '../../SiteButtons/Button1/Button1'
+import {reduxForm,Field} from 'redux-form'
+import {Textarea} from '../../common/FormsControls/Textarea'
+import {File} from '../../common/FormsControls/File'
 
-const FeedbackPage = () => {
+
+
+
+const FeedbackPage = (props) => {
+   
+    const onSubmit = (formData) => {
+        let images=[];
+        if(formData){
+         images=[formData.feedbackImg1,formData.feedbackImg2,formData.feedbackImg3]
+        }
+        debugger
+       props.setReviews(props.name,props.photo,images,formData.feedbackTextarea,props.rating)
+     }
     return (
         <div>
             <HeaderBottom />
@@ -93,30 +108,17 @@ const FeedbackPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-3"></div>
-                                <div className="col-5">
-                                    <form action="" className="feedbackForm">
-                                        <div className="form-group">
-                                            <input type="image" alt="" src="images/svg/Vector (25).svg" className="form-control" />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="image" alt="" src="images/svg/Vector (25).svg" className="form-control" />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="image" alt="" src="images/svg/Vector (25).svg" className="form-control" />
-                                        </div>
-                                    </form>
-                                </div>
-                                <div className="col-4 d-flex align-items flex-column">
-                                    <div className="feedbackForm2">
-                                        <textarea className="form-control" id="feedbackForm2-textarea" />
-                                        <Button1 className="ml-auto " text="Send" />
-                                    </div>
-
-                                </div>
-                            </div>
+                            
+                            <ReduxFeedbackForm onSubmit={onSubmit} setReviews={props.setReviews}/>
+                           
                         </div>
+
+
+
+
+
+
+
                         <div className="row feedbackList-active" >
                             <div className="col-3 returnItem-active">
                                 <p style={{ minHeight: '250px' }}>Item</p>
@@ -199,5 +201,32 @@ const FeedbackPage = () => {
         </div>
     )
 }
+
+
+const FeedbackForm=(props)=>{
+    return(
+        <div className="row">
+        <div className="col-3"></div>
+        <div className="col-5">
+            <form onSubmit={props.handleSubmit} className="feedbackForm">
+                <div className="form-group">
+                    <Field type="file" alt="" component={File} src="images/svg/Vector (25).svg" name="feedbackImg1" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <Field type="file" alt=""component={File}  src="images/svg/Vector (25).svg"name="feedbackImg2" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <Field type="file" alt="" component={File} src="images/svg/Vector (25).svg" name="feedbackImg3"className="form-control" />
+                </div>
+                <Field component={Textarea} className="form-control"  id="feedbackForm2-textarea" name="feedbackTextarea" />
+                <button className="ml-auto ">Send</button>
+                </form>
+     </div>
+    </div>
+    )
+}
+export const ReduxFeedbackForm = reduxForm({
+    form: 'feedback'
+})(FeedbackForm)
 
 export default FeedbackPage

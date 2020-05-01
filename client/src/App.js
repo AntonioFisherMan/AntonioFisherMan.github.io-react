@@ -23,6 +23,8 @@ import DetailsContainer from "./components/Pages/DetailsPage/DetailsContainer";
 import FeedbackContainer from "./components/Pages/FeedbackPage/FeedbackContainer";
 import OrdersPageContainer from "./components/Pages/OrdersPage/OrdersPageContainer";
 import Checkout from "./components/Forms/Checkout/Checkout";
+import Order from "./components/Pages/Order";
+import InformContainer from "./components/Pages/InformPage/InformContainer";
 const DetailsPage = React.lazy(() =>
   import("../src/components/Pages/DetailsPage/DetailsPage")
 );
@@ -51,12 +53,12 @@ class App extends React.Component {
                   <Route path="/checkout" component={CheckoutPage} />
                   <Route path="/feedback" component={FeedbackContainer} />
                   <Route path="/help" component={HelpPage} />
-                  <Route path="/inform" component={InformPage} />
+                  <Route path="/inform" component={InformContainer} />
                   <Route path="/orders" component={OrdersPageContainer} />
                   <Route path="/return" component={ReturnPage} />
                   <Route path="/sign" component={SignPage} />
                   <Route path="/buy" component={Checkout}/>
-                  <Route path="/order" component={<div>s</div>}/>
+                  <Route path="/order" component={Order}/>
                 </NavContainer>   
             </Switch>
             <Footer />    

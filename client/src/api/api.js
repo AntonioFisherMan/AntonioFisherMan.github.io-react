@@ -45,6 +45,9 @@ export const testAPI = {
   getOrders(id){
     return instance.get(`http://localhost:5000/orders/${id}`)
   },
+  getInform(id){
+   return instance.get(`http://localhost:5000/inform/${id}`)
+  },
   setReviews(name,photo,images,reviews,rating){
     debugger
       const photoData=new FormData();

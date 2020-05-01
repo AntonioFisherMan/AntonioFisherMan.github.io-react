@@ -41,10 +41,12 @@ router.post("/", (req, res) => {
 //route Get auth/user
 //desk Get user data
 //access Private
-router.get('/user',auth,(req,res)=>{
+router.get('/user:id',auth,(req,res)=>{
     User.findById(req.user.id)
     .select('-password')
     .then(user=>res.json(user))
 })
+
+
 
 module.exports = router;

@@ -9,6 +9,7 @@ import ErrorReducer from './ErrorReducer'
 import CardReducer from './CardReducer'
 import ReviewsReducer from './ReviewsReducer';
 import OrdersReducer from './OrdersReducer';
+import InformReducer from './InformReducer';
 
 
 let reducers=combineReducers({
@@ -19,7 +20,8 @@ let reducers=combineReducers({
     errors:ErrorReducer,
    card:CardReducer,
    reviews:ReviewsReducer,
-   orders:OrdersReducer
+   orders:OrdersReducer,
+   inform:InformReducer
 });
 
 

@@ -5,7 +5,6 @@ let Orders = require("../models/orders.model");
   router.get("/:id", async (req, res) => {
     try {
       const orders = await Orders.find({userId:req.params.id});
-      console.log(orders)
       res.send(orders);
     } catch (error) {
       console.error(error);

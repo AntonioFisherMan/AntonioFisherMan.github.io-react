@@ -43,3 +43,6 @@ app.use('/auth',authRouter)
 
 const ordersRouter=require('./routes/ordersRouter')
 app.use('/orders',ordersRouter)
+
+const informRouter=require('./routes/informRouter')
+app.use('/inform',informRouter)

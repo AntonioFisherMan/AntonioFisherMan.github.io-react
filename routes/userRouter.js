@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 
 let User = require("../models/user.model");
 
+
+
 router.get("/", function (req, res) {
   User.find()
     .then((users) => res.json(users))
@@ -16,11 +18,11 @@ router.post("/", (req, res) => {
   //Simple validation
   if (!name || !email || !password)
     return res.status(400).json({ message: "Please enter all fields" });
-  User.findOne({name}).then((user)=>{
-    if(user) return res.status(400).json({ message: `Name already exist` });
-  })
+  User.findOne({ name }).then((user) => {
+    if (user) return res.status(400).json({ message: `Name already exist` });
+  });
   //Check for existing User
-  User.findOne({email }).then((user) => {
+  User.findOne({ email }).then((user) => {
     if (user) return res.status(400).json({ message: `Email already exist` });
   });
   const newUser = new User({
@@ -54,7 +56,6 @@ router.post("/", (req, res) => {
     });
   });
 });
-
 
 router.delete("/:id", (req, res) => {
   User.findById(req.params.id)

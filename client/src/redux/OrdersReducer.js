@@ -7,14 +7,14 @@ const ADD_UNLOGINORDER="ADD_UNLOGINORDER"
 
 let initialState = {
   orders: [],
-  unloginOrder:null
+  unloginOrder:null,
+  inform:null
 };
 
 let OrdersReducer = (state = initialState, action) => {
   switch (action.type) {
       case ADD_ORDERS:
-          debugger
-          return{...state,orders:[...state.orders,action.data]}
+          return{...state,orders:[...action.data]}
           case ADD_UNLOGINORDER:
           return{...state,unloginOrder:action.data}
     default:
@@ -24,17 +24,20 @@ let OrdersReducer = (state = initialState, action) => {
 
 
  export const addOrders=(data)=>({type:ADD_ORDERS,data})
- 
+  const addUnloginOrders=(data)=>({type:ADD_UNLOGINORDER,data})
+
+
+ export const addUnloginOrdersThunk=(data)=>dispatch=>{
+   dispatch(addUnloginOrders(data))
+   dispatch(clearCardItems(null,null,null))
+  }
 export const getOrders=(id)=>dispatch=>{
-    debugger
  testAPI.getOrders(id).then(response=>{
-     debugger
      dispatch(addOrders(response.data));
  })
 }
 
 export const addOrdersThunk=({items,inform,id})=>dispatch=>{
-    debugger
     testAPI.setOrders(items,inform,id).then(response=>{
         dispatch(clearCardItems(null,null,null))
       })

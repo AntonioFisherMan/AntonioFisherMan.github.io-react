@@ -4,13 +4,35 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 
 let User = require("../models/user.model");
+let HelpMessage = require("../models/helpMessage.model");
+let userHandlers = require('./controllers/userController');
 
+router.post('/forgot_password',userHandlers.forgot_password)
+router.post('/reset_password',userHandlers.reset_password)
+router.post('/change_password',userHandlers.change_password)
 
 
 router.get("/", function (req, res) {
   User.find()
     .then((users) => res.json(users))
     .catch(console.log("err"));
+});
+
+router.post("/help", function (req, res) {
+  const newHelpMessage = new HelpMessage({
+    userId: req.body.userId,
+    helpMessage:req.body.helpMessage
+  });
+  newHelpMessage
+  .save()
+  .then(item=>{
+    res.status(200).send({
+      item,
+      message: 'Message successfuly added'
+    })
+  })
+  .catch((err) => res.status(404).json("not message review"));
+
 });
 
 router.post("/", (req, res) => {

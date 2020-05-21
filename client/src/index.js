@@ -6,15 +6,16 @@ import * as serviceWorker from './serviceWorker';
 import store from '../src/redux/ReduxStore'
 import {Provider} from 'react-redux'
 
-ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-      <App/>
-      </Provider>
+  ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
+        <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
 
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -8,6 +8,9 @@ const informSchema = new Schema(
     },  
     inform:{
       type:Object
+    },
+    isAddInform:{
+      type:Boolean
     }
   }
 );

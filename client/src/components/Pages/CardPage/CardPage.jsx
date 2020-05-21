@@ -8,7 +8,6 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 
 
 const CardPage = (props) => {
-
     debugger
     const removeItem = (id) => {
         props.removeProduct(id)
@@ -37,6 +36,10 @@ const CardPage = (props) => {
                         </div>
                         <div className="col-3 d-flex justify-content-center">
                             <p>Quantity</p>
+                            <div className="controls">
+            <button className="increase" onClick={props.increase}>+</button>
+            <button className="decrease" onClick={props.decrease}>-</button>
+          </div>
                         </div>
                     </div>
                 </div>
@@ -46,7 +49,7 @@ const CardPage = (props) => {
                
            { props.items.map(item=> <div className="row cardItem" key={item._id}>
                         <div className="col-12 col-sm-3">
-                            <img className="cardPhoto" src={item.img} alt="" />
+                            <img className="cardPhoto" src={item.photos.small[0]} alt="" />
                         </div>
                         <div className="col-9">
                             <p className="cardSlogan" style={{ fontSize: '10px !important' }}>maxi DRESS</p>
@@ -56,7 +59,7 @@ const CardPage = (props) => {
                                     <p className="cardPrice">€{item.price}</p>
                                 </div>
                                 <div className="col-3 d-flex justify-content-center">
-                                    <p className="cardPrice">{props.totalItemCount}</p>
+                                    <p className="cardPrice">{item.quantity}</p>
                                 </div>
 
                                 <img onClick={() => {removeItem(item._id)}} src="images/svg/Vector (14).svg" alt="" />

@@ -2,13 +2,14 @@ import React from 'react'
 import './DetailsPage.css'
 import { Link } from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
-import Slider2 from '../../Slider/Slider2'
+import Slider from '../../Slider/Slider'
 import Button2 from '../../SiteButtons/Button2/Button2'
+
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { useState } from 'react'
 import styles from "../../SiteButtons/Button1/Button1.module.css"
 
-
+var  userPhoto =require("../../../assets/user.png")
 
 const DetailsPage = (props) => {
     debugger
@@ -17,7 +18,9 @@ const DetailsPage = (props) => {
     let [endDate, setEndDate] = useState();
 
     const setProduct = (payload) => {
-        var obj = Object.assign({ size, startDate, endDate }, payload)
+        // var quantity=props.items.reduce((count, book) => count += (book._id === payload._id ? 1 : 0), 0); 
+        var quantity = 0;
+        var obj = Object.assign({ size, startDate, endDate, quantity }, payload)
         props.setProduct(obj)
     }
     const getSize = (event) => {
@@ -33,11 +36,9 @@ const DetailsPage = (props) => {
         event.preventDefault();
     }
 
-
-
     return (
         <div>
-            {props.goodItem.map(item => <div>
+            {props.goodItem.map(item => <div key={item._id}>
                 <HeaderBottom />
                 <section className="detailsBlock">
                     <div className="container">
@@ -48,56 +49,39 @@ const DetailsPage = (props) => {
                         </div>
 
 
-                        <div className="row" key={item._id}>
-                            <div className="col-2 col-sm-12 col-lg-2">
+                        <div className="row">
+                            <div className="col-12 col-sm-12 col-lg-2">
                                 <div id="multiCarousel_3" className="carousel slide w-100" data-ride="carousel">
                                     <div className="carousel-inner-2 w-100" role="listbox">
                                         <div className="carousel-item active">
-                                            <img className="carousel__img" src="images/photo4.png" alt="" />
+                                            <img className="carousel__img" src="/images/photo4.png" alt="" />
                                         </div>
-                                        <div className="carousel-item">
-
-                                            <img className="carousel__img" src="images/photo2.png" alt="" />
-
-                                        </div>
-                                        <div className=" carousel-item ">
-
-                                            <img className="carousel__img" src="images/photo5.png" alt="" />
-                                        </div>
-                                        <div className="carousel-item ">
-                                            <img className="carousel__img" src="images/photo6.png" alt="" />
-                                        </div>
-                                        <div className="carousel-item ">
-
-                                            <img className="carousel__img" src="images/photo5.png" alt="" />
-                                        </div>
-                                        <div className="carousel-item">
-
-                                            <img className="carousel__img" src="images/photo4.png" alt="" />
-
-                                        </div>
-                                        <div className="carousel-item ">
-                                            <img className="carousel__img" src="images/photo2.png" alt="" />
-                                        </div>
+                                        {item.photos.small.map(photo =>
+                                            <div className="carousel-item">
+                                                <img className="carousel__img" src={photo} alt="" />
+                                            </div>)}
                                     </div>
-                                    <Link id="arrow-prev1" href="#multiCarousel_3" role="button" data-slide="prev">
+                                    <a id="arrow-prev1" to="#" href="#multiCarousel_3" role="button" data-slide="prev">
                                         <div className="arrow-1">
-                                            <i className="fas fa-chevron-up" aria-hidden="true"></i>
+                                            <i className="big fas fa-chevron-up" aria-hidden="true"></i>
+                                            <i className="smallLeft fas fa-chevron-left" aria-hidden="true"></i>
                                             <span className="sr-only">Предыдущий</span>
                                         </div>
-                                    </Link>
-                                    <Link id="arrow-next1" href="#multiCarousel_3" role="button"
+                                    </a>
+
+                                    <a id="arrow-next1" to="#" href="#multiCarousel_3" role="button"
                                         data-slide="next">
                                         <div className="arrow-1">
-                                            <i className="fas fa-chevron-down" aria-hidden="true"></i>
+                                            <i className="big fas fa-chevron-down" aria-hidden="true"></i>
+                                            <i className="smallRight fas fa-chevron-right" aria-hidden="true"></i>
                                             <span className="sr-only">Cледующий</span>
                                         </div>
-                                    </Link>
+                                    </a>
                                 </div>
 
                             </div>
                             <div className="col-12 col-sm-4 col-lg-4 d-flex justify-content-center">
-                                <img className="detailsPhoto" src="images/photo4.png" alt="" />
+                                <img className="detailsPhoto" src={item.photos.middle} alt="" />
                             </div>
                             <div className="col-12 col-sm-8 col-lg-4">
                                 <div className="detailsInform">
@@ -133,20 +117,20 @@ const DetailsPage = (props) => {
                                         <h6>Step 1.</h6>
                                         <form onSubmit={handleSubmit} className="d-flex align-items-center">
                                             <select className="detailsBtn" onChange={getSize} >
-                                                <option selected>Choose your size</option>
+                                                <option defaultValue>Choose your size</option>
                                                 {item.sizes ? item.sizes.map(size => <option onChange={getSize} key={size}>
                                                     {size}
                                                 </option>) : <option> Размеров нет</option>}
                                             </select>
 
                                             <div className="d-flex detailsSize">
-                                                <img src="images/svg/Vector (11).svg" alt="" />
+                                                <img src="/images/svg/Vector (11).svg" alt="" />
                                                 <p >size guide</p>
                                             </div>
                                         </form>
                                         <p className="detailsInformListRental">Rental Period *</p>
                                         <div className="detailsInformListRentalBlock">
-                                            <img src="images/svg/Vector (12).svg" alt="" />
+                                            <img src="/images/svg/Vector (12).svg" alt="" />
                                             <p>7 day rental</p>
                                         </div>
                                     </div>
@@ -169,10 +153,8 @@ const DetailsPage = (props) => {
                                         <p className="detailsInformListDateTextarea">* Tip: Rent 2nd outfit now and keep both outfits for 14 days in total.
                                         Upgrade to 3rd outfit and keep all 3
                                 outfits for 21 days! Wear all outfits for as many times as you want.</p>
-                                        <Link className={styles.buttonBlock}>
-                                            <button className={styles.button} onClick={() => setProduct(item)}>Add to cart</button>
-                                        </Link>
-
+                            
+                                        <Link className={styles.buttonBlock} to="#" onClick={() => setProduct(item)}>Add to cart</Link>
                                     </div>
                                     <div className="detailsInformList">
                                         <p className="detailsInformListTextarea ">
@@ -209,7 +191,7 @@ const DetailsPage = (props) => {
                                 </div>
                             </div>
                             <div className="row">
-                                <Slider2 id="multiCarousel2" a="#multiCarousel2" />
+                                <Slider id="multiCarousel3" a="#multiCarousel3" />
                             </div>
 
                             <div className="row">
@@ -229,16 +211,18 @@ const DetailsPage = (props) => {
                                 </div>
                                 <div className="col-6">
                                     <div className="styleBtn">
-                                        <Button2 to="/feedback" text="Write a Review" />
+                                     
+                                        <Link className="buttonBlock" to={`/feedback/${item._id}`}  onClick={()=>props.setItemOfReview(item)}>Write a Review</Link>
                                     </div>
                                 </div>
                             </div>
-                            {item.reviews.map(item => <div className="reviewItem">
+                            {!item.reviews.length ? <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">На данный момент в этого товара нет отзывов<br /><i class="fab fa-linux"></i></h4></div> : null}
+                            {item.reviews.map(item => <div key={item._id} className="reviewItem">
                                 <div className="row">
                                     <div className="col-12 col-sm-12  col-lg-3 ">
                                         <div className="reviewInform ">
                                             <div className="reviewImg">
-                                                <img src="images/svg/Vectorrr.png" alt="" />
+                                                <img src={item.photo?`http://localhost:5000/${item.photo}` : userPhoto}  alt=""/>
                                             </div>
                                             <div className="reviewText">
                                                 <h5>{item.name}</h5>

@@ -6,25 +6,36 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Button1 from '../../SiteButtons/Button1/Button1'
 import {reduxForm,Field} from 'redux-form'
 import {Textarea} from '../../common/FormsControls/Textarea'
-import {File} from '../../common/FormsControls/File'
 
-
-
+import {Link} from 'react-router-dom'
+import { Alert } from 'reactstrap'
+import UploadFile from '../../common/UploadFile/UploadFile'
 
 const FeedbackPage = (props) => {
-   
-    const onSubmit = (formData) => {
-        let images=[];
-        if(formData){
-         images=[formData.feedbackImg1,formData.feedbackImg2,formData.feedbackImg3]
+    const goodsId=props.match.params.id;
+    const removeItem = () => {
+        props.clearReview()
+    }  
+    const onSubmit = (data) => {
+        let formData = new FormData();
+        if(data.images){ 
+            for(var i=0;i<data.images.length;i++){
+                formData.append("file", data.images[i])
+            }
         }
-        debugger
-       props.setReviews(props.name,props.photo,images,formData.feedbackTextarea,props.rating)
+    formData.append("reviewText",data.feedbackTextarea)
+       props.setReviews(formData,goodsId);
      }
+    const generateSuccessMessage = () => {
+        return (
+            <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">{props.success&&props.success.message}<br /><i class="fab fa-linux"></i></h4>
+
+            </div>
+        )
+    }
     return (
         <div>
             <HeaderBottom />
-
             <section className="feedbackBlock">
                 <div className="container">
                     <div className="row">
@@ -40,6 +51,8 @@ const FeedbackPage = (props) => {
                                 </div>
                             </div>
                         </div>
+                      
+    {props.success&&props.success.message?generateSuccessMessage():props.review.length>0?
                         <div className="feedbackList">
                             <div className="returnLinks">
                                 <div className="container">
@@ -55,23 +68,23 @@ const FeedbackPage = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="feedbackItem">
+                            {props.review.map(review=><div className="feedbackItem">
+                             
                                 <div className="container">
+                              
                                     <div className="row">
                                         <div className="col-3">
-                                            <img className="feedbackItemImg" src="images/Mask-4.png" alt="" />
+                                            <img className="feedbackItemImg" src={review.photos.middle} alt="" />
                                         </div>
                                         <div className="col-5">
-                                            <p className="bagCard__slogan">maxi DRESS</p>
+                                            <p className="bagCard__slogan">{review.slogan}</p>
                                             <div className="bagCard__list">
                                                 <p>A perfect flirty number for Balls and Black Tie.</p>
                                             </div>
                                             <div className="bagCard__size d-flex">
-                                                <p>Size: XS</p>
+                                                <p>{review.size}</p>
                                                 <img src="images/svg/Vector (11).svg" alt="" />
                                             </div>
-                                            <p className="bagCard__p">Rental period* : 7 days</p>
-                                            <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
                                             <p className="feedbackItemText">Show others how this outfit looks on you!
                                             <br />
                                             Upload pictures here</p>
@@ -79,6 +92,7 @@ const FeedbackPage = (props) => {
 
                                         </div>
                                         <div className="col-4">
+                                        <img  onClick={() => {removeItem()}} src="/images/svg/Vector (14).svg" alt="" className="ml-auto" />
                                             <div className="feedbackItemColumn2">
                                                 <div className="stars">
                                                     <i className="far fa-star stars__out">
@@ -107,12 +121,11 @@ const FeedbackPage = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <ReduxFeedbackForm onSubmit={onSubmit} setReviews={props.setReviews}/>
-                           
+                            </div>)}
+                       
+                            <ReduxFeedbackForm  errors={props.errors}onSubmit={onSubmit} />
                         </div>
-
+:<div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">Выберите товар для отзыва в вашых заказах<Link to={"/orders"}>orders</Link>или каталоге товаров<Link to={"/catalog"}>catalog</Link></h4> </div>}
 
 
 
@@ -176,14 +189,15 @@ const FeedbackPage = (props) => {
                                     <p className="feedbackItemText">Show others how this outfit looks on you!
                                             <br />
                                             Upload pictures here</p>
+                                           
                                     <div className="form-group">
-                                        <input type="image" alt="" src="images/svg/Vector (25).svg" className="form-control" />
+                                        <input type="file" alt="" src="images/svg/Vector (25).svg" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <input type="image" alt="" src="images/svg/Vector (25).svg" className="form-control" />
+                                        <input type="file" alt="" src="images/svg/Vector (25).svg" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <input type="image" alt="" src="images/svg/Vector (25).svg" className="form-control" />
+                                        <input type="file" alt="" src="images/svg/Vector (25).svg" className="form-control" />
                                     </div>
                                 </form>
                             </div>
@@ -193,6 +207,9 @@ const FeedbackPage = (props) => {
                                     <Button1 text="Send" />
                                 </div>
 
+                            </div>
+                            <div>
+                          
                             </div>
                         </div>
                     </div>
@@ -209,18 +226,13 @@ const FeedbackForm=(props)=>{
         <div className="col-3"></div>
         <div className="col-5">
             <form onSubmit={props.handleSubmit} className="feedbackForm">
-                <div className="form-group">
-                    <Field type="file" alt="" component={File} src="images/svg/Vector (25).svg" name="feedbackImg1" className="form-control" />
-                </div>
-                <div className="form-group">
-                    <Field type="file" alt=""component={File}  src="images/svg/Vector (25).svg"name="feedbackImg2" className="form-control" />
-                </div>
-                <div className="form-group">
-                    <Field type="file" alt="" component={File} src="images/svg/Vector (25).svg" name="feedbackImg3"className="form-control" />
-                </div>
+               <UploadFile name={"images"}/>
                 <Field component={Textarea} className="form-control"  id="feedbackForm2-textarea" name="feedbackTextarea" />
                 <button className="ml-auto ">Send</button>
                 </form>
+                <div className="row d-flex justify-content-center">
+                    {props.errors.id === 'ERRORS_FILE_UPLOAD' ? <Alert color="danger">{props.errors.message}</Alert> : null}
+                </div>
      </div>
     </div>
     )

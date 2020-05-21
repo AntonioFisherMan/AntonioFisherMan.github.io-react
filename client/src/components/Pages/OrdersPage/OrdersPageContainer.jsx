@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import OrdersPage from './OrdersPage';
 import {getOrders} from '../../../redux/OrdersReducer'
-
+import { compose } from 'redux';
+import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
+import {setItemOfReview} from '../../../redux/ReviewsReducer'
 
 class OrdersPageContainer extends React.Component{
   componentDidMount(){
@@ -12,21 +14,21 @@ class OrdersPageContainer extends React.Component{
   render(){
       return(
         <>
-        <OrdersPage {...this.props}
+        <OrdersPage {...this.props} 
         />
         </>
       )
   }
 }
 let mapStateToProps=(state)=>{
-    debugger
     return{
      orders:state.orders.orders,
-     userId:state.auth.userId
+     userId:state.auth.user.id
     }
 }
 
-
-  export default connect(mapStateToProps,{getOrders})(OrdersPageContainer)
-
+export default compose(
+  WithAuthRedirect,
+  connect(mapStateToProps,{getOrders,setItemOfReview})
+)(OrdersPageContainer)
 

@@ -4,6 +4,8 @@ import Sidebar from '../../Sidebar/Sidebar'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Button3 from '../../SiteButtons/Button3/Button3'
+import { compose } from 'redux'
+import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
 
 const ReturnPage = () => {
     return (
@@ -147,4 +149,4 @@ const ReturnPage = () => {
     )
 }
 
-export default ReturnPage
+export default compose(WithAuthRedirect)(ReturnPage)

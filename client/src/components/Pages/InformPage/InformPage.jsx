@@ -2,62 +2,105 @@ import React from 'react'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
-import  {Field,reduxForm} from 'redux-form'
-import {Input} from '../../common/FormsControls/Input'
+import { Field, reduxForm } from 'redux-form'
+import { Input } from '../../common/FormsControls/Input'
 import Button3 from '../../SiteButtons/Button3/Button3'
+import { Alert } from 'reactstrap'
+import UploadFile from '../../common/UploadFile/UploadFile'
 
+const InformPage = (props) => {
 
-
-const InformPage=(props)=>{
-    debugger
- 
-    return(
-       
-        <div>
-          {props.inform?<div>
-       <HeaderBottom/>
-        <section className="checkoutBlock">
-            <div className="container">
-            <div className="row">
-                    <div className="col-12">
-                        <SiteHeadline text="My information"/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12 col-md-3">
-                        <Sidebar/>  
-                    </div>
-                 <div className="col-1"></div>
-             
-                    <div className="col-12 col-md-8">
-                        <ReduxCheckoutForm  initialValues={props.inform.inform.name}/>
-                    </div>
-                </div>
-            </div>
-        </section>
-        </div>:null}
+    const updateInform = (formData) => {
+        var data=new FormData();
+        if(formData.userImage!=null){
+            debugger
+            data.append("file",formData.userImage[0])
+        }
+        else{
+            debugger
+            data.append("file",props.inform.userImage)
+        }
+        data.append("city",formData.city)
+        data.append("code",formData.code)
+        data.append("name",formData.name)
+        data.append("phone",formData.phone)
+        data.append("post",formData.post)
+        data.append("surname",formData.surname)
+        data.append("country",formData.country)
+        props.updateInform(data)
+    }
+    const setInform=(formData)=>{
+        var data=new FormData();
+        if(formData.userImage){
+            data.append("file",formData.userImage[0])
+        }
+        else{
+            data.append("file",props.inform.userImage)
+        }
+        data.append("city",formData.city)
+        data.append("code",formData.code)
+        data.append("name",formData.name)
+        data.append("phone",formData.phone)
+        data.append("post",formData.post)
+        data.append("surname",formData.surname)
+        data.append("country",formData.country)
+        props.setInform(data)
+    }
+    const SuccessMessage=()=>{
+      return(
+        <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">{props.success.message}<br /><i class="fab fa-linux"></i></h4>
         </div>
+      )
+    }
+    return (
+        <div>
+ 
+     
+                <HeaderBottom />
+                <section className="checkoutBlock">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <SiteHeadline text="My information" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12 col-md-3">
+                                <Sidebar />
+                            </div>
+                            <div className="col-1"></div>
+                            <div className="col-12 col-md-8">
+                                {props.success&&props.success.message != null ? SuccessMessage():props.inform?<ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform}/>:<ReduxUserInform isAddInform={props.isAddInform}onSubmit={setInform} errors={props.errors} />}
+                            </div>
+                           
+                        </div>
+                    </div>
+                </section>
+        </div>
+        
+      
     )
 }
 
-const CheckoutForm=(props)=>{
-return(
-    <form className="checkoutForm" >
+const UserInformForm = (props) => {
+    return ( 
+        <form className="checkoutForm" onSubmit={props.handleSubmit}>
+            {props.initialValues&&props.initialValues.userImage?<img style={{width:'100px',height:'100px',margin:'0 auto'}} src={`http://localhost:5000/${props.initialValues.userImage}`}/>:<p>Here will be your photo</p>}
             <div className="form-row">
                 <h5 className="formHeadline">Shipping address</h5>
             </div>
             <div className="form-row" >
                 <div className="form-group col-12 col-md-6" id="m">
-                    <Field type="text" component={Input} className="form-control" name="name"placeholder="Имя" />
+                    <Field type="text" component={Input} className="form-control" name="name" placeholder="Имя" />
                 </div>
                 <div className="form-group col-md-6">
-                    <Field type="text"component={Input} className="form-control" name="surname"placeholder="Фамилия" />
+                    <Field type="text" component={Input} className="form-control" name="surname" placeholder="Фамилия" />
                 </div>
             </div>
             <div className="form-group">
-                <Field type="text" component={Input}className="form-control" name="city"placeholder="Город" />
+                <Field type="text" component={Input} className="form-control" name="city" placeholder="Город" />
             </div>
-         
+
             <div className="form-group">
                 <Field type="text" component={Input} className="form-control" name="post" placeholder="Номер новой почты" />
             </div>
@@ -70,36 +113,43 @@ return(
                     </select>
                 </div>
                 <div className="form-group col-md-6">
-                    <Field type="text" component={Input} className="form-control" name="code"placeholder="Post code" id="inputZip" />
+                    <Field type="text" component={Input} className="form-control" name="code" placeholder="Post code" id="inputZip" />
                 </div>
             </div>
             <div className="form-group ">
-                <Field type="number"component={Input} className="form-control" name="phone"placeholder="Phone" />
+                <Field type="number" component={Input} className="form-control" name="phone" placeholder="Phone" />
             </div>
             <div className="form-row">
                 <h5 className="formHeadline">Billing Address</h5>
             </div>
             <div className="form-group">
                 <div className="form-check">
-                    <label><Field type="checkbox" component={"input"} name="check"className="form-check-label checkbox" /><span className="fake"></span><span id="checkText">same as Shipping Address</span></label>
+                    <label><Field type="checkbox" component={"input"} name="check" className="form-check-label checkbox" /><span className="fake"></span><span id="checkText">same as Shipping Address</span></label>
                 </div>
+                <UploadFile name={"userImage"}/>
             </div>
             <div className="form-row">
                 <div className="col-12 d-flex align-items-center">
                     <Button3 link="/catalog" text="Return to catalogue" />
                 </div>
-                <div className="col-12 d-flex align-items-center justify-content-end">
+                {props.isAddInform===true?<div className="col-12 d-flex align-items-center justify-content-end">
                     <button className="formBtn">Обновить</button>
-                </div>
+                </div>:<div className="col-12 d-flex align-items-center justify-content-end">
+                    <button className="formBtn">Сохранить</button>
+                </div>}
+               
             </div>
-
+            <div style={{ width: '400px' }}>
+                {props.errors && props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <Alert color="danger">{props.errors.message.message}</Alert> : null}
+            </div>
         </form>
-)
+       
+    )
 }
 
-export const ReduxCheckoutForm = reduxForm({
-    form: 'checkout'
-})(CheckoutForm)
+export const ReduxUserInform = reduxForm({
+    form: 'userInform'
+})(UserInformForm)
 
 
 export default InformPage

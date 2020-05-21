@@ -6,19 +6,11 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Item from "./Item/Item";
 import Slider from "../../Slider/Slider";
 import Slider2 from "../../Slider/Slider2";
-import PopUp from "../../PopUp/PopUp";
-import { compose } from "redux";
-import { IsPopUpHook } from "../../../hoc/IsPopUpHook";
-import { connect } from "react-redux";
-import {isPopUp} from '../../../redux/AppReducer'
-
 
 
 const FrontPage = (props) => {
-
   return (
     <div>
-     
       <section className={styles.introBlock}>
         <div className="container">
           <div className="row">

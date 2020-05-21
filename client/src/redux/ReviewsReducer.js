@@ -1,32 +1,36 @@
-import { testAPI } from "../api/api"
-const GET_REVIEWS="GET_REVIEWS"
+import {testAPI} from '../api/api'
 
-
+import { returnErrors,returnSuccess } from './SuccessErrorReducer'
+const SET_REVIEWS="SET_REVIEW"
+const INITIAL_REVIEWS="INITIAL_REVIEWS"
 let initialState={
-   reviews:[]
+    reviews:[]
 }
 
-const  ReviewsReducer=(state=initialState,action)=>{
-   switch(action.type){
-     case GET_REVIEWS:
-         return{...state,reviews:[...action.payload]}
-    default:return state;
-   }
-   
-} 
+const ReviewsReducer=(state=initialState,action)=>{
+    switch (action.type) {
+        case INITIAL_REVIEWS:
+            return initialState
+        case SET_REVIEWS:
+   return{...state,reviews:[action.item]}
+        default:
+            return state;      
+    }
+}
 
-//Action
-const setReviews=(payload)=>({type:GET_REVIEWS,payload})
+export const setItemOfReview=(item)=>({type:SET_REVIEWS,item})
+export const clearReview=()=>({type:INITIAL_REVIEWS})
 
-//Thunk Creator
-export const getReviews=()=>dispacth=>{
-    testAPI.getReviews()
-    .then(data=>{
-       dispacth(setReviews(data))
+export const setReviews=(data,goodsId,reviewText,rating)=>(dispatch,getState)=>{
+    debugger
+    testAPI.setReviews(getState().auth.user.name,getState().auth.userInform.userImage,data,goodsId,reviewText,rating).then(response=>{
+            if (response.data.success) {
+                dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_FILE_UPLOAD'))
+                dispatch(clearReview())
+            } else {
+                dispatch(returnErrors(response.data.message,response.status,'ERRORS_FILE_UPLOAD'))
+            }
     })
-}
-export const setReviewsThunk=(name,photo,images,reviews,rating)=>dispacth=>{
-    testAPI.setReviews(name,photo,images,reviews,rating);
-}
+  }
 
 export default ReviewsReducer

@@ -11,7 +11,7 @@ const FormEmail = (props) => {
     return (
         <form className={styles.footerForm} onSubmit={props.handleSubmit}>
             <Field name={"submitEmail"} type="email" component={Input} placeholder="Your email" validate={[required,maxLengthCreator30,minLengthCreator5]} />
-            <button>Login</button>
+            <button>Send</button>
         </form>
     )
 }
@@ -67,7 +67,7 @@ const Footer = (props) => {
                             </div>
                             <div className="col-12 col-sm-6 col-lg-4">
                                 <div className={styles.footerItem}>
-                                    <p className={styles.span}> Subscribe at <span>get 10% off</span> your first rental</p>
+                                    <p className={styles.span}> Subscribe and<span> get 10% off</span> your first rental</p>
                                     <ReduxFormEmailSent onSubmit={onSubmitBLL} />
                                 </div>
                             </div>

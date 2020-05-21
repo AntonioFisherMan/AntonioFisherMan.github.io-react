@@ -1,6 +1,5 @@
-import React from 'react'
 import {getAuth} from './AuthReducer'
-
+import {getInform} from './InformReducer'
 const SET_INITIALIZED="SET_INITIALIZED"
 const APP_IS_POPUP="APP_IS_POPUP"
 

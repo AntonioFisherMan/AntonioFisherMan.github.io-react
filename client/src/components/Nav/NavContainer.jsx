@@ -22,7 +22,6 @@ let mapStateToProps = (state) => {
        totalSizeCard:state.card.items.length
     }
 }
-
 export default connect(mapStateToProps,{logout})(NavContainer)
 
 

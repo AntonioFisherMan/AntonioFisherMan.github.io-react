@@ -30,12 +30,12 @@ const LoginForm = (props) => {
             <div className="custom-control custom-checkbox d-flex ">
                 <label className="d-flex align-items-center"><Field name={"rememberMe"} type="checkbox" className="checkbox" component={"input"} /> <span className="fake fakeSign" ></span><span className="checkText span">Remember Me<span>(Privacy
                     Policy)</span></span></label>
-                <Link className="forgotPass">forgot password</Link>
+                <Link className="forgotPass" to="/forgotpassword">forgot password</Link>
                 <button>Login</button>
             </div>
             <div style={{ width: '400px' }}>
 
-                {props.errors.id==='LOGIN_FAIL' ?<Alert color="danger">{props.errors.message.message}</Alert> : null}
+                {props.errors&&props.errors.id==='LOGIN_FAIL' ?<Alert color="danger">{props.errors.message.message}</Alert> : null}
             </div>
         </form>
     )

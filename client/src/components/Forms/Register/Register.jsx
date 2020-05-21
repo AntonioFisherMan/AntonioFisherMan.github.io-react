@@ -2,6 +2,8 @@ import React from 'react'
 import { ReduxRegisterForm } from './RegisterForm'
 import {register} from '../.././../redux/AuthReducer'
 import {connect} from 'react-redux'
+import { compose } from 'redux'
+import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
 
 
 class Register extends React.Component{
@@ -16,9 +18,7 @@ class Register extends React.Component{
 }
 
 
-let mapStateToProps=(state)=>{
-    return{
-        errors:state.errors
-    }
-}
-export default connect(mapStateToProps,{register})(Register)
+export default compose(
+    SuccessErrorsData,
+    connect(null,{register})
+)(Register)

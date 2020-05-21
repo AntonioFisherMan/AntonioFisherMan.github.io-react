@@ -1,6 +1,15 @@
 /****** DETAIL PAGE****/
 
-
+.buttonBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #111111;
+    border-radius: 36px;
+    width: 180px;
+    height: 50px;
+    color:black;
+}
 /*DETAILS BLOCK*/
 .btnWidth a {
     width: 100% !important;

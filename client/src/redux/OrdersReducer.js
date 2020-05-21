@@ -1,5 +1,6 @@
 import {clearCardItems} from './CardReducer'
 import { testAPI } from "../api/api";
+import { returnSuccess } from './SuccessErrorReducer';
 
 
 const ADD_ORDERS="ADD_ORDERS"
@@ -40,6 +41,7 @@ export const getOrders=(id)=>dispatch=>{
 export const addOrdersThunk=({items,inform,id})=>dispatch=>{
     testAPI.setOrders(items,inform,id).then(response=>{
         dispatch(clearCardItems(null,null,null))
+        dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_ADD_ORDER'))
       })
     
 }

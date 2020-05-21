@@ -4,6 +4,8 @@ import Sidebar from '../../Sidebar/Sidebar'
 import Button3 from '../../SiteButtons/Button3/Button3'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import ChangePass from '../../Forms/ChangePass/ChangePass'
+import { compose } from 'redux'
+import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
 
 
 const ChangepassPage = () => {
@@ -39,4 +41,6 @@ const ChangepassPage = () => {
     )
 }
 
-export default ChangepassPage
+export default compose(
+    WithAuthRedirect
+)(ChangepassPage) 

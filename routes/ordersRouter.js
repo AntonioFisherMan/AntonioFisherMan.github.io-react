@@ -6,6 +6,7 @@ let Orders = require("../models/orders.model");
     try {
       const orders = await Orders.find({userId:req.params.id});
       res.send(orders);
+     
     } catch (error) {
       console.error(error);
       if (error.name === "CastError")
@@ -21,7 +22,12 @@ let Orders = require("../models/orders.model");
     });
     newOrders
     .save()
-    .then((item) => res.json(item))
+    .then(item=>{
+      res.status(200).send({
+        item,
+        message: 'Orders successfuly added'
+      })
+    })
     .catch((err) => res.status(404).json("not post review"));
 
   });

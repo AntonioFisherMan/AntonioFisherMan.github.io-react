@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "../SliderItem/SliderItem.module.css";
+import  "../SliderItem/SliderItem.css";
 
 const SliderItem2 = (props) => {
   return (
-    <div  className={styles.item}>
+    <div className="item">
       <img src={props.img} alt="" />
     </div>
   );

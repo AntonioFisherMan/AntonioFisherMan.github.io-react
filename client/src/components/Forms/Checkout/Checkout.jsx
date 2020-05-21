@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ReduxCheckoutForm } from './CheckoutForm'
 import { addOrdersThunk, addOrders, addUnloginOrdersThunk } from '../../../redux/OrdersReducer'
+import { compose } from 'redux'
+import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
 
 
 class Checkout extends React.Component {
@@ -13,16 +15,14 @@ class Checkout extends React.Component {
             this.props.history.push("/order")
         }
         else {
-            data = { items: this.props.items, inform: formData, id: this.props.auth.user.id }
+            data = { items: this.props.items, inform: formData, id: this.props.auth.userId }
             this.props.addOrdersThunk(data)
         }
-
     }
 
     render() {
         return (
-
-            <ReduxCheckoutForm initialValues={this.props.inform} onSubmit={this.onSubmit} errors={this.props.errors} />
+            <ReduxCheckoutForm initialValues={this.props.inform} onSubmit={this.onSubmit} success={this.props.success} errors={this.props.errors} />
         )
     }
 
@@ -37,4 +37,7 @@ let mapStateToProps = (state) => {
         inform:state.inform.inform
     }
 }
-export default connect(mapStateToProps, { addOrdersThunk, addUnloginOrdersThunk, addOrders })(Checkout)
+export default compose(
+   SuccessErrorsData,
+   connect(mapStateToProps, { addOrdersThunk, addUnloginOrdersThunk, addOrders })
+)(Checkout)

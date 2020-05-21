@@ -5,11 +5,10 @@ import { required, MinLength, MaxLength } from '../../../utils/Validators/valida
 import {Alert} from 'reactstrap'
 
 
-const MaxLengthCreator20 = MaxLength(20)
+const MaxLengthCreator50 = MaxLength(50)
 const MinLengthCreator5 = MinLength(5)
 
 const RegisterForm = (props) => {
-    debugger
     return (
         <form className="signForm" onSubmit={props.handleSubmit}>
             <h5 className="signHeadline">Not a member? Sign Up</h5>
@@ -23,13 +22,13 @@ const RegisterForm = (props) => {
             </div>
             <div className="form-group">
                 <div className="form-group">
-                    <Field type="Name" id="registerName" component={Input} validate={[required, MaxLengthCreator20]} name={"registerName"} className="form-control" placeholder="Enter  name" required />
+                    <Field type="Name" id="registerName" component={Input} validate={[required, MaxLengthCreator50]} name={"registerName"} className="form-control" placeholder="Enter  name" required />
                 </div>
                 <div className="form-group">
-                    <Field type="email" id="registerEmail" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator20]} name={"registerEmail"} className="form-control" placeholder="Enter  email" required />
+                    <Field type="email" id="registerEmail" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name={"registerEmail"} className="form-control" placeholder="Enter  email" required />
                 </div>
                 <div className="form-group">
-                    <Field type="password" id="registerPass" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator20]} name={"registerPassword"} className="form-control" placeholder="Enter  password" required />
+                    <Field type="password" id="registerPass" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name={"registerPassword"} className="form-control" placeholder="Enter  password" required />
                 </div>
             </div>
             <p className="signGrey">By joining I agree to receive emails from DressItBox</p>

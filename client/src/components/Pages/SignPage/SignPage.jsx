@@ -30,13 +30,13 @@ class SignPage extends React.Component {
                             <div className="col-12 col-md-7">
                                 <Login />
                                 <div className="signReturnBtn">
-                                    <Button3 text="Return to cart" />
+                                    <Button3 link="/card"text="Return to cart" />
                                 </div>
                             </div>
 
                             <div className="col-12 col-md-5">
-                            <FacebookLogin/>
-                              <GoogleLogin/>
+                                <FacebookLogin />
+                                <GoogleLogin />
                                 <Register />
                                 <div className="signReturnBtn-active">
                                     <Button3 link="/card" text="Return to cart" />
@@ -44,7 +44,7 @@ class SignPage extends React.Component {
                             </div>
 
                         </div>
-                        
+
                     </div>
                 </section>
             </>
@@ -54,10 +54,6 @@ class SignPage extends React.Component {
 
 }
 
-
-function postData(type,userData){
-
-}
 let mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,

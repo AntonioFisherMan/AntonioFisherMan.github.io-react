@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './HeaderBottom.module.css'
-import {Link} from 'react-router-dom'
 
 const HeaderBottom=()=>{
     return(
@@ -20,5 +19,6 @@ const HeaderBottom=()=>{
         </section>
     )
 }
+
 
 export default HeaderBottom

@@ -4,7 +4,6 @@ import styles from './Paginator.module.css'
 import {Link} from 'react-router-dom'
 
 const Paginator = ({totalCount, pageSize, portionSize=3, pageNumber, onPageChanged}) => {
-debugger
 let pagesCount = Math.ceil(totalCount / pageSize);
 let pages = [];
 for (var i = 1; i <= pagesCount; i++) {
@@ -18,13 +17,9 @@ let rightPortion=portionNumber*portionSize;
     return (
         <div className={styles.productsPagination}>
             {portionNumber > 1 ?
-                <button onClick={() => { setPortionNumber(portionNumber - 1) }}>  <li className={styles.pageItem}>
-                    <Link to="#"lassName={styles.pageLink} >
-                        <i className="fas fa-chevron-left" aria-hidden="true"></i>
-                    </Link >
-                </li></button>:<Link to="#" className={styles.pageLink} >
-                        <i className="fas fa-chevron-left" aria-hidden="true"></i>
-                    </Link>}
+                <button onClick={() => { setPortionNumber(portionNumber -1) }}>   <li className={styles.pageItem}>
+                <Link to="#"className={styles.pageLink}> <i className="fas fa-chevron-left" aria-hidden="true"></i></Link>
+            </li></button>: <Link to="#"className={styles.pageLink}> <i className="fas fa-chevron-left" aria-hidden="true"></i></Link>}
                 
             {pages
                 .filter(p => p >= leftPortion && p <= rightPortion)

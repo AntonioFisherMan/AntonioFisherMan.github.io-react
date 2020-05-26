@@ -12,6 +12,9 @@ const goodsSchema = new Schema(
     slogan: {
       type: String,
     },
+    isLoadedToCard:{
+      type:Boolean
+    },
     price: {
       type: Number,
     },

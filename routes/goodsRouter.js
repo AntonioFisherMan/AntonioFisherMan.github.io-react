@@ -7,37 +7,40 @@ let Goods = require("../models/goods.model");
 let Reviews = require("../models/reviews.model");
 
 
+const pagination=(pageSize,page,resultGoods,res)=>{
+  const totalCount=Object.keys(resultGoods).length
+  const startIndex=(page-1)*pageSize;
+  const endIndex=page*pageSize
+  const goods=resultGoods.slice(startIndex,endIndex)
+  var payload=Object.assign({totalCount},{goods})
+  res.json(payload)
+}
 
-
-
-router.get("/", function (req, res) {
-  const page=req.query.page;
-  const pageSize=req.query.pageSize;
-  
-  Goods.find() 
-    .then(resultGoods=>{
-      const totalCount=Object.keys(resultGoods).length
-      const startIndex=(page-1)*pageSize;
-      const endIndex=page*pageSize
-      const goods=resultGoods.slice(startIndex,endIndex)
-      var payload=Object.assign({totalCount},{goods})
-      res.json(payload)
-    })
-    .catch(console.log("err"));
-});
 
 router.post("/", function (req, res) {
-  const newGoods = new Goods({
-    photos: req.body.photos,
-    text: req.body.text,
-    slogan: req.body.slogan,
-    price: req.body.price,
-  });
-  newGoods
-    .save()
-    .then((item) => res.json(item))
+  console.log(req.body.data);
+  let data=req.body.data;
+  const pageSize=req.query.pageSize;
+  const page=req.query.page;
+  if(data&&data.length>0){
+    Goods.aggregate(
+      [ { $match : { $or: [ { style: {$in:data} }, { color: { $in: data } },{ sizes: { $in: data } } ] }} ]
+  )
+      .then((goods) => {
+        pagination(pageSize,page,goods,res)
+      })
+      .catch(err =>
+        res.status(404).json("not goods"));
+  }else{
+    Goods.find() 
+    .then(resultGoods=>{
+     pagination(pageSize,page,resultGoods,res)
+    })
     .catch(console.log("err"));
+  }
+  
 });
+
 
 router.get("/reviews", function (req, res) {
   Reviews.find()
@@ -48,7 +51,7 @@ router.get("/reviews", function (req, res) {
 router.get("/:id", async (req, res) => {
   try {
     const good = await Goods.findById(req.params.id);
-    const review = await Reviews.find({ goodsId: req.params.id });
+    const review = await Reviews.find({ goodsId: req.params.id }).limit(2);
 
     var data={good,review}
     var payload={}
@@ -115,7 +118,7 @@ router.post("/reviews/:goodsId", (req, res) => {
           });
         })
         .catch(console.log("err"));
-     
+
     }
   });
 });

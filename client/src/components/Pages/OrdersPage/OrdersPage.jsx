@@ -26,8 +26,6 @@ const OrdersPage = (props) => {
 
                             </div>
                         </div>
-
-
                         {props.orders.length ? <div>
                             <h1>Заказов: {props.orders.length}</h1>
                             <div className="returnBlock__links">

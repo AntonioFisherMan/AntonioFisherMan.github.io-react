@@ -2,57 +2,55 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CatalogPage from './CatalogPage'
 import { compose } from 'redux'
-import { getGoodsThunk, changeSortBy,changeFilter, getGoodsThunkById, changePageNumber,ClearGoods} from '../../../redux/CatalogReducer'
-import { setProduct } from '../../../redux/CardReducer'
+import { getGoodsThunk, changeSortBy,removeFilter,getGoodsThunkById, changePageNumber, ClearGoods } from '../../../redux/CatalogReducer'
+import { orderBy } from 'lodash'
 import { IsPopUpHook } from '../../../hoc/IsPopUpHook'
 import { isPopUp } from '../../../redux/AppReducer'
-import { orderBy } from 'lodash'
+import { getFilterBy,getTotalGoods } from '../../../redux/CatalogSelector'
+
 
 
 class CatalogPageContainer extends React.Component {
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.ClearGoods();
   }
   componentDidMount() {
     const { pageNumber, pageSize } = this.props;
-    this.props.getGoodsThunk(pageNumber, pageSize);
+    this.props.getGoodsThunk(pageNumber,pageSize,this.props.filter);
   }
-  
+  componentDidUpdate(prevProps){
+    const { pageNumber, pageSize } = this.props;
+    if(prevProps.filter!==this.props.filter){
+      this.props.getGoodsThunk(pageNumber,pageSize,this.props.filter);
+    }
+  }
   onPageChanged = (pageNumber) => {
     const { pageSize } = this.props;
-    debugger
-    this.props.getGoodsThunk(pageNumber, pageSize)
+    this.props.getGoodsThunk(pageNumber, pageSize,this.props.filter)
     this.props.changePageNumber(pageNumber)
   }
-  changePageSize = (pageSize, pageNumber = 1) => {
-    debugger
-    this.props.getGoodsThunk(pageNumber, pageSize)
+  changePageSize = (pageSize, pageNumber=1) => {
+    this.props.getGoodsThunk(pageNumber,pageSize,this.props.filter)
+  }
+  changeFilter=(filter)=>{
+     this.props.getGoodsThunk(this.props.pageNumber,this.props.pageSize,filter)
   }
   render() {
     return (
       <>
-        <CatalogPage  {...this.props} onPageChanged={this.onPageChanged} changeSortBy={this.props.changeSortBy} changeFilter={this.props.changeFilter}changePageSize={this.changePageSize}
+        <CatalogPage  {...this.props} onPageChanged={this.onPageChanged}changeFilter={this.changeFilter} removeFilter={this.props.removeFilter} changeSortBy={this.props.changeSortBy} changePageSize={this.changePageSize}
         />
       </>
     )
   }
 }
-const sortBy = (goods, filterBy) => {
-  switch (filterBy) {
-    case 'Рекомендации':
-      return goods;
-    case 'От дорогим к дешевым':
-      debugger
-      return orderBy(goods, 'price', 'desc');
-    case 'От дешевых к дорогим':
-      return orderBy(goods, 'price', 'asc')
-    default:
-      return goods;
-  }
-}
+
+
 let mapStateToProps = (state) => {
   return {
-    goods:sortBy(state.goods.goods,state.goods.filterBy),
+    goods: getTotalGoods(state),
+    filterBy:getFilterBy(state),
+    filter:state.goods.filter,
     token: state.auth.token,
     items: state.card.items,
     pageSize: state.goods.pageSize,
@@ -63,6 +61,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
   IsPopUpHook,
-  connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, changePageNumber, isPopUp, setProduct, changeSortBy,changeFilter,ClearGoods })
+  connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, changePageNumber,removeFilter, isPopUp, changeSortBy, ClearGoods })
 )(CatalogPageContainer)
 

@@ -32,6 +32,7 @@
     "nodemailer-express-handlebars": "^4.0.0",
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
-    "react-scripts": "^3.3.1"
+    "react-scripts": "^3.3.1",
+    "searchkit": "^2.4.1-alpha.4"
   }
 }

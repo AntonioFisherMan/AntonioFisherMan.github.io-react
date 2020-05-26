@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initializeThunkApp } from "./redux/AppReducer";
 import {connect } from "react-redux";
 
+
+
+
+
 //PAGES
 
 import Footer from "../src/components/Footer/Footer";
@@ -23,18 +27,21 @@ import Order from "./components/Pages/OrdersPage/UnloginOrderPage"
 import InformContainer from "./components/Pages/InformPage/InformContainer";
 import ForgotChangePassword from './components/Forms/ForgotPassword/ForgotChangePassword'
 import ForgotPassword from "./components/Forms/ForgotPassword/ForgotPassword";
-const DetailsContainer = React.lazy(() =>
-import("./components/Pages/DetailsPage/DetailsContainer")
-);
+import DetailsContainer from './components/Pages/DetailsPage/DetailsContainer'
+// const DetailsContainer = React.lazy(() =>
+// import("./components/Pages/DetailsPage/DetailsContainer")
+// );
 // const FrontPage = React.lazy(() =>
 //   import('../src/components/Pages/FrontPage/FrontPage')
 // );
 
+import Modal from './components/common/Modal/Modal'
 class App extends React.Component {
   componentDidMount() {
     this.props.initializeThunkApp();
 
   }
+ 
   render() {
     if (!this.props.isInitialized) {
       return <Preloader />;
@@ -60,6 +67,7 @@ class App extends React.Component {
                   <Route path="/forgotchangepass/:token?" component={ForgotChangePassword}/>
                   <Route path="/buy" component={Checkout}/>
                   <Route path="/order" component={Order}/>
+                  <Modal />
                 </NavContainer>   
             </Switch>
             <Footer />    

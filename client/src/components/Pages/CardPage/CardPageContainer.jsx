@@ -1,18 +1,17 @@
 import React from 'react'
 import CardPage from './CardPage'
 import { connect } from 'react-redux'
-import { removeProduct } from '../../../redux/CardReducer'
-import { uniqBy } from 'lodash'
+import { removeProduct,changeQuantity,addInsurance } from '../../../redux/CardReducer'
 
+import {getCardItems,getTotalPrice} from '../../../redux/CardSelector'
 
 
 let mapStateToProps = (state) => {
     debugger
     return {
-        items: uniqBy(state.card.items, i => i._id),
+        items:getCardItems(state),
+        totalPrice:getTotalPrice(state),
         isLoaded: state.card.isLoaded,
-        totalPrice: state.card.items.reduce((total, item) => total + item.price, 0),
-        data: state.card.data
     }
 }
-export default connect(mapStateToProps, { removeProduct })(CardPage)
+export default connect(mapStateToProps, {changeQuantity,addInsurance, removeProduct })(CardPage)

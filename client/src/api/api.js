@@ -10,16 +10,15 @@ let instance = axios.create({
 });
 
 export const testAPI = {
+  changeFilter(data,pageSize=10,pageNumber=1){
+    debugger
+    return axios.post(
+      `http://localhost:5000/goods?page=${pageNumber}&pageSize=${pageSize}`,{data}
+    )
+},
   getMyUsers() {
     return axios
       .get("http://localhost:5000/users")
-      .then((response) => response.data);
-  },
-  getGoods(pageNumber = 1, pageSize = 10) {
-    return instance
-      .get(
-        `http://localhost:5000/goods?page=${pageNumber}&pageSize=${pageSize}`
-      )
       .then((response) => response.data);
   },
   getGood(id) {

@@ -1,5 +1,6 @@
 
 export const required = value => {
+  debugger
   if (value) {
     return undefined;
   } else {

@@ -1,35 +1,52 @@
-
-const CARD_ADD_ITEMS="CARD_ADD_ITEMS"
-const CARD_REMOVE_ITEMS="CARD_REMOVE_ITEMS"
-const REMOVE_CARD_ITEMS="REMOVE_CARD_ITEMS"
-
-
-let initialState={
-  items:[],
-  isLoaded:false,
-  totalPrice:0
-}
-
-const CardReducer=(state=initialState,action)=>{
-   switch(action.type){
-   case CARD_ADD_ITEMS:
-     debugger
-   return{...state, items:[...state.items,action.payload],isLoaded:true}
-       case CARD_REMOVE_ITEMS:
-           return{
-               ...state,
-               items:state.items.filter(i=>i._id!==action.itemId)
-           }
-           case REMOVE_CARD_ITEMS:
-             return{items:[],totalPrice:null,totalItemCount:null}
-    default:return state;
-   }
-  
-}
-
-export const setProduct=(payload)=>({type:CARD_ADD_ITEMS,payload})
-export const clearCardItems=()=>({type:REMOVE_CARD_ITEMS})
-export const removeProduct=(itemId)=>({type:CARD_REMOVE_ITEMS,itemId})
+const CARD_ADD_ITEMS = "CARD_ADD_ITEMS";
+const CARD_REMOVE_ITEMS = "CARD_REMOVE_ITEMS";
+const REMOVE_CARD_ITEMS = "REMOVE_CARD_ITEMS";
+const CHANGE_ITEMS_QUANTITY = "CHANGE_ITEMS_QUANTITY";
+const CARD_ADD_INSURANCE="CARD_ADD_INSURANCE";
 
 
-export default CardReducer
+let initialState = {
+  items: [],
+  isLoaded: false,
+  totalPrice: 0,
+};
+
+
+const CardReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case CARD_ADD_ITEMS:
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+        isLoaded: true,
+      };
+    case CARD_REMOVE_ITEMS:
+      return {
+        ...state,
+        items: state.items.filter((i) => i._id !== action.itemId),
+      };
+    case REMOVE_CARD_ITEMS:
+      return { ...state, items: [], totalPrice: null, totalItemCount: null };
+    case CHANGE_ITEMS_QUANTITY:
+      return {
+        ...state,
+        items: state.items.filter((i) =>
+          i._id === action.id ? i.quantity : action.quantity
+        ),
+      };
+    default:
+      return state;
+  }
+};
+
+export const addToCart = (payload) => ({ type: CARD_ADD_ITEMS, payload });
+export const clearCardItems = () => ({ type: REMOVE_CARD_ITEMS });
+export const removeProduct = (itemId) => ({ type: CARD_REMOVE_ITEMS, itemId });
+export const changeQuantity = (id, quantity) => ({
+  type: CHANGE_ITEMS_QUANTITY,
+  id,
+  quantity,
+});
+export const addInsurance=(id,insurance)=>({type:CARD_ADD_INSURANCE,id,insurance})
+
+export default CardReducer;

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CardPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Button3 from '../../SiteButtons/Button3/Button3'
 import Button1 from '../../SiteButtons/Button1/Button1'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { useEffect } from 'react'
 
 
 
@@ -12,6 +13,18 @@ const CardPage = (props) => {
     const removeItem = (id) => {
         props.removeProduct(id)
     }  
+    const addInsurance=(item)=>{
+        let insurance=5;
+       props.addInsurance(item._id,insurance)
+    }
+    const increaseQuantity=(item)=>{
+        item.quantity=item.quantity+1;
+       props.changeQuantity(item._id,item.quantity)
+      }
+      const decreaseQuantity=(item)=>{
+        item.quantity=item.quantity-1;
+        props.changeQuantity(item._id,item.quantity)
+    }
     return (
 
         <div>
@@ -37,8 +50,7 @@ const CardPage = (props) => {
                         <div className="col-3 d-flex justify-content-center">
                             <p>Quantity</p>
                             <div className="controls">
-            <button className="increase" onClick={props.increase}>+</button>
-            <button className="decrease" onClick={props.decrease}>-</button>
+           
           </div>
                         </div>
                     </div>
@@ -49,7 +61,7 @@ const CardPage = (props) => {
                
            { props.items.map(item=> <div className="row cardItem" key={item._id}>
                         <div className="col-12 col-sm-3">
-                            <img className="cardPhoto" src={item.photos.small[0]} alt="" />
+                            <img className="cardPhoto" src={item.photo} alt="" />
                         </div>
                         <div className="col-9">
                             <p className="cardSlogan" style={{ fontSize: '10px !important' }}>maxi DRESS</p>
@@ -60,6 +72,8 @@ const CardPage = (props) => {
                                 </div>
                                 <div className="col-3 d-flex justify-content-center">
                                     <p className="cardPrice">{item.quantity}</p>
+                                    <button className="increase" onClick={()=>increaseQuantity(item)}>+</button>
+                                    <button className="decrease" onClick={()=>decreaseQuantity(item)}>-</button>
                                 </div>
 
                                 <img onClick={() => {removeItem(item._id)}} src="images/svg/Vector (14).svg" alt="" />
@@ -72,7 +86,7 @@ const CardPage = (props) => {
                             <p>Dates: {item.startDate}-{item.endDate} </p>
                             <div className="cardDiscount">
                                 <div>
-                                    <img src="images/svg/Vector (15).svg" alt="" />
+                                    <img src="images/svg/Vector (15).svg" alt="" onClick={()=>addInsurance(item)}/>
                                 </div>
                                 <div>
                                     <p><span>Add </span>insurance for this item for €5</p>
@@ -114,6 +128,7 @@ const CardPage = (props) => {
                             <p className="cardPrice ">€61.17</p>
                             <div className="cardDiscount">
                                 <div>
+                               
                                     <img src="images/svg/Vector (15).svg" alt="" />
                                 </div>
                                 <div style={{ textAlign: 'center' }}>

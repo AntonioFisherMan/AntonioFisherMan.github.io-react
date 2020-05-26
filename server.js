@@ -51,4 +51,3 @@ app.use("/orders", ordersRouter);
 
 const informRouter = require("./routes/informRouter");
 app.use("/inform", informRouter);
-

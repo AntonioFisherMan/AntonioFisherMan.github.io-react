@@ -6,9 +6,7 @@ import Button1 from '../../SiteButtons/Button1/Button1'
 import PopUp from '../../PopUp/PopUp'
 import Paginator from '../../common/Paginator/Paginator'
 import { Field, reduxForm } from 'redux-form'
-import { uniqBy } from 'lodash'
-
-
+import { Fields } from 'redux-form'
 const CatalogPage = (props) => {
     let [sizes,setSizes]=useState();
     let [colors,setColors]=useState();
@@ -20,11 +18,20 @@ const CatalogPage = (props) => {
         props.changeSortBy(type.target.value);
     }
     const onSubmit = (formData) => {
-        props.changeFilter(formData)
+        let data=[];
+        for (let [key, value] of Object.entries(formData)) {
+            if(value===true)data.push(key);
+        }
+        props.changeFilter(data)
     }
-    console.log(sizes)
+    const removeFilter=(filter)=>{
+       debugger
+       props.removeFilter(filter)
+    }
     return (
         <div>
+
+
             <section className="linkBlock">
                 <div className="container">
                     <div className="row">
@@ -58,6 +65,9 @@ const CatalogPage = (props) => {
                         <div className="col-12 col-sm-2">
                             <div className="productsFilter">
                                 <h4> Filter</h4>
+                                {props.filter?props.filter.map(filter=><p className="d-flex">
+                                     {filter} <img onClick={() => {removeFilter(filter)}} src="images/svg/Vector (14).svg" alt="" />
+                                </p>):<p>All</p>}
                             </div>
                         </div>
                         <div className="col-12 col-sm-10">
@@ -78,11 +88,14 @@ const CatalogPage = (props) => {
                                     <Button1 to={`details/${item._id}`} text="Подробнее" />
                                 </div>)
                             }
-                            <Paginator pageSize={props.pageSize} onPageChanged={props.onPageChanged}
-                                totalCount={props.totalCount} pageNumber={props.pageNumber} />
+                           
 
                         </div>
                     </div>
+                        <div className="row">
+                        <Paginator pageSize={props.pageSize} onPageChanged={props.onPageChanged}
+                                totalCount={props.totalCount} pageNumber={props.pageNumber} />
+                        </div>
                 </div>
 
             </section>
@@ -94,16 +107,16 @@ const FilterForm = (props) => {
     return (
         <form className="sidebar" onSubmit={props.handleSubmit}>
             <div className="sidebarItem">
-                <hr />
+                <hr/>
                 <div className="sidebarText">
                     <p>Size</p>
                     <img src="images/svg/Vector (7).svg" alt="" />
                 </div>
                 <ul className="sidebarMenu">
-                    <label><Field type="checkbox" component={"input"} name="36" className="checkbox" /><span className="fake"></span><span className="checkText">36</span></label>
-                    <label><Field type="checkbox" component={"input"} name="38" className="checkbox" /><span className="fake"></span><span className="checkText">38</span></label>
-                    <label><Field type="checkbox" component={"input"} name="40" className="checkbox" /><span className="fake"></span><span className="checkText">40</span></label>
-                    <label><Field type="checkbox" component={"input"} name="42" className="checkbox" /><span className="fake"></span><span className="checkText">42</span></label>
+                    <label><Field type="checkbox" component={"input"} name="size36" className="checkbox" /><span className="fake"></span><span className="checkText">36</span></label>
+                    <label><Field type="checkbox" component={"input"} name="size38" className="checkbox" /><span className="fake"></span><span className="checkText">38</span></label>
+                    <label><Field type="checkbox" component={"input"} name="size40" className="checkbox" /><span className="fake"></span><span className="checkText">40</span></label>
+                    <label><Field type="checkbox" component={"input"} name="size42" className="checkbox" /><span className="fake"></span><span className="checkText">42</span></label>
                     <label><Field type="checkbox" component={"input"} name="S" className="checkbox" /><span className="fake"></span><span className="checkText">S</span></label>
                     <label><Field type="checkbox" component={"input"} name="M" className="checkbox" /><span className="fake"></span><span className="checkText">M</span></label>
                     <label><Field type="checkbox" component={"input"} name="L" className="checkbox" /><span className="fake"></span><span className="checkText">L</span></label>
@@ -111,7 +124,7 @@ const FilterForm = (props) => {
                 </ul>
             </div>
             <div className="sidebarItem">
-                <hr />
+                <hr/>
                 <div className="sidebarText">
                     <p>Colour</p>
                 </div>

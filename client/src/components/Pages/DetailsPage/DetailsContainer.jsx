@@ -2,9 +2,15 @@ import React from 'react'
 import DetailsPage from './DetailsPage'
 import { connect } from 'react-redux'
 import { getGoodsThunkById,removeGood } from '../../../redux/CatalogReducer'
-import { setProduct } from '../../../redux/CardReducer'
+import { addToCart } from '../../../redux/CardReducer'
 import {setItemOfReview} from '../../../redux/ReviewsReducer'
+
+
 class DetailsContainer extends React.Component {
+    state = {
+        modalOpen: false,
+        modalProduct:null ,
+      };
     refreshProfile() {
         const id = this.props.match.params.id;
         if (id) {
@@ -22,15 +28,18 @@ class DetailsContainer extends React.Component {
     }
     render() {
         return (
-            <DetailsPage {...this.props} />
+           
+         <DetailsPage {...this.props} />
+
         )
     }
 }
 let mapStateToProps = (state) => {
-
     return {
         goodItem: state.goods.goodItem,
         items:state.card.items
     }
 }
-export default connect(mapStateToProps, {getGoodsThunkById, setProduct ,removeGood,setItemOfReview})(DetailsContainer)
+
+export default connect(mapStateToProps, {getGoodsThunkById, addToCart ,removeGood,setItemOfReview})(DetailsContainer)
+

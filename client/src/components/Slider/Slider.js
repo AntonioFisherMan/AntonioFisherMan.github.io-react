@@ -3,7 +3,6 @@ import "./Slider.css";
 import SliderItem from "./SliderItem/SliderItem";
 import sliderSettings from "./sliderSettings";
 import { connect } from "react-redux";
-import { setProduct } from "../../redux/CardReducer";
 import { getGoodsForSlider,ClearGoods } from "../../redux/CatalogReducer";
 
 class Slider extends React.Component {
@@ -101,4 +100,4 @@ let mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setProduct, getGoodsForSlider,ClearGoods })(Slider);
+export default connect(mapStateToProps, { getGoodsForSlider,ClearGoods })(Slider);

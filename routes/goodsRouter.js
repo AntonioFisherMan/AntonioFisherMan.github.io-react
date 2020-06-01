@@ -51,12 +51,16 @@ router.get("/reviews", function (req, res) {
 router.get("/:id", async (req, res) => {
   try {
     const good = await Goods.findById(req.params.id);
+    const reviewLength = await Reviews.find({ goodsId: req.params.id });
     const review = await Reviews.find({ goodsId: req.params.id }).limit(2);
-
+    var reviewQuantity=reviewLength.length
     var data={good,review}
     var payload={}
     var goods = Object.assign({data},payload);
-    res.send(goods);
+    res.send({
+      goods,
+      reviewQuantity
+    });
   } catch (error) {
     console.error(error);
     if (error.name === "CastError")

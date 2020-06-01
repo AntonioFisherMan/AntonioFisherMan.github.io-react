@@ -75,8 +75,9 @@ export const getGoodsForSlider = () => async (dispatch) => {
 };
 export const getGoodsThunkById = (id) => async (dispatch) => {
   let response = await testAPI.getGood(id);
-  var data = response.data.data.good;
-  data.reviews = response.data.data.review;
+  var data = response.data.goods.data.good;
+  data.reviews = response.data.goods.data.review;
+  data.goodReviewsQuantity = response.data.reviewQuantity;
   dispatch(getGood(data));
 };
 export const getGoodsThunk = (pageNumber, pageSize, data) => (

@@ -116,7 +116,7 @@ const DetailsPage = (props) => {
                                                                 <i className="fas fa-star "></i>
                                                             </i>
                                                         </div>
-                                                        <p>{item.reviews ? item.reviews.length : null} Reviews</p>
+                                                        <p>{item.reviews ? item.goodReviewsQuantity : null} Reviews</p>
                                                     </div>
 
                                                     <p className="detailsItem-price-line">€{item.salePrice}</p>

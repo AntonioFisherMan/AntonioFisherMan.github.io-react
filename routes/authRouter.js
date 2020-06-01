@@ -6,6 +6,8 @@ const auth=require("../middleware/auth")
 
 let User = require("../models/user.model");
 let Inform =require("../models/inform.model")
+let Subscribers =require("../models/subscribers.model")
+
 
 router.post("/", (req, res) => {
   const {email, password } = req.body;
@@ -15,8 +17,9 @@ router.post("/", (req, res) => {
   //Check for existing User
   
   User.findOne({ email }).then((user) => {
+    if (!user) return res.status(400).json({ message: `User does not exist` });
+   
     Inform.findOne({ userId:user.id }).then((inform) => {
-      if (!user) return res.status(400).json({ message: `User does not exist` });
       //Validate password 
     bcrypt.compare(password,user.password)
     .then(isMatch=>{
@@ -53,6 +56,28 @@ router.get('/user:id',auth,(req,res)=>{
     .then(user=>res.json(user))
 })
 
+router.post('/subscribe',(req,res)=>{
+  
+  Subscribers.findOne({email:req.body.email }).then((subscriber) => {
+    if (subscriber) return res.status(400).json({ message: `You have already first discount` })
+    else{
+      const Subscriber = new Subscribers({
+        email:req.body.email
+      });
+      Subscriber
+      .save()
+      .then(review=>{
+        res.status(200).send({
+          success: true,
+          message: "Your email successfuly send",
+        });
+      })
+      .catch(console.log("err"));
+    }
+   
+  })
+ 
+})
 
 
 module.exports = router;

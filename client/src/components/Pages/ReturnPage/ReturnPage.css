@@ -1,7 +1,6 @@
 /******* RETURN PAGE ********/
 
 .returnText {
-    margin-left: 50px;
     margin-top: 50px;
 }
 
@@ -12,11 +11,6 @@
 .returnInform-active {
     display: none;
 }
-
-.returnBlock p {
-    font-size: 15px;
-}
-
 .returnText span {
     font-weight: 500;
     font-size: 15px;
@@ -33,7 +27,6 @@
     align-items: center;
     background: #E9EBF0;
     height: 45px;
-    margin-left: 30px;
     margin-top: 15px;
 }
 
@@ -46,7 +39,6 @@
 .returnItem {
     margin-top: 15px;
     margin-bottom: 20px;
-    margin-left: 30px;
 }
 
 .returnItem-active {

@@ -16,6 +16,10 @@ export const testAPI = {
       `http://localhost:5000/goods?page=${pageNumber}&pageSize=${pageSize}`,{data}
     )
 },
+subscribeNewUser(email){
+  debugger
+return axios.post( baseUrl+'auth/subscribe',{email})
+},
   getMyUsers() {
     return axios
       .get("http://localhost:5000/users")
@@ -63,10 +67,17 @@ export const testAPI = {
       .then((response) => response.data);
   },
   setOrders(items, inform, id) {
+    debugger
     return instance.post(`http://localhost:5000/orders`, {
       items,
       inform,
       userId: id,
+    });
+  },
+  setUnloginOrders(data){
+    debugger
+    return instance.post(`http://localhost:5000/orders/unlogin`, {
+      data
     });
   },
   getOrders(id) {
@@ -96,6 +107,7 @@ export const testAPI = {
     });
   },
   setReviews(name,photo,files,goodsId,rating=100) {
+    debugger
    files.append("name",name)
    files.append("photo",photo)
    files.append("rating",rating)

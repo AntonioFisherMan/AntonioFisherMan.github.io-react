@@ -5,8 +5,10 @@ import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
 import Button3 from '../../SiteButtons/Button3/Button3'
-import { Alert } from 'reactstrap'
+
 import UploadFile from '../../common/UploadFile/UploadFile'
+import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
+import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
 
 const InformPage = (props) => {
 
@@ -46,16 +48,8 @@ const InformPage = (props) => {
         data.append("country",formData.country)
         props.setInform(data)
     }
-    const SuccessMessage=()=>{
-      return(
-        <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">{props.success.message}<br /><i class="fab fa-linux"></i></h4>
-        </div>
-      )
-    }
     return (
         <div>
- 
-     
                 <HeaderBottom />
                 <section className="checkoutBlock">
                     <div className="container">
@@ -68,9 +62,8 @@ const InformPage = (props) => {
                             <div className="col-12 col-md-3">
                                 <Sidebar />
                             </div>
-                            <div className="col-1"></div>
                             <div className="col-12 col-md-8">
-                                {props.success&&props.success.message != null ? SuccessMessage():props.inform?<ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform}/>:<ReduxUserInform isAddInform={props.isAddInform}onSubmit={setInform} errors={props.errors} />}
+                                {props.success&&props.success.message != null ? <SuccessMessage message={props.success.message}/>:props.inform?<ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform}/>:<ReduxUserInform isAddInform={props.isAddInform}onSubmit={setInform} errors={props.errors} />}
                             </div>
                            
                         </div>
@@ -107,7 +100,7 @@ const UserInformForm = (props) => {
             <div className="form-row" >
                 <div className="form-group col-md-6">
                     <select className="form-control">
-                        <option selected>Country</option>
+                        <option defaultValue>Country</option>
                         <option>Ukraine</option>
                         <option>Russia</option>
                     </select>
@@ -128,20 +121,19 @@ const UserInformForm = (props) => {
                 </div>
                 <UploadFile name={"userImage"}/>
             </div>
-            <div className="form-row">
-                <div className="col-12 d-flex align-items-center">
+            <div className="form-row d-flex align-items-center">
+                <div className="returnLink">
                     <Button3 link="/catalog" text="Return to catalogue" />
                 </div>
-                {props.isAddInform===true?<div className="col-12 d-flex align-items-center justify-content-end">
+                {props.isAddInform===true?<div className="ml-auto">
                     <button className="formBtn">Обновить</button>
-                </div>:<div className="col-12 d-flex align-items-center justify-content-end">
-                    <button className="formBtn">Сохранить</button>
+                </div>:<div className="ml-auto">
+                    <button className="formBtn" >Сохранить</button>
                 </div>}
                
             </div>
-            <div style={{ width: '400px' }}>
-                {props.errors && props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <Alert color="danger">{props.errors.message.message}</Alert> : null}
-            </div>
+         
+            {props.errors&&props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <ErrorMessage message={props.errors.message}/>:null}
         </form>
        
     )

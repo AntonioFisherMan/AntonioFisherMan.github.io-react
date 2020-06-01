@@ -1,6 +1,6 @@
 
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {clearErrors,clearSuccess} from '../redux/SuccessErrorReducer'
 let mapStateToProps=(state)=>{

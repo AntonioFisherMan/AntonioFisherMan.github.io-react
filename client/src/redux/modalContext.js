@@ -11,7 +11,6 @@ class ModalProvider extends Component {
   }
 
   openModal = (product,size) => {
-    
     this.setState(() => {
       return { modalProduct: product,size:size, modalOpen: true };
     });

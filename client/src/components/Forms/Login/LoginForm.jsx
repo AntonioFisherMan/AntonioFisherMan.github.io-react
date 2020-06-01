@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
 import { required, MinLength, MaxLength } from '../../../utils/Validators/validators'
 import {Link  } from 'react-router-dom'
-import { Alert } from 'reactstrap'
+import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
 
 
 
@@ -33,10 +33,7 @@ const LoginForm = (props) => {
                 <Link className="forgotPass" to="/forgotpassword">forgot password</Link>
                 <button>Login</button>
             </div>
-            <div style={{ width: '400px' }}>
-
-                {props.errors&&props.errors.id==='LOGIN_FAIL' ?<Alert color="danger">{props.errors.message.message}</Alert> : null}
-            </div>
+            {props.errors&&props.errors.id === 'LOGIN_FAIL' ? <ErrorMessage message={props.errors.message}/>:null}
         </form>
     )
 }

@@ -1,12 +1,12 @@
 import React from 'react'
-
-export const File=({ input,name, type, meta: { touched, error, warning } }) => {
+import './Input.css'
+export const File=({ input, type, meta: { touched, error, warning } }) => {
     delete input.value
+    const hasError=error&&touched
     return (
-        <div>
-            <label htmlFor={input.name}>
-                <input {...input} type={type} name={name} multiple/>
-            </label>
+        <div className="formControl">
+        <input className={hasError?"error":""} type={type} name={input.name} {...input}   multiple />
+        {hasError?<span>{error}</span>:null} 
         </div>
     )
 }

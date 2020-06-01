@@ -66,13 +66,13 @@ router.put("/:id", function (req, res) {
              message:"Your id is not valid"
             })
           }
-        }).catch((err) => res.status(404).send({message:"not id review"}))
+        }).catch((err) => res.status(404).send({message:"Error upload inform"}))
       })
       } catch (error) {
         console.error(error);
         if (error.name === "CastError")
-          res.status(404).send("Inform with Given ID not found.");
-        else res.status(500).send("Error getting Inform Of User.");
+          res.status(404).send({message:"Error upload inform"});
+        else res.status(500).send({message:"Error upload inform"});
       }
 });
 
@@ -112,7 +112,7 @@ router.put("/:id", function (req, res) {
       inform,
       message: 'Your inform successfuly saved'
     }))
-    .catch((err) => res.status(404).json("not post inform"));
+    .catch((err) => res.status(404).json({message:"not post inform"}));
   }
 
 });

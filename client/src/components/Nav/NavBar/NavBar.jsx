@@ -4,7 +4,6 @@ import { NavLink, Link } from 'react-router-dom'
 import NavLogo from '../NavLogo/NavLogo'
 
 const NavBar = (props) => {
-  
     return (
         <nav className="navbar navbar-expand-lg">
             <NavLogo />
@@ -21,9 +20,6 @@ const NavBar = (props) => {
                     <li >
                         <NavLink activeStyle={{ color: "#E77E83" }} to="/catalog">Our Products</NavLink>
                     </li>
-                    <li >
-                        <NavLink activeStyle={{ color: "#E77E83" }} to="/users">Benefits</NavLink>
-                    </li>
                 </ul>
 
             </div>
@@ -31,15 +27,13 @@ const NavBar = (props) => {
             <div className="nav__cart col-2 col-sm-2 col-lg-1">
                 <img src="/images/svg/Vector (4).svg" alt="Cart" />
                 <NavLink activeStyle={{ color: "#E77E83" }} to="/card">{props.props.totalSizeCard === 0 ? <p>Cart</p> : <div ><i style={{ fontSize: '14px' }} className="fas fa-cart-arrow-down"></i>-{props.props.totalSizeCard}</div>}</NavLink>
-
             </div>
             <div className="nav__search col-2 col-sm-2 col-lg-1">
-                <img src="/images/svg/Vector (5).svg" alt="Search" />
-                <p>Search</p>
-               
+            <img src="/images/svg/Vector (5).svg" alt=""/>
+           <input placeholder="Search" style={{border:'none',width:'60px'}} />
             </div>
             <div className=" nav__account col-2 col-sm-2 col-lg-1 d-flex align-items flex-column">
-                {props.props.isAuth && props.props.user ? <NavLink activeStyle={{ color: "#E77E83" }} to="/orders">{props.props.user.name}<Link to="/" onClick={props.logout} >Logout</Link></NavLink> : <NavLink activeStyle={{ color: "#E77E83" }} to="/sign"><img src="/images/svg/Vector (6).svg" className="ml-auto" alt="Account" /></NavLink>}
+                {props.props.isAuth && props.props.user ? <NavLink className="d-flex flex-column align-items-center"activeStyle={{ color: "#E77E83" }} to="/orders">{props.props.user.name}<p onClick={props.logout} >Logout</p></NavLink> : <NavLink activeStyle={{ color: "#E77E83" }} to="/sign"><img src="/images/svg/Vector (6).svg" className="ml-auto" alt="Account" /></NavLink>}
             </div>
 
         </nav>

@@ -1,7 +1,9 @@
 const router = require("express").Router();
 
 let Orders = require("../models/orders.model");
-  
+let UnloginOrders = require("../models/unloginorders.model");
+
+
   router.get("/:id", async (req, res) => {
     try {
       const orders = await Orders.find({userId:req.params.id});
@@ -28,7 +30,23 @@ let Orders = require("../models/orders.model");
         message: 'Orders successfuly added'
       })
     })
-    .catch((err) => res.status(404).json("not post review"));
+    .catch((err) => res.status(404).json("Order not added"));
+
+  });
+  router.post("/unlogin", function (req, res) {
+    const newUnloginOrders = new UnloginOrders({
+      items:req.body.data.items,
+      inform:req.body.data.formData
+    });
+    newUnloginOrders
+    .save()
+    .then(item=>{
+      res.status(200).send({
+        item,
+        message: 'Orders successfuly added'
+      })
+    })
+    .catch((err) => res.status(404).json("Order not added"));
 
   });
   module.exports = router;

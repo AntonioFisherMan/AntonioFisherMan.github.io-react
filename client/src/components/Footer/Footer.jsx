@@ -4,20 +4,18 @@ import styles from './Footer.module.css'
 import { Field, reduxForm } from 'redux-form'
 import {required, MaxLength,MinLength} from '../../utils/Validators/validators'
 import { Input } from '../common/FormsControls/Input'
+import ErrorMessage from '../common/ServerMessages/ErrorMessage'
+import SuccessMessage from '../common/ServerMessages/SuccessMessage'
+
 
 const maxLengthCreator30=MaxLength(30)
 const minLengthCreator5=MinLength(5)
-const FormEmail = (props) => {
-    return (
-        <form className={styles.footerForm} onSubmit={props.handleSubmit}>
-            <Field name={"submitEmail"} type="email" component={Input} placeholder="Your email" validate={[required,maxLengthCreator30,minLengthCreator5]} />
-            <button>Send</button>
-        </form>
-    )
-}
+
+
+
 const Footer = (props) => {
     const onSubmitBLL = (formData) => {
-      console.log(formData.submitEmail)
+      props.subscribeNewUser(formData.submitEmail)
     }
     return (
         <div>
@@ -68,7 +66,7 @@ const Footer = (props) => {
                             <div className="col-12 col-sm-6 col-lg-4">
                                 <div className={styles.footerItem}>
                                     <p className={styles.span}> Subscribe and<span> get 10% off</span> your first rental</p>
-                                    <ReduxFormEmailSent onSubmit={onSubmitBLL} />
+                                   {props.success&&props.success.id==="SUBSCRIBER_SUCCESS"?<SuccessMessage message={props.success.message}/>:<ReduxFormEmailSent errors={props.errors} onSubmit={onSubmitBLL} />} 
                                 </div>
                             </div>
                         </div>
@@ -90,7 +88,15 @@ const Footer = (props) => {
     )
 }
 
-
+const FormEmail = (props) => {
+    return (
+        <form className={styles.footerForm} onSubmit={props.handleSubmit}>
+            <Field name={"submitEmail"} type="email" component={Input} placeholder="Your email" validate={[required,maxLengthCreator30,minLengthCreator5]} />
+            <button>Send</button>  
+            {props.errors &&props.errors.id === 'SUBSCRIBER_FAIL' ? <ErrorMessage message={props.errors.message}/>:null}
+        </form>
+    )
+}
 
 
 const ReduxFormEmailSent = reduxForm({

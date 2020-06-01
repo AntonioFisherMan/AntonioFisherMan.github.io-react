@@ -9,7 +9,6 @@ import {connect } from "react-redux";
 
 //PAGES
 
-import Footer from "../src/components/Footer/Footer";
 import ChangepassPage from "./components/Pages/ChangepassPage/ChangepassPage";
 import CheckoutPage from "./components/Pages/CheckoutPage/CheckoutPage";
 import HelpPage from "./components/Pages/HelpPage/HelpPage";
@@ -36,6 +35,8 @@ import DetailsContainer from './components/Pages/DetailsPage/DetailsContainer'
 // );
 
 import Modal from './components/common/Modal/Modal'
+import NotFound from "./components/Pages/NotFound/NotFound";
+import FooterContainer from "./components/Footer/FooterContainer";
 class App extends React.Component {
   componentDidMount() {
     this.props.initializeThunkApp();
@@ -49,8 +50,10 @@ class App extends React.Component {
       return (
         <Router>
           <Suspense fallback={<div>Загрузка...</div>}>
+          <NavContainer/>
+         
             <Switch>
-                <NavContainer>
+         
                   <Route exact path="/" component={FrontPage} />
                   <Route path="/catalog" component={CatalogPageContainer} />
                   <Route path="/details/:id?" component={DetailsContainer} />
@@ -67,10 +70,10 @@ class App extends React.Component {
                   <Route path="/forgotchangepass/:token?" component={ForgotChangePassword}/>
                   <Route path="/buy" component={Checkout}/>
                   <Route path="/order" component={Order}/>
-                  <Modal />
-                </NavContainer>   
+                   <Route  component={NotFound}/>
             </Switch>
-            <Footer />    
+            <Modal />
+            <FooterContainer />    
           </Suspense>
         </Router>
       );

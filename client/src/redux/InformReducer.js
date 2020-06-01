@@ -32,15 +32,16 @@ export const updateInform=(inform)=>(dispatch,getState)=>{
    testAPI.updateInform((getState().auth.user.id),inform).then(response=>{
        dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_USER_INFORM_CHANGE'))
    }).catch(err=>{
-    dispatch(returnErrors(err.response.data,err.response.status,'USER_INFORM_CHANGE_ERROR'))
+    dispatch(returnErrors(err.response.data.message,err.response.status,'USER_INFORM_CHANGE_ERROR'))
   })
 }
 export const setInform=(inform,isAddInform=true)=>(dispatch,getState)=>{
+  debugger
   testAPI.setInform((getState().auth.user.id),inform,isAddInform).then(response=>{
     dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_USER_INFORM_SET'))
     dispatch(addInform(response.data))
   }).catch(err=>{
-    dispatch(returnErrors(err.response.data,err.response.status,'ERROR_USER_INFORM_SET'))
+    dispatch(returnErrors(err.response.data.message,err.response.status,'ERROR_USER_INFORM_SET'))
   })
 }
 
@@ -48,7 +49,7 @@ export const sendHelpMessage=(helpMessage)=>(dispatch,getState)=>{
   testAPI.sendHelpMessage(helpMessage,getState().auth.userId).then(response=>{
     dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_HELP_MESSAGE'))
   }).catch(err=>{
-    dispatch(returnErrors(err.response.data,err.response.status,'ERROR_HELP_MESSAGE'))
+    dispatch(returnErrors(err.response.data.message,err.response.status,'ERROR_HELP_MESSAGE'))
   })
 }
 

@@ -4,7 +4,10 @@ import preloader from '../../assets/loader.svg'
 
 const Preloader = () => {
     return (
-        <img src={preloader} alt="Preloader" />
+        <div className="row d-flex justify-content-center">
+ <img src={preloader} alt="Preloader" />
+        </div>
+       
     )
 }
 

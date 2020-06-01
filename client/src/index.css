@@ -69,3 +69,14 @@ textarea::placeholder{
 label{
   margin:0 !important;
 }
+.returnLink{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+select{
+border: none;
+position: relative;
+outline: none;
+background: none;
+}

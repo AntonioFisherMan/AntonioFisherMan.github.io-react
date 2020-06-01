@@ -17,8 +17,8 @@ const ReturnPage = () => {
 
                     <div className="row">
                         <div className="col-12">
-                            <SiteHeadline text="My returns" />
-                        </div>
+                                <SiteHeadline text="My return" />
+                            </div>
                     </div>
                     <div className="returnInform">
                         <div>
@@ -60,7 +60,7 @@ const ReturnPage = () => {
                             </div>
 
                             <div className="returnItem">
-                                <div className="container">
+                               
                                     <div className="row">
                                         <div className="col-4">
                                             <p className="bagCard__slogan">maxi DRESS</p>
@@ -87,7 +87,7 @@ const ReturnPage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                               
                             </div>
 
                         </div>
@@ -138,7 +138,9 @@ const ReturnPage = () => {
                 <div className="row">
                     <div className="container">
                         <div className="col-12">
+                            <div className="returnLink">
                             <Button3 link="/catalog" text="Return to catalogue" />
+                            </div>
                         </div>
                     </div>
 

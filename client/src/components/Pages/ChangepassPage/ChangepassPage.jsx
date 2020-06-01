@@ -31,7 +31,9 @@ const ChangepassPage = () => {
                     </div>
                     <div className="row">
                         <div className="col-12">
+                        <div className="returnLink">
                             <Button3 link="/catalog" text="Return to catalogue" />
+                        </div>
                         </div>
                     </div>
                 </div>

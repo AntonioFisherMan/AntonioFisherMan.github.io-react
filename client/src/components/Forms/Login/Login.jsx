@@ -11,7 +11,6 @@ class Login extends React.Component{
        this.props.login(formData.email,formData.password,formData.rememberMe)
     }
     render(){
-     debugger
      return(
          <ReduxLoginForm onSubmit={this.onSubmit} errors={this.props.errors} />
      )

@@ -29,20 +29,22 @@ let OrdersReducer = (state = initialState, action) => {
 
 
  export const addUnloginOrdersThunk=(data)=>dispatch=>{
-   dispatch(addUnloginOrders(data))
-   dispatch(clearCardItems(null,null,null))
-  }
+   testAPI.setUnloginOrders(data).then(response=>{
+    dispatch(addUnloginOrders(response.data.item.inform))
+    dispatch(clearCardItems(null,null,null))
+})
+}
 export const getOrders=(id)=>dispatch=>{
  testAPI.getOrders(id).then(response=>{
      dispatch(addOrders(response.data));
  })
 }
 
-export const addOrdersThunk=({items,inform,id})=>dispatch=>{
-    testAPI.setOrders(items,inform,id).then(response=>{
+export const addOrdersThunk=({items,inform,id})=>(dispatch,getState)=>{
+    testAPI.setOrders(items,inform,getState().auth.user.id).then(response=>{
         dispatch(clearCardItems(null,null,null))
         dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_ADD_ORDER'))
-      })
+    })
     
 }
 

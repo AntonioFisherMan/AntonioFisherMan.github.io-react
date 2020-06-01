@@ -7,7 +7,7 @@ import { orderBy } from 'lodash'
 import { IsPopUpHook } from '../../../hoc/IsPopUpHook'
 import { isPopUp } from '../../../redux/AppReducer'
 import { getFilterBy,getTotalGoods } from '../../../redux/CatalogSelector'
-
+import {reset} from 'redux-form';
 
 
 class CatalogPageContainer extends React.Component {
@@ -33,6 +33,7 @@ class CatalogPageContainer extends React.Component {
     this.props.getGoodsThunk(pageNumber,pageSize,this.props.filter)
   }
   changeFilter=(filter)=>{
+     this.props.reset('filter')
      this.props.getGoodsThunk(this.props.pageNumber,this.props.pageSize,filter)
   }
   render() {
@@ -61,6 +62,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
   IsPopUpHook,
-  connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, changePageNumber,removeFilter, isPopUp, changeSortBy, ClearGoods })
+  connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, changePageNumber,removeFilter, isPopUp, changeSortBy,reset, ClearGoods })
 )(CatalogPageContainer)
 

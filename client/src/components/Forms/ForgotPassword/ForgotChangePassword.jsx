@@ -6,6 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Alert } from 'reactstrap'
 import { compose } from 'redux'
 import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
+import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
 
 class ForgotChangePassword extends React.Component {
     onSubmit = (formData) => {
@@ -17,18 +18,10 @@ class ForgotChangePassword extends React.Component {
             <ReduxForgotChangePassword onSubmit={this.onSubmit} errors={this.props.errors} />
         )
     }
-    generateSuccessMessage = () => {
-        return (
-            <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">{this.props.success.message}<br /><i class="fas fa-check-circle"></i></h4>
-
-            </div>
-
-        )
-    }
     render() {
         return (
             <div>
-                {this.props.success&&this.props.success.message ? this.generateSuccessMessage() : this.generateForm()}
+                {this.props.success&&this.props.success.id==='SUCCESS_RESET' ? <SuccessMessage message={this.props.success.message}/> : this.generateForm()}
             </div>
 
         )

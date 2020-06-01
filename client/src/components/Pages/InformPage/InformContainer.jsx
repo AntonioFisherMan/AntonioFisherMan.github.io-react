@@ -9,7 +9,7 @@ import {SuccessErrorsData} from '../../../hoc/SuccessErrorsData'
 class InformPageContainer extends React.Component{
   componentDidMount(){
     debugger
-        this.props.getInform(this.props.userId);
+    this.props.getInform(this.props.userId);
   }
   componentDidUpdate(prevProps){
       if (prevProps.inform!== this.props.inform) {

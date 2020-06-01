@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
  class Modal extends Component {
   render() {
-    debugger
     return (
       <ModalConsumer>
         {value => {
@@ -27,8 +26,9 @@ import { Link } from "react-router-dom";
                       <h5>Your good added to cart</h5>
                       <img src={value.modalProduct.photos.middle} className="img-fluid" alt="" />
                       <h5>{value.modalProduct.text}</h5>
-                      <h5 className="text-muted">price : ${value.modalProduct.price}</h5>
-                      <h5 className="text-muted">size : {value.size}</h5>
+                      <h5 className="text-muted">price : $<span  style={{fontWeight:'bold'}}>{value.modalProduct.price}</span></h5>
+                      <h5 className="text-muted">size : <span style={{fontWeight:'bold'}}>{value.size}</span></h5>
+                      <h5 className="text-muted">color : <span  style={{fontWeight:'bold'}}>{value.modalProduct.color}</span></h5>
                       <Link to="/catalog">
                         <ButtonContainer
                           onClick={() => {

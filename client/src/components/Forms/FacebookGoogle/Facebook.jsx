@@ -8,11 +8,12 @@ class FacebookLogin extends React.Component {
     responseFacebook = (response) => {
         console.log(response);
         if (response.status !== 'unknown'){
-        let profileObj = {
+        let user = {
             name: response.name,
             picture: response.picture.data.url
         }  
-        this.props.userLoad(profileObj) 
+        let userData={user}
+        this.props.userLoad(userData) 
     }
     }
     render() {

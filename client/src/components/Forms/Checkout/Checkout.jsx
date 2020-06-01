@@ -4,10 +4,11 @@ import { ReduxCheckoutForm } from './CheckoutForm'
 import { addOrdersThunk, addOrders, addUnloginOrdersThunk } from '../../../redux/OrdersReducer'
 import { compose } from 'redux'
 import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
-
+import {getInform} from '../../../redux/InformReducer'
 
 class Checkout extends React.Component {
     onSubmit = (formData) => {
+        debugger
         let data;
         if (!this.props.auth.isAuth) {
             data = { items: this.props.items, formData }
@@ -15,14 +16,14 @@ class Checkout extends React.Component {
             this.props.history.push("/order")
         }
         else {
-            data = { items: this.props.items, inform: formData, id: this.props.auth.userId }
+            data = { items: this.props.items, inform:formData, id: this.props.auth.userId }
             this.props.addOrdersThunk(data)
         }
     }
 
     render() {
         return (
-            <ReduxCheckoutForm initialValues={this.props.inform} onSubmit={this.onSubmit} success={this.props.success} errors={this.props.errors} />
+            <ReduxCheckoutForm initialValues={this.props.userInform} onSubmit={this.onSubmit} success={this.props.success} errors={this.props.errors} />
         )
     }
 
@@ -30,14 +31,16 @@ class Checkout extends React.Component {
 
 
 let mapStateToProps = (state) => {
+    debugger
     return {
         errors: state.errors,
         items: state.card.items,
         auth: state.auth,
-        inform:state.inform.inform
+        userInform:state.auth.userInform
+       
     }
 }
 export default compose(
    SuccessErrorsData,
-   connect(mapStateToProps, { addOrdersThunk, addUnloginOrdersThunk, addOrders })
+   connect(mapStateToProps, { addOrdersThunk, addUnloginOrdersThunk, addOrders,getInform })
 )(Checkout)

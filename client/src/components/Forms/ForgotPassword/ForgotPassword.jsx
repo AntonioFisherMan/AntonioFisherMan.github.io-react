@@ -1,10 +1,11 @@
 import React from 'react'
 import { changePass, requestToken, resetEmailSentClear } from '../../../redux/AuthReducer'
-import { Alert } from 'reactstrap'
 import { compose } from 'redux';
 import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData';
 import { connect } from 'react-redux';
 import {clearErrors,clearSuccess} from '../../../redux/SuccessErrorReducer'
+import SuccessMessage from '../../common/ServerMessages/SuccessMessage';
+import ErrorMessage from '../../common/ServerMessages/ErrorMessage';
 
 class ForgotPassword extends React.Component {
     componentDidMount() {
@@ -18,7 +19,6 @@ class ForgotPassword extends React.Component {
         this.props.requestToken();
     }
     generateForm = () => {
-        debugger
         return (
             <div>
                 <div className="container">
@@ -31,8 +31,8 @@ class ForgotPassword extends React.Component {
 
                     </div>
                 </div>
-                <div className="row d-flex justify-content-center">
-                    {this.props.errors.id === 'FORGOT_ERROR' ? <Alert color="danger">{this.props.errors.message.message}</Alert> : null}
+                <div className="d-flex justify-content-center">
+                {this.props.errors.id === 'FORGOT_ERROR' ? <ErrorMessage message={this.props.errors.message}/>:null}
                 </div>
             </div>
             </div>
@@ -40,18 +40,10 @@ class ForgotPassword extends React.Component {
 
         )
     }
-    generateSuccessMessage = () => {
-        return (
-            <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">If account exist you will recieve message with instructions<br /><i class="fab fa-linux"></i></h4>
-
-            </div>
-
-        )
-    }
     render() {
         return (
             <div>
-                {this.props.emailSent ? this.generateSuccessMessage() : this.generateForm()}
+                {this.props.emailSent ?<SuccessMessage message={"If account exist you will recieve message with instructions"}/> : this.generateForm()}
             </div>
 
         )

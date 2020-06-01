@@ -30,21 +30,22 @@ class SignPage extends React.Component {
                             <div className="col-12 col-md-7">
                                 <Login />
                                 <div className="signReturnBtn">
-                                    <Button3 link="/card"text="Return to cart" />
-                                </div>
-                            </div>
-
-                            <div className="col-12 col-md-5">
-                                <FacebookLogin />
-                                <GoogleLogin />
-                                <Register />
-                                <div className="signReturnBtn-active">
                                     <Button3 link="/card" text="Return to cart" />
                                 </div>
                             </div>
 
+                            <div className="col-12 col-md-5 d-flex justify-content-center align-items-center flex-column" >
+                           <h5 className="signHeadline">Not a member? Sign Up</h5>
+                                <FacebookLogin />
+                                <GoogleLogin />
+                                <Register />
+                                <div className="signReturnBtn-active">
+                                    <div className="returnLink">
+                                        <Button3 link="/card" text="Return to cart" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </section>
             </>

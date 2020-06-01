@@ -7,10 +7,6 @@ import {setItemOfReview} from '../../../redux/ReviewsReducer'
 
 
 class DetailsContainer extends React.Component {
-    state = {
-        modalOpen: false,
-        modalProduct:null ,
-      };
     refreshProfile() {
         const id = this.props.match.params.id;
         if (id) {
@@ -28,9 +24,7 @@ class DetailsContainer extends React.Component {
     }
     render() {
         return (
-           
          <DetailsPage {...this.props} />
-
         )
     }
 }

@@ -8,12 +8,13 @@ const GoogleLogin = (props) => {
 
     const responseGoogle = (response) => {
         console.log(response);
-        let userData = {
+        let user = {
             name: response.profileObj.name,
             email: response.profileObj.email,
             img: response.profileObj.imageUrl,
             token:response.tokenId
         }
+        let userData={user}
         props.userLoad(userData)
     }
     return (
@@ -23,7 +24,7 @@ const GoogleLogin = (props) => {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             render={renderProps => (
-                <img src="images/svg/Vector (23).svg" onClick={renderProps.onClick} disabled={renderProps.disabled} alt=""className="googleIcon" />
+                <img src="images/svg/Vector (23).svg" onClick={renderProps.onClick} disabled={renderProps.disabled} alt="" className="googleIcon" />
             )}
             cookiePolicy={'single_host_origin'}
         />

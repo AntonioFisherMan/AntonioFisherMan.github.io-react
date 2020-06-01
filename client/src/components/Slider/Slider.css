@@ -68,7 +68,9 @@
     left:-70px !important;
     opacity:unset !important;
 }
-
+.arrow-1{
+    color:#111111;
+}
 @media (max-width: 575.98px) { 
 #arrow-next{
     right: 0 !important;

@@ -94,7 +94,6 @@ class Slider extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  debugger;
   return {
     goods: state.goods.goods,
   };

@@ -4,39 +4,33 @@ import './Checkout.css'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
 import { MaxLength, MinLength, required } from '../../../utils/Validators/validators'
+import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
 
-
-const MaxLengthCreator30 = MaxLength(30)
+const MaxLengthCreator50 = MaxLength(50)
 const MinLengthCreator5 = MinLength(5)
 
 const Checkout = (props) => {
-    const SuccessMessage = () => {
-        return (
-            <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">{props.success.message}<br /><i class="fab fa-linux"></i></h4>
-            </div>
-        )
- }
- 
+    
 const generateForm = () => {
         return (
-            <form className="checkoutForm" onSubmit={props.handleSubmit}>
+            <form className="checkoutForm" style={{margin:'0px',marginTop:'50px',marginBottom:'50px'}} onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <h5 className="formHeadline">Shipping address</h5>
                 </div>
                 <div className="form-row" >
                     <div className="form-group col-12 col-md-6" id="m">
-                        <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator30]} name="name" placeholder="Имя" />
+                        <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="name" placeholder="Имя" />
                     </div>
                     <div className="form-group col-md-6">
-                        <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator30]} name="surname" placeholder="Фамилия" />
+                        <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="surname" placeholder="Фамилия" />
                     </div>
                 </div>
                 <div className="form-group">
-                    <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator30]} name="city" placeholder="Город" />
+                    <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="city" placeholder="Город" />
                 </div>
 
                 <div className="form-group">
-                    <Field type="text" component={Input} className="form-control" validate={[required, MinLengthCreator5, MaxLengthCreator30]} name="post" placeholder="Номер новой почты" />
+                    <Field type="text" component={Input} className="form-control" validate={[required]} name="post" placeholder="Номер новой почты" />
                 </div>
                 <div className="form-row" >
                     <div className="form-group col-md-6">
@@ -47,11 +41,11 @@ const generateForm = () => {
                         </select>
                     </div>
                     <div className="form-group col-md-6">
-                        <Field type="text" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator30]} className="form-control" name="code" placeholder="Post code" id="inputZip" />
+                        <Field type="text" component={Input} validate={[required]} className="form-control" name="code" placeholder="Post code" id="inputZip" />
                     </div>
                 </div>
                 <div className="form-group ">
-                    <Field type="number" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator30]} className="form-control" name="phone" placeholder="Phone" />
+                    <Field type="number" component={Input} validate={[required,MinLengthCreator5,MaxLengthCreator50]} className="form-control" name="phone" placeholder="Phone" />
                 </div>
                 <div className="form-row">
                     <h5 className="formHeadline">Billing Address</h5>
@@ -73,11 +67,16 @@ const generateForm = () => {
             </form>
 
         )
-    }
+    }   
     return (
-        <div>
-            {props.success.message != null ? SuccessMessage() : generateForm()}
+        <div className="container">
+          <div className="row">
+              <div className="col-12">
+              {props.success.id==='SUCCESS_ADD_ORDER'? <SuccessMessage message={props.success.message}/>: generateForm()}
+              </div>
         </div>
+        </div>
+       
 
     )
 

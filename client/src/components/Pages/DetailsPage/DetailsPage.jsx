@@ -10,33 +10,35 @@ import { reduxForm, Field } from 'redux-form'
 import { Select } from '../../common/FormsControls/Select'
 import { Input } from '../../common/FormsControls/Input'
 import { required } from '../../../utils/Validators/validators'
+import userPhoto from '../../../assets/user.png'
+import  "../../SiteButtons/Button1/Button1.css"
+import { useState } from 'react'
 
-
-
-import styles from "../../SiteButtons/Button1/Button1.module.css"
-
-var userPhoto = require("../../../assets/user.png")
 
 const DetailsPage = (props) => {
-
+    
+  
     const onSubmit = (payload) => {
-        debugger
         const { size, startDate, endDate } = payload;
         const cardItems = props.items;
-        const { price, photos, _id } = props.goodItem[0];
+        const { price, photos, _id,style } = props.goodItem[0];
         const photo = photos.middle;
-        var data = { photo, price, _id };
-
+        var data = { photo, price, _id,style };
+        var inCard=false
         if (cardItems.length > 0) {
-            cardItems.forEach(item => {
-                if (item._id === _id) {
-                    item.quantity++;
-                  
-                } else {
-                    props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
-                }
-            });
+            for(var i=0;i<cardItems.length;i++){
+                if (cardItems[i]._id.includes(_id)) {
+                    cardItems[i].quantity++;
+                    inCard=true;
+                    break;
+                } 
+            }
+            if(inCard==false){
+             
+                props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))   
+            }
         } else {
+        
             props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
         }
     }
@@ -65,7 +67,7 @@ const DetailsPage = (props) => {
                                                         <img className="carousel__img" src="/images/photo4.png" alt="" />
                                                     </div>
                                                     {item.photos.small.map(photo =>
-                                                        <div className="carousel-item">
+                                                        <div key={photo._id} className="carousel-item">
                                                             <img className="carousel__img" src={photo} alt="" />
                                                         </div>)}
                                                 </div>
@@ -94,7 +96,7 @@ const DetailsPage = (props) => {
                                         <div className="col-12 col-sm-8 col-lg-4">
                                             <div className="detailsInform">
                                                 <div className="detailsInformList">
-                                                    <p className="detailsListSlogan" >{item.slogan}</p>
+                                                    <p className="detailsListSlogan" >{item.style} Dress</p>
                                                     <p className="detailsListText">{item.text}</p>
                                                     <div className="detailsListStars">
                                                         <div className="stars" >
@@ -183,7 +185,7 @@ const DetailsPage = (props) => {
                                             <div className="col-6">
                                                 <div className="styleBtn">
 
-                                                    <Link className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
+                                                    <Link style={{border: '1px solid #E77E83'}}className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -193,7 +195,7 @@ const DetailsPage = (props) => {
                                                 <div className="col-12 col-sm-12  col-lg-3 ">
                                                     <div className="reviewInform ">
                                                         <div className="reviewImg">
-                                                            <img src={item.photo ? `http://localhost:5000/${item.photo}` : userPhoto} alt="" />
+                                                            <img src={item.photo!="undefined" ? `http://localhost:5000/${item.photo}` : userPhoto} alt="" />
                                                         </div>
                                                         <div className="reviewText">
                                                             <h5>{item.name}</h5>
@@ -225,7 +227,7 @@ const DetailsPage = (props) => {
                                                             <li>About the fit True to size</li>
                                                             <li>About your curves  Curvey</li>
                                                         </ul>
-                                                        <p><span>Wedding guest dress</span> {item.reviewText}</p>
+                                                        <p><span>{item.reviewText}</span></p>
                                                     </div>
                                                 </div>
 
@@ -267,13 +269,16 @@ const DetailsPage = (props) => {
 }
 
 const ProductForm = (props) => {
-    console.log(props)
+    let [size,setSize]=useState();
+    const OnSetSize=data=>{
+      setSize(data.target.value)
+    }
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="detailsInformList">
                 <h6>Step 1.</h6>
                 <div className="d-flex align-items-center">
-                    <Field validate={[required]} component={Select} name="size" className="detailsBtn">
+                    <Field validate={[required]} component={Select} onChange={OnSetSize} name="size" className="detailsBtn">
                         
                         {props.item.sizes ? props.item.sizes.map(size => <option key={size}>
                             {size}
@@ -304,12 +309,12 @@ const ProductForm = (props) => {
                         <Field validate={[required]} type="date" component={Input} name="endDate" className="form-control" />
                     </div>
                 </div>
-                {props.submitSucceeded ? props.value.openModal(props.item) : null}
-                <p className="detailsInformListDateTextarea">* Tip: Rent 2nd outfit now and keep both outfits for 14 days in total.
-                Upgrade to 3rd outfit and keep all 3
-                                    outfits for 21 days! Wear all outfits for as many times as you want.</p>
-
-                <button className={styles.buttonBlock} > Add to cart</button>
+                {props.submitSucceeded ? props.value.openModal(props.item,size) : null}
+                
+                                    <p className="detailsInformListDateTextarea"><span style={{paddingRight:'3px'}}className="starSmall">*</span> Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
+                                and keep all 3 outfits for 21 days!
+                                Wear all outfits for as many times as you want.</p>
+                        <button className="buttonBlock1"> Add to cart</button>
 
             </div>
         </form>

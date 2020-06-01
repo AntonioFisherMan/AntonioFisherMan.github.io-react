@@ -1,5 +1,5 @@
 
-import {returnErrors,returnSuccess,clearErrors} from './SuccessErrorReducer'
+import {returnErrors,returnSuccess,clearErrors, clearSuccess} from './SuccessErrorReducer'
 import { testAPI } from "../api/api";
 
  const USER_LOADING="USER_LOADING"
@@ -31,12 +31,13 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case USER_LOADING:
       return { ...state, isLoading: true };
+      
     case USER_LOADED:
-      debugger
       sessionStorage.setItem('token',action.payload.token)
-      return { ...state, isLoading: false, isAuth: true, user:action.payload.user,userInform:action.payload.inform.inform};
+      return { ...state,isAuth: true, user:action.payload.user,userInform:action.userInform};
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       sessionStorage.setItem('token',action.payload.token)
@@ -52,7 +53,7 @@ const AuthReducer = (state = initialState, action) => {
         isLoading: false,
         user: null,
         userInform:null,
-        token: null,
+        token: null
       };
 
       case FORGOT_PASS:
@@ -66,7 +67,7 @@ const AuthReducer = (state = initialState, action) => {
   }
 };
 
-export const userLoad=(payload)=>({type:USER_LOADED,payload})
+export const userLoad=(payload,userInform)=>({type:USER_LOADED,payload,userInform})
 
 export const changePass=(forgotEmail)=>({type:FORGOT_PASS,forgotEmail})
 export const emailSent=(bool)=>({type:EMAIL_SENT,bool})
@@ -96,8 +97,7 @@ export const changeUserPass=(oldPass,newPassword,verifyPassword)=>(dispatch,getS
   testAPI.changeUserPass(oldPass,newPassword,verifyPassword,getState().auth.user.email).then(response=>{
     dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_CHANGE_PASS'))
   }).catch(err=>{
-    debugger
-    dispatch(returnErrors(err.response.data.message,err.response.status,'CHANGE_PASS_ERROR'))
+    dispatch(returnErrors(err.response.data,err.response.status,'ERROR_CHANGE_PASS'))
   })
 }
 
@@ -115,28 +115,41 @@ export const getAuth=()=>async (dispatch,getState)=>{
 export const login = (email,password,rememberMe) => async(dispatch) => {
   dispatch({type:USER_LOADING})
   testAPI.login(email,password,rememberMe).then(response=>{
-    debugger
-    dispatch(userLoad(response.data))
+    dispatch(userLoad(response.data,response.data.inform.inform))
     dispatch({type:LOGIN_SUCCESS,payload:response.data})
-    dispatch(clearErrors(null,null,null))
   }).catch(err=>{
-    dispatch(returnErrors(err.response.data,err.response.status,'LOGIN_FAIL'))
+    dispatch(returnErrors(err.response.data.message,err.response.status,'LOGIN_FAIL'))
     dispatch({type:LOGIN_FAIL})
   })
 };
 
 export const register=(name,email,password)=>dispatch=>{
   testAPI.register(name,email,password).then(response=>{
+    debugger
     dispatch({type:REGISTER_SUCCESS,payload:response.data})
-    dispatch(clearErrors(null,null,null))
+    dispatch(userLoad(response.data))
+ 
   }).catch(err=>{
-
-      dispatch(returnErrors(err.response.data,err.response.status,'REGISTER_FAIL'))
+      dispatch(returnErrors(err.response.data.message,err.response.status,'REGISTER_FAIL'))
        dispatch({type:REGISTER_FAIL})
   })
 }
 
-export const logout=()=>({type:LOGOUT_SUCCESS})
+export const logout=()=>dispatch=>{
+  dispatch({type:LOGOUT_SUCCESS})
 
+}
+
+export const subscribeNewUser=(email)=>dispatch=>{
+  testAPI.subscribeNewUser(email).then(response=>{
+    dispatch(returnSuccess(response.data.message,response.status,'SUBSCRIBER_SUCCESS'))
+    const timer = setTimeout(() => {
+      dispatch(clearSuccess())
+    }, 3000);
+    return () => clearTimeout(timer);
+  }).catch(err=>{
+    dispatch(returnErrors(err.response.data.message,err.response.status,'SUBSCRIBER_FAIL'))
+  })
+}
 
 export default AuthReducer;

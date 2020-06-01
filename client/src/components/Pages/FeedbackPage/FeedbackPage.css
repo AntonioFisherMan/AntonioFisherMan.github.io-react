@@ -15,7 +15,6 @@
 }
 
 .feedbackItem {
-    margin-left: 30px;
     margin-top: 30px;
 }
 .feedbackItemGrey {
@@ -29,24 +28,28 @@
 .feedbackItemColumn2>.stars {
     margin-top: 20px;
 }
-
+.feedbackItemColumn2 img{
+ position: absolute;
+ right:0px
+}
 .feedbackItemText {
     margin-top: 20px !important;
 }
 
 .feedbackForm {
-    margin-left: 30px;
+    display: flex;
     margin-top: 10px;
 }
-
-.feedbackForm2 {
-    margin-top: 10px;
-    margin-bottom: 50px;
+#feedbackForm2-textarea{
+  width:250px;
+  height:165px !important;
+  margin-bottom: 30px;
 }
-
-#feedbackForm2-textarea {
-    height: 160px !important;
-    margin-bottom: 45px;
+.formBtn{
+    margin-bottom: 30px;
+}
+.feedbackFormSubmit{
+    display: block;
 }
 .feedbackItem-active, .feedbackList-active{
     display: none;

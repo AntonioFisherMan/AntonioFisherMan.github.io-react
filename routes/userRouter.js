@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 
 let User = require("../models/user.model");
 let HelpMessage = require("../models/helpMessage.model");
+
+
 let userHandlers = require('./controllers/userController');
 
 router.post('/forgot_password',userHandlers.forgot_password)
@@ -32,7 +34,6 @@ router.post("/help", function (req, res) {
     })
   })
   .catch((err) => res.status(404).json("not message review"));
-
 });
 
 router.post("/", (req, res) => {
@@ -41,17 +42,18 @@ router.post("/", (req, res) => {
   if (!name || !email || !password)
     return res.status(400).json({ message: "Please enter all fields" });
   User.findOne({ name }).then((user) => {
-    if (user) return res.status(400).json({ message: `Name already exist` });
+    if (user) return res.status(400).json({message: `Name already exist` });
   });
   //Check for existing User
   User.findOne({ email }).then((user) => {
-    if (user) return res.status(400).json({ message: `Email already exist` });
+    if (user) return res.status(400).json({message: `Email already exist` });
   });
   const newUser = new User({
     name,
     email,
     password,
   });
+  
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newUser.password, salt, (err, hash) => {
       if (err) throw err;
@@ -64,6 +66,7 @@ router.post("/", (req, res) => {
           { expiresIn: 3600 },
           (err, token) => {
             if (err) throw err;
+          
             res.json({
               token,
               user: {
@@ -71,6 +74,7 @@ router.post("/", (req, res) => {
                 name: user.name,
                 email: user.email,
               },
+            
             });
           }
         );

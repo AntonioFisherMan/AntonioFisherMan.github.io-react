@@ -4,10 +4,11 @@ import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Button3 from '../../SiteButtons/Button3/Button3'
-import Button2 from '../../SiteButtons/Button2/Button2'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 
 const OrdersPage = (props) => {
+    debugger
     return (
         <>
             <HeaderBottom />
@@ -19,16 +20,14 @@ const OrdersPage = (props) => {
                         </div>
                     </div>
                     <div className="ordersBlock">
-
                         <div className="row">
                             <div className="col-12 col-lg-2">
                                 <Sidebar />
-
                             </div>
                         </div>
-                        {props.orders.length ? <div>
-                            <h1>Заказов: {props.orders.length}</h1>
-                            <div className="returnBlock__links">
+                        {props.orders.length ? <div >
+                            <h3>Заказов: {props.orders.length}</h3>
+                            <div className="returnLinks">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-2"></div>
@@ -44,40 +43,41 @@ const OrdersPage = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            {props.orders.map(order => <div key={order._id}>
-                                <div className="row">
-                                    <div className="col-12"><h6>Номер заказа: {order._id}</h6></div>
-                                </div>
-                                {order.items.map(item => <div>
+                            {props.orders.map(order => <div className="order" key={order._id}>
+
+                                <h6 style={{ color: 'pink' }}>Номер заказа:{order._id}</h6>
+
+
+                                {order.items.map(item => <div key={item._id}>
                                     <div className="orders__item">
-                                        <Link to={`/feedback/${item._id}`} onClick={()=>props.setItemOfReview(item)}>Write Review</Link>
-                                  
                                         <div className="row">
-                                            <div className="col-3 col-lg-2">
-                                                <img className="orders__photo" src={item.img} alt="" />
+                                            <div className="col-3 col-lg-3">
+                                                <img className="orders__photo" src={item.photo} alt="" />
                                             </div>
-                                            <div className="col-4 col-lg-5">
-                                                <p className="bagCard__slogan">{item.slogan}</p>
+                                            <div className="col-4 col-lg-6">
+                                                <p className="bagCard__slogan">{item.style} DRESS</p>
                                                 <p>{item.text}</p>
                                                 <div className="bagCard__size d-flex">
                                                     <p>Size: {item.size}</p>
                                                     <img src="images/svg/Vector (11).svg" alt="" />
                                                 </div>
                                                 <p className="bagCard__p">Rental period* : 7 days</p>
-                                                <p>Dates: {item.startDate} - {item.endDate} </p>
+                                                <p>Dates: {item.startDate}-{item.endDate} </p>
                                             </div>
-                                            <div className="col-5 col-lg-5">
+                                            <div className="col-5 col-lg-3">
                                                 <div className="orders__price ">
                                                     <div className="col-6 d-flex align-items justify-content-center">
                                                         <p className="bagCard__listPrice ">€{item.price}</p>
                                                     </div>
                                                     <div className="col-5 d-flex align-items">
-                                                        <p className="bagCard__listPrice ml-auto">€{item.salePrice}</p>
+                                                        <p className="bagCard__listPrice ml-auto">{item.quantity}</p>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
+
+                                        <Link style={{ marginTop: '10px', width: '150px', height: '30px' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
 
                                     </div>
                                     <div className="row orders__item-active" >
@@ -117,12 +117,15 @@ const OrdersPage = (props) => {
                                 </div>)}</div>)}
                         </div> : <div className="row d-flex justify-content-center align-items-center" style={{ color: '#E77E83' }}>
                                 <div className="col-12">
-                                    <h4 className="d-flex flex-column justify-content-center align-items-center">У вас еще не было заказов<br /><i class="fab fa-linux"></i></h4></div>
+                                    <h4 className="d-flex flex-column justify-content-center align-items-center">У вас еще не было заказов<br /><i className="fab fa-linux"></i></h4></div>
                             </div>}
                     </div>
                     <div className="row">
-                        <div className="col-12">
-                            <Button3 link="/catalog" text="Return to catalogue" />
+
+                        <div className="returnLink">
+                            <div className="col-12">
+                                <Button3 link="/catalog" text="Return to catalogue" />
+                            </div>
                         </div>
                     </div>
 

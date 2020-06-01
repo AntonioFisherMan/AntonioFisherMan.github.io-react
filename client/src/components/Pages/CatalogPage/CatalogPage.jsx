@@ -6,11 +6,10 @@ import Button1 from '../../SiteButtons/Button1/Button1'
 import PopUp from '../../PopUp/PopUp'
 import Paginator from '../../common/Paginator/Paginator'
 import { Field, reduxForm } from 'redux-form'
-import { Fields } from 'redux-form'
+import Preloader from '../../common/Preloader'
+
+
 const CatalogPage = (props) => {
-    let [sizes,setSizes]=useState();
-    let [colors,setColors]=useState();
-    let [styles,setStyles]=useState();
     const onChangePageSize = (event) => {
         props.changePageSize(event.target.value)
     }
@@ -25,14 +24,13 @@ const CatalogPage = (props) => {
         props.changeFilter(data)
     }
     const removeFilter=(filter)=>{
-       debugger
        props.removeFilter(filter)
     }
     return (
+        
         <div>
-
-
-            <section className="linkBlock">
+            {props.goods.length>0?<div>
+                <section className="linkBlock">
                 <div className="container">
                     <div className="row">
                         <div className="col-6 d-flex align-items-center">
@@ -47,13 +45,12 @@ const CatalogPage = (props) => {
                         </div>
                         <div className="col-6 d-flex align-items ">
                             <div className="ml-auto" >
-
+                         
                                 <select className="sortBtn" onChange={onChangeSortBy} >
-                                    <option defaultValue>Рекомендации</option>
+                                    <option defaultValue>SORT BY</option>
                                     <option >От дешевых к дорогим</option>
                                     <option >От дорогим к дешевым</option>
                                 </select>
-
                             </div>
                         </div>
                     </div>
@@ -80,13 +77,14 @@ const CatalogPage = (props) => {
                         <ReduxFilterForm onSubmit={onSubmit} />
                         <div className="catalogList">
                             {
-                                props.goods.map(item => <div className="goodsItem" key={item._id}>
+                                props.goods.length>0?props.goods.map(item => <div className="goodsItem" key={item._id}>
                                     <Link to={`details/${item._id}`}><img src={item.photos.middle} alt="" /></Link>
                                     <h4>{item.text}</h4>
                                     <p>{item.style} Dress</p>
                                     <h5>€{item.price}</h5>
                                     <Button1 to={`details/${item._id}`} text="Подробнее" />
-                                </div>)
+                                </div>):
+                                <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">К сожалению по выбранному запросу товаров нет в наличии<br /><i class="fab fa-linux"></i></h4> </div>
                             }
                            
 
@@ -99,11 +97,13 @@ const CatalogPage = (props) => {
                 </div>
 
             </section>
-        </div>
+            </div>:<Preloader/>}      
+             </div>
     )
 }
 
 const FilterForm = (props) => {
+    
     return (
         <form className="sidebar" onSubmit={props.handleSubmit}>
             <div className="sidebarItem">

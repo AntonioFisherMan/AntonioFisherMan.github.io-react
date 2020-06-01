@@ -31,7 +31,7 @@ mongoose
     console.log(`DB Connection Error: ${err.message}`);
   });
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server started on ${port}`));
 
 if (process.env.NODE_ENV === "production") {

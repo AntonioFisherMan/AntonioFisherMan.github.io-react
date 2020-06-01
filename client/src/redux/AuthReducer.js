@@ -79,7 +79,7 @@ export const requestToken=()=>(dispatch,getState)=>{
          dispatch(emailSent(true))
     })
     .catch(err=>{
-      dispatch(returnErrors(err.response.data,err.response.status,'FORGOT_ERROR'))
+      dispatch(returnErrors(err.response.data.message,err.response.status,'FORGOT_ERROR'))
       dispatch({type:FORGOT_ERROR})
     })
 }
@@ -88,7 +88,7 @@ export const resetPass=(newPassword,verifyPassword,token)=> dispatch=>{
     dispatch({type:RESET_PASS})
     dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_RESET'))
   }).catch(err=>{
-    dispatch(returnErrors(err.response.data,err.response.status,'RESET_ERROR'))
+    dispatch(returnErrors(err.response.data.message,err.response.status,'RESET_ERROR'))
     dispatch({type:RESET_ERROR})
   })
 }
@@ -97,7 +97,7 @@ export const changeUserPass=(oldPass,newPassword,verifyPassword)=>(dispatch,getS
   testAPI.changeUserPass(oldPass,newPassword,verifyPassword,getState().auth.user.email).then(response=>{
     dispatch(returnSuccess(response.data.message,response.status,'SUCCESS_CHANGE_PASS'))
   }).catch(err=>{
-    dispatch(returnErrors(err.response.data,err.response.status,'ERROR_CHANGE_PASS'))
+    dispatch(returnErrors(err.response.data.message,err.response.status,'ERROR_CHANGE_PASS'))
   })
 }
 

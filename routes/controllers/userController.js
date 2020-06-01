@@ -50,7 +50,7 @@ exports.forgot_password = function(req, res) {
         from: 'tooxa9@gmail.com', // sender address
         to: user.email, // list of receivers
         subject: 'Password help has arrived!',
-        text:'Change pass http://localhost:3000/forgotchangepass/' + token,
+        text:'Change pass https://fullstack-shop.herokuapp.com/forgotchangepass/' + token,
     };
      
       transporter.sendMail(mailOptions, function(error, info){

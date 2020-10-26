@@ -11,35 +11,34 @@ import { Select } from '../../common/FormsControls/Select'
 import { Input } from '../../common/FormsControls/Input'
 import { required } from '../../../utils/Validators/validators'
 import userPhoto from '../../../assets/user.png'
-import  "../../SiteButtons/Button1/Button1.css"
+import "../../SiteButtons/Button1/Button1.css"
 import { useState } from 'react'
+import { GoodType } from '../../../types/types'
 
 
-const DetailsPage = (props) => {
-    
-  
-    const onSubmit = (payload) => {
-        const { size, startDate, endDate } = payload;
-        const cardItems = props.items;
-        const { price, photos, _id,style } = props.goodItem[0];
-        const photo = photos.middle;
-        var data = { photo, price, _id,style };
-        var inCard=false
+const DetailsPage = (props: any) => {
+
+
+    const onSubmit = (payload: any) => {
+        // const { size, startDate, endDate } = payload
+        const cardItems = props.items
+        const { price, photos, _id, style } = props.goodItem[0]
+        const photo = photos.middle
+        var data = { photo, price, _id, style }
+        var inCard = false
         if (cardItems.length > 0) {
-            for(var i=0;i<cardItems.length;i++){
+            for (var i = 0; i < cardItems.length; i++) {
                 if (cardItems[i]._id.includes(_id)) {
-                    cardItems[i].quantity++;
-                    inCard=true;
-                    break;
-                } 
+                    cardItems[i].quantity++
+                    inCard = true
+                    break
+                }
             }
-            if(inCard==false){
-             
-                props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))   
+            if (inCard == false) {
+                //props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
             }
         } else {
-        
-            props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
+            //props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
         }
     }
 
@@ -48,7 +47,7 @@ const DetailsPage = (props) => {
             {value => {
                 return (
                     <div>
-                        {props.goodItem.map(item => <div key={item._id}>
+                        {props.goodItem.map((item: GoodType) => <div key={item._id}>
                             <HeaderBottom />
                             <section className="detailsBlock">
                                 <div className="container">
@@ -66,27 +65,27 @@ const DetailsPage = (props) => {
                                                     <div className="carousel-item active">
                                                         <img className="carousel__img" src="/images/photo4.png" alt="" />
                                                     </div>
-                                                    {item.photos.small.map(photo =>
+                                                    {item.photos.small.map((photo: any) =>
                                                         <div key={photo._id} className="carousel-item">
                                                             <img className="carousel__img" src={photo} alt="" />
                                                         </div>)}
                                                 </div>
-                                                <a id="arrow-prev1" to="#" href="#multiCarousel_3" role="button" data-slide="prev">
+                                                <Link id="arrow-prev1" to="#" href="#multiCarousel_3" role="button" data-slide="prev">
                                                     <div className="arrow-1">
                                                         <i className="big fas fa-chevron-up" aria-hidden="true"></i>
                                                         <i className="smallLeft fas fa-chevron-left" aria-hidden="true"></i>
                                                         <span className="sr-only">Предыдущий</span>
                                                     </div>
-                                                </a>
+                                                </Link>
 
-                                                <a id="arrow-next1" to="#" href="#multiCarousel_3" role="button"
+                                                <Link id="arrow-next1" to="#" href="#multiCarousel_3" role="button"
                                                     data-slide="next">
                                                     <div className="arrow-1">
                                                         <i className="big fas fa-chevron-down" aria-hidden="true"></i>
                                                         <i className="smallRight fas fa-chevron-right" aria-hidden="true"></i>
                                                         <span className="sr-only">Cледующий</span>
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
 
                                         </div>
@@ -126,7 +125,7 @@ const DetailsPage = (props) => {
 
 
 
-                                                <ReduxProductForm onSubmit={onSubmit} item={item} value={value} />
+                                                {/* <ReduxProductForm onSubmit={onSubmit} item={item} value={value} /> */}
 
 
                                                 <div className="detailsInformList">
@@ -185,17 +184,17 @@ const DetailsPage = (props) => {
                                             <div className="col-6">
                                                 <div className="styleBtn">
 
-                                                    <Link style={{border: '1px solid #E77E83'}}className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
+                                                    <Link style={{ border: '1px solid #E77E83' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
                                                 </div>
                                             </div>
                                         </div>
-                                        {!item.reviews.length ? <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">На данный момент в этого товара нет отзывов<br /><i class="fab fa-linux"></i></h4></div> : null}
-                                        {item.reviews.map(item => <div key={item._id} className="reviewItem">
+                                        {!item.reviews.length ? <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">На данный момент в этого товара нет отзывов<br /><i className="fab fa-linux"></i></h4></div> : null}
+                                        {item.reviews.map((item: any) => <div key={item._id} className="reviewItem">
                                             <div className="row">
                                                 <div className="col-12 col-sm-12  col-lg-3 ">
                                                     <div className="reviewInform ">
                                                         <div className="reviewImg">
-                                                            <img src={item.photo!="undefined" ? `http://localhost:5000/${item.photo}` : userPhoto} alt="" />
+                                                            <img src={item.photo != "undefined" ? `http://localhost:5000/${item.photo}` : userPhoto} alt="" />
                                                         </div>
                                                         <div className="reviewText">
                                                             <h5>{item.name}</h5>
@@ -259,28 +258,26 @@ const DetailsPage = (props) => {
                                 </section>
                             </section>
 
-           );
+           )
                 </div>)}
                     </div>
-                );
+                )
             }}
         </ModalConsumer>
-    );
+    )
 }
 
-const ProductForm = (props) => {
-    let [size,setSize]=useState();
-    const OnSetSize=data=>{
-      setSize(data.target.value)
-    }
+const ProductForm = (props: any) => {
+    let [size, setSize] = useState<string>('')
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="detailsInformList">
                 <h6>Step 1.</h6>
                 <div className="d-flex align-items-center">
-                    <Field validate={[required]} component={Select} onChange={OnSetSize} name="size" className="detailsBtn">
-                        
-                        {props.item.sizes ? props.item.sizes.map(size => <option key={size}>
+                    <Field validate={[required]} component={Select} onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => setSize(e.target.value)} name="size" className="detailsBtn">
+
+                        {props.item.sizes ? props.item.sizes.map((size: any) => <option key={size}>
                             {size}
                         </option>) : <option> Размеров нет</option>}
                     </Field>
@@ -309,21 +306,20 @@ const ProductForm = (props) => {
                         <Field validate={[required]} type="date" component={Input} name="endDate" className="form-control" />
                     </div>
                 </div>
-                {props.submitSucceeded ? props.value.openModal(props.item,size) : null}
-                
-                                    <p className="detailsInformListDateTextarea"><span style={{paddingRight:'3px'}}className="starSmall">*</span> Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
+                {props.submitSucceeded ? props.value.openModal(props.item, size) : null}
+
+                <p className="detailsInformListDateTextarea"><span style={{ paddingRight: '3px' }} className="starSmall">*</span> Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
                                 and keep all 3 outfits for 21 days!
                                 Wear all outfits for as many times as you want.</p>
-                        <button className="buttonBlock1"> Add to cart</button>
+                <button className="buttonBlock1"> Add to cart</button>
 
             </div>
         </form>
     )
 }
 
-export const ReduxProductForm = reduxForm({
-    form: 'product'
-})(ProductForm)
+
+const ReduxProductForm = reduxForm({ form: 'product' })(ProductForm)
 
 
 export default DetailsPage

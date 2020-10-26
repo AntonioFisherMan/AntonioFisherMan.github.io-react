@@ -5,35 +5,24 @@ import Button3 from '../../SiteButtons/Button3/Button3'
 import Button1 from '../../SiteButtons/Button1/Button1'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { figureOutDate } from '../../../utils/helperFunctions/figureOutDate'
+import { CardItemType } from '../../../types/types'
 
 
 
-const CardPage = (props) => {
-    const removeItem = (id) => {
-        props.removeProduct(id)
-    }
-    const addInsurance = (item) => {
-        var insurance = true;
-        props.addInsurance(item._id, insurance)
-    }
-    const removeInsurance = (item) => {
-        var insurance = false;
-        props.removeInsurance(item._id, insurance)
-    }
-    const increaseQuantity = (item) => {
+const CardPage = (props: any) => {
+    let insurance = true
+    const increaseQuantity = (item: CardItemType) => {
         item.quantity = item.quantity + 1;
         props.changeQuantity(item._id, item.quantity)
     }
-    const decreaseQuantity = (item) => {
+    const decreaseQuantity = (item: CardItemType) => {
         if (item.quantity > 1) {
             item.quantity = item.quantity - 1;
             props.changeQuantity(item._id, item.quantity)
         }
-
     }
 
     return (
-
         <div>
             <HeaderBottom />
             <div className="container">
@@ -44,9 +33,9 @@ const CardPage = (props) => {
                 </div>
             </div>
             {props.items.length ? <>
-            <div className="container">
-            <section className="cardLink">
-                    
+                <div className="container">
+                    <section className="cardLink">
+
                         <div className="row">
                             <div className="col-3"></div>
                             <div className="col-4 d-flex align-items">
@@ -59,13 +48,13 @@ const CardPage = (props) => {
                                 <p>Quantity</p>
                             </div>
                         </div>
-                   
-                </section>
-            </div>
-              
+
+                    </section>
+                </div>
+
                 <section className="cardBlock">
                     <div className="container">
-                        {props.items.map(item => <div className="row cardItem" key={item._id}>
+                        {props.items.map((item: any) => <div className="row cardItem" key={item._id}>
                             <div className="col-12 col-sm-3">
                                 <img className="cardPhoto" src={item.photo} alt="" />
                             </div>
@@ -78,12 +67,12 @@ const CardPage = (props) => {
                                     </div>
                                     <div className="col-3 d-flex justify-content-center">
                                         <p className="cardPrice">{item.quantity}</p>
-                                   
+
                                         <button className="increase" onClick={() => increaseQuantity(item)}>+</button>
                                         <button className="decrease" onClick={() => decreaseQuantity(item)}>-</button>
                                     </div>
 
-                                    <img onClick={() => { removeItem(item._id) }} src="images/svg/Vector (14).svg" alt="" />
+                                    <img onClick={() => props.removeProduct(item._id)} src="images/svg/Vector (14).svg" alt="" />
                                 </div>
                                 <div className="cardSize d-flex">
                                     <p>Size:{item.size}</p>
@@ -93,13 +82,13 @@ const CardPage = (props) => {
                                 <p>Dates: {item.startDate}-{item.endDate} </p>
                                 <div className="cardDiscount">
                                     {!item.insurance ? <><div>
-                                        <img src="images/svg/Vector (15).svg" alt="" onClick={() => addInsurance(item)} />
+                                        <img src="images/svg/Vector (15).svg" alt="" onClick={() => props.addInsurance(item._id, insurance)} />
                                     </div>
                                         <div>
                                             <p><span>Add </span>insurance for this item for €5</p>
                                             <p className="cardTextGrey">This will cover accidental damage (example: zip break) but not unrepairable damage</p>
                                         </div></> : <><div>
-                                            <img onClick={() => { removeInsurance(item) }} src="images/svg/Vector (14).svg" alt="" />
+                                            <img onClick={() => { props.removeInsurance(item._id, insurance = false) }} src="images/svg/Vector (14).svg" alt="" />
                                         </div>
                                             <div>
                                                 <p>This product has insurance <span>€5</span></p>
@@ -111,8 +100,6 @@ const CardPage = (props) => {
 
                             </div>
                         </div>)}
-
-
                         <div className="row cardActive" >
                             <div className="col-3 cardLinkActive">
                                 <p >Item</p>

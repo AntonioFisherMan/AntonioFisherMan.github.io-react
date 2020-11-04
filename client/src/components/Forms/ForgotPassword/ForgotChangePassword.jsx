@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { resetPass } from '../../../redux/AuthReducer'
+import { resetPass } from '../../../redux/reducers/AuthReducer'
 import { Input } from '../../common/FormsControls/Input'
 import { Field, reduxForm } from 'redux-form'
 import { Alert } from 'reactstrap'
@@ -21,7 +21,7 @@ class ForgotChangePassword extends React.Component {
     render() {
         return (
             <div>
-                {this.props.success&&this.props.success.id==='SUCCESS_RESET' ? <SuccessMessage message={this.props.success.message}/> : this.generateForm()}
+                {this.props.success && this.props.success.id === 'SUCCESS_RESET' ? <SuccessMessage message={this.props.success.message} /> : this.generateForm()}
             </div>
 
         )
@@ -31,11 +31,11 @@ class ForgotChangePassword extends React.Component {
 
 const ForgotChangePasswordForm = (props) => {
     return (
-        <div className="container" style={{marginBottom:"20px"}}>
+        <div className="container" style={{ marginBottom: "20px" }}>
             <div className="row">
                 <div className="col-12 d-flex justif-content-center flex-column align-items-center">
                     <div><h3>Password confirmation!</h3>
-                        <form onSubmit={props.handleSubmit} style={{marginTop:"20px"}}>
+                        <form onSubmit={props.handleSubmit} style={{ marginTop: "20px" }}>
                             <label for="newPassword">New Password</label>
                             <Field className="form-control" type="text" component={Input} name="newPassword" id="newPassword" required />
                             <label for="verifyPassword">Confirm Password</label>
@@ -47,7 +47,7 @@ const ForgotChangePasswordForm = (props) => {
             </div>
 
             <div className="row d-flex justify-content-center">
-                {props.errors&&props.errors.id === 'RESET_ERROR' ? <Alert color="danger">{props.errors.message.message}</Alert> : null}
+                {props.errors && props.errors.id === 'RESET_ERROR' ? <Alert color="danger">{props.errors.message.message}</Alert> : null}
             </div>
         </div>
     )

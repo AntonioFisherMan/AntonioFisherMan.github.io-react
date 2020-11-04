@@ -1,19 +1,16 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
 
-const informSchema = new Schema(
-  {
-    userId:{
-      type:Schema.ObjectId
-    },  
-    inform:{
-      type:Object
+const informSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.ObjectId,
     },
-    isAddInform:{
-      type:Boolean
-    }
-  }
-);
+    inform: {
+        type: Object,
+    },
+    isAddInform: {
+        type: Boolean,
+    },
+})
 
-const Inform = mongoose.model("Inform", informSchema);
-module.exports = Inform;
+const Inform = mongoose.model('Inform', informSchema)
+module.exports = Inform

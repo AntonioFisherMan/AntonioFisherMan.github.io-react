@@ -1,21 +1,21 @@
 import React from 'react'
 import GoogleLoginBtn from 'react-google-login'
 import './FacebookGoogle.css'
-import { userLoad,login } from '../../../redux/AuthReducer'
+import { login } from '../../../redux/reducers/AuthReducer'
+import { authActions } from '../../../redux/reducers/AuthReducer'
 import { connect } from 'react-redux'
 
 const GoogleLogin = (props) => {
 
     const responseGoogle = (response) => {
-        console.log(response);
         let user = {
             name: response.profileObj.name,
             email: response.profileObj.email,
             img: response.profileObj.imageUrl,
-            token:response.tokenId
+            token: response.tokenId
         }
-        let userData={user}
-        props.userLoad(userData)
+        let userData = { user }
+        props.authActions.userLoad(userData)
     }
     return (
         <GoogleLoginBtn
@@ -32,4 +32,4 @@ const GoogleLogin = (props) => {
 
 }
 
-export default connect(null, {userLoad,login})(GoogleLogin)
+export default connect(null, { authActions, login })(GoogleLogin)

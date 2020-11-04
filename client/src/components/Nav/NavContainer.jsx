@@ -1,28 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {logout} from '../../redux/AuthReducer'
+import { logout } from '../../redux/reducers/AuthReducer'
 import Nav from './Nav'
 
 
 
-class NavContainer extends React.Component{
-   
-  render(){
-      
-      return(
-         <Nav {...this.props}/>
-      )
+class NavContainer extends React.Component {
+
+  render() {
+
+    return (
+      <Nav {...this.props} />
+    )
   }
 }
 
-let mapStateToProps = (state) => {  
-    return {
-       isAuth:state.auth.isAuth,
-       user:state.auth.user,
-       totalSizeCard:state.card.items.length
-    }
+let mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+    user: state.auth.user,
+    totalSizeCard: state.card.items.length
+  }
 }
-export default connect(mapStateToProps,{logout})(NavContainer)
+export default connect(mapStateToProps, { logout })(NavContainer)
 
 
 

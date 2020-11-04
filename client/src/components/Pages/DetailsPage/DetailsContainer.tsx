@@ -1,9 +1,9 @@
 import React from 'react'
 import DetailsPage from './DetailsPage'
 import { connect } from 'react-redux'
-import { getGoodsThunkById, removeGood } from '../../../redux/CatalogReducer'
-import { addToCart } from '../../../redux/CardReducer'
-import { setItemOfReview } from '../../../redux/ReviewsReducer'
+import { getGoodsThunkById } from '../../../redux/reducers/CatalogReducer'
+import { cardActions } from '../../../redux/reducers/CardReducer'
+import { reviewsActions } from '../../../redux/reducers/ReviewsReducer'
 import { AppStateType } from '../../../redux/ReduxStore'
 import { CardItemType, GoodType } from '../../../types/types'
 import { RouteComponentProps } from 'react-router'
@@ -49,5 +49,5 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
     }
 }
 
-export default connect(mapStateToProps, { getGoodsThunkById, addToCart, removeGood, setItemOfReview })(DetailsContainer)
+export default connect(mapStateToProps, { getGoodsThunkById, ...cardActions, ...reviewsActions })(DetailsContainer)
 

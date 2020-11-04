@@ -1,9 +1,8 @@
-import React from 'react'
 import CardPage from './CardPage'
 import { connect } from 'react-redux'
-import { removeProduct, changeQuantity, addInsurance, removeInsurance } from '../../../redux/CardReducer'
+import { cardActions } from '../../../redux/reducers/CardReducer'
 
-import { getCardItems, getTotalPrice } from '../../../redux/CardSelector'
+import { getCardItems, getTotalPrice } from '../../../redux/selectors/CardSelector'
 import { AppStateType } from '../../../redux/ReduxStore'
 import { CardItemType } from '../../../types/types'
 
@@ -19,4 +18,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isLoaded: state.card.isLoaded
     }
 }
-export default connect(mapStateToProps, { changeQuantity, addInsurance, removeInsurance, removeProduct })(CardPage)
+export default connect(mapStateToProps, { cardActions })(CardPage)

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Slider from '../../Slider/Slider'
 import Button2 from '../../SiteButtons/Button2/Button2'
-import { ModalConsumer } from '../../../redux/modalContext'
+import { ModalConsumer } from '../../../context/modalContext'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { reduxForm, Field } from 'redux-form'
 import { Select } from '../../common/FormsControls/Select'
@@ -17,10 +17,10 @@ import { GoodType } from '../../../types/types'
 
 
 const DetailsPage = (props: any) => {
-
+    debugger
 
     const onSubmit = (payload: any) => {
-        // const { size, startDate, endDate } = payload
+        const { size, startDate, endDate } = payload
         const cardItems = props.items
         const { price, photos, _id, style } = props.goodItem[0]
         const photo = photos.middle
@@ -35,10 +35,10 @@ const DetailsPage = (props: any) => {
                 }
             }
             if (inCard == false) {
-                //props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
+                props.cardActions.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
             }
         } else {
-            //props.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
+            props.cardActions.addToCart(Object.assign({ size, startDate, endDate, quantity: 1 }, data))
         }
     }
 
@@ -184,7 +184,7 @@ const DetailsPage = (props: any) => {
                                             <div className="col-6">
                                                 <div className="styleBtn">
 
-                                                    <Link style={{ border: '1px solid #E77E83' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
+                                                    <Link style={{ border: '1px solid #E77E83' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.reviewsActions.setItemOfReview(item)}>Write a Review</Link>
                                                 </div>
                                             </div>
                                         </div>

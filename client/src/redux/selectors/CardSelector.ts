@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { uniqBy } from 'lodash'
-import { AppStateType } from './ReduxStore'
+import { AppStateType } from '../ReduxStore'
 
 export const getCardItems = (state: AppStateType) => {
     return uniqBy(state.card.items, (i: any) => i._id)

@@ -1,28 +1,24 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import { messageActions } from '../redux/reducers/SuccessErrorReducer'
 
-
-import React from 'react';
-import { connect } from 'react-redux';
-import {clearErrors,clearSuccess} from '../redux/SuccessErrorReducer'
-let mapStateToProps=(state)=>{
-    return{
-     errors:state.successErrors.errorsMessage,
-     success:state.successErrors.successMessage
+let mapStateToProps = (state) => {
+    return {
+        errors: state.successErrors.errorsMessage,
+        success: state.successErrors.successMessage,
     }
 }
 
- export const SuccessErrorsData=(Component)=>{
+export const SuccessErrorsData = (Component) => {
     class RedirectComponent extends React.Component {
-         componentWillMount(){
-            this.props.clearErrors();
-            this.props.clearSuccess();
-         }
-          render(){
-          return(
-            <Component {...this.props}/>
-          )
-        } 
-    }  
-    let Connect=connect(mapStateToProps,{clearSuccess,clearErrors})(RedirectComponent)
-    return Connect
+        componentWillMount() {
+            console.log(this.props)
+            //this.props.messageActions.clearErrors()
+            //this.props.messageActions.clearSuccess()
+        }
+        render() {
+            return <Component {...this.props} />
+        }
+    }
+    return connect(mapStateToProps, { messageActions })(RedirectComponent)
 }
-

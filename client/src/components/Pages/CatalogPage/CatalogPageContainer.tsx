@@ -2,18 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CatalogPage from './CatalogPage'
 import { compose } from 'redux'
-import { getGoodsThunk, changeSortBy, removeFilter, getGoodsThunkById, changePageNumber, ClearGoods } from '../../../redux/CatalogReducer'
-import { getFilterBy, getTotalGoods } from '../../../redux/CatalogSelector'
+import { getGoodsThunk, removeFilterThunk, getGoodsThunkById, catalogActions } from '../../../redux/reducers/CatalogReducer'
+import { getFilterBy, getTotalGoods } from '../../../redux/selectors/CatalogSelector'
 import { reset } from 'redux-form';
 import { CardItemType, GoodType } from '../../../types/types'
 import { AppStateType } from '../../../redux/ReduxStore'
 
 
-
-class CatalogPageContainer extends React.Component<CatalogPropsType> {
+class CatalogPageContainer extends React.Component<any> {
 
   componentWillUnmount() {
-    this.props.ClearGoods();
+    this.props.clearGoods()
   }
   componentDidMount() {
     const { pageNumber, pageSize } = this.props;
@@ -40,7 +39,7 @@ class CatalogPageContainer extends React.Component<CatalogPropsType> {
   render() {
     return (
       <>
-        <CatalogPage  {...this.props} onPageChanged={this.onPageChanged} changeFilter={this.changeFilter} removeFilter={this.props.removeFilter} changeSortBy={this.props.changeSortBy} changePageSize={this.changePageSize}
+        <CatalogPage  {...this.props} onPageChanged={this.onPageChanged} changeFilter={this.changeFilter} removeFilter={this.props.removeFilterThunk} changePageSize={this.changePageSize}
         />
       </>
     )
@@ -61,11 +60,10 @@ type MapStateToPropsType = {
 type MapDispatchToProps = {
   getGoodsThunk: (pageNumber: number, pageSize: number, filter: Array<string>) => void,
   getGoodsThunkById: (id: any) => void,
-  changePageNumber: (pageNumber: number) => void,
-  removeFilter: (filter: string) => void,
-  changeSortBy: (filterBy: any) => void,
+  removeFilterThunk: (filter: string) => void,
   reset: (filter: string) => void,
-  ClearGoods: () => void,
+  clearGoods: () => void,
+  changePageNumber: (pageNumber: number) => void
 }
 
 export type CatalogPropsType = MapStateToPropsType & MapDispatchToProps
@@ -83,5 +81,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
   }
 }
 
-export default compose(connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, changePageNumber, removeFilter, changeSortBy, reset, ClearGoods }))(CatalogPageContainer)
+
+export default compose(connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, removeFilterThunk, reset, ...catalogActions }))(CatalogPageContainer)
 

@@ -1,16 +1,13 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
 
-const unloginOrdersSchema = new Schema(
-  { 
+const unloginOrdersSchema = new mongoose.Schema({
     inform: {
-      type: Object,
+        type: Object,
     },
     items: {
-      type: Array,
-    }
-  }
-);
+        type: Array,
+    },
+})
 
-const UnloginOrders = mongoose.model("UnloginOrders", unloginOrdersSchema);
-module.exports = UnloginOrders;
+const UnloginOrders = mongoose.model('UnloginOrders', unloginOrdersSchema)
+module.exports = UnloginOrders

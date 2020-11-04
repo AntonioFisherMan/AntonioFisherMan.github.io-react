@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { initializeThunkApp } from './redux/AppReducer'
+import { initializeThunkApp } from './redux/reducers/AppReducer'
 import { connect } from 'react-redux'
 
 //PAGES
@@ -49,40 +49,19 @@ class App extends React.Component {
 
                         <Switch>
                             <Route exact path="/" component={FrontPage} />
-                            <Route
-                                path="/catalog"
-                                component={CatalogPageContainer}
-                            />
-                            <Route
-                                path="/details/:id?"
-                                component={DetailsContainer}
-                            />
+                            <Route path="/catalog" component={CatalogPageContainer} />
+                            <Route path="/details/:id?" component={DetailsContainer} />
                             <Route path="/card" component={CardPageContainer} />
-                            <Route
-                                path="/changepass"
-                                component={ChangepassPage}
-                            />
+                            <Route path="/changepass" component={ChangepassPage} />
                             <Route path="/checkout" component={CheckoutPage} />
-                            <Route
-                                path="/feedback/:id?"
-                                component={FeedbackContainer}
-                            />
+                            <Route path="/feedback/:id?" component={FeedbackContainer} />
                             <Route path="/help" component={HelpPage} />
                             <Route path="/inform" component={InformContainer} />
-                            <Route
-                                path="/orders"
-                                component={OrdersPageContainer}
-                            />
+                            <Route path="/orders" component={OrdersPageContainer} />
                             <Route path="/return" component={ReturnPage} />
                             <Route path="/sign" component={SignPage} />
-                            <Route
-                                path="/forgotpassword"
-                                component={ForgotPassword}
-                            />
-                            <Route
-                                path="/forgotchangepass/:token?"
-                                component={ForgotChangePassword}
-                            />
+                            <Route path="/forgotpassword" component={ForgotPassword} />
+                            <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
                             <Route path="/buy" component={Checkout} />
                             <Route path="/order" component={Order} />
                             <Route component={NotFound} />

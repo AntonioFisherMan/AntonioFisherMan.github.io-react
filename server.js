@@ -3,32 +3,29 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('config')
 const path = require('path')
-
+require('dotenv').config()
 var cookieParser = require('cookie-parser')
 
 const app = new express()
-//BODY-PARSER Middleware
-app.use(express.json())
+
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-require('dotenv').config()
-
 app.use(cors())
 app.use(express.json())
 
 const db = config.get('mongoURI')
 
-mongoose
-    .connect(process.env.MONGODB_URI || db, {
+try {
+    mongoose.connect(process.env.MONGODB_URI || db, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useFindAndModify: false,
         useCreateIndex: true,
     })
-    .then(() => console.log('DB Connected!'))
-    .catch((err) => {
-        console.log(`DB Connection Error: ${err.message}`)
-    })
+    console.log('DB Connected!')
+} catch (err) {
+    console.log(`DB Connection Error: ${err.message}`)
+}
 
 const port = process.env.PORT || 5001
 app.listen(port, () => console.log(`Server started on ${port}`))
@@ -39,15 +36,15 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
+
 const userRouter = require('./routes/userRouter')
-app.use('/users', userRouter)
 const goodsRouter = require('./routes/goodsRouter')
-app.use('/goods', goodsRouter)
 const authRouter = require('./routes/authRouter')
-app.use('/auth', authRouter)
-
 const ordersRouter = require('./routes/ordersRouter')
-app.use('/orders', ordersRouter)
-
 const informRouter = require('./routes/informRouter')
+
+app.use('/users', userRouter)
+app.use('/goods', goodsRouter)
+app.use('/auth', authRouter)
+app.use('/orders', ordersRouter)
 app.use('/inform', informRouter)

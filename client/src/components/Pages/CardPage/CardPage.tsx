@@ -13,12 +13,12 @@ const CardPage = (props: any) => {
     let insurance = true
     const increaseQuantity = (item: CardItemType) => {
         item.quantity = item.quantity + 1;
-        props.changeQuantity(item._id, item.quantity)
+        props.cardActions.changeQuantity(item._id, item.quantity)
     }
     const decreaseQuantity = (item: CardItemType) => {
         if (item.quantity > 1) {
             item.quantity = item.quantity - 1;
-            props.changeQuantity(item._id, item.quantity)
+            props.cardActions.changeQuantity(item._id, item.quantity)
         }
     }
 
@@ -72,7 +72,7 @@ const CardPage = (props: any) => {
                                         <button className="decrease" onClick={() => decreaseQuantity(item)}>-</button>
                                     </div>
 
-                                    <img onClick={() => props.removeProduct(item._id)} src="images/svg/Vector (14).svg" alt="" />
+                                    <img onClick={() => props.cardActions.removeProduct(item._id)} src="images/svg/Vector (14).svg" alt="" />
                                 </div>
                                 <div className="cardSize d-flex">
                                     <p>Size:{item.size}</p>
@@ -82,13 +82,13 @@ const CardPage = (props: any) => {
                                 <p>Dates: {item.startDate}-{item.endDate} </p>
                                 <div className="cardDiscount">
                                     {!item.insurance ? <><div>
-                                        <img src="images/svg/Vector (15).svg" alt="" onClick={() => props.addInsurance(item._id, insurance)} />
+                                        <img src="images/svg/Vector (15).svg" alt="" onClick={() => props.cardActions.addInsurance(item._id, insurance)} />
                                     </div>
                                         <div>
                                             <p><span>Add </span>insurance for this item for €5</p>
                                             <p className="cardTextGrey">This will cover accidental damage (example: zip break) but not unrepairable damage</p>
                                         </div></> : <><div>
-                                            <img onClick={() => { props.removeInsurance(item._id, insurance = false) }} src="images/svg/Vector (14).svg" alt="" />
+                                            <img onClick={() => { props.cardActions.removeInsurance(item._id, insurance = false) }} src="images/svg/Vector (14).svg" alt="" />
                                         </div>
                                             <div>
                                                 <p>This product has insurance <span>€5</span></p>

@@ -4,46 +4,46 @@ import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import UserInformForm from './UserInformForm'
 import { connect } from 'react-redux'
-import {getInform,updateInform} from '../../../redux/InformReducer'
+import { getInform, updateInform } from '../../../redux/reducers/InformReducer'
 
 
 
 
-const CheckoutPage=(props)=>{
-    useEffect(()=>{
+const CheckoutPage = (props) => {
+    useEffect(() => {
         props.getInform()
     })
-    const onSubmit=(data)=>{
-        let inform ={data}
+    const onSubmit = (data) => {
+        let inform = { data }
         props.updateInform(inform)
     }
-    return(
+    return (
         <div>
-      <HeaderBottom/>
-        <section className="checkoutBlock">
-            <div className="container">
-            <div className="row">
-                    <div className="col-12">
-                        <SiteHeadline text="Check Out"/>
+            <HeaderBottom />
+            <section className="checkoutBlock">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <SiteHeadline text="Check Out" />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12 col-md-9">
+                            <UserInformForm onSubmit={onSubmit} />
+                        </div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-12 col-md-9">
-                      <UserInformForm onSubmit={onSubmit}/>
-                    </div>
-                </div>
-            </div>
-        </section>
-    
+            </section>
+
         </div>
     )
 }
 
-let mapStateToProps=(state)=>{
-    return{
-      userInform:state.inform.inform
+let mapStateToProps = (state) => {
+    return {
+        userInform: state.inform.inform
     }
 }
 
 
-export default connect(mapStateToProps,{getInform,updateInform})(CheckoutPage)
+export default connect(mapStateToProps, { getInform, updateInform })(CheckoutPage)

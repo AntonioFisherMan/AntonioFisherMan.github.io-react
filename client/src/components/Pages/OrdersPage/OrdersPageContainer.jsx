@@ -1,34 +1,34 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import OrdersPage from './OrdersPage';
-import {getOrders} from '../../../redux/OrdersReducer'
+import { getOrders } from '../../../redux/reducers/OrdersReducer'
 import { compose } from 'redux';
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
-import {setItemOfReview} from '../../../redux/ReviewsReducer'
+import { reviewsActions } from '../../../redux/reducers/ReviewsReducer'
 
-class OrdersPageContainer extends React.Component{
-  componentDidMount(){
-      this.props.getOrders(this.props.userId);
+class OrdersPageContainer extends React.Component {
+  componentDidMount() {
+    this.props.getOrders(this.props.userId);
   }
-  
-  render(){
-      return(
-        <>
-        <OrdersPage {...this.props} 
+
+  render() {
+    return (
+      <>
+        <OrdersPage {...this.props}
         />
-        </>
-      )
+      </>
+    )
   }
 }
-let mapStateToProps=(state)=>{
-    return{
-     orders:state.orders.orders,
-     userId:state.auth.user.id
-    }
+let mapStateToProps = (state) => {
+  return {
+    orders: state.orders.orders,
+    userId: state.auth.user.id
+  }
 }
 
 export default compose(
   WithAuthRedirect,
-  connect(mapStateToProps,{getOrders,setItemOfReview})
+  connect(mapStateToProps, { getOrders, reviewsActions })
 )(OrdersPageContainer)
 

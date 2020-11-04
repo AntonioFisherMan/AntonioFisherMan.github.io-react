@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { sortBy } from '../utils/helperFunctions/sortBy'
-import { AppStateType } from './ReduxStore'
+import { sortBy } from '../../utils/helperFunctions/sortBy'
+import { AppStateType } from '../ReduxStore'
 
 const getGoods = (state: AppStateType) => {
     return state.goods.goods

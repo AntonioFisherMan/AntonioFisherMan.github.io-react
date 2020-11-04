@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {ModalConsumer}  from "../../../redux/modalContext";
+import { ModalConsumer } from "../../../context/modalContext";
 import { ButtonContainer } from "./Button";
 import { Link } from "react-router-dom";
 
 
- class Modal extends Component {
+class Modal extends Component {
   render() {
     return (
       <ModalConsumer>
         {value => {
           const { modalOpen, closeModal } = value;
-         
+
           if (!modalOpen) {
             return null;
           } else {
@@ -26,16 +26,16 @@ import { Link } from "react-router-dom";
                       <h5>Your good added to cart</h5>
                       <img src={value.modalProduct.photos.middle} className="img-fluid" alt="" />
                       <h5>{value.modalProduct.text}</h5>
-                      <h5 className="text-muted">price : $<span  style={{fontWeight:'bold'}}>{value.modalProduct.price}</span></h5>
-                      <h5 className="text-muted">size : <span style={{fontWeight:'bold'}}>{value.size}</span></h5>
-                      <h5 className="text-muted">color : <span  style={{fontWeight:'bold'}}>{value.modalProduct.color}</span></h5>
+                      <h5 className="text-muted">price : $<span style={{ fontWeight: 'bold' }}>{value.modalProduct.price}</span></h5>
+                      <h5 className="text-muted">size : <span style={{ fontWeight: 'bold' }}>{value.size}</span></h5>
+                      <h5 className="text-muted">color : <span style={{ fontWeight: 'bold' }}>{value.modalProduct.color}</span></h5>
                       <Link to="/catalog">
                         <ButtonContainer
                           onClick={() => {
                             closeModal();
                           }}
                         >
-                         Continue Shopping
+                          Continue Shopping
                         </ButtonContainer>
                       </Link>
                       <Link to="/card">

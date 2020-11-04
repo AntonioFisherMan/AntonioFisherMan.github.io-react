@@ -10,7 +10,7 @@ import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
 import { Textarea } from '../../common/FormsControls/Textarea'
 import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
-import { sendHelpMessage } from '../../../redux/InformReducer'
+import { sendHelpMessage } from '../../../redux/reducers/InformReducer'
 import { required } from '../../../utils/Validators/validators'
 import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
 import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
@@ -37,7 +37,7 @@ const HelpPage = (props) => {
                             <Sidebar />
                         </div>
                         <div className="col-2"></div>
-                        {props.success && props.success.id==='SUCCESS_HELP_MESSAGE' ? <SuccessMessage message={props.success.message} /> : <ReduxHelpForm onSubmit={onSubmit} errors={props.errors} />}
+                        {props.success && props.success.id === 'SUCCESS_HELP_MESSAGE' ? <SuccessMessage message={props.success.message} /> : <ReduxHelpForm onSubmit={onSubmit} errors={props.errors} />}
                     </div>
                     <div className="row">
                         <div className="col-12">

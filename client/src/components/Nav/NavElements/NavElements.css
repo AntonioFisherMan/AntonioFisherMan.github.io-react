@@ -1,0 +1,18 @@
+.navBlock{
+        display: flex;
+}
+.navBlock img{
+        margin-right: 10px;
+}
+.textColor  {
+        font-weight: 600;
+        font-size: 12;
+       
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 1.5;
+        text-transform: uppercase;
+        color: #111111 ; 
+        white-space: nowrap
+};

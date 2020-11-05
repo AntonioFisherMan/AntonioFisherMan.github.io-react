@@ -1,5 +1,5 @@
 import React from 'react'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import './Checkout.css'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
@@ -10,10 +10,10 @@ const MaxLengthCreator50 = MaxLength(50)
 const MinLengthCreator5 = MinLength(5)
 
 const Checkout = (props) => {
-    
-const generateForm = () => {
+
+    const generateForm = () => {
         return (
-            <form className="checkoutForm" style={{margin:'0px',marginTop:'50px',marginBottom:'50px'}} onSubmit={props.handleSubmit}>
+            <form className="checkoutForm" style={{ margin: '0px', marginTop: '50px', marginBottom: '50px' }} onSubmit={props.handleSubmit}>
                 <div className="form-row">
                     <h5 className="formHeadline">Shipping address</h5>
                 </div>
@@ -45,38 +45,38 @@ const generateForm = () => {
                     </div>
                 </div>
                 <div className="form-group ">
-                    <Field type="number" component={Input} validate={[required,MinLengthCreator5,MaxLengthCreator50]} className="form-control" name="phone" placeholder="Phone" />
+                    <Field type="number" component={Input} validate={[required, MinLengthCreator5, MaxLengthCreator50]} className="form-control" name="phone" placeholder="Phone" />
                 </div>
                 <div className="form-row">
                     <h5 className="formHeadline">Billing Address</h5>
                 </div>
                 <div className="form-group">
                     <div className="form-check">
-                        <label><Field type="checkbox"  component={"input"} name="check" className="form-check-label checkbox" /><span className="fake"></span><span id="checkText">same as Shipping Address</span></label>
+                        <label><Field type="checkbox" component={"input"} name="check" className="form-check-label checkbox" /><span className="fake"></span><span id="checkText">same as Shipping Address</span></label>
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="col-12 d-flex align-items-center">
-                        <Button3 link="/catalog" text="Return to catalogue" />
+                        <MyButton link="/catalog" text="Return to catalogue" />
                     </div>
                     <div className="col-12 d-flex align-items-center justify-content-end">
-                        <button className="formBtn">Заказать</button>
+                        <button><MyButton text="Заказать" /></button>
                     </div>
                 </div>
 
             </form>
 
         )
-    }   
+    }
     return (
         <div className="container">
-          <div className="row">
-              <div className="col-12">
-              {props.success.id==='SUCCESS_ADD_ORDER'? <SuccessMessage message={props.success.message}/>: generateForm()}
-              </div>
+            <div className="row">
+                <div className="col-12">
+                    {props.success.id === 'SUCCESS_ADD_ORDER' ? <SuccessMessage message={props.success.message} /> : generateForm()}
+                </div>
+            </div>
         </div>
-        </div>
-       
+
 
     )
 

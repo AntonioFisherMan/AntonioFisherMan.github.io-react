@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
 import { required, MinLength, MaxLength } from '../../../utils/Validators/validators'
 import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
+import MyButton from '../../SiteButton/MyButton'
 
 
 const MaxLengthCreator50 = MaxLength(50)
@@ -11,7 +12,7 @@ const MinLengthCreator5 = MinLength(5)
 const RegisterForm = (props) => {
     return (
         <form className="signForm" onSubmit={props.handleSubmit}>
-      
+
 
             <div className="signPopUpBlock">
                 <hr />
@@ -32,8 +33,9 @@ const RegisterForm = (props) => {
                 </div>
             </div>
             <p className="signGrey">By joining I agree to receive emails from DressItBox</p>
-            <button id="signBtn">Register</button>
-            {props.errors&&props.errors.id === 'REGISTER_FAIL' ? <ErrorMessage message={props.errors.message}/>:null}
+            <button> <MyButton text="register" /></button>
+
+            {props.errors && props.errors.id === 'REGISTER_FAIL' ? <ErrorMessage message={props.errors.message} /> : null}
         </form>
     )
 }

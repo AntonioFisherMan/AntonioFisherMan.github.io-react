@@ -14,12 +14,7 @@
 .btnWidth a {
     width: 100% !important;
 }
-.styleBtn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 79px;
-}
+
 
 .detailsPhoto {
     width: 421px;

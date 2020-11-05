@@ -3,7 +3,7 @@ import './HelpPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
 import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
@@ -42,7 +42,7 @@ const HelpPage = (props) => {
                     <div className="row">
                         <div className="col-12">
                             <div className="returnLink">
-                                <Button3 link="/catalog" text="Return to catalogue" />
+                                <MyButton href="/catalog" text="Return to catalogue" variant="text" />
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,8 @@ const HelpForm = (props) => {
         <form className="col-12 col-md-7 helpInform" onSubmit={props.handleSubmit}>
             <p className="helpText">Your question</p>
             <Field component={Textarea} name="helpMessage" validate={[required]} className="form-control" placeholder="text..." />
-            <button className="buttonBlock1" style={{ marginTop: '20px' }}>Send</button>
+            <button style={{ marginTop: '20px' }}> <MyButton text="send" /></button>
+
             {props.errors && props.errors.id === 'ERROR_HELP_MESSAGE' ? <ErrorMessage message={props.errors.message} /> : null}
 
         </form>
@@ -66,9 +67,7 @@ const HelpForm = (props) => {
 
 }
 
-export const ReduxHelpForm = reduxForm({
-    form: 'help'
-})(HelpForm)
+export const ReduxHelpForm = reduxForm({ form: 'help' })(HelpForm)
 
 
 export default compose(

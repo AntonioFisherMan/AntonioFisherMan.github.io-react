@@ -3,7 +3,7 @@ import './OrdersPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import { Link } from 'react-router-dom'
 
 
@@ -123,7 +123,7 @@ const OrdersPage = (props) => {
 
                         <div className="returnLink">
                             <div className="col-12">
-                                <Button3 link="/catalog" text="Return to catalogue" />
+                                <MyButton href="/catalog" text="Return to catalogue" variant="text" />
                             </div>
                         </div>
                     </div>

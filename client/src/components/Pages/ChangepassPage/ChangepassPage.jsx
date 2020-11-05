@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import ChangePass from '../../Forms/ChangePass/ChangePass'
 import { compose } from 'redux'
@@ -31,9 +31,9 @@ const ChangepassPage = () => {
                     </div>
                     <div className="row">
                         <div className="col-12">
-                        <div className="returnLink">
-                            <Button3 link="/catalog" text="Return to catalogue" />
-                        </div>
+                            <div className="returnLink">
+                                <MyButton href="/catalog" variant="text" text="Return to catalogue" />
+                            </div>
                         </div>
                     </div>
                 </div>

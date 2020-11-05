@@ -33,7 +33,7 @@
     color: #666666;
 }
 
-.custom-checkbox span {
+.checkText span {
     color: #E77E83;
     font-weight: 300;
     margin-left: 5px;
@@ -78,22 +78,6 @@
     margin-left: 45px !important;
 }
 
-#signBtn {
-    width: 180px;
-    height: 55px;
-    margin-top: 24px;
-    background: #E77E83;
-    font-weight: 600;
-    border-radius: 36px;
-    font-size: 12px;
-    line-height: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-}
 
 .signGrey, .forgotPass {
     font-weight: normal;

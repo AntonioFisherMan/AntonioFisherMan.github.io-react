@@ -33,7 +33,7 @@ class DetailsContainer extends React.Component<PropsType> {
 }
 
 type MapStateToProps = {
-    goodItem: Array<GoodType> | null,
+    goodItem: Array<object> | null,
     items: Array<CardItemType>
 }
 type RouteProps = RouteComponentProps<{ id?: string }>

@@ -15,9 +15,10 @@ align-items: center;
     margin-top: 57px ;
     margin-bottom: 50px;
 }
-.footerItem span{
-   color: #E77E83;
+.span>span{
+    color: #E77E83;
 }
+
 .footerItem p{
     font-weight: 500;
 font-size: 16px;
@@ -40,29 +41,12 @@ margin-bottom: 16px;
     width: 224px;
     padding-left:19px;
 }
-        .footerItem button{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #E77E83;
-            border-radius: 36px;
-            width: 128px;
-            height: 50px;
-            color:white;
-            margin-left: 7px;
-        }
-
 .footerForm{
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.footerForm span{
-   position: absolute;
-   top:50px;
-   left:40px;
-}
 
 @media (max-width: 575.98px) {
     .footerForm{

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './CardPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
-import Button3 from '../../SiteButtons/Button3/Button3'
-import Button1 from '../../SiteButtons/Button1/Button1'
+import MyButton from '../../SiteButton/MyButton'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { figureOutDate } from '../../../utils/helperFunctions/figureOutDate'
 import { CardItemType } from '../../../types/types'
@@ -154,12 +153,12 @@ const CardPage = (props: any) => {
                         <div className="cardInform">
                             <div className="row cardInformList">
                                 <div className="col-12 col-md-3">
-                                    <Button3 color="#E77E83 " link="/catalog" text="Rent more" />
+                                    <MyButton href="/catalog" text="Rent more" variant="text" />
                                 </div>
                                 <div className="col-12 col-md-9">
                                     <div className="cardInformListText d-flex">
                                         <h5>Subtotal: €{props.totalPrice}</h5>
-                                        <Button1 text="order" to="buy" />
+                                        <MyButton text="order" href="/buy" />
                                         <p>By proceeding you are agreeing to our <span>Terms & Conditions</span></p>
 
                                     </div>

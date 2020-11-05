@@ -45,20 +45,6 @@
     color: #000000;
     margin-left: 21px !important;
 }
-.formBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #E77E83;
-    border-radius: 36px;
-    width: 227px;
-    height: 55px;
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-}
 
 @media (max-width: 575.98px) { 
     .checkoutForm{

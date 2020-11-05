@@ -3,7 +3,7 @@ import './DetailsPage.css'
 import { Link } from 'react-router-dom'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Slider from '../../Slider/Slider'
-import Button2 from '../../SiteButtons/Button2/Button2'
+import MyButton from '../../SiteButton/MyButton'
 import { ModalConsumer } from '../../../context/modalContext'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { reduxForm, Field } from 'redux-form'
@@ -11,13 +11,11 @@ import { Select } from '../../common/FormsControls/Select'
 import { Input } from '../../common/FormsControls/Input'
 import { required } from '../../../utils/Validators/validators'
 import userPhoto from '../../../assets/user.png'
-import "../../SiteButtons/Button1/Button1.css"
 import { useState } from 'react'
 import { GoodType } from '../../../types/types'
 
 
 const DetailsPage = (props: any) => {
-    debugger
 
     const onSubmit = (payload: any) => {
         const { size, startDate, endDate } = payload
@@ -47,7 +45,7 @@ const DetailsPage = (props: any) => {
             {value => {
                 return (
                     <div>
-                        {props.goodItem.map((item: GoodType) => <div key={item._id}>
+                        {props.goodItem.map((item: any) => <div key={item._id}>
                             <HeaderBottom />
                             <section className="detailsBlock">
                                 <div className="container">
@@ -65,7 +63,7 @@ const DetailsPage = (props: any) => {
                                                     <div className="carousel-item active">
                                                         <img className="carousel__img" src="/images/photo4.png" alt="" />
                                                     </div>
-                                                    {item.photos.small.map((photo: any) =>
+                                                    {item.good.photos.small.map((photo: any) =>
                                                         <div key={photo._id} className="carousel-item">
                                                             <img className="carousel__img" src={photo} alt="" />
                                                         </div>)}
@@ -90,13 +88,13 @@ const DetailsPage = (props: any) => {
 
                                         </div>
                                         <div className="col-12 col-sm-4 col-lg-4 d-flex justify-content-center">
-                                            <img className="detailsPhoto" src={item.photos.middle} alt="" />
+                                            <img className="detailsPhoto" src={item.good.photos.middle} alt="" />
                                         </div>
                                         <div className="col-12 col-sm-8 col-lg-4">
                                             <div className="detailsInform">
                                                 <div className="detailsInformList">
-                                                    <p className="detailsListSlogan" >{item.style} Dress</p>
-                                                    <p className="detailsListText">{item.text}</p>
+                                                    <p className="detailsListSlogan" >{item.good.style} Dress</p>
+                                                    <p className="detailsListText">{item.good.text}</p>
                                                     <div className="detailsListStars">
                                                         <div className="stars" >
                                                             <i className="far fa-star ">
@@ -115,11 +113,11 @@ const DetailsPage = (props: any) => {
                                                                 <i className="fas fa-star "></i>
                                                             </i>
                                                         </div>
-                                                        <p>{item.reviews ? item.goodReviewsQuantity : null} Reviews</p>
+                                                        <p>{item.review ? item.reviewQuantity : null} Reviews</p>
                                                     </div>
 
-                                                    <p className="detailsItem-price-line">€{item.salePrice}</p>
-                                                    <p className="detailsItem-price">€{item.price}</p>
+                                                    <p className="detailsItem-price-line">€{item.good.salePrice}</p>
+                                                    <p className="detailsItem-price">€{item.good.price}</p>
                                                     <hr />
                                                 </div>
 
@@ -157,8 +155,8 @@ const DetailsPage = (props: any) => {
                                                 <SiteHeadline text="Recommended For You" />
                                             </div>
                                             <div className="col-12 col-md-6">
-                                                <div className="styleBtn">
-                                                    <Button2 text="ALL CATALOG" to="/catalog" />
+                                                <div className="d-flex justify-content-end">
+                                                    <MyButton text="ALL CATALOG" href="/catalog" variant="outlined" color="default" />
                                                 </div>
                                             </div>
                                         </div>
@@ -168,7 +166,7 @@ const DetailsPage = (props: any) => {
 
                                         <div className="row">
                                             <div className="col-12 btnWidth">
-                                                <Button2 text="All CATALOG" to="/catalog" />
+                                                <MyButton text="All CATALOG" href="/catalog" variant="outlined" color="default" />
                                             </div>
                                         </div>
                                     </div>
@@ -181,20 +179,18 @@ const DetailsPage = (props: any) => {
                                             <div className="col-6">
                                                 <SiteHeadline text="Reviews" />
                                             </div>
-                                            <div className="col-6">
-                                                <div className="styleBtn">
+                                            <div className="col-6  d-flex justify-content-end">
+                                                <button onClick={() => props.reviewsActions.setItemOfReview(item)}>  <MyButton href={`/feedback/${item._id}`} text="WRITE A REVIEW" variant="outlined" color="secondary" /></button>
 
-                                                    <Link style={{ border: '1px solid #E77E83' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.reviewsActions.setItemOfReview(item)}>Write a Review</Link>
-                                                </div>
                                             </div>
                                         </div>
-                                        {!item.reviews.length ? <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">На данный момент в этого товара нет отзывов<br /><i className="fab fa-linux"></i></h4></div> : null}
-                                        {item.reviews.map((item: any) => <div key={item._id} className="reviewItem">
+                                        {!item.review.length ? <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">На данный момент в этого товара нет отзывов<br /><i className="fab fa-linux"></i></h4></div> : null}
+                                        {item.review.map((item: any) => <div key={item._id} className="reviewItem">
                                             <div className="row">
                                                 <div className="col-12 col-sm-12  col-lg-3 ">
                                                     <div className="reviewInform ">
                                                         <div className="reviewImg">
-                                                            <img src={item.photo != "undefined" ? `http://localhost:5000/${item.photo}` : userPhoto} alt="" />
+                                                            <img src={item.photo !== "undefined" ? `http://localhost:5000/${item.photo}` : userPhoto} alt="" />
                                                         </div>
                                                         <div className="reviewText">
                                                             <h5>{item.name}</h5>

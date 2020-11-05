@@ -1,7 +1,7 @@
 import React from 'react'
 import "./SignPage.css"
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { Redirect } from 'react-router-dom'
 import Login from '../../Forms/Login/Login'
@@ -30,18 +30,18 @@ class SignPage extends React.Component {
                             <div className="col-12 col-md-7">
                                 <Login />
                                 <div className="signReturnBtn">
-                                    <Button3 link="/card" text="Return to cart" />
+                                    <MyButton href="/card" variant="text" text="Return to cart" />
                                 </div>
                             </div>
 
                             <div className="col-12 col-md-5 d-flex justify-content-center align-items-center flex-column" >
-                           <h5 className="signHeadline">Not a member? Sign Up</h5>
+                                <h5 className="signHeadline">Not a member? Sign Up</h5>
                                 <FacebookLogin />
                                 <GoogleLogin />
                                 <Register />
                                 <div className="signReturnBtn-active">
                                     <div className="returnLink">
-                                        <Button3 link="/card" text="Return to cart" />
+                                        <MyButton href="/card" text="Return to cart" />
                                     </div>
                                 </div>
                             </div>

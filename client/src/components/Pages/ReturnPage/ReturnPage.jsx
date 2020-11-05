@@ -3,7 +3,7 @@ import './ReturnPage.css'
 import Sidebar from '../../Sidebar/Sidebar'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
 
@@ -17,8 +17,8 @@ const ReturnPage = () => {
 
                     <div className="row">
                         <div className="col-12">
-                                <SiteHeadline text="My return" />
-                            </div>
+                            <SiteHeadline text="My return" />
+                        </div>
                     </div>
                     <div className="returnInform">
                         <div>
@@ -60,34 +60,34 @@ const ReturnPage = () => {
                             </div>
 
                             <div className="returnItem">
-                               
-                                    <div className="row">
-                                        <div className="col-4">
-                                            <p className="bagCard__slogan">maxi DRESS</p>
-                                            <div className="bagCard__list">
-                                                <p>A perfect flirty number for Balls and Black Tie.</p>
-                                            </div>
-                                            <div className="bagCard__size d-flex">
-                                                <p>Size: XS</p>
-                                                <img src="images/svg/Vector (11).svg" alt="" />
-                                            </div>
-                                            <p className="bagCard__p">Rental period* : 7 days</p>
-                                            <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
+
+                                <div className="row">
+                                    <div className="col-4">
+                                        <p className="bagCard__slogan">maxi DRESS</p>
+                                        <div className="bagCard__list">
+                                            <p>A perfect flirty number for Balls and Black Tie.</p>
                                         </div>
-                                        <div className="col-2">
-                                            <p style={{ fontSize: '12px' }}>4146567738</p>
+                                        <div className="bagCard__size d-flex">
+                                            <p>Size: XS</p>
+                                            <img src="images/svg/Vector (11).svg" alt="" />
                                         </div>
-                                        <div className="col-3">
-                                            <p style={{ fontSize: '12px' }}>9tmlAIDfmx8B</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <div className="returnItem-column">
-                                                <img src="images/svg/Vector (24).svg" alt="" />
-                                                <p style={{ fontSize: '12px' }}>Return received on Mar 17, 2020</p>
-                                            </div>
+                                        <p className="bagCard__p">Rental period* : 7 days</p>
+                                        <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
+                                    </div>
+                                    <div className="col-2">
+                                        <p style={{ fontSize: '12px' }}>4146567738</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <p style={{ fontSize: '12px' }}>9tmlAIDfmx8B</p>
+                                    </div>
+                                    <div className="col-3">
+                                        <div className="returnItem-column">
+                                            <img src="images/svg/Vector (24).svg" alt="" />
+                                            <p style={{ fontSize: '12px' }}>Return received on Mar 17, 2020</p>
                                         </div>
                                     </div>
-                               
+                                </div>
+
                             </div>
 
                         </div>
@@ -139,7 +139,7 @@ const ReturnPage = () => {
                     <div className="container">
                         <div className="col-12">
                             <div className="returnLink">
-                            <Button3 link="/catalog" text="Return to catalogue" />
+                                <MyButton href="/catalog" text="Return to catalogue" variant="text" />
                             </div>
                         </div>
                     </div>

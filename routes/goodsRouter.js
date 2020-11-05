@@ -52,11 +52,10 @@ router.get('/:id', async (req, res) => {
         const good = await Goods.findById(req.params.id)
         const reviewLength = await Reviews.find({ goodsId: req.params.id })
         const review = await Reviews.find({ goodsId: req.params.id }).limit(2)
+
         let reviewQuantity = reviewLength.length
-        let data = { good, review }
-        let payload = {}
-        let goods = Object.assign({ data }, payload)
-        res.json({ goods, reviewQuantity })
+        let data = { good, review, reviewQuantity }
+        res.json(data)
     } catch (err) {
         if (err.name === 'CastError') res.status(404).json('Goods with Given ID not found.')
         else res.status(500).json('Error getting Good.')

@@ -5,7 +5,9 @@ export const goodsAPI = {
         return instance.post(`goods?page=${pageNumber}&pageSize=${pageSize}`, { data }).then((res) => res.data)
     },
     getGood(id: string) {
-        return instance.get(`goods/${id}`).then((res) => res.data)
+        return instance.get(`goods/${id}`).then((res) => {
+            return res.data
+        })
     },
     getReviews() {
         return instance.get('goods/reviews').then((res) => res.data)

@@ -33,6 +33,46 @@ import DetailsContainer from './components/Pages/DetailsPage/DetailsContainer'
 import Modal from './components/common/Modal/Modal'
 import NotFound from './components/Pages/NotFound/NotFound'
 import FooterContainer from './components/Footer/FooterContainer'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { font } from './fonts/Montserrat/font'
+import { Test } from './components/Pages/Test'
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            light: '#ffafb2',
+            main: '#e77e83',
+            dark: '#b24f56',
+            contrastText: '#000',
+        },
+        secondary: {
+            light: '#ff7961',
+            main: '#f44336',
+            dark: '#ba000d',
+            contrastText: '#e77e83',
+        },
+        default: {
+            light: '#373737',
+            main: '#111111',
+            dark: '#000000',
+            contrastText: '#ffffff',
+        },
+        color: {
+            white: '#fff',
+        },
+    },
+    typography: {
+        fontFamily: 'Montserrat',
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                '@font-face': [font],
+            },
+        },
+    },
+})
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeThunkApp()
@@ -43,33 +83,37 @@ class App extends React.Component {
             return <Preloader />
         } else {
             return (
-                <Router>
-                    <Suspense fallback={<div>Загрузка...</div>}>
-                        <NavContainer />
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Router>
+                        <Suspense fallback={<div>Загрузка...</div>}>
+                            <NavContainer />
 
-                        <Switch>
-                            <Route exact path="/" component={FrontPage} />
-                            <Route path="/catalog" component={CatalogPageContainer} />
-                            <Route path="/details/:id?" component={DetailsContainer} />
-                            <Route path="/card" component={CardPageContainer} />
-                            <Route path="/changepass" component={ChangepassPage} />
-                            <Route path="/checkout" component={CheckoutPage} />
-                            <Route path="/feedback/:id?" component={FeedbackContainer} />
-                            <Route path="/help" component={HelpPage} />
-                            <Route path="/inform" component={InformContainer} />
-                            <Route path="/orders" component={OrdersPageContainer} />
-                            <Route path="/return" component={ReturnPage} />
-                            <Route path="/sign" component={SignPage} />
-                            <Route path="/forgotpassword" component={ForgotPassword} />
-                            <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
-                            <Route path="/buy" component={Checkout} />
-                            <Route path="/order" component={Order} />
-                            <Route component={NotFound} />
-                        </Switch>
-                        <Modal />
-                        <FooterContainer />
-                    </Suspense>
-                </Router>
+                            <Switch>
+                                <Route exact path="/" component={FrontPage} />
+                                <Route path="/catalog" component={CatalogPageContainer} />
+                                <Route path="/details/:id?" component={DetailsContainer} />
+                                <Route path="/card" component={CardPageContainer} />
+                                <Route path="/changepass" component={ChangepassPage} />
+                                <Route path="/checkout" component={CheckoutPage} />
+                                <Route path="/feedback/:id?" component={FeedbackContainer} />
+                                <Route path="/help" component={HelpPage} />
+                                <Route path="/inform" component={InformContainer} />
+                                <Route path="/orders" component={OrdersPageContainer} />
+                                <Route path="/return" component={ReturnPage} />
+                                <Route path="/sign" component={SignPage} />
+                                <Route path="/forgotpassword" component={ForgotPassword} />
+                                <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
+                                <Route path="/buy" component={Checkout} />
+                                <Route path="/order" component={Order} />
+                                <Route path="/test" component={Test} />
+                                <Route component={NotFound} />
+                            </Switch>
+                            <Modal />
+                            <FooterContainer />
+                        </Suspense>
+                    </Router>
+                </ThemeProvider>
             )
         }
     }

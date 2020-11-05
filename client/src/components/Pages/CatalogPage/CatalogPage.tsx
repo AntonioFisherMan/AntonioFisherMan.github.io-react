@@ -2,7 +2,7 @@ import React from 'react'
 import './CatalogPage.css'
 import { Link } from 'react-router-dom'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
-import Button1 from '../../SiteButtons/Button1/Button1'
+import MyButton from '../../SiteButton/MyButton'
 import Paginator from '../../common/Paginator/Paginator'
 import { Field, reduxForm } from 'redux-form'
 import Preloader from '../../common/Preloader'
@@ -73,7 +73,7 @@ const CatalogPage = (props: any) => {
                                         <h4>{item.text}</h4>
                                         <p>{item.style} Dress</p>
                                         <h5>€{item.price}</h5>
-                                        <Button1 to={`details/${item._id}`} text="Подробнее" />
+                                        <MyButton href={`details/${item._id}`} text="Подробнее" />
                                     </div>) :
                                         <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">К сожалению по выбранному запросу товаров нет в наличии<br /><i className="fab fa-linux"></i></h4> </div>
                                 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 import { MaxLength, MinLength, required } from '../../../utils/Validators/validators'
 
 const MaxLengthCreator30 = MaxLength(30)
@@ -53,7 +53,7 @@ const UserInformForm = (props) => {
             </div>
             <div className="form-row">
                 <div className="col-12 d-flex align-items-center">
-                    <Button3 link="/catalog" text="Return to catalogue" />
+                    <MyButton href="/catalog" text="Return to catalogue" variant="text" />
                 </div>
                 <div className="col-12 d-flex align-items-center justify-content-end">
                     <button className="formBtn">Заказать</button>

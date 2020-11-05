@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './FrontPage.module.css'
-import Button1 from "../../SiteButtons/Button1/Button1";
-import Button2 from "../../SiteButtons/Button2/Button2";
+import MyButton from "../../SiteButton/MyButton";
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import Item from "./Item/Item";
 import Slider from "../../Slider/Slider";
@@ -21,7 +20,7 @@ const FrontPage = (props) => {
                   <span>Unlimited Choice</span>
                 </h1>
                 <p>DECIDED TO RENT THE DRESS?</p>
-                <Button1 to="/" text="rent now" />
+                <MyButton href="/" text="rent now" color="default" variant="contained" />
               </div>
             </div>
           </div>
@@ -74,7 +73,7 @@ const FrontPage = (props) => {
 
           <div className="row">
             <div className="col-12 d-flex justify-content-center">
-              <Button1 to="/" text="rent now" />
+              <MyButton href="/" text="rent now" />
             </div>
           </div>
 
@@ -89,7 +88,7 @@ const FrontPage = (props) => {
             </div>
             <div className="col-12 col-md-6 ">
               <div className={styles.styleBtn}>
-                <Button2 to="/follow" text="follow us" />
+                <MyButton href="/follow" text="follow us" variant="outlined" color="default" />
               </div>
             </div>
           </div>
@@ -103,7 +102,7 @@ const FrontPage = (props) => {
           <div className={styles.btnWidth}>
             <div className="row">
               <div className="col-12">
-                <Button2 to="/follow" text="All CATALOG" />
+                <MyButton href="/follow" text="All CATALOG" variant="outlined" color="default" />
               </div>
             </div>
           </div>
@@ -155,7 +154,7 @@ const FrontPage = (props) => {
 
           <div className="row">
             <div className="col-12 d-flex justify-content-center">
-              <Button1 to="/" text="rent now" />
+              <MyButton href="/" text="rent now" />
             </div>
           </div>
         </div>
@@ -169,7 +168,7 @@ const FrontPage = (props) => {
             </div>
             <div className="col-12 col-md-6">
               <div className={styles.styleBtn}>
-                <Button2 to="/follow" text="follow us" />
+                <MyButton href="/follow" text="follow us" variant="outlined" color="default" />
               </div>
             </div>
           </div>

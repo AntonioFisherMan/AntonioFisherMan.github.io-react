@@ -5,6 +5,7 @@ import { required, MinLength, MaxLength } from '../../../utils/Validators/valida
 import { Link } from 'react-router-dom'
 import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
 import { createField } from '../../common/FormsControls/FormControl'
+import MyButton from '../../SiteButton/MyButton'
 
 
 
@@ -43,7 +44,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType, LoginPropsType> & L
                     <span className="checkText span">Remember Me<span>(PrivacyPolicy)</span></span>
                 </label>
                 <Link className="forgotPass" to="/forgotpassword">forgot password</Link>
-                <button>Login</button>
+                <button><MyButton text="Login" /></button>
             </div>
             {props.errors && props.errors.id === 'LOGIN_FAIL' ? <ErrorMessage message={props.errors.message} /> : null}
         </form>

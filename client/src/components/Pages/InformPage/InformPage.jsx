@@ -4,7 +4,7 @@ import Sidebar from '../../Sidebar/Sidebar'
 import SiteHeadline from '../../SiteHeadline/SiteHeadline'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
-import Button3 from '../../SiteButtons/Button3/Button3'
+import MyButton from '../../SiteButton/MyButton'
 
 import UploadFile from '../../common/UploadFile/UploadFile'
 import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
@@ -13,72 +13,72 @@ import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
 const InformPage = (props) => {
 
     const updateInform = (formData) => {
-        var data=new FormData();
-        if(formData.userImage!=null){
+        var data = new FormData();
+        if (formData.userImage != null) {
             debugger
-            data.append("file",formData.userImage[0])
+            data.append("file", formData.userImage[0])
         }
-        else{
+        else {
             debugger
-            data.append("file",props.inform.userImage)
+            data.append("file", props.inform.userImage)
         }
-        data.append("city",formData.city)
-        data.append("code",formData.code)
-        data.append("name",formData.name)
-        data.append("phone",formData.phone)
-        data.append("post",formData.post)
-        data.append("surname",formData.surname)
-        data.append("country",formData.country)
+        data.append("city", formData.city)
+        data.append("code", formData.code)
+        data.append("name", formData.name)
+        data.append("phone", formData.phone)
+        data.append("post", formData.post)
+        data.append("surname", formData.surname)
+        data.append("country", formData.country)
         props.updateInform(data)
     }
-    const setInform=(formData)=>{
-        var data=new FormData();
-        if(formData.userImage){
-            data.append("file",formData.userImage[0])
+    const setInform = (formData) => {
+        var data = new FormData();
+        if (formData.userImage) {
+            data.append("file", formData.userImage[0])
         }
-        else{
-            data.append("file",props.inform.userImage)
+        else {
+            data.append("file", props.inform.userImage)
         }
-        data.append("city",formData.city)
-        data.append("code",formData.code)
-        data.append("name",formData.name)
-        data.append("phone",formData.phone)
-        data.append("post",formData.post)
-        data.append("surname",formData.surname)
-        data.append("country",formData.country)
+        data.append("city", formData.city)
+        data.append("code", formData.code)
+        data.append("name", formData.name)
+        data.append("phone", formData.phone)
+        data.append("post", formData.post)
+        data.append("surname", formData.surname)
+        data.append("country", formData.country)
         props.setInform(data)
     }
     return (
         <div>
-                <HeaderBottom />
-                <section className="checkoutBlock">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12">
-                                <SiteHeadline text="My information" />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12 col-md-3">
-                                <Sidebar />
-                            </div>
-                            <div className="col-12 col-md-8">
-                                {props.success&&props.success.message != null ? <SuccessMessage message={props.success.message}/>:props.inform?<ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform}/>:<ReduxUserInform isAddInform={props.isAddInform}onSubmit={setInform} errors={props.errors} />}
-                            </div>
-                           
+            <HeaderBottom />
+            <section className="checkoutBlock">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <SiteHeadline text="My information" />
                         </div>
                     </div>
-                </section>
+                    <div className="row">
+                        <div className="col-12 col-md-3">
+                            <Sidebar />
+                        </div>
+                        <div className="col-12 col-md-8">
+                            {props.success && props.success.message != null ? <SuccessMessage message={props.success.message} /> : props.inform ? <ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform} /> : <ReduxUserInform isAddInform={props.isAddInform} onSubmit={setInform} errors={props.errors} />}
+                        </div>
+
+                    </div>
+                </div>
+            </section>
         </div>
-        
-      
+
+
     )
 }
 
 const UserInformForm = (props) => {
-    return ( 
+    return (
         <form className="checkoutForm" onSubmit={props.handleSubmit}>
-            {props.initialValues&&props.initialValues.userImage?<img style={{width:'100px',height:'100px',margin:'0 auto'}} src={`http://localhost:5000/${props.initialValues.userImage}`}/>:<p>Here will be your photo</p>}
+            {props.initialValues && props.initialValues.userImage ? <img style={{ width: '100px', height: '100px', margin: '0 auto' }} src={`http://localhost:5000/${props.initialValues.userImage}`} /> : <p>Here will be your photo</p>}
             <div className="form-row">
                 <h5 className="formHeadline">Shipping address</h5>
             </div>
@@ -119,23 +119,23 @@ const UserInformForm = (props) => {
                 <div className="form-check">
                     <label><Field type="checkbox" component={"input"} name="check" className="form-check-label checkbox" /><span className="fake"></span><span id="checkText">same as Shipping Address</span></label>
                 </div>
-                <UploadFile name={"userImage"}/>
+                <UploadFile name={"userImage"} />
             </div>
             <div className="form-row d-flex align-items-center">
                 <div className="returnLink">
-                    <Button3 link="/catalog" text="Return to catalogue" />
+                    <MyButton href="/catalog" text="Return to catalogue" variant="text" />
                 </div>
-                {props.isAddInform===true?<div className="ml-auto">
-                    <button className="formBtn">Обновить</button>
-                </div>:<div className="ml-auto">
-                    <button className="formBtn" >Сохранить</button>
-                </div>}
-               
+                {props.isAddInform === true ? <div className="ml-auto">
+                    <button ><MyButton text="Обновить" /></button>
+                </div> : <div className="ml-auto">
+                        <button  ><MyButton text="Сохранить" /></button>
+                    </div>}
+
             </div>
-         
-            {props.errors&&props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <ErrorMessage message={props.errors.message}/>:null}
+
+            {props.errors && props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <ErrorMessage message={props.errors.message} /> : null}
         </form>
-       
+
     )
 }
 

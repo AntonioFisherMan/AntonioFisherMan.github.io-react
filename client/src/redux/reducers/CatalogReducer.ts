@@ -10,7 +10,7 @@ let initialState = {
     pageSize: 3 as number,
     totalCount: 0 as number,
     pageNumber: 1 as number,
-    goodItem: [] as Array<GoodType> | null,
+    goodItem: [] as Array<object> | null,
 }
 
 type InitialStateType = typeof initialState
@@ -62,12 +62,8 @@ export const getGoodsForSlider = () => async (dispatch: DispatchType) => {
     } catch (err) {}
 }
 export const getGoodsThunkById = (id: string) => async (dispatch: DispatchType) => {
-    try {
-        let data = await goodsAPI.getGood(id)
-        data.reviews = data.goods.data.review
-        data.goodReviewsQuantity = data.reviewQuantity
-        dispatch(catalogActions.getGood(data))
-    } catch (err) {}
+    let data = await goodsAPI.getGood(id)
+    dispatch(catalogActions.getGood(data))
 }
 export const getGoodsThunk = (pageNumber: number, pageSize: number, obj: any) => async (dispatch: DispatchType) => {
     try {

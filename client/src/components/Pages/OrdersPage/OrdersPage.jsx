@@ -2,7 +2,7 @@ import React from 'react'
 import './OrdersPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import MyButton from '../../SiteButton/MyButton'
 import { Link } from 'react-router-dom'
 
@@ -76,7 +76,7 @@ const OrdersPage = (props) => {
                                             </div>
                                         </div>
 
-                                        <Link style={{ marginTop: '10px', width: '150px', height: '30px' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.reviewsActions.setItemOfReview(item)}>Write a Review</Link>
+                                        <Link style={{ marginTop: '10px', width: '150px', height: '30px' }} className="buttonBlock" to={`/feedback/${item._id}`} onClick={() => props.setItemOfReview(item)}>Write a Review</Link>
 
                                     </div>
                                     <div className="row orders__item-active" >

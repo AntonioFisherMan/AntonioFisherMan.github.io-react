@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
 import { setReviews, reviewsActions } from '../../../redux/reducers/ReviewsReducer'
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
+import { ServerMessageData } from '../../../hoc/ServerMessageData'
 
 class FeedbackContainer extends React.Component {
 
@@ -19,4 +19,4 @@ let mapStateToProps = (state) => {
         review: state.reviews.reviews
     }
 }
-export default compose(WithAuthRedirect, SuccessErrorsData, connect(mapStateToProps, { setReviews, reviewsActions }))(FeedbackContainer)
+export default compose(WithAuthRedirect, ServerMessageData, connect(mapStateToProps, { setReviews, ...reviewsActions }))(FeedbackContainer)

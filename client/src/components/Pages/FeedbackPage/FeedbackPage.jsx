@@ -2,15 +2,15 @@ import React from 'react'
 import './FeedbackPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import { reduxForm, Field } from 'redux-form'
 import { Textarea } from '../../common/FormsControls/Textarea'
 import { Link } from 'react-router-dom'
 import UploadFile from '../../common/UploadFile/UploadFile'
-import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
-import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
+import ServerMessage from '../../common/ServerMessages/ServerMessage'
 import { required } from '../../../utils/Validators/validators'
 import { figureOutDate } from '../../../utils/helperFunctions/figureOutDate'
+import MyButton from '../../SiteButton/MyButton'
 
 const FeedbackPage = (props) => {
     const goodsId = props.match.params.id;
@@ -46,7 +46,7 @@ const FeedbackPage = (props) => {
                             </div>
                         </div>
 
-                        {props.success && props.success.message ? <SuccessMessage message={props.success.message} /> : props.review.length > 0 ?
+                        {props.success && props.success.message ? <ServerMessage message={props.success.message} code="success" /> : props.review.length > 0 ?
                             <div className="feedbackList">
                                 <div className="returnLinks">
                                     <div className="container">
@@ -223,10 +223,11 @@ const FeedbackForm = (props) => {
                     <UploadFile name={"images"} />
                     <div className="feedbackFormSubmit">
                         <Field validate={[required]} component={Textarea} className="form-control" id="feedbackForm2-textarea" name="feedbackTextarea" />
-                        <button className="formBtn ml-auto" >Send</button>
+                        <button className=" ml-auto" ><MyButton text="Send" /></button>
+
                     </div>
                 </form>
-                {props.errors && props.errors.id === 'ERRORS_FILE_UPLOAD' ? <ErrorMessage message={props.errors.message} /> : null}
+                {props.errors && props.errors.id === 'ERRORS_FILE_UPLOAD' ? <ServerMessage message={props.errors.message} /> : null}
             </div>
         </div>
     )

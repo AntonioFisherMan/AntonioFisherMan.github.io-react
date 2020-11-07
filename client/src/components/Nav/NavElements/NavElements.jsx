@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { colors } from '../../common/all/colors'
 import './NavElements.css'
-
+import Badge from '@material-ui/core/Badge';
 export const NavAccount = ({ isAuth, user, logout }) => {
         return (
                 <div className="navBlock">
@@ -16,8 +16,11 @@ export const NavAccount = ({ isAuth, user, logout }) => {
 export const NavCart = ({ totalSizeCard }) => {
         return (
                 <div className="navBlock">
-                        <img src="/images/svg/Vector (4).svg" alt="Cart" />
-                        <NavLink activeStyle={{ color: colors.PINK }} className="textColor" to="/card">{totalSizeCard === 0 ? <p >Cart</p> : <div ><i style={{ fontSize: '14px' }} className="fas fa-cart-arrow-down "></i>-{totalSizeCard}</div>}</NavLink>
+                        <Badge badgeContent={totalSizeCard} color="primary">
+                                <NavLink activeStyle={{ color: colors.PINK }} className="textColor" to="/card">
+                                        {totalSizeCard === 0 ? <p >Cart </p> : <div ><i style={{ fontSize: '14px' }} className="fas fa-cart-arrow-down "></i></div>}
+                                </NavLink>
+                        </Badge>
                 </div>
 
         )

@@ -2,22 +2,24 @@ import React from 'react'
 import './CardPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import MyButton from '../../SiteButton/MyButton'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import { figureOutDate } from '../../../utils/helperFunctions/figureOutDate'
 import { CardItemType } from '../../../types/types'
+import { PinkText } from '../../common/elements/PinkText'
+import { H5 } from '../../Typography/H5'
 
 
 
 const CardPage = (props: any) => {
-    let insurance = true
+    let isInsurance = true
     const increaseQuantity = (item: CardItemType) => {
         item.quantity = item.quantity + 1;
-        props.cardActions.changeQuantity(item._id, item.quantity)
+        props.changeQuantity(item._id, item.quantity)
     }
     const decreaseQuantity = (item: CardItemType) => {
         if (item.quantity > 1) {
             item.quantity = item.quantity - 1;
-            props.cardActions.changeQuantity(item._id, item.quantity)
+            props.changeQuantity(item._id, item.quantity)
         }
     }
 
@@ -71,7 +73,7 @@ const CardPage = (props: any) => {
                                         <button className="decrease" onClick={() => decreaseQuantity(item)}>-</button>
                                     </div>
 
-                                    <img onClick={() => props.cardActions.removeProduct(item._id)} src="images/svg/Vector (14).svg" alt="" />
+                                    <img onClick={() => props.removeProduct(item._id)} src="images/svg/Vector (14).svg" alt="" />
                                 </div>
                                 <div className="cardSize d-flex">
                                     <p>Size:{item.size}</p>
@@ -80,14 +82,14 @@ const CardPage = (props: any) => {
                                 <p className="cardText">Rental period<span className="starSmall">*</span> {figureOutDate(item.startDate, item.endDate)} days</p>
                                 <p>Dates: {item.startDate}-{item.endDate} </p>
                                 <div className="cardDiscount">
-                                    {!item.insurance ? <><div>
-                                        <img src="images/svg/Vector (15).svg" alt="" onClick={() => props.cardActions.addInsurance(item._id, insurance)} />
+                                    {!item.isInsurance ? <><div>
+                                        <img src="images/svg/Vector (15).svg" alt="" onClick={() => props.addInsurance(item._id, isInsurance)} />
                                     </div>
                                         <div>
-                                            <p><span>Add </span>insurance for this item for €5</p>
+                                            <p><PinkText text="Add" /> insurance for this item for €5</p>
                                             <p className="cardTextGrey">This will cover accidental damage (example: zip break) but not unrepairable damage</p>
                                         </div></> : <><div>
-                                            <img onClick={() => { props.cardActions.removeInsurance(item._id, insurance = false) }} src="images/svg/Vector (14).svg" alt="" />
+                                            <img onClick={() => { props.removeInsurance(item._id, isInsurance = false) }} src="images/svg/Vector (14).svg" alt="" />
                                         </div>
                                             <div>
                                                 <p>This product has insurance <span>€5</span></p>
@@ -119,7 +121,7 @@ const CardPage = (props: any) => {
                                             <p>Size: XS{props.items.size}</p>
                                             <img src="images/svg/Vector (11).svg" alt="" />
                                         </div>
-                                        <p className="cardText" >Rental period<span className="starSmall">*</span> : 7 days</p>
+                                        <p className="cardText" >Rental period<PinkText text="*" /> : 7 days</p>
                                         <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
                                     </div>
 
@@ -144,7 +146,7 @@ const CardPage = (props: any) => {
                         <div className="cardExtraText">
                             <div className="row">
                                 <div className="col-10">
-                                    <p><span className="starSmall">*</span> Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
+                                    <p><PinkText text="*" />Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
                                 and keep all 3 outfits for 21 days!
                                 Wear all outfits for as many times as you want.</p>
                                 </div>
@@ -157,9 +159,9 @@ const CardPage = (props: any) => {
                                 </div>
                                 <div className="col-12 col-md-9">
                                     <div className="cardInformListText d-flex">
-                                        <h5>Subtotal: €{props.totalPrice}</h5>
+                                        <H5 text={`Subtotal: € ${props.totalPrice}`} />
                                         <MyButton text="order" href="/buy" />
-                                        <p>By proceeding you are agreeing to our <span>Terms & Conditions</span></p>
+                                        <p>By proceeding you are agreeing to our <PinkText text="Terms & Conditions" /></p>
 
                                     </div>
                                 </div>

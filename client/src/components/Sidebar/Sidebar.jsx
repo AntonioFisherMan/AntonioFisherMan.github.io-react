@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from './Sidebar.module.css'
 import { NavLink } from 'react-router-dom'
+import { H6 } from '../Typography/H6'
 
 
 const Sidebar = () => {
     return (
         <div>
-            <p className={styles.sidebarText}>Menu</p>
+
+            <H6 text="Menu" />
             <div className={styles.sidebar}>
                 <ul>
                     <NavLink activeStyle={{ color: "#E77E83" }} to="/orders" className={styles.sidebarItem}>

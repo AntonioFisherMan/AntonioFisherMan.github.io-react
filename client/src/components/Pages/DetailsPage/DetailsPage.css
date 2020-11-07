@@ -68,17 +68,6 @@
     padding-bottom: 15px;
 }
 
-.detailsInformList h6 {
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    margin-top: 21px !important;
-    color: #000000;
-    margin-bottom: 15px !important;
-}
-
 .detailsSize {
     margin-left: 21px;
 }
@@ -152,7 +141,6 @@ input[type="date"]:before {
     font-weight: normal;
     font-size: 15px;
     line-height: 18px;
-    display: flex;
     color: #979797;
     margin-top: 19px !important;
     margin-bottom: 23px !important;

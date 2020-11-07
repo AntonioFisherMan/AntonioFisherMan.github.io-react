@@ -22,7 +22,10 @@ export const authAPI = {
             .then((res) => res.data)
     },
     forgotPassword(forgotEmail: string) {
-        return instance.post('users/forgot_password', { forgotEmail }).then((res) => res.data)
+        return instance.post('users/forgot_password', { forgotEmail }).then((res) => {
+            debugger
+            return res.data
+        })
     },
     resetPassword(newPassword: string, verifyPassword: string, token: string) {
         return instance.post('users/reset_password', { newPassword, verifyPassword, token }).then((res) => res.data)

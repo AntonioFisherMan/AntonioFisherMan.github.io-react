@@ -2,10 +2,11 @@ import React from 'react'
 import './ReturnPage.css'
 import Sidebar from '../../Sidebar/Sidebar'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import MyButton from '../../SiteButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
+import { PinkText } from '../../common/elements/PinkText'
 
 const ReturnPage = () => {
     return (
@@ -33,7 +34,7 @@ const ReturnPage = () => {
                             <div className="row">
                                 <div className="col-12 col-lg-10">
                                     <div className="returnText">
-                                        <p><span> Return is included in your order!</span> <br />
+                                        <p><PinkText text="Return is included in your order!" /> <br />
                                         In your box you will find a pre-payed return label that you need to place on
                                         your box
                                         and drop off at the nearest post office.

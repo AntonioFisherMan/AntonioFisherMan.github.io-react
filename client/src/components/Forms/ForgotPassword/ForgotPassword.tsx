@@ -1,63 +1,59 @@
-import React from 'react'
-import { authActions, AuthActionsType } from '../../../redux/reducers/AuthReducer'
+import React, { useEffect, useState } from 'react'
+import { authActions } from '../../../redux/reducers/AuthReducer'
 import { requestToken } from '../../../redux/reducers/AuthReducer'
-import { compose } from 'redux';
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData';
 import { connect } from 'react-redux';
-import { MessageActions, messageActions } from '../../../redux/reducers/SuccessErrorReducer'
-import SuccessMessage from '../../common/ServerMessages/SuccessMessage';
-import ErrorMessage from '../../common/ServerMessages/ErrorMessage';
+import { MessageActions } from '../../../redux/reducers/ServerMessageReducer'
 import { AppStateType } from '../../../redux/ReduxStore';
+import MyButton from '../../SiteButton/MyButton';
 
-class ForgotPassword extends React.Component<any> {
-    componentDidMount() {
-        this.props.authActions.resetEmailSentClear('')
-    }
-    handleSubmit = (e: any) => {
+
+const ForgotPassword: React.FC<ForgotPasswordType> = (props) => {
+    const [email, setEmail] = useState('')
+
+    useEffect(() => {
+        props.resetEmailSentClear('')
+    }, [])
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        this.props.requestToken();
+        props.requestToken();
+        setEmail('')
     }
-    generateForm = () => {
-        return (
-            <div>
-                <div className="container">
-                    <div className="row ">
-                        <div className="col-12 d-flex justify-content-center">
-                            <form onSubmit={this.handleSubmit}>
-                                <input className="form-control" type="email" onChange={(e) => this.props.authActions.changePass(e.target.value)} placeholder="Enter your email" />
-                                <input className="btn btn-success" style={{ width: "100%", marginTop: '20px' }} type="submit" value="Отправить" />
-                            </form>
+    const handleChangePass = (e: any) => {
+        props.changePass(e.target.value)
+        setEmail(e.target.value)
+    }
+    return (
 
-                        </div>
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        {this.props.errors.id === 'FORGOT_ERROR' ? <ErrorMessage message={this.props.errors.message} /> : null}
+        <div>
+            <div className="container">
+                <div className="row ">
+                    <div className="col-12 d-flex justify-content-center">
+                        <form onSubmit={handleSubmit}>
+                            <input className="form-control" type="email" value={email} onChange={handleChangePass} placeholder="Enter your email" />
+                            <button ><MyButton text="Отправить" href="" /></button>
+                        </form>
+
                     </div>
                 </div>
+
             </div>
-
-
-        )
-    }
-    render() {
-        return (
-            <div>
-                {this.props.emailSent ? <SuccessMessage message={"If account exist you will recieve message with instructions"} /> : this.generateForm()}
-            </div>
-
-        )
-    }
+        </div>
+    )
 }
+
+
+
+
 
 type mapStateToPropsType = {
     email: string,
     emailSent: boolean,
-    errors: { id: string, message: string }
 }
 type mapDispatchToProps = {
     messageActions: MessageActions,
-    authActions: AuthActionsType,
-    requestToken: () => void
+    resetEmailSentClear: (string: string) => void,
+    requestToken: () => void,
+    changePass: (value: string) => void
 }
 type ForgotPasswordType = mapStateToPropsType & mapDispatchToProps
 
@@ -69,8 +65,5 @@ let mapStateToProps = (state: AppStateType) => {
 }
 
 
-export default compose(
-    SuccessErrorsData,
-    connect(mapStateToProps, { messageActions, authActions, requestToken })
-)(ForgotPassword)
+export default connect(mapStateToProps, { ...authActions, requestToken })(ForgotPassword)
 

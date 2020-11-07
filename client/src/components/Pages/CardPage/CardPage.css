@@ -93,10 +93,7 @@ color: #979797 !important;
     background: #F7F8FC;
     margin-top: 28px;
 }
-.starSmall {
-    color:#E77E83;
-    
-}
+
 .cardExtraText p{
     font-weight: normal;
 font-size: 15px;
@@ -134,10 +131,6 @@ line-height: 150%;
 color: #979797;
 margin-top: 20px !important;
 }
-.cardInformListText span{
-    color: #E77E83;
-}
-
 
 @media (max-width: 575.98px) { 
     .cardLink, .cardItem{

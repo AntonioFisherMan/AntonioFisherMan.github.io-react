@@ -2,7 +2,7 @@ import React from 'react'
 import "./SignPage.css"
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import MyButton from '../../SiteButton/MyButton'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import { Redirect } from 'react-router-dom'
 import Login from '../../Forms/Login/Login'
 import Register from '../../Forms/Register/Register'
@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 
 import FacebookLogin from '../../Forms/FacebookGoogle/Facebook'
 import GoogleLogin from '../../Forms/FacebookGoogle/Google'
+import { H6 } from '../../Typography/H6'
 
 class SignPage extends React.Component {
     render() {
@@ -35,7 +36,8 @@ class SignPage extends React.Component {
                             </div>
 
                             <div className="col-12 col-md-5 d-flex justify-content-center align-items-center flex-column" >
-                                <h5 className="signHeadline">Not a member? Sign Up</h5>
+
+                                <H6 text="Not a member? Sign Up" />
                                 <FacebookLogin />
                                 <GoogleLogin />
                                 <Register />

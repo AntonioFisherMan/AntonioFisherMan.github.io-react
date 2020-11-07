@@ -3,14 +3,14 @@ const multer = require('multer')
 
 let Goods = require('../models/goods.model')
 let Reviews = require('../models/reviews.model')
-
+let success = true
 const pagination = (pageSize, page, resultGoods, res) => {
     const totalCount = Object.keys(resultGoods).length
     const startIndex = (page - 1) * pageSize
     const endIndex = page * pageSize
     const goods = resultGoods.slice(startIndex, endIndex)
     let payload = Object.assign({ totalCount }, { goods })
-    res.json(payload)
+    res.json({ payload, success })
 }
 
 router.post('/', async (req, res) => {
@@ -32,7 +32,6 @@ router.post('/', async (req, res) => {
             const resultGoods = await Goods.find()
             pagination(pageSize, page, resultGoods, res)
         } catch (err) {
-            console.log(err.message)
             res.status(400).json({ message: err.message })
         }
     }

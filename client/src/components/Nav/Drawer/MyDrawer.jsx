@@ -33,7 +33,7 @@ const styles = theme => ({
 
 export const MyDrawer = withStyles(styles)(({ open, onClose, setTitle, classes }) => {
         return (
-                <Drawer anchor={"right"} open={open} onClose={onClose}>
+                <Drawer anchor={"left"} open={open} onClose={onClose}>
                         <List>
                                 <NavItem className={classes.textColor} to="/" text="Rent Outfits" Icon={HomeIcon} onClick={() => { setTitle('Home'); onClose(); }} />
                                 <NavItem className={classes.textColor} to="/catalog" text="Our Products" Icon={WebIcon} onClick={() => { setTitle('Our Products'); onClose(); }} />

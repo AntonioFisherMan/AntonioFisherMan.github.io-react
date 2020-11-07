@@ -3,11 +3,11 @@ import Footer from './Footer'
 import { connect } from 'react-redux'
 import { subscribeNewUser } from '../../redux/reducers/AuthReducer'
 import { compose } from 'redux'
-import { SuccessErrorsData } from '../../hoc/SuccessErrorsData'
+import { ServerMessageData } from '../../hoc/ServerMessageData'
 
 
 
 export default compose(
-    SuccessErrorsData,
+    ServerMessageData,
     connect(null, { subscribeNewUser })
 )(Footer)

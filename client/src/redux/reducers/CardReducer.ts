@@ -9,11 +9,11 @@ let initialState = {
 const CardReducer = (state = initialState, action: any): typeof initialState => {
     switch (action.type) {
         case 'CARD_ADD_ITEMS':
-            return { ...state } // return { ...state, items: [...state.items, action.payload], isLoaded: true }
+            return { ...state, items: [...state.items, action.payload], isLoaded: true }
         case 'CARD_REMOVE_ITEMS':
             return { ...state, items: state.items.filter((i) => i._id !== action.itemId) }
         case 'REMOVE_CARD_ITEMS':
-            return { ...state, items: [], totalPrice: null } //totalItemCount: null}
+            return { ...state, items: [], totalPrice: null }
         case 'CHANGE_ITEMS_QUANTITY':
             return { ...state, items: state.items.filter((i) => (i._id === action.id ? i.quantity : action.quantity)) }
         case 'CARD_ADD_INSURANCE':
@@ -24,7 +24,7 @@ const CardReducer = (state = initialState, action: any): typeof initialState => 
                     if (item._id === id) {
                         return {
                             ...item,
-                            insurance: action.insurance,
+                            isInsurance: action.isInsurance,
                             price: item.price + 5,
                         }
                     }
@@ -39,7 +39,7 @@ const CardReducer = (state = initialState, action: any): typeof initialState => 
                     if (item._id === removeId) {
                         return {
                             ...item,
-                            insurance: action.insurance,
+                            isInsurance: action.isInsurance,
                             price: item.price - 5,
                         }
                     }
@@ -54,10 +54,10 @@ const CardReducer = (state = initialState, action: any): typeof initialState => 
 export const cardActions = {
     addToCart: (payload: object) => ({ type: 'CARD_ADD_ITEMS', payload } as const),
     clearCardItems: () => ({ type: 'REMOVE_CARD_ITEMS' } as const),
-    removeProduct: (itemId: number) => ({ type: 'CARD_REMOVE_ITEMS', itemId } as const),
-    changeQuantity: (id: number, quantity: number) => ({ type: 'CHANGE_ITEMS_QUANTITY', id, quantity } as const),
-    addInsurance: (id: number, insurance: string) => ({ type: 'CARD_ADD_INSURANCE', id, insurance } as const),
-    removeInsurance: (id: number, insurance: string) => ({ type: 'CARD_REMOVE_INSURANCE', id, insurance } as const),
+    removeProduct: (itemId: string) => ({ type: 'CARD_REMOVE_ITEMS', itemId } as const),
+    changeQuantity: (id: string, quantity: number) => ({ type: 'CHANGE_ITEMS_QUANTITY', id, quantity } as const),
+    addInsurance: (id: string, isInsurance: boolean) => ({ type: 'CARD_ADD_INSURANCE', id, isInsurance } as const),
+    removeInsurance: (id: string, isInsurance: boolean) => ({ type: 'CARD_REMOVE_INSURANCE', id, isInsurance } as const),
 }
 
 export default CardReducer

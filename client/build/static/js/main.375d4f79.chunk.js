@@ -89,7 +89,7 @@
                 p = t(29),
                 f = t.n(p),
                 g = t(51),
-                v = { successMessage: { message: null, status: null, id: null }, errorsMessage: { message: null, status: null, id: null } },
+                v = { ServerMessage: { message: null, status: null, id: null }, errorsMessage: { message: null, status: null, id: null } },
                 N = function () {
                     return { type: 'CLEAR_ERRORS' }
                 },
@@ -111,7 +111,7 @@
                         case 'GET_ERRORS':
                             return { errorsMessage: { message: a.payload.message, status: a.payload.status, id: a.payload.id } }
                         case 'GET_SUCCESS':
-                            return { successMessage: { message: a.payload.message, status: a.payload.status, id: a.payload.id } }
+                            return { ServerMessage: { message: a.payload.message, status: a.payload.status, id: a.payload.id } }
                         case 'CLEAR_ERRORS':
                         case 'CLEAR_SUCCESS':
                             return v
@@ -414,7 +414,7 @@
                 pe =
                     (t(210),
                     function (e) {
-                        return { errors: e.successErrors.errorsMessage, success: e.successErrors.successMessage }
+                        return { errors: e.successErrors.errorsMessage, success: e.successErrors.ServerMessage }
                     }),
                 fe = function (e) {
                     var a = (function (a) {

@@ -2,19 +2,19 @@ import React from 'react'
 import './ChangePass.css'
 
 import { changeUserPass } from '../../../redux/reducers/AuthReducer'
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
-
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import ChangePassPage from './ChangePassForm'
-
+import { LoadingDataHOC } from '../../../hoc/LoaingData'
+import { reset } from 'redux-form';
 class ChangePass extends React.Component {
     onSubmit = (formData) => {
         this.props.changeUserPass(formData.oldPass, formData.newPass, formData.verifyPass)
+
     }
     render() {
         return (
-            <ChangePassPage onSubmit={this.onSubmit} success={this.props.success} errors={this.props.errors} />
+            <ChangePassPage onSubmit={this.onSubmit} />
         )
     }
 }
@@ -24,6 +24,6 @@ class ChangePass extends React.Component {
 
 
 export default compose(
-    SuccessErrorsData,
-    connect(null, { changeUserPass })
+    LoadingDataHOC,
+    connect(null, { changeUserPass, reset })
 )(ChangePass)

@@ -4,9 +4,9 @@ import styles from './Footer.module.css'
 import { Field, reduxForm } from 'redux-form'
 import { required, MaxLength, MinLength } from '../../utils/Validators/validators'
 import { Input } from '../common/FormsControls/Input'
-import ErrorMessage from '../common/ServerMessages/ErrorMessage'
-import SuccessMessage from '../common/ServerMessages/SuccessMessage'
+import ServerMessage from '../common/ServerMessages/ServerMessage'
 import MyButton from '../SiteButton/MyButton'
+import { PinkText } from '../common/elements/PinkText'
 
 
 const maxLengthCreator30 = MaxLength(30)
@@ -66,8 +66,8 @@ const Footer = (props) => {
                             </div>
                             <div className="col-12 col-sm-6 col-lg-4">
                                 <div className={styles.footerItem}>
-                                    <p className={styles.span}> Subscribe and<span> get 10% off</span> your first rental</p>
-                                    {props.success && props.success.id === "SUBSCRIBER_SUCCESS" ? <SuccessMessage message={props.success.message} /> : <ReduxFormEmailSent errors={props.errors} onSubmit={onSubmitBLL} />}
+                                    <p > Subscribe and <PinkText text="get 10% off" variant="subtitle1" /> your first rental</p>
+                                    {props.success && props.success.id === "SUBSCRIBER_SUCCESS" ? <ServerMessage message={props.success.message} /> : <ReduxFormEmailSent errors={props.errors} onSubmit={onSubmitBLL} />}
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ const FormEmail = (props) => {
         <form className={styles.footerForm} onSubmit={props.handleSubmit}>
             <Field name={"submitEmail"} type="email" component={Input} placeholder="Your email" validate={[required, maxLengthCreator30, minLengthCreator5]} />
             <button><MyButton text="send" /> </button>
-            {props.errors && props.errors.id === 'SUBSCRIBER_FAIL' ? <ErrorMessage message={props.errors.message} /> : null}
+            {props.errors && props.errors.id === 'SUBSCRIBER_FAIL' ? <ServerMessage message={props.errors.message} /> : null}
         </form>
     )
 }

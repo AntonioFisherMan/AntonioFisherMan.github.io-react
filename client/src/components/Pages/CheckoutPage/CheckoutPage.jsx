@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import UserInformForm from './UserInformForm'
 import { connect } from 'react-redux'
 import { getInform, updateInform } from '../../../redux/reducers/InformReducer'

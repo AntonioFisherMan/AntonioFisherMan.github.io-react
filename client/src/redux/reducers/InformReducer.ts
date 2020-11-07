@@ -1,5 +1,5 @@
 import { profileAPI } from '../../api/profileAPI'
-import { messageActions } from './SuccessErrorReducer'
+import { messageActions } from './ServerMessageReducer'
 const GET_INFORM_OF_USER = 'GET_INFORM_OF_USER'
 
 let initialState = {

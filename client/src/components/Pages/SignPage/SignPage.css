@@ -16,16 +16,6 @@
 .signForm>.form-group {
     margin-bottom: 21px !important;
 }
-
-.signHeadline {
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 18px;
-    color: #000000;
-    margin-bottom: 15px !important;
-    margin-top: 10px;
-}
-
 .custom-checkbox {
     margin-top: 10px;
     font-size: 12px;

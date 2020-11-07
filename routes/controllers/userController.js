@@ -13,11 +13,12 @@ var transporter = nodemailer.createTransport({
     requireTLS: true,
     auth: {
         user: 'tooxa9@gmail.com',
-        pass: 'zxcv123580',
+        pass: 'Zxcv123580',
     },
 })
 
 exports.forgot_password = function (req, res) {
+    console.log(req.body)
     async.waterfall(
         [
             function (done) {
@@ -55,9 +56,9 @@ exports.forgot_password = function (req, res) {
                     text: 'Change pass https://fullstack-shop.herokuapp.com/forgotchangepass/' + token,
                 }
 
-                transporter.jsonMail(mailOptions, function (error, info) {
-                    if (error) {
-                        return done(err)
+                transporter.sendMail(mailOptions, function (err, info) {
+                    if (err) {
+                        return done(err + 'asdas')
                     }
 
                     return res.json({ message: 'Kindly check your email for further instructions' })
@@ -95,10 +96,9 @@ exports.reset_password = async (req, res) => {
                         subject: 'Password Reset Confirmation',
                         text: 'Your password succesfuly changed',
                     }
-
-                    transporter.jsonMail(data, (err) => {
+                    transporter.sendMail(mailOptions, function (err, info) {
                         if (!err) {
-                            res.json({ message: 'Password successfuly eset' })
+                            res.json({ message: 'Password successfuly reset' })
                         } else {
                             res.status(400).json({ message: err })
                         }
@@ -120,7 +120,7 @@ exports.change_password = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email })
         if (user) {
-            const isMatch = bcrypt.compare(req.body.oldPass, user.password)
+            const isMatch = await bcrypt.compare(req.body.oldPass, user.password)
             if (!isMatch) return res.status(400).json({ message: `Your old password is not valid` })
             if (req.body.newPassword === req.body.verifyPassword) {
                 user.password = bcrypt.hashSync(req.body.newPassword, 10)

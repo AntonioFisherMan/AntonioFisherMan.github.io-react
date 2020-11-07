@@ -1,25 +1,25 @@
 import React from 'react'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
 import MyButton from '../../SiteButton/MyButton'
 
 import UploadFile from '../../common/UploadFile/UploadFile'
-import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
-import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
+import ServerMessage from '../../common/ServerMessages/ServerMessage'
+import { H6 } from '../../Typography/H6'
 
 const InformPage = (props) => {
 
     const updateInform = (formData) => {
         var data = new FormData();
         if (formData.userImage != null) {
-            debugger
+
             data.append("file", formData.userImage[0])
         }
         else {
-            debugger
+
             data.append("file", props.inform.userImage)
         }
         data.append("city", formData.city)
@@ -63,7 +63,7 @@ const InformPage = (props) => {
                             <Sidebar />
                         </div>
                         <div className="col-12 col-md-8">
-                            {props.success && props.success.message != null ? <SuccessMessage message={props.success.message} /> : props.inform ? <ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform} /> : <ReduxUserInform isAddInform={props.isAddInform} onSubmit={setInform} errors={props.errors} />}
+                            {props.success && props.success.message != null ? <ServerMessage message={props.success.message} /> : props.inform ? <ReduxUserInform onSubmit={updateInform} errors={props.errors} isAddInform={props.isAddInform} initialValues={props.inform} /> : <ReduxUserInform isAddInform={props.isAddInform} onSubmit={setInform} errors={props.errors} />}
                         </div>
 
                     </div>
@@ -80,7 +80,7 @@ const UserInformForm = (props) => {
         <form className="checkoutForm" onSubmit={props.handleSubmit}>
             {props.initialValues && props.initialValues.userImage ? <img style={{ width: '100px', height: '100px', margin: '0 auto' }} src={`http://localhost:5000/${props.initialValues.userImage}`} /> : <p>Here will be your photo</p>}
             <div className="form-row">
-                <h5 className="formHeadline">Shipping address</h5>
+                <H6 text="Shipping address" />
             </div>
             <div className="form-row" >
                 <div className="form-group col-12 col-md-6" id="m">
@@ -113,7 +113,7 @@ const UserInformForm = (props) => {
                 <Field type="number" component={Input} className="form-control" name="phone" placeholder="Phone" />
             </div>
             <div className="form-row">
-                <h5 className="formHeadline">Billing Address</h5>
+                <H6 text="Billing Address" />
             </div>
             <div className="form-group">
                 <div className="form-check">
@@ -133,7 +133,7 @@ const UserInformForm = (props) => {
 
             </div>
 
-            {props.errors && props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <ErrorMessage message={props.errors.message} /> : null}
+            {props.errors && props.errors.id === 'USER_INFORM_CHANGE_ERROR' ? <ServerMessage message={props.errors.message} /> : null}
         </form>
 
     )

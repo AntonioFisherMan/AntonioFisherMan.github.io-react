@@ -1,11 +1,13 @@
 import React from 'react'
 import './CatalogPage.css'
 import { Link } from 'react-router-dom'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import MyButton from '../../SiteButton/MyButton'
 import Paginator from '../../common/Paginator/Paginator'
 import { Field, reduxForm } from 'redux-form'
 import Preloader from '../../common/Preloader'
+import { H5 } from '../../Typography/H5'
+import { Subtitle1 } from '../../Typography/Subtitle1'
 
 
 const CatalogPage = (props: any) => {
@@ -20,7 +22,7 @@ const CatalogPage = (props: any) => {
     return (
 
         <div>
-            {props.goods.length > 0 ? <div>
+            {!props.loading ? <div>
                 <section className="linkBlock">
                     <div className="container">
                         <div className="row">
@@ -70,9 +72,9 @@ const CatalogPage = (props: any) => {
                                 {
                                     props.goods.length > 0 ? props.goods.map((item: any) => <div className="goodsItem" key={item._id}>
                                         <Link to={`details/${item._id}`}><img src={item.photos.middle} alt="" /></Link>
-                                        <h4>{item.text}</h4>
+                                        <Subtitle1 text={item.text} />
                                         <p>{item.style} Dress</p>
-                                        <h5>€{item.price}</h5>
+                                        <H5 text={`€ ${item.price}`} />
                                         <MyButton href={`details/${item._id}`} text="Подробнее" />
                                     </div>) :
                                         <div className="row justify-content-center " style={{ color: '#E77E83' }}><h4 className=" d-flex flex-column align-items-center">К сожалению по выбранному запросу товаров нет в наличии<br /><i className="fab fa-linux"></i></h4> </div>
@@ -88,7 +90,7 @@ const CatalogPage = (props: any) => {
                     </div>
 
                 </section>
-            </div> : <Preloader />}
+            </div> : <Preloader loading={props.loading} />}
         </div>
     )
 }

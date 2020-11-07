@@ -29,6 +29,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
   WithAuthRedirect,
-  connect(mapStateToProps, { getOrders, reviewsActions })
+  connect(mapStateToProps, { getOrders, ...reviewsActions })
 )(OrdersPageContainer)
 

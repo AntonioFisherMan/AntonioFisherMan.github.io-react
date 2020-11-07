@@ -4,7 +4,7 @@ import InformPage from './InformPage';
 import { getInform, updateInform, setInform } from '../../../redux/reducers/InformReducer'
 import { compose } from 'redux';
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect';
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
+import { ServerMessageData } from '../../../hoc/ServerMessageData'
 
 class InformPageContainer extends React.Component {
   componentDidMount() {
@@ -38,7 +38,7 @@ let mapDispatchToProps = (state) => {
 
 export default compose(
   WithAuthRedirect,
-  SuccessErrorsData,
+  ServerMessageData,
   connect(mapDispatchToProps, { getInform, updateInform, setInform })
 )(InformPageContainer)
 

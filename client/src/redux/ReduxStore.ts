@@ -8,7 +8,7 @@ import AppReducer from './reducers/AppReducer'
 import CardReducer from './reducers/CardReducer'
 import OrdersReducer from './reducers/OrdersReducer'
 import InformReducer from './reducers/InformReducer'
-import SuccessErrorReducer from './reducers/SuccessErrorReducer'
+import ServerMessageReducer from './reducers/ServerMessageReducer'
 import ReviewsReducer from './reducers/ReviewsReducer'
 
 let reducers = combineReducers({
@@ -19,7 +19,7 @@ let reducers = combineReducers({
     card: CardReducer,
     orders: OrdersReducer,
     inform: InformReducer,
-    successErrors: SuccessErrorReducer,
+    messages: ServerMessageReducer,
     reviews: ReviewsReducer,
 })
 

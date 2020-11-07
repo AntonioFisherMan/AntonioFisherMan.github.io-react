@@ -2,8 +2,7 @@ import React from 'react'
 import { ReduxRegisterForm } from './RegisterForm'
 import { register } from '../../../redux/reducers/AuthReducer'
 import { connect } from 'react-redux'
-import { compose } from 'redux'
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
+
 
 
 class Register extends React.Component {
@@ -12,13 +11,10 @@ class Register extends React.Component {
     }
     render() {
         return (
-            <ReduxRegisterForm onSubmit={this.onSubmit} errors={this.props.errors} />
+            <ReduxRegisterForm onSubmit={this.onSubmit} />
         )
     }
 }
 
 
-export default compose(
-    SuccessErrorsData,
-    connect(null, { register })
-)(Register)
+export default connect(null, { register })(Register)

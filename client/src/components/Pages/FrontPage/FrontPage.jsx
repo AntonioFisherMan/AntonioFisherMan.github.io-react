@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './FrontPage.module.css'
 import MyButton from "../../SiteButton/MyButton";
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import Item from "./Item/Item";
 import Slider from "../../Slider/Slider";
 import Slider2 from "../../Slider/Slider2";

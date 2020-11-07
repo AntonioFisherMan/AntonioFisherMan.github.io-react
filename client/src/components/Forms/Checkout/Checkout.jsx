@@ -2,8 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ReduxCheckoutForm } from './CheckoutForm'
 import { addOrdersThunk, ordersActions, addUnloginOrdersThunk } from '../../../redux/reducers/OrdersReducer'
-import { compose } from 'redux'
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
 import { getInform } from '../../../redux/reducers/InformReducer'
 
 class Checkout extends React.Component {
@@ -22,7 +20,7 @@ class Checkout extends React.Component {
 
     render() {
         return (
-            <ReduxCheckoutForm initialValues={this.props.userInform} onSubmit={this.onSubmit} success={this.props.success} errors={this.props.errors} />
+            <ReduxCheckoutForm initialValues={this.props.userInform} onSubmit={this.onSubmit} />
         )
     }
 
@@ -35,10 +33,6 @@ let mapStateToProps = (state) => {
         items: state.card.items,
         auth: state.auth,
         userInform: state.auth.userInform
-
     }
 }
-export default compose(
-    SuccessErrorsData,
-    connect(mapStateToProps, { addOrdersThunk, addUnloginOrdersThunk, ordersActions, getInform })
-)(Checkout)
+export default connect(mapStateToProps, { addOrdersThunk, addUnloginOrdersThunk, ordersActions, getInform })(Checkout)

@@ -2,7 +2,7 @@ import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { Input } from '../../common/FormsControls/Input'
 import { required, MinLength, MaxLength } from '../../../utils/Validators/validators'
-import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
+import ServerMessage from '../../common/ServerMessages/ServerMessage'
 import MyButton from '../../SiteButton/MyButton'
 
 
@@ -33,9 +33,7 @@ const RegisterForm = (props) => {
                 </div>
             </div>
             <p className="signGrey">By joining I agree to receive emails from DressItBox</p>
-            <button> <MyButton text="register" /></button>
-
-            {props.errors && props.errors.id === 'REGISTER_FAIL' ? <ErrorMessage message={props.errors.message} /> : null}
+            <button> <MyButton text="register" href="" /></button>
         </form>
     )
 }

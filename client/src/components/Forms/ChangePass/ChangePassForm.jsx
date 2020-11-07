@@ -1,30 +1,23 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { Input } from '../../common/FormsControls/Input'
-import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
-import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
-import MyButton from '../../SiteButton/MyButton'
+import React from "react"
+import { Field, reduxForm } from "redux-form"
+import { Input } from "../../common/FormsControls/Input"
+import MyButton from "../../SiteButton/MyButton"
+import { H6 } from "../../Typography/H6"
+
 
 const ChangePassPage = (props) => {
-    const generateForm = () => {
-        return (
-            <ReduxChangePassword onSubmit={props.onSubmit} errors={props.errors} />
-        )
-    }
 
     return (
-        <div>
-            {props.success && props.success.id === 'SUCCESS_CHANGE_PASS' ? <SuccessMessage message={props.success.message} /> : generateForm()}
-        </div>
+        <>
+            <ReduxChangePassword onSubmit={props.onSubmit} errors={props.errors} />
+        </>
     )
 
 }
-
-
 const ChangePassForm = (props) => {
     return (
         <form className="changePassForm" onSubmit={props.handleSubmit}>
-            <h5 className="changePassHeadline">Change Password</h5>
+            <H6 text="Change Password" />
             <div className="form-group">
                 <Field type="password" component={Input} className="form-control" name="oldPass" placeholder="Your old password" required autoFocus />
             </div>
@@ -34,13 +27,12 @@ const ChangePassForm = (props) => {
             <div className="form-group">
                 <Field type="password" component={Input} className="form-control" name="verifyPass" placeholder="Repeat new password" required />
             </div>
-            <button><MyButton text="Save" /></button>
-            {props.errors && props.errors.id === 'ERROR_CHANGE_PASS' ? <ErrorMessage message={props.errors.message} /> : null}
+            <button><MyButton text="Save" href="" /></button>
         </form>
     )
 }
 const ReduxChangePassword = reduxForm({
-    form: 'changePassForm'
+    form: "changePassForm"
 })(ChangePassForm)
 
 export default ChangePassPage

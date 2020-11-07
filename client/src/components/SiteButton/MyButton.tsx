@@ -1,7 +1,11 @@
 import React from 'react'
-import { Button } from '@material-ui/core';
+import { Box, Button, CircularProgress } from '@material-ui/core';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { compose } from 'redux';
+import { LoadingDataHOC } from '../../hoc/LoaingData';
+import Preloader from '../common/Preloader';
 
 const styles = (theme: Theme) => createStyles({
         primary: {
@@ -25,22 +29,67 @@ const styles = (theme: Theme) => createStyles({
         },
         icon: {
                 fontSize: 12
-        }
+        },
+        wrapper: {
+                margin: theme.spacing(1),
+                position: 'relative',
+        },
+        buttonProgress: {
+                position: 'absolute',
+                top: '0',
+                left: '40%'
+
+        },
 })
 type PropsType = {
-        href?: string,
+        href: string,
         text?: string,
         variant?: "text" | "outlined" | "contained" | undefined
-        color?: "inherit" | "primary" | "secondary" | "default" | undefined
+        color?: "inherit" | "primary" | "secondary" | "default" | undefined,
+        loading: boolean
 }
 export type MyButtonProps = PropsType & WithStyles<typeof styles>;
+const MyButton: React.FC<MyButtonProps> = ({ href, text, classes, variant, color, loading }) => {
+        if (href !== "") {
+                return (
+                        <Button
+                                component={React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => (
+                                        <RouterLink to={href} ref={ref} {...itemProps} />
+                                ))}
+                                variant={variant ? variant : "contained"}
+                                startIcon={variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
+                                href={href}
+                                color={color ? color : "primary"}
+                                className={!variant ? classes.primary : classes.secondary} >
+                                {text}
+                        </Button>
+                );
+        } else {
+                return (
+                        <Box className={classes.wrapper}>
+                                <Button
+                                        disabled={loading}
+                                        variant={variant ? variant : "contained"}
+                                        startIcon={variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
+                                        href={href}
+                                        color={color ? color : "primary"}
+                                        className={!variant ? classes.primary : classes.secondary} >
+                                        {text}
+                                </Button>
+                                { loading && <Box className={classes.buttonProgress}><Preloader size={18} loading={loading} /></Box>}
+                        </Box>
 
-const MyButton: React.FC<MyButtonProps> = ({ href, text, classes, variant, color }) => {
-        return (
-                <Button variant={variant ? variant : "contained"} startIcon={variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null} href={href} color={color ? color : "primary"} className={!variant ? classes.primary : classes.secondary} >{text}</Button>
-        )
+
+                );
+        }
+
+
 }
-export default withStyles(styles)(MyButton)
+
+export default compose(
+        LoadingDataHOC,
+        withStyles(styles))
+        (MyButton)
 
 
 

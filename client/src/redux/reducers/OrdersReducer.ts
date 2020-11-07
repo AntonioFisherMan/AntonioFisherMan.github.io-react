@@ -1,6 +1,6 @@
 import { ordersAPI } from '../../api/ordersAPI'
 import { cardActions } from './CardReducer'
-import { messageActions } from './SuccessErrorReducer'
+import { messageActions } from './ServerMessageReducer'
 
 type OrderType = {}
 let initialState = {

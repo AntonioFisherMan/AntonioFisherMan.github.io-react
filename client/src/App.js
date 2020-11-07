@@ -23,6 +23,7 @@ import InformContainer from './components/Pages/InformPage/InformContainer'
 import ForgotChangePassword from './components/Forms/ForgotPassword/ForgotChangePassword'
 import ForgotPassword from './components/Forms/ForgotPassword/ForgotPassword'
 import DetailsContainer from './components/Pages/DetailsPage/DetailsContainer'
+import Test2 from './components/Pages/Test2'
 // const DetailsContainer = React.lazy(() =>
 // import("./components/Pages/DetailsPage/DetailsContainer")
 // );
@@ -36,7 +37,8 @@ import FooterContainer from './components/Footer/FooterContainer'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { font } from './fonts/Montserrat/font'
-import { Test } from './components/Pages/Test'
+import Test from './components/Pages/Test'
+import ServerMessage from './components/common/ServerMessages/ServerMessage'
 
 const theme = createMuiTheme({
     palette: {
@@ -64,6 +66,23 @@ const theme = createMuiTheme({
     },
     typography: {
         fontFamily: 'Montserrat',
+        caption: {
+            fontWeight: 300,
+            fontSize: '3.125rem',
+        },
+        h6: {
+            fontWeight: 600,
+            fontSize: '15px',
+        },
+        h5: {
+            fontWeight: 700,
+            fontSize: '20px',
+        },
+        subtitle1: {
+            fontWeight: 400,
+            fontSize: '15px',
+            lineHeight: '24px',
+        },
     },
     overrides: {
         MuiCssBaseline: {
@@ -88,7 +107,7 @@ class App extends React.Component {
                     <Router>
                         <Suspense fallback={<div>Загрузка...</div>}>
                             <NavContainer />
-
+                            <ServerMessage code={this.props.code} />
                             <Switch>
                                 <Route exact path="/" component={FrontPage} />
                                 <Route path="/catalog" component={CatalogPageContainer} />
@@ -107,9 +126,11 @@ class App extends React.Component {
                                 <Route path="/buy" component={Checkout} />
                                 <Route path="/order" component={Order} />
                                 <Route path="/test" component={Test} />
+                                <Route path="/test2" component={Test2} />
                                 <Route component={NotFound} />
                             </Switch>
                             <Modal />
+
                             <FooterContainer />
                         </Suspense>
                     </Router>
@@ -121,6 +142,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isInitialized: state.app.initialized,
+        code: state.messages.code,
     }
 }
 

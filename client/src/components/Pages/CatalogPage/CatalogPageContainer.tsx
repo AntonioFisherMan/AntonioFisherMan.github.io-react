@@ -7,6 +7,7 @@ import { getFilterBy, getTotalGoods } from '../../../redux/selectors/CatalogSele
 import { reset } from 'redux-form';
 import { CardItemType, GoodType } from '../../../types/types'
 import { AppStateType } from '../../../redux/ReduxStore'
+import { LoadingDataHOC } from '../../../hoc/LoaingData'
 
 
 class CatalogPageContainer extends React.Component<any> {
@@ -82,5 +83,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 
-export default compose(connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, removeFilterThunk, reset, ...catalogActions }))(CatalogPageContainer)
+export default compose(
+  LoadingDataHOC,
+  connect(mapStateToProps, { getGoodsThunk, getGoodsThunkById, removeFilterThunk, reset, ...catalogActions }))(CatalogPageContainer)
 

@@ -1,5 +1,5 @@
 import { goodsAPI } from '../../api/goodsAPI'
-import { messageActions } from './SuccessErrorReducer'
+import { messageActions } from './ServerMessageReducer'
 
 type ReviewItem = {}
 type InitialStateType = typeof initialState

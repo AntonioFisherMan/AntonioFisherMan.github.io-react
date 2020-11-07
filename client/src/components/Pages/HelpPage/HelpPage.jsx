@@ -2,19 +2,18 @@ import React from 'react'
 import './HelpPage.css'
 import HeaderBottom from '../../HeaderBottom/HeaderBottom'
 import Sidebar from '../../Sidebar/Sidebar'
-import SiteHeadline from '../../SiteHeadline/SiteHeadline'
+import { SiteHeadline } from '../../Typography/SiteHeadline'
 import MyButton from '../../SiteButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../../hoc/WithAuthRedirect'
-import { SuccessErrorsData } from '../../../hoc/SuccessErrorsData'
+import { ServerMessageData } from '../../../hoc/ServerMessageData'
 import { Textarea } from '../../common/FormsControls/Textarea'
 import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { sendHelpMessage } from '../../../redux/reducers/InformReducer'
 import { required } from '../../../utils/Validators/validators'
-import SuccessMessage from '../../common/ServerMessages/SuccessMessage'
-import ErrorMessage from '../../common/ServerMessages/ErrorMessage'
-
+import ServerMessage from '../../common/ServerMessages/ServerMessage'
+import { H6 } from '../../Typography/H6'
 const HelpPage = (props) => {
 
     const onSubmit = (formData) => {
@@ -37,7 +36,7 @@ const HelpPage = (props) => {
                             <Sidebar />
                         </div>
                         <div className="col-2"></div>
-                        {props.success && props.success.id === 'SUCCESS_HELP_MESSAGE' ? <SuccessMessage message={props.success.message} /> : <ReduxHelpForm onSubmit={onSubmit} errors={props.errors} />}
+                        {props.success && props.success.id === 'SUCCESS_HELP_MESSAGE' ? <ServerMessage message={props.success.message} /> : <ReduxHelpForm onSubmit={onSubmit} errors={props.errors} />}
                     </div>
                     <div className="row">
                         <div className="col-12">
@@ -56,11 +55,11 @@ const HelpPage = (props) => {
 const HelpForm = (props) => {
     return (
         <form className="col-12 col-md-7 helpInform" onSubmit={props.handleSubmit}>
-            <p className="helpText">Your question</p>
+            <H6 text="Your question" />
             <Field component={Textarea} name="helpMessage" validate={[required]} className="form-control" placeholder="text..." />
             <button style={{ marginTop: '20px' }}> <MyButton text="send" /></button>
 
-            {props.errors && props.errors.id === 'ERROR_HELP_MESSAGE' ? <ErrorMessage message={props.errors.message} /> : null}
+            {props.errors && props.errors.id === 'ERROR_HELP_MESSAGE' ? <ServerMessage message={props.errors.message} /> : null}
 
         </form>
     )
@@ -71,7 +70,7 @@ export const ReduxHelpForm = reduxForm({ form: 'help' })(HelpForm)
 
 
 export default compose(
-    SuccessErrorsData,
+    ServerMessageData,
     WithAuthRedirect,
     connect(null, { sendHelpMessage })
 )(HelpPage)

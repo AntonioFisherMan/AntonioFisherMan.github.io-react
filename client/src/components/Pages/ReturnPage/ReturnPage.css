@@ -11,13 +11,6 @@
 .returnInform-active {
     display: none;
 }
-.returnText span {
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 150%;
-    color: #E77E83;
-}
-
 .returnText p {
     font-size: 15px;
 }

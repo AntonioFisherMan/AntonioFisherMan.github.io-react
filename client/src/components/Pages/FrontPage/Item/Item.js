@@ -1,14 +1,16 @@
-import React from "react";
-import styles from "./Item.module.css";
+import React from 'react'
+import { H5 } from '../../../Typography/H5'
+import { Subtitle1 } from '../../../Typography/Subtitle1'
+import styles from './Item.module.css'
 
-const Item = props => {
-  return (
-    <div className={styles.item}>
-      <img src={props.img} alt="" />
-      <h4>{props.headline}</h4>
-      <p>{props.text}</p>
-    </div>
-  );
-};
+const Item = (props) => {
+    return (
+        <div className={styles.item}>
+            <img src={props.img} alt="" />
+            <H5 text={props.headline} />
+            <Subtitle1 text={props.text} />
+        </div>
+    )
+}
 
-export default Item;
+export default Item

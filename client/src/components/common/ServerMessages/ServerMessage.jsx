@@ -23,15 +23,8 @@ const ServerMessage = ({ code, errors, success, open, closeMessage, }) => {
     )
 }
 
-<<<<<<< HEAD
-=======
 const user ="ASddsdads"
 
-<<<<<<< HEAD
->>>>>>> 85ad6587ab48a4d03386ca0dca150b56f297bcaf
-=======
-const user2="sdfsdf"
->>>>>>> 5bfa5034a163d1d749a79a17b1b72e4bfeadf4b6
 
 export default compose(
     ServerMessageData

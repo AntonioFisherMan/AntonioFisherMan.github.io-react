@@ -263,3 +263,5 @@ right size please contact <PinkText text="hello@dressitbox.com" /> </Typography>
                 </Paper>
         )
 }
+
+const MYRGOROD ="MYGOROD"

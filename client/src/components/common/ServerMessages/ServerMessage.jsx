@@ -15,7 +15,7 @@ const ServerMessage = ({ code, errors, success, open, closeMessage, }) => {
     return (
         <Snackbar open={open} onClose={closeMessage}>
             <Alert onClose={closeMessage} severity={code === "success" ? "success" : "error"}>
-                {errors.message || success.message ?
+                {errors.message | success.message ?
                     code === "success" ? success.message : errors.message : "Error"}
             </Alert>
 

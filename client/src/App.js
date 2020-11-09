@@ -39,7 +39,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { font } from './fonts/Montserrat/font'
 import Test from './components/Pages/Test'
 import ServerMessage from './components/common/ServerMessages/ServerMessage'
-const userr="sdfsdf"
 const theme = createMuiTheme({
     palette: {
         primary: {

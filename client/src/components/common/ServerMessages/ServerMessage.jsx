@@ -23,6 +23,8 @@ const ServerMessage = ({ code, errors, success, open, closeMessage, }) => {
     )
 }
 
+const user ="ASds"
+
 
 export default compose(
     ServerMessageData

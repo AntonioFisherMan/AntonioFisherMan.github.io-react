@@ -1,6 +1,11 @@
-.formControl .error{
-  border:1px solid red;
+.MuiInputLabel-outlined {
+  transform: translate(14px, 15px) scale(1) !important;
 }
-.formControl span{
-    color:red;
+.MuiInputLabel-outlined.MuiInputLabel-shrink{
+  transform: translate(14px, -6px) scale(0.75) !important;
+
+}
+
+.MuiIconButton-edgeEnd {
+  margin-right: 0 !important;
 }

@@ -40,6 +40,9 @@ import { font } from './fonts/Montserrat/font'
 import Test from './Pages/Test'
 import ServerMessage from './components/common/ServerMessages/ServerMessage'
 
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 const theme = createMuiTheme({
     palette: {
         primary: {
@@ -102,6 +105,10 @@ class App extends React.Component {
             return <Preloader />
         } else {
             return (
+                <MuiThemeProvider>
+
+
+
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <Router>
@@ -135,6 +142,7 @@ class App extends React.Component {
                         </Suspense>
                     </Router>
                 </ThemeProvider>
+                </MuiThemeProvider>
             )
         }
     }

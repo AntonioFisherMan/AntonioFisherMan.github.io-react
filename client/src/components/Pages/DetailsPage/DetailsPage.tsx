@@ -7,7 +7,7 @@ import MyButton from '../../SiteButton/MyButton'
 import { ModalConsumer } from '../../../context/modalContext'
 import { SiteHeadline } from '../../Typography/SiteHeadline'
 import { reduxForm, Field, InjectedFormProps } from 'redux-form'
-import { Select } from '../../common/FormsControls/Select'
+import { MySelect } from '../../common/FormsControls/MySelect'
 import { Input } from '../../common/FormsControls/Input'
 import { required } from '../../../utils/Validators/validators'
 import userPhoto from '../../../assets/user.png'
@@ -291,9 +291,10 @@ const ProductForm: React.FC<InjectedFormProps<ProductPropsType, ProductValuesTyp
             <div className="detailsInformList">
                 <H6 text="Step 1." />
                 <div className="d-flex align-items-center">
-                    <Field validate={[required]} component={Select} onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => setSize(e.target.value)} name="size" className="detailsBtn">
+                    <Field validate={[required]} component={MySelect} onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => setSize(e.target.value)} name="size" className="detailsBtn">
+                        {props.item.sizes ? props.item.sizes.map((size: string) => 
 
-                        {props.item.sizes ? props.item.sizes.map((size: string) => <option key={size}>
+                        <option key={size}>
                             {size}
                         </option>) : <option> Размеров нет</option>}
                     </Field>

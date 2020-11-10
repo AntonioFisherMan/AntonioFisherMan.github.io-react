@@ -84,41 +84,13 @@
     margin-bottom: 10px !important;
 }
 
-.checkbox {
-    display: none;
-}
-
-.fake {
-    position: relative;
-    display: inline-block;
-    border: 1px solid #E77E83;
-    width: 18px;
-    height: 18px;
-}
-
-.checkText {
-    padding-left: 11px;
-}
-
 .span {
     color: #000000 !important;
 }
 
-.fake::after {
-    font-family: FontAwesome;
-    content: "\f00c";
-    color: #7ECB80;
-    font-size: 14px;
-    position: absolute;
-    transform: translate(20%, -10%);
-    transition: .2s;
-    opacity: 0;
+.custom-control{
+    padding:0 !important;
 }
-
-.checkbox:checked+.fake::after {
-    opacity: 1;
-}
-
 .productsBtn {
     width: 164px;
     height: 54px;

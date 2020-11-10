@@ -5,14 +5,6 @@
     margin-bottom: 55px;
 }
 
-.signBlock input {
-    width: 390px;
-    height: 45px;
-    background: #F7F8FC;
-    border: 1px solid #E9ECF0;
-    box-sizing: border-box;
-}
-
 .signForm>.form-group {
     margin-bottom: 21px !important;
 }
@@ -22,7 +14,6 @@
     line-height: 250%;
     color: #666666;
 }
-
 .checkText span {
     color: #E77E83;
     font-weight: 300;
@@ -95,9 +86,6 @@
         flex-direction: column;
         align-items: center;
         margin-top: 30px;
-    }
-    .signBlock input{
-        width: 310px;
     }
     .signPopUpBlock hr{
         width: 80px;

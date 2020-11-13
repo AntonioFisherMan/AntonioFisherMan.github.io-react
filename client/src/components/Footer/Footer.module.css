@@ -33,14 +33,10 @@ line-height: 17px;
 color: #707070;
 margin-bottom: 16px;
 }
-
-.footerItem input:first-child{
-    background: #EFEFEF;
-    border-radius: 30px;
-    height: 45px;
-    width: 224px;
-    padding-left:19px;
+.footerBox{
+    display: flex;
 }
+
 .footerForm{
     display: flex;
     align-items: center;

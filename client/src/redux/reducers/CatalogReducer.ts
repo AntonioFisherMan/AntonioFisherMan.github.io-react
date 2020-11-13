@@ -91,4 +91,8 @@ export const removeFilterThunk = (filter: string) => async (dispatch: CatalogDis
     } catch (err) {}
 }
 
+export const changeRating = (rating: number | null, goodsId: string) => () => {
+    goodsAPI.changeRating(rating, goodsId)
+}
+
 export default CatalogReducer

@@ -46,10 +46,11 @@ type PropsType = {
         text?: string,
         variant?: "text" | "outlined" | "contained" | undefined
         color?: "inherit" | "primary" | "secondary" | "default" | undefined,
-        loading: boolean
+        loading: boolean,
+        isIcon?: boolean
 }
 export type MyButtonProps = PropsType & WithStyles<typeof styles>;
-const MyButton: React.FC<MyButtonProps> = ({ href, text, classes, variant, color, loading }) => {
+const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, classes, variant, color, loading }) => {
         if (href !== "") {
                 return (
                         <Button
@@ -57,7 +58,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, text, classes, variant, color
                                         <RouterLink to={href} ref={ref} {...itemProps} />
                                 ))}
                                 variant={variant ? variant : "contained"}
-                                startIcon={variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
+                                startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                 href={href}
                                 color={color ? color : "primary"}
                                 className={!variant ? classes.primary : classes.secondary} >

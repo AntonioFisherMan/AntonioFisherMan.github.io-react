@@ -1,6 +1,9 @@
 import React from 'react';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { IconButton, withStyles } from '@material-ui/core';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 
 const styles = theme => ({
         iconBlock: {
@@ -32,3 +35,25 @@ export const MyAddIcon = withStyles(styles)((props) => {
 
         )
 })
+
+export const MyStartIcon = (props) => {
+        return (
+                <IconButton color="primary">
+                        {props.filled ? <SvgIcon {...props}>
+                                <path d="M10 15.27L16.18 19L14.54 11.97L20 7.24L12.81 6.62L10 0L7.19 6.62L0 7.24L5.45 11.97L3.82 19L10 15.27Z" fill="#E77E83" />
+                        </SvgIcon> :
+                                <SvgIcon {...props}>
+                                        <path d="M10 13.39L6.24 15.66L7.23 11.38L3.91 8.5L8.29 8.13L10 4.09L11.71 8.13L16.09 8.5L12.77 11.38L13.76 15.66L10 13.39ZM20 7.24L12.81 6.63L10 0L7.19 6.63L0 7.24L5.45 11.97L3.82 19L10 15.27L16.18 19L14.54 11.97L20 7.24Z" fill="#E77E83" />
+                                </SvgIcon>}
+                </IconButton>
+        )
+
+}
+
+export const ExpandIcon = ({ expanded }) => {
+        return (
+                <>
+                        {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </>
+        )
+}

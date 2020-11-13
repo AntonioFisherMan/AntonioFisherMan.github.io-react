@@ -14,4 +14,7 @@ export const profileAPI = {
     sendHelpMessage(helpMessage: string, id: string) {
         return instance.post(`users/help`, { helpMessage, userId: id }).then((res) => res.data)
     },
+    uploadCountry() {
+        return instance.get('/test').then((res) => res.data)
+    },
 }

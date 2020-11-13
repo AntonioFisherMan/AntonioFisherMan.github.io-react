@@ -86,7 +86,6 @@ export const register = (name: string, email: string, password: string) => async
         dispatch(appActions.setLoading(false))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.status, 'REGISTER_FAIL'))
-
         dispatch({ type: 'AUTH_ERROR' })
         dispatch(appActions.setLoading(false))
     }

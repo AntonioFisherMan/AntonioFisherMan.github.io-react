@@ -18,4 +18,7 @@ export const goodsAPI = {
         files.append('rating', rating)
         return instance.post(`goods/reviews/${goodsId}`, files, multiData).then((res) => res.data)
     },
+    changeRating(rating: number | null, goodsId: string) {
+        return instance.post(`goods/rating/${goodsId}`, { rating })
+    },
 }

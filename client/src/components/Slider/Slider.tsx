@@ -7,6 +7,7 @@ import { getGoodsForSlider } from '../../redux/reducers/CatalogReducer'
 import { catalogActions } from '../../redux/reducers/CatalogReducer'
 import { AppStateType } from '../../redux/ReduxStore'
 import { GoodType } from '../../types/types'
+import { MyFab } from '../SiteButton/MyFab'
 
 class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
     componentWillUnmount() {
@@ -57,6 +58,7 @@ class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
                                 <span className="sr-only">Предыдущий</span>
                             </div>
                         </a>
+
                         <a className="carousel-control-next" href={this.props.a} id="arrow-next" role="button" data-slide="next">
                             <div className="arrow">
                                 <i className="carousel-control-next-icon fas fa-chevron-right" aria-hidden="true"></i>

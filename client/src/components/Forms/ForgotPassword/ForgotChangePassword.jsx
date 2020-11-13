@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { resetPass } from '../../../redux/reducers/AuthReducer'
-import { Input } from '../../common/FormsControls/Input'
+import { MyInput } from '../../common/FormsControls/MyInput'
 import { Field, reduxForm } from 'redux-form'
 import MyButton from '../../SiteButton/MyButton'
 import { compose } from 'redux'
@@ -28,9 +28,9 @@ const ForgotChangePasswordForm = (props) => {
                     <div><h3>Password confirmation!</h3>
                         <form onSubmit={props.handleSubmit} style={{ marginTop: "20px" }}>
                             <label for="newPassword">New Password</label>
-                            <Field className="form-control" type="text" component={Input} name="newPassword" id="newPassword" required />
+                            <Field className="form-control" type="text" component={MyInput} name="newPassword" id="newPassword" required />
                             <label for="verifyPassword">Confirm Password</label>
-                            <Field className="form-control" type="text" component={Input} name="verifyPassword" id="verifyPassword" required />
+                            <Field className="form-control" type="text" component={MyInput} name="verifyPassword" id="verifyPassword" required />
 
                             <button > <MyButton text=" Reset Password" href="" /></button>
                         </form>

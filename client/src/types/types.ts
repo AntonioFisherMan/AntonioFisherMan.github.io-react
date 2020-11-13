@@ -8,8 +8,8 @@ export type GoodType = {
 }
 export type ProductType = {
     good: GoodType
-    review: ReviewType
-    reviewQuantity: number
+    review?: ReviewType
+    reviewQuantity?: number
 }
 export type ReviewType = {
     photo: string
@@ -27,6 +27,11 @@ export type CardItemType = {
     _id: string
     quantity: number | 0
     price: number | 0
+    startDate: Date
+    endDate: Date
+    photo: string
+    size: string
+    isInsurance: boolean
 }
 export type UserType = {
     _id: string

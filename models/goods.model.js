@@ -11,6 +11,9 @@ const goodsSchema = new mongoose.Schema(
         slogan: {
             type: String,
         },
+        rating: {
+            type: Number,
+        },
         isLoadedToCard: {
             type: Boolean,
         },

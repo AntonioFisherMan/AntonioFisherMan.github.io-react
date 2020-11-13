@@ -1,4 +1,5 @@
 import { profileAPI } from '../../api/profileAPI'
+import { appActions } from './AppReducer'
 import { messageActions } from './ServerMessageReducer'
 const GET_INFORM_OF_USER = 'GET_INFORM_OF_USER'
 
@@ -30,19 +31,24 @@ export const getInform = (id: any) => async (dispatch: any) => {
 }
 export const updateInform = (inform: any) => async (dispatch: any, getState: any) => {
     try {
+        dispatch(appActions.setLoading(true))
         let data = await profileAPI.updateInform(getState().auth.user.id, inform)
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_USER_INFORM_CHANGE'))
+        dispatch(appActions.setLoading(false))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.status, 'USER_INFORM_CHANGE_ERROR'))
     }
 }
 export const setInform = (inform: any) => async (dispatch: any, getState: any) => {
     try {
+        dispatch(appActions.setLoading(true))
         let data = await profileAPI.setInform(getState().auth.user.id, inform)
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_USER_INFORM_SET'))
         dispatch(informActions.addInform(data, true))
+        dispatch(appActions.setLoading(false))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.status, 'ERROR_USER_INFORM_SET'))
+        dispatch(appActions.setLoading(false))
     }
 }
 

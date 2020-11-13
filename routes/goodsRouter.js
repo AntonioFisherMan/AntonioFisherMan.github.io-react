@@ -36,7 +36,14 @@ router.post('/', async (req, res) => {
         }
     }
 })
-
+router.post('/rating/:id', async (req, res) => {
+    try {
+        console.log(req.body)
+        await Goods.findByIdAndUpdate({ _id: req.params.id }, { rating: req.body.rating })
+    } catch (err) {
+        res.status(404).json('Error')
+    }
+})
 router.get('/reviews', async (req, res) => {
     try {
         const reviews = await Reviews.find()

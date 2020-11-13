@@ -10,7 +10,7 @@ type PrealoaderType = {
 const Preloader: React.FC<PrealoaderType> = ({ loading, size }) => {
     return (
         <Box display="flex" justifyContent="center" marginTop="10px" marginBottom="10px">
-            {loading && <CircularProgress color="secondary" size={size ? size : "large"} />}
+            {loading && <CircularProgress color="secondary" size={size ? size : 40} />}
         </Box>
     )
 }

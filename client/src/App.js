@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 //PAGES
 
 import ChangepassPage from './Pages/ChangepassPage/ChangepassPage'
-import CheckoutPage from './Pages/CheckoutPage/CheckoutPage'
 import HelpPage from './Pages/HelpPage/HelpPage'
 import ReturnPage from './Pages/ReturnPage/ReturnPage'
 import NavContainer from './components/Nav/NavContainer'
@@ -17,7 +16,6 @@ import FrontPage from './Pages/FrontPage/FrontPage'
 import CardPageContainer from './Pages/CardPage/CardPageContainer'
 import FeedbackContainer from './Pages/FeedbackPage/FeedbackContainer'
 import OrdersPageContainer from './Pages/OrdersPage/OrdersPageContainer'
-import Checkout from './components/Forms/Checkout/Checkout'
 import Order from './Pages/OrdersPage/UnloginOrderPage'
 import InformContainer from './Pages/InformPage/InformContainer'
 import ForgotChangePassword from './components/Forms/ForgotPassword/ForgotChangePassword'
@@ -39,9 +37,9 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { font } from './fonts/Montserrat/font'
 import Test from './Pages/Test'
 import ServerMessage from './components/common/ServerMessages/ServerMessage'
+import CheckoutPageContainer from './Pages/CheckoutPage/CheckoutPageContainer'
 
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const theme = createMuiTheme({
     palette: {
@@ -105,10 +103,6 @@ class App extends React.Component {
             return <Preloader />
         } else {
             return (
-                <MuiThemeProvider>
-
-
-
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <Router>
@@ -121,7 +115,7 @@ class App extends React.Component {
                                 <Route path="/details/:id?" component={DetailsContainer} />
                                 <Route path="/card" component={CardPageContainer} />
                                 <Route path="/changepass" component={ChangepassPage} />
-                                <Route path="/checkout" component={CheckoutPage} />
+                                <Route path="/checkout" component={CheckoutPageContainer} />
                                 <Route path="/feedback/:id?" component={FeedbackContainer} />
                                 <Route path="/help" component={HelpPage} />
                                 <Route path="/inform" component={InformContainer} />
@@ -130,7 +124,7 @@ class App extends React.Component {
                                 <Route path="/sign" component={SignPage} />
                                 <Route path="/forgotpassword" component={ForgotPassword} />
                                 <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
-                                <Route path="/buy" component={Checkout} />
+                                <Route path="/buy" component={CheckoutPageContainer} />
                                 <Route path="/order" component={Order} />
                                 <Route path="/test" component={Test} />
                                 <Route path="/test2" component={Test2} />
@@ -142,7 +136,6 @@ class App extends React.Component {
                         </Suspense>
                     </Router>
                 </ThemeProvider>
-                </MuiThemeProvider>
             )
         }
     }

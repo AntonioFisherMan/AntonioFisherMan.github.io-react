@@ -9,3 +9,17 @@
 .MuiIconButton-edgeEnd {
   margin-right: 0 !important;
 }
+.custom-control{
+  padding:0 !important;
+}
+.MuiFilledInput-input{
+  padding:0  !important;
+}
+
+.MuiFilledInput-underline:before,.MuiFilledInput-underline::after{
+    border-bottom: none !important;
+}
+
+.MuiIconButton-root{
+  padding:0 !important;
+}

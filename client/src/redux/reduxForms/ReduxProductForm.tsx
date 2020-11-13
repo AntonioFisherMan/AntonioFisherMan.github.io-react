@@ -7,7 +7,7 @@ import { H6 } from "../../components/Typography/H6"
 import { Subtitle1 } from "../../components/Typography/Subtitle1"
 import { ProductPropsType } from "../../Pages/DetailsPage/DetailsPage"
 import { required } from "../../utils/Validators/validators"
-import { MyInput } from '../../components/common/FormsControls/MyInput'
+import { MyDatePicker } from "../../components/common/FormsControls/MyDatePicker"
 
 type ProductValuesType = {
         item: { sizes: Array<string> },
@@ -17,7 +17,6 @@ type ProductValuesType = {
 
 const ProductForm: React.FC<InjectedFormProps<ProductPropsType, ProductValuesType> & ProductValuesType> = (props) => {
         let [size, setSize] = useState('')
-        debugger
         return (
                 <form onSubmit={props.handleSubmit}>
                         <div className="detailsInformList">
@@ -46,13 +45,13 @@ const ProductForm: React.FC<InjectedFormProps<ProductPropsType, ProductValuesTyp
                                 <H6 text="Step 2." />
                                 <div className="detailsInformListDate">
 
-                                        <div>
+                                        <div >
                                                 <Subtitle1 text="Delivery Date" />
-                                                <Field validate={[required]} type="date" component={MyInput} name="startDate" className="form-control" />
+                                                <Field validate={[required]} emptyLabel={"Select date"} component={MyDatePicker} name="startDate" />
                                         </div>
-                                        <div>
+                                        <div style={{ marginLeft: '20px' }}>
                                                 <Subtitle1 text="Delivery Date" />
-                                                <Field validate={[required]} type="date" component={MyInput} name="endDate" className="form-control" />
+                                                <Field validate={[required]} component={MyDatePicker} name="endDate" />
                                         </div>
                                 </div>
                                 {props.submitSucceeded ? props.value.openModal(props.item, size) : null}

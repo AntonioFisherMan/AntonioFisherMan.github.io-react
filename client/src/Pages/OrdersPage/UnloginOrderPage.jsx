@@ -2,10 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { mongoObjectId } from '../../utils/helperFunctions/objectId'
 import MyButton from '../../components/SiteButton/MyButton'
-
+import Preloader from '../../components/common/Preloader'
+import { compose } from 'redux'
+import { LoadingDataHOC } from '../../hoc/LoaingData'
 
 const Order = (props) => {
-
+    debugger
     return (
         <div>
             {props.order ? <div>
@@ -23,7 +25,7 @@ const Order = (props) => {
                 <div className="row d-flex justify-content-center" style={{ marginTop: '20px' }}>
                     <MyButton text="to catalog" href="/catalog" variant="outlined" />
                 </div>
-            </div> : null}
+            </div> : <Preloader loading={props.loading} />}
         </div>
 
 
@@ -38,5 +40,7 @@ let mapDispatchToProps = (state) => {
     }
 }
 
-
-export default connect(mapDispatchToProps, {})(Order)
+export default compose(
+    LoadingDataHOC,
+    connect(mapDispatchToProps, {})
+)(Order)

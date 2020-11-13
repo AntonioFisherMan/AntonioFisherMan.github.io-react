@@ -2,7 +2,8 @@ import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { initializeThunkApp } from './redux/reducers/AppReducer'
 import { connect } from 'react-redux'
-
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateUtils from '@date-io/moment'
 //PAGES
 
 import ChangepassPage from './Pages/ChangepassPage/ChangepassPage'
@@ -103,39 +104,40 @@ class App extends React.Component {
             return <Preloader />
         } else {
             return (
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <Router>
-                        <Suspense fallback={<div>Загрузка...</div>}>
-                            <NavContainer />
-                            <ServerMessage code={this.props.code} />
-                            <Switch>
-                                <Route exact path="/" component={FrontPage} />
-                                <Route path="/catalog" component={CatalogPageContainer} />
-                                <Route path="/details/:id?" component={DetailsContainer} />
-                                <Route path="/card" component={CardPageContainer} />
-                                <Route path="/changepass" component={ChangepassPage} />
-                                <Route path="/checkout" component={CheckoutPageContainer} />
-                                <Route path="/feedback/:id?" component={FeedbackContainer} />
-                                <Route path="/help" component={HelpPage} />
-                                <Route path="/inform" component={InformContainer} />
-                                <Route path="/orders" component={OrdersPageContainer} />
-                                <Route path="/return" component={ReturnPage} />
-                                <Route path="/sign" component={SignPage} />
-                                <Route path="/forgotpassword" component={ForgotPassword} />
-                                <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
-                                <Route path="/buy" component={CheckoutPageContainer} />
-                                <Route path="/order" component={Order} />
-                                <Route path="/test" component={Test} />
-                                <Route path="/test2" component={Test2} />
-                                <Route component={NotFound} />
-                            </Switch>
-                            <Modal />
+                <MuiPickersUtilsProvider utils={DateUtils}>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <Router>
+                            <Suspense fallback={<div>Загрузка...</div>}>
+                                <NavContainer />
+                                <ServerMessage code={this.props.code} />
+                                <Switch>
+                                    <Route exact path="/" component={FrontPage} />
+                                    <Route path="/catalog" component={CatalogPageContainer} />
+                                    <Route path="/details/:id?" component={DetailsContainer} />
+                                    <Route path="/card" component={CardPageContainer} />
+                                    <Route path="/changepass" component={ChangepassPage} />
+                                    <Route path="/feedback/:id?" component={FeedbackContainer} />
+                                    <Route path="/help" component={HelpPage} />
+                                    <Route path="/inform" component={InformContainer} />
+                                    <Route path="/orders" component={OrdersPageContainer} />
+                                    <Route path="/return" component={ReturnPage} />
+                                    <Route path="/sign" component={SignPage} />
+                                    <Route path="/forgotpassword" component={ForgotPassword} />
+                                    <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
+                                    <Route path="/buy" component={CheckoutPageContainer} />
+                                    <Route path="/order" component={Order} />
+                                    <Route path="/test" component={Test} />
+                                    <Route path="/test2" component={Test2} />
+                                    <Route component={NotFound} />
+                                </Switch>
+                                <Modal />
 
-                            <FooterContainer />
-                        </Suspense>
-                    </Router>
-                </ThemeProvider>
+                                <FooterContainer />
+                            </Suspense>
+                        </Router>
+                    </ThemeProvider>
+                </MuiPickersUtilsProvider>
             )
         }
     }

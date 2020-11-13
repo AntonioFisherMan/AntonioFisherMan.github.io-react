@@ -7,9 +7,12 @@ import { required } from '../../../utils/Validators/validators'
 import { H6 } from '../../Typography/H6'
 import { MyCheckBox } from '../../common/FormsControls/MyCheckBox'
 import { MySelect } from '../../common/FormsControls/MySelect'
-import UploadFile from '../../common/UploadFile/UploadFile'
+import { compose } from 'redux'
+import { LoadingDataHOC } from '../../../hoc/LoaingData'
 
-export const CheckoutForm = (props) => {
+
+const CheckoutForm = (props) => {
+    debugger
     return (
         <>
             <form className="checkoutForm" style={{ margin: '0px', marginTop: '50px', marginBottom: '50px' }} onSubmit={props.handleSubmit}>
@@ -27,16 +30,13 @@ export const CheckoutForm = (props) => {
                 <Field type="number" validate={[required]} component={MyInput} label="Phone" name="phone" placeholder="Phone" />
                 <H6 text="Billing Address" />
                 <label><Field type="checkbox" component={MyCheckBox} name="check" /><span>same as Shipping Address</span></label>
-
-
-                <UploadFile name={"userImage"} />
                 <div className="returnLink">
                     <MyButton href="/catalog" text="Return to catalogue" variant="text" />
                 </div>
                 {props.isAddInform ? <div className="ml-auto">
-                    <button ><MyButton text="Обновить" href="" /></button>
+                    <button ><MyButton text="Обновить" href="" loading={props.loading} /></button>
                 </div> : <div className="ml-auto">
-                        <button ><MyButton text="Сохранить" href="" /></button>
+                        <button ><MyButton text={props.btn} href="" loading={props.loading} /></button>
                     </div>}
             </form>
         </>
@@ -44,5 +44,8 @@ export const CheckoutForm = (props) => {
     )
 }
 
+
+
+export default compose(LoadingDataHOC)(CheckoutForm)
 
 

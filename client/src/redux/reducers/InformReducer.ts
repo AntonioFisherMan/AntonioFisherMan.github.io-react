@@ -23,7 +23,7 @@ export const informActions = {
     addInform: (inform: object, isAddInform: boolean) => ({ type: 'GET_INFORM_OF_USER', inform, isAddInform } as const),
 }
 
-export const getInform = (id: any) => async (dispatch: any) => {
+export const getInform = (id: string) => async (dispatch: any) => {
     try {
         let data = await profileAPI.getInform(id)
         dispatch(informActions.addInform(data.inform, data.isAddInform))

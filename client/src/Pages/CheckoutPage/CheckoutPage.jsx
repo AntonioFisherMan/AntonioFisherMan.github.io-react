@@ -1,20 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
-import { connect } from 'react-redux'
-import { getInform, updateInform } from '../../redux/reducers/InformReducer'
-import { CheckoutForm } from '../../components/Forms/Checkout/CheckoutForm'
+import CheckoutForm from '../../components/Forms/Checkout/CheckoutForm'
 import { reduxForm } from 'redux-form'
 
 
 export const CheckoutPage = (props) => {
-    useEffect(() => {
-        props.getInform()
-    })
-    const onSubmit = (data) => {
-        let inform = { data }
-        props.updateInform(inform)
-    }
     return (
         <div>
             <HeaderBottom />
@@ -27,7 +18,7 @@ export const CheckoutPage = (props) => {
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-9">
-                            <ReduxCheckoutForm onSubmit={onSubmit} />
+                            <ReduxCheckoutForm onSubmit={props.onSubmit} btn="continue" initialValues={props.userInform} />
                         </div>
                     </div>
                 </div>
@@ -42,11 +33,4 @@ const ReduxCheckoutForm = reduxForm({
     form: 'inform'
 })(CheckoutForm)
 
-let mapStateToProps = (state) => {
-    return {
-        userInform: state.inform.inform
-    }
-}
 
-
-export default connect(mapStateToProps, { getInform, updateInform })(CheckoutPage)

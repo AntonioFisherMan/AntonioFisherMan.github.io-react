@@ -124,22 +124,7 @@ height: 45px;
     margin-bottom: 10px !important;
 }
 
-input[type="date"]:before {
-    content: attr(placeholder) !important;
-    color: #aaa;
-    margin-right: 0.5em;
-    white-space: nowrap;
-}
 
-.detailsInformListDate input {
-    width: 182px;
-    height: 45px;
-    margin-right: 18px;
-    background: #F7F8FC;
-    border: 1px solid #E9ECF0;
-    box-sizing: border-box;
-    padding-left: 10px;
-}
 .detailsInformListDateTextarea {
     font-weight: normal;
     font-size: 15px;

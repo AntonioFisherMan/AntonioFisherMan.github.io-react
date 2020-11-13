@@ -1,22 +1,47 @@
-import 'date-fns';
 import React from 'react';
-import DateFnsUtils from '@date-io/date-fns';
-import {MuiPickersUtilsProvider,KeyboardDatePicker,} from '@material-ui/pickers';
+import { KeyboardDatePicker } from '@material-ui/pickers';
+import { MyDateIcon } from '../../../assets/icons/icons'
+import { makeStyles } from '@material-ui/core';
 
-export default function MyDatePicker() {
+
+const useStyles = makeStyles({
+  textField: {
+    width: 142,
+    height: 45,
+    background: "#F7F8FC",
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  helperText: {
+    fontSize: 12,
+    fontWeight: 600
+  },
+})
+
+export const MyDatePicker = props => {
+  const { meta: { submitting, error, touched }, input: { onBlur, value, ...inputProps }, ...others } = props;
+  const classes = useStyles()
+  const onChange = date => {
+    Date.parse(date) ? inputProps.onChange(date.toISOString()) : inputProps.onChange(null);
+  };
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
-    </MuiPickersUtilsProvider>
+    <>
+      <KeyboardDatePicker
+        {...inputProps}
+        {...others}
+        InputProps={{ classes: { root: classes.textField }, }}
+        inputVariant="filled"
+        keyboardIcon={<MyDateIcon />}
+        format="MM/dd/yyyy"
+        emptyLabel={others.emptyLabel}
+        value={value ? new Date(value) : null}
+        onBlur={() => onBlur(value ? new Date(value).toISOString() : null)}
+        error={error && touched}
+        helperText={error && touched == true ? error : null}
+        FormHelperTextProps={{ classes: { root: classes.helperText } }}
+        onChange={onChange}
+      />
+    </>
   );
-}
+};
+

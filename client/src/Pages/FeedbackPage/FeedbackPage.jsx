@@ -10,7 +10,7 @@ import UploadFile from '../../components/common/UploadFile/UploadFile'
 import ServerMessage from '../../components/common/ServerMessages/ServerMessage'
 import { required } from '../../utils/Validators/validators'
 import { figureOutDate } from '../../utils/helperFunctions/figureOutDate'
-import MyButton from '../../components/SiteButton/MyButton'
+import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
 
 const FeedbackPage = (props) => {

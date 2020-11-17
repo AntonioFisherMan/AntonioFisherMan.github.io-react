@@ -1,20 +1,47 @@
+
+import { Box, Divider, makeStyles } from '@material-ui/core'
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { MyCheckBox } from '../../components/common/FormsControls/MyCheckBox'
-import MyButton from '../../components/SiteButton/MyButton'
+import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { H6 } from '../../components/Typography/H6'
 
+const useStyles = makeStyles({
+        sidebarText: {
+                display: 'flex',
+                marginBottom: 15,
+                marginTop: 20
+        },
 
+        sidebarMenu: {
+                display: 'flex',
+                flexDirection: 'column'
+        },
+        sidebarItem: {
+                paddingVottom: 30
+        },
+        sidebar: {},
+        h6: {
+                fontSize: 12,
+                fontWeight: 600,
+                color: '#000000',
+                letterSpacing: 1.5
+        },
+        hr: {
+                border: '1px solid #EEEEEE'
+        }
+})
 
-const FilterForm = (props: any) => {
+const FilterForm: React.FC<InjectedFormProps> = (props) => {
+        const classes = useStyles()
         return (
-                <form className="sidebar" onSubmit={props.handleSubmit}>
-                        <div className="sidebarItem">
-                                <hr />
-                                <div className="sidebarText">
-                                        <H6 text="SIZE" />
+                <form className={classes.sidebar} onSubmit={props.handleSubmit}>
+                        <Box className={classes.sidebarItem}>
+                                <Divider />
+                                <Box className={classes.sidebarText}>
+                                        <H6 text="SIZE" classes={classes.h6} />
                                         <img src="images/svg/Vector (7).svg" alt="" />
-                                </div>
+                                </Box>
                                 <ul className="sidebarMenu">
                                         <Field type="checkbox" component={MyCheckBox} name="size36" label="36" />
                                         <Field type="checkbox" component={MyCheckBox} name="size38" label="38" />
@@ -25,12 +52,12 @@ const FilterForm = (props: any) => {
                                         <Field type="checkbox" component={MyCheckBox} name="L" label="L" />
                                         <Field type="checkbox" component={MyCheckBox} name="XL" label="XL" />
                                 </ul>
-                        </div>
-                        <div className="sidebarItem">
-                                <hr />
-                                <div className="sidebarText">
-                                        <H6 text="COLOUR" />
-                                </div>
+                        </Box>
+                        <Box className={classes.sidebarItem}>
+                                <Divider />
+                                <Box className={classes.sidebarText}>
+                                        <H6 text="COLOUR" classes={classes.h6} />
+                                </Box>
                                 <ul className="sidebarMenu">
                                         <Field type="checkbox" component={MyCheckBox} name="Black" label="Black" />
                                         <Field type="checkbox" component={MyCheckBox} name="Blue" label="Blue" />
@@ -40,12 +67,12 @@ const FilterForm = (props: any) => {
                                         <Field type="checkbox" component={MyCheckBox} name="Pink" label="Pink" />
                                         <Field type="checkbox" component={MyCheckBox} name="Red" label="Red" />
                                 </ul>
-                        </div>
-                        <div className="sidebarItem">
-                                <hr />
-                                <div className="sidebarText">
-                                        <H6 text="STYLE" />
-                                </div>
+                        </Box>
+                        <Box className={classes.sidebarItem}>
+                                <Divider />
+                                <Box className={classes.sidebarText}>
+                                        <H6 text="STYLE" classes={classes.h6} />
+                                </Box>
                                 <ul className="sidebarMenu">
                                         <Field type="checkbox" component={MyCheckBox} name="Mini" label="Mini" />
                                         <Field type="checkbox" component={MyCheckBox} name="Maxi" label="Maxi" />
@@ -54,12 +81,10 @@ const FilterForm = (props: any) => {
                                         <Field type="checkbox" component={MyCheckBox} name="Tops" label="Tops" />
                                         <Field type="checkbox" component={MyCheckBox} name="Bottoms" label="Bottoms" />
                                 </ul>
-                        </div>
+                        </Box>
                         <button><MyButton variant="outlined" color="default" text="Apply" href="" /></button>
                 </form>
         )
 }
 
-export const ReduxFilterForm = reduxForm({
-        form: 'filter'
-})(FilterForm)
+export const ReduxFilterForm = reduxForm({ form: 'filter' })(FilterForm)

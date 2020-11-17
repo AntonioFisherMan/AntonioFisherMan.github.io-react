@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 
 
-class Login extends React.Component<mapDispatchToPropsType & mapStateToProps>{
+class Login extends React.Component<mapDispatchToPropsType>{
     onSubmit = (formData: any) => {
         this.props.login(formData.email, formData.password, formData.rememberMe)
     }
@@ -20,9 +20,6 @@ class Login extends React.Component<mapDispatchToPropsType & mapStateToProps>{
 type mapDispatchToPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
 }
-type mapStateToProps = {
-    errors: { id: string, message: string },
-    open: boolean
-}
+
 export default connect(null, { login })(Login)
 

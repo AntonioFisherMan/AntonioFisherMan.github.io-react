@@ -1,5 +1,5 @@
 import React from 'react'
-import MyButton from '../../SiteButton/MyButton'
+import MyButton from '../../SiteButton/MyButton/MyButton'
 import './Checkout.css'
 import { Field } from 'redux-form'
 import { MyInput } from '../../common/FormsControls/MyInput'

@@ -1,40 +1,30 @@
-import React, { Component } from "react";
-import { compose } from "redux";
+import React, { useState } from 'react'
 
-const ModalContext = React.createContext();
+const ModalContext = React.createContext()
 
-class ModalProvider extends Component {
-  state = {
-    modalOpen: false,
-    modalProduct: null,
-    size:null
-  }
+const ModalProvider = (props) => {
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [modalProduct, setModalProduct] = useState(null)
+    const [size, setSize] = useState(null)
 
-  openModal = (product,size) => {
-    this.setState(() => {
-      return { modalProduct: product,size:size, modalOpen: true };
-    });
-  };
-  closeModal = () => {
-    this.setState(() => {
-      return {modalProduct:null,modalOpen: false };
-    });
-  };
-  render() {
+    const openModal = (product, size) => {
+        setModalProduct(product)
+        setSize(size)
+        setIsModalOpen(true)
+    }
+    const closeModal = () => {
+        setModalProduct(null)
+        setIsModalOpen(false)
+    }
     return (
-      <ModalContext.Provider
-        value={{
-          ...this.state,
-          openModal: this.openModal,
-          closeModal: this.closeModal,
-        }}
-      >
-        {this.props.children}
-      </ModalContext.Provider>
-    );
-  }
+        <ModalContext.Provider
+            value={{ modalProduct: modalProduct, isModalOpen: isModalOpen, size: size, openModal: openModal, closeModal: closeModal }}
+        >
+            {props.children}
+        </ModalContext.Provider>
+    )
 }
 
-const ModalConsumer = ModalContext.Consumer;
+const ModalConsumer = ModalContext.Consumer
 
-export { ModalProvider, ModalConsumer };
+export { ModalProvider, ModalConsumer }

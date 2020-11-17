@@ -1,7 +1,7 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import { MyInput } from "../../common/FormsControls/MyInput"
-import MyButton from "../../SiteButton/MyButton"
+import MyButton from "../../SiteButton/MyButton/MyButton"
 import { H6 } from "../../Typography/H6"
 import { Box } from '@material-ui/core'
 import { useStylesSign } from "../Login/LoginForm"

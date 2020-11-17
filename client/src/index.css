@@ -85,17 +85,28 @@ background: none;
 .MuiButton-iconSizeMedium > *:first-child {
    font-size: 12px
 }
-
+.MyButton-wrapper-14{
+  margin:0 !important;
+}
 button:active, button:focus {
   outline: none;
 }
 button::-moz-focus-inner {
   border: 0;
 }
+.MyButton-wrapper-31{
+  margin:0 !important;
+}
+.MyButton-wrapper-44{
+  margin:0 !important;
+}
 .MuiTableCell-root{
   border-bottom: none !important;
 }
-
+.MyButton-wrapper-50{
+  margin:0 !important;
+}
 body {
   background-color: #ffffff !important;
 }
+

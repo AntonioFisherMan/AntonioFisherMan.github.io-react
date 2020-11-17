@@ -92,8 +92,31 @@ const theme = createMuiTheme({
                 '@font-face': [font],
             },
         },
+        MuiButton: {
+            root: {
+                width: 164,
+                height: 50,
+                fontSize: 12,
+                fontWeight: 600,
+            },
+            sizeSmall: {
+                width: 128,
+                height: 45,
+            },
+            sizeLarge: {
+                width: 227,
+                height: 55,
+            },
+        },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                border: '1px solid',
+                borderColor: '#F7F8FC',
+            },
+        },
     },
 })
+
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeThunkApp()

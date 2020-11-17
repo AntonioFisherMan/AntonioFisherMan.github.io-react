@@ -3,7 +3,8 @@ import React from 'react'
 import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
   label: {
-    margin: 10
+    marginLeft: 11,
+    fontSize: 12
   },
 });
 
@@ -12,7 +13,9 @@ export const MyCheckBox = ({ input, label }) => {
   return (
     <div>
       <FormControlLabel
-        className={classes.label}
+        classes={{
+          label: classes.label
+        }}
         control={
           <Checkbox
             color="primary"

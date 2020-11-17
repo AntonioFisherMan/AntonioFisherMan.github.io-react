@@ -3,7 +3,7 @@ import './OrdersPage.css'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
-import MyButton from '../../components/SiteButton/MyButton'
+import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { Link } from 'react-router-dom'
 import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
 

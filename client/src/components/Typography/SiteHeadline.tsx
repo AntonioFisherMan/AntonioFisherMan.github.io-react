@@ -3,15 +3,15 @@ import React from "react";
 import { TypographyType } from "../../types/types";
 
 const defaultProps = {
-        paddingBottom: '18px',
         style: { width: '90px' },
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
 };
 
-export const SiteHeadline: React.FC<TypographyType> = ({ text }) => {
+
+export const SiteHeadline: React.FC<TypographyType> = ({ text, classes }) => {
         return (
-                <Box borderBottom={1} {...defaultProps} >
-                        <Typography variant="caption">{text}</Typography>
+                <Box borderBottom={1} {...defaultProps} className={classes} >
+                        <Typography variant="caption" >{text}</Typography>
                 </Box>
         )
 

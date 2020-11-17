@@ -59,7 +59,7 @@ export const catalogActions = {
 export const getGoodsForSlider = () => async (dispatch: CatalogDispatchType) => {
     try {
         let data = await goodsAPI.changeFilter(1, 10, '')
-        dispatch(catalogActions.getGoods(data))
+        dispatch(catalogActions.getGoods(data.payload))
     } catch (err) {}
 }
 export const getGoodsThunkById = (id: string) => async (dispatch: CatalogDispatchType) => {

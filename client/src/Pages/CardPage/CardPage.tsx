@@ -1,7 +1,7 @@
 import React from 'react'
 import './CardPage.css'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
-import MyButton from '../../components/SiteButton/MyButton'
+import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
 import { CardItemType } from '../../types/types'
 import { PinkText } from '../../components/common/elements/PinkText'
@@ -93,7 +93,7 @@ const CardPage = (props: any) => {
                                         <img src="images/svg/Vector (15).svg" alt="" />
                                     </div>
                                     <div style={{ textAlign: 'center' }}>
-                                        <p><span>Add </span>insurance for this item for €5</p>
+                                        <p><PinkText text="Add" /> insurance for this item for €5</p>
                                         <p className="cardTextGrey" >This will cover accidental damage (example: zip break) but not unrepairable damage</p>
                                     </div>
 

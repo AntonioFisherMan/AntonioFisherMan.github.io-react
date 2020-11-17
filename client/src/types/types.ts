@@ -39,8 +39,9 @@ export type UserType = {
     email: string
 }
 export type TypographyType = {
-    text: string
+    text: string | undefined
     align?: 'inherit' | 'left' | 'center' | 'right' | 'justify' | undefined
+    classes?: any
 }
 
 export type SiteMessageType = {

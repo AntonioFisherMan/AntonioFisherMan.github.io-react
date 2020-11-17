@@ -27,7 +27,6 @@ class DetailsContainer extends React.Component<PropsType> {
         }
     }
     onSubmit = (payload: any) => {
-        debugger
         const { size, startDate, endDate } = payload
         const cardItems = this.props.items
         const { good } = this.props.goodItem[0]

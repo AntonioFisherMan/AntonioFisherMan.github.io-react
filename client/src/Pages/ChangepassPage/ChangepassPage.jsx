@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import Sidebar from '../../components/Sidebar/Sidebar'
-import MyButton from '../../components/SiteButton/MyButton'
+import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
 import ChangePass from '../../components/Forms/ChangePass/ChangePass'
 import { compose } from 'redux'

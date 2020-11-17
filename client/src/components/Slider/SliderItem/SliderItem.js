@@ -1,6 +1,6 @@
 import React from 'react'
 import './SliderItem.css'
-import MyButton from '../../SiteButton/MyButton'
+import MyButton from '../../SiteButton/MyButton/MyButton'
 import { Link } from 'react-router-dom'
 import { H5 } from '../../Typography/H5'
 import { Subtitle1 } from '../../Typography/Subtitle1'

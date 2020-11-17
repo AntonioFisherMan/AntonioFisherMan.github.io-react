@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
-import MyButton from '../../components/SiteButton/MyButton';
+import MyButton from '../../components/SiteButton/MyButton/MyButton';
 
 
 

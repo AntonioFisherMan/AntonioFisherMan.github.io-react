@@ -20,6 +20,7 @@ import Paper from '@material-ui/core/Paper'
 import MyTable from '../components/Table/Table'
 import FilterTable from '../components/Table/FilterTable'
 import MyAutoComplete from '../components/Table/MyAutoComplete'
+import MyDialog from '../components/Dialogs/MyDialog'
 
 function* genItems() {
         for (let i = 1; i <= 1000; i++) {
@@ -163,6 +164,7 @@ function UsingStatetoRenderListItems({ classes }) {
                         {/* <MyTable closeTable={() => undefined} /> */}
                         <FilterTable />
                         <MyAutoComplete />
+                        <MyDialog />
                 </>
         )
 }

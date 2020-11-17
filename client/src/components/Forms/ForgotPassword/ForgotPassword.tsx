@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { authActions } from '../../../redux/reducers/AuthReducer'
 import { requestToken } from '../../../redux/reducers/AuthReducer'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { MessageActions } from '../../../redux/reducers/ServerMessageReducer'
-import { AppStateType } from '../../../redux/ReduxStore';
-import MyButton from '../../SiteButton/MyButton';
+import { AppStateType } from '../../../redux/ReduxStore'
+import MyButton from '../../SiteButton/MyButton/MyButton'
 
 
 const ForgotPassword: React.FC<ForgotPasswordType> = (props) => {
@@ -14,8 +14,8 @@ const ForgotPassword: React.FC<ForgotPasswordType> = (props) => {
         props.resetEmailSentClear('')
     }, [])
     const handleSubmit = (e: any) => {
-        e.preventDefault();
-        props.requestToken();
+        e.preventDefault()
+        props.requestToken()
         setEmail('')
     }
     const handleChangePass = (e: any) => {

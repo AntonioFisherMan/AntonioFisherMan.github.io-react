@@ -9,10 +9,8 @@ const stylesInput = theme => createStyles({
     textField: {
         width: '390px',
         height: '45px',
-        padding: 0,
-        background: '#F7F8FC',
-        borderColor: '#E9ECF0',
 
+        background: '#F7F8FC',
     },
     helperText: {
         fontSize: 12,
@@ -20,6 +18,9 @@ const stylesInput = theme => createStyles({
     },
     label: {
         color: theme.palette.default.dark
+    },
+    notchedOutline: {
+        border: '1px solid red'
     }
 })
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { reduxForm, Field, InjectedFormProps } from 'redux-form'
 import { MyInput } from '../../common/FormsControls/MyInput'
 import { required, MinLength, MaxLength, email } from '../../../utils/Validators/validators'
-import MyButton from '../../SiteButton/MyButton'
+import MyButton from '../../SiteButton/MyButton/MyButton'
 import { PinkText } from '../../common/elements/PinkText'
 import { H6 } from '../../Typography/H6'
 import { Box, createStyles, makeStyles, Theme } from '@material-ui/core'
@@ -16,27 +16,63 @@ export const useStylesSign = makeStyles((theme: Theme) =>
         },
         headline: {
             marginBottom: 13
-        }
+        },
+        maxWidth: {
+            width: 500,
+            color: "red"
+        },
+        checkBoxBlock: {
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: 10
+        },
+        checkBox: {
+            marginRight: 11
+        },
+        btn: {
+            display: 'flex',
+            justifyContent: 'center',
+        },
+        iconBlock: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center'
+        },
+        divider: {
+            width: 150,
+        },
+        icon: {
+            margin: 20,
+        },
+        greyText: {
+            fontSize: 12,
+            color: '#707070',
+            fontWeight: 400,
+            marginLeft: 20,
+            marginTop: 10,
+            marginBottom: 20
+        },
+        loginForm: {
+
+        },
+        '@media (max-width: 960px)': {
+            loginForm: {
+                marginBottom: 30
+            }
+        },
+
     }),
 )
 
 const MaxLengthCreator20 = MaxLength(20)
 const MinLengthCreator5 = MinLength(5)
 
-type LoginValuesType = {
-    email: string,
-    password: string,
-    rememberMe: boolean
-}
-type LoginPropsType = {
-    errors: { id: string, message: string },
-    open: boolean
-}
 
-const LoginForm: React.FC<InjectedFormProps<LoginValuesType, LoginPropsType> & LoginPropsType> = (props) => {
-    const classes = useStylesSign();
+
+const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = (props) => {
+    const classes = useStylesSign()
     return (
-        <form className="signForm" onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className={classes.loginForm}>
             <Box className={classes.headline}>
                 <H6 text="log-in" />
             </Box>
@@ -60,17 +96,21 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType, LoginPropsType> & L
                 label="Password"
                 required
             />
-
-            <div className="custom-control custom-checkbox d-flex ">
-                <label className="d-flex align-items-center">
-                    <Field name="rememberMe" type="checkbox" component={MyCheckBox} />
-                    <span className="checkText span">Remember Me<PinkText text="(PrivacyPolicy)" variant="body" /></span>
-                </label>
-                <MyButton className="forgotPass" text="forgot password" href="/forgotpassword" color="primary" isIcon={false} variant="text" />
-                <button><MyButton text="Login" href="" /></button>
-            </div>
+            <Box className={classes.checkBoxBlock}>
+                <Field name="rememberMe" type="checkbox" component={MyCheckBox} label="Remember Me" className={classes.checkBox} />
+                <PinkText text="(PrivacyPolicy)" variant="body" />
+                <MyButton text="forgot password?" href="/forgotpassword" color="primary" isIcon={false} variant="text" />
+            </Box>
+            <button className={classes.btn}><MyButton text="Login" href="" /></button>
         </form>
     )
 }
 
-export const ReduxLoginForm = reduxForm<LoginValuesType, LoginPropsType>({ form: 'login' })(LoginForm)
+type LoginValuesType = {
+    email: string,
+    password: string,
+    rememberMe: boolean
+}
+
+
+export const ReduxLoginForm = reduxForm<LoginValuesType>({ form: 'login' })(LoginForm)

@@ -20,10 +20,10 @@ class InformPageContainer extends React.Component {
   }
 
   render() {
-    debugger
+
     return (
       <>
-        {this.props.loading ? <CircularProgress loading={this.props.loading} /> :
+        {this.props.loading ? <Preloader loading={this.props.loading} /> :
           <InformPage {...this.props} isAddInform={this.props.isAddInform} updateInform={this.props.updateInform} setInform={this.props.setInform}
           />}
       </>

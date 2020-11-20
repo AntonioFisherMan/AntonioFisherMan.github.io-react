@@ -8,62 +8,60 @@ import { Subtitle1 } from "../../components/Typography/Subtitle1"
 import { ProductPropsType } from "../../Pages/DetailsPage/DetailsPage"
 import { required } from "../../utils/Validators/validators"
 import { MyDatePicker } from "../../components/common/FormsControls/MyDatePicker"
+import { Box, Typography } from "@material-ui/core"
+import GreyText from "../../components/Typography/GreyText"
 
 type ProductValuesType = {
         item: { sizes: Array<string> },
-        value: { openModal: (args: {}, string: string) => { ModalProduct: { product: object, size: string, modalOpen: boolean } } }
+        value: { openModal: (args: {}, string: string) => { ModalProduct: { product: object, size: string, modalOpen: boolean } } },
+        classes: any
 }
-
 
 const ProductForm: React.FC<InjectedFormProps<ProductPropsType, ProductValuesType> & ProductValuesType> = (props) => {
         let [size, setSize] = useState('')
+        const { classes } = props
         return (
                 <form onSubmit={props.handleSubmit}>
-                        <div className="detailsInformList">
-                                <H6 text="Step 1." />
-                                <div className="d-flex align-items-center">
-                                        <Field validate={[required]} component={MySelect} onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => setSize(e.target.value)} name="size" className="detailsBtn">
+                        <Box className={classes.informList}>
+                                <H6 text="Step 1." classes={classes.h6} />
+                                <Box className={classes.selectBlock}>
+                                        <Field validate={[required]} component={MySelect} onChange={(e: React.ChangeEvent<HTMLSelectElement>): void => setSize(e.target.value)} name="size" className={classes.selectSize}>
                                                 {props.item.sizes ? props.item.sizes.map((size: string) =>
-
                                                         <option key={size}>
                                                                 {size}
                                                         </option>) : <option> Размеров нет</option>}
                                         </Field>
-
-                                        <div className="d-flex detailsSize">
+                                        <Box className={classes.selectIcon}>
                                                 <img src="/images/svg/Vector (11).svg" alt="" />
-                                                <p >size guide</p>
-                                        </div>
-                                </div>
-                                <p className="detailsInformListRental">Rental Period <PinkText text="*" /></p>
-                                <div className="detailsInformListRentalBlock">
+                                                <GreyText text="size guide" propsClasses={classes.greyText2} />
+                                        </Box>
+                                </Box>
+                                <Typography className={classes.h6sec}><H6 text="Rental Period" /><PinkText text="*" /></Typography>
+                                <Box className={classes.informListRentalBlock}>
                                         <img src="/images/svg/Vector (12).svg" alt="" />
-                                        <p>7 day rental</p>
-                                </div>
-                        </div>
-                        <div className="detailsInformList">
-                                <H6 text="Step 2." />
-                                <div className="detailsInformListDate">
+                                        <GreyText text="7 day rental" propsClasses={classes.greyText3} />
+                                </Box>
+                        </Box>
 
-                                        <div >
-                                                <Subtitle1 text="Delivery Date" />
+                        <Box className={classes.informList}>
+                                <H6 text="Step 2." classes={classes.h6} />
+                                <Box className={classes.informListDate}>
+                                        <Box className={classes.dateField}>
+                                                <Subtitle1 text="Delivery Date" classes={classes.dateFieldText} />
                                                 <Field validate={[required]} emptyLabel={"Select date"} component={MyDatePicker} name="startDate" />
-                                        </div>
-                                        <div style={{ marginLeft: '20px' }}>
-                                                <Subtitle1 text="Delivery Date" />
+                                        </Box>
+                                        <Box>
+                                                <Subtitle1 text="Delivery Date" classes={classes.dateFieldText} />
                                                 <Field validate={[required]} component={MyDatePicker} name="endDate" />
-                                        </div>
-                                </div>
-                                {props.submitSucceeded ? props.value.openModal(props.item, size) : null}
-
-                                <p className="detailsInformListDateTextarea"><PinkText text="*" />Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
-                                    and keep all 3 outfits for 21 days!
-                                    Wear all outfits for as many times as you want.</p>
+                                                {props.submitSucceeded ? props.value.openModal(props.item, size) : null}
+                                        </Box>
+                                </Box>
+                                <Box className={classes.informListTextArea}>  <PinkText text="*" />   <GreyText text="Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
+                                and keep all 3 outfits for 21 days!
+                                    Wear all outfits for as many times as you want."/></Box>
                                 <button ><MyButton text=" Add to cart" href="" /></button>
-
-
-                        </div>
-                </form>
+                        </Box>
+                </form >
         )
 }
 

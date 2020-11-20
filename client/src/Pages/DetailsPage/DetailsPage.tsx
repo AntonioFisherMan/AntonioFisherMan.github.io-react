@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react'
-import './DetailsPage.css'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Box, Collapse, Container, Divider, Grid, ListItem, ListItemText, Typography, WithStyles, withStyles } from '@material-ui/core'
+
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import Slider from '../../components/Slider/Slider'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
@@ -10,7 +10,6 @@ import { CardItemType, ProductType, ReviewType } from '../../types/types'
 import { H5 } from '../../components/Typography/H5'
 import { Subtitle1 } from '../../components/Typography/Subtitle1'
 import Preloader from '../../components/common/Preloader'
-import { Collapse, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import MyTable from '../../components/Table/Table'
 import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
 import MyRating from '../../components/Rating/MyRating'
@@ -18,10 +17,12 @@ import { ReduxProductForm } from '../../redux/reduxForms/ReduxProductForm'
 import { ExpandIcon } from '../../assets/icons/icons'
 import { ReviewItem } from '../../components/ReviewItem/ReviewItem'
 import { CarouselVertical } from '../../components/Slider/CarouselVertical'
+import { styles } from './styles'
+import { PinkText } from '../../components/common/elements/PinkText'
+import GreyText from '../../components/Typography/GreyText'
 
-
-const DetailsPage: React.FC<ProductPropsType> = (props) => {
-
+const DetailsPage: React.FC<ProductPropsType & WithStyles<typeof styles>> = (props) => {
+    const { classes } = props
     const [expanded, setExpanded] = useState(false)
     return (
         <>
@@ -31,49 +32,50 @@ const DetailsPage: React.FC<ProductPropsType> = (props) => {
                         <div>
                             {props.goodItem.map((item: any) => <div key={item._id}>
                                 <HeaderBottom />
+
+
                                 <section className="detailsBlock">
-                                    <div className="container">
-                                        <div className="row">
-                                            <div className="col-12">
+                                    <Container>
+                                        <Grid container>
+                                            <Grid item xs={12} className={classes.headline}>
                                                 <SiteHeadline text="Sussex Copper Foil Maxi dress" />
-                                            </div>
-                                        </div>
-
-
-                                        <div className="row">
-                                            <div className="col-12 col-sm-12 col-lg-2">
+                                            </Grid>
+                                        </Grid>
+                                        <Grid container>
+                                            <Grid item xs={12} lg={2}>
                                                 <CarouselVertical photos={item.good.photos} />
-                                            </div>
-                                            <div className="col-12 col-sm-4 col-lg-4 d-flex justify-content-center">
-                                                <img className="detailsPhoto" src={item.good.photos.middle} alt="" />
-                                            </div>
-                                            <div className="col-12 col-sm-8 col-lg-4">
-                                                <div className="detailsInform">
-                                                    <div className="detailsInformList">
-                                                        <p className="detailsListSlogan" >{item.good.style} Dress</p>
+                                            </Grid>
+                                            <Grid item xs={12} sm={4} >
+
+                                                <img className={classes.detailsPhoto} src={item.good.photos.large} alt="" />
+
+                                            </Grid>
+                                            <Grid item xs={12} sm={8} lg={6}>
+                                                <Box >
+                                                    <Box >
+                                                        <PinkText text={`${item.good.style} Dress`} variant="overline" classes={classes.pinkText} />
                                                         <Subtitle1 text={item.good.text} />
-                                                        <ListItem className='list' disableGutters={true} button onClick={() => setExpanded(!expanded)}>
+                                                        {/* <ListItem className='list' disableGutters={true} button onClick={() => setExpanded(!expanded)}>
                                                             <ListItemText primary={"Table Sizes"} />
                                                             <ExpandIcon expanded={expanded} />
                                                         </ListItem>
                                                         <Collapse in={expanded}>
                                                             <MyTable closeTable={setExpanded} />
-                                                        </Collapse>
-
-                                                        <div className="detailsListStars">
+                                                        </Collapse> */}
+                                                        <Box className={classes.listStars}>
                                                             <MyRating defaultValue={item.good.rating} goodsId={item.good._id} />
-                                                            <p>{item.reviewQuantity} Reviews</p>
-                                                        </div>
+                                                            <GreyText text={`${item.reviewQuantity} Reviews`} propsClasses={classes.greyText} />
+                                                        </Box>
 
-                                                        <p className="detailsItem-price-line">€{item.good.salePrice}</p>
-                                                        <H5 text={`€ ${item.good.price}`} align="left" />
-                                                        <hr />
-                                                    </div>
-                                                    <ReduxProductForm onSubmit={props.onSubmit} item={item.good} value={value} />
-                                                    <div className="detailsInformList">
-                                                        <p className="detailsInformListTextarea ">
-                                                            Gorgeous Finders Keepers red ruffle midi dress -
-                                                            is guaranteed to turn heads at any occasion.
+                                                        <GreyText text={`€${item.good.salePrice}`} propsClasses={classes.priceLine} />
+                                                        <H5 text={`€ ${item.good.price}`} align="left" classes={classes.price} />
+                                                        <Divider />
+                                                    </Box>
+                                                    <ReduxProductForm onSubmit={props.onSubmit} item={item.good} value={value} classes={classes} />
+
+                                                    <Typography className={classes.informListTextArea}>
+                                                        Gorgeous Finders Keepers red ruffle midi dress -
+                                                        is guaranteed to turn heads at any occasion.
                                                             Uber flattering fit with adjustable tie back and beautiful ruffle detail.<br /><br />
                                     Remember all our outfits are available to rent from 4 to 16 days and
                                     you don't have to worry about the cleaning - we do that for you!<br /><br />
@@ -82,81 +84,71 @@ const DetailsPage: React.FC<ProductPropsType> = (props) => {
                                     select your rental period and checkout to reserve your item.
                                     Once you have received your outfit, wear & share
                                     your look as much as you like until your return date.
-                                </p>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                </Typography>
 
 
+                                                </Box>
+                                            </Grid>
+                                        </Grid>
 
-                                    </div>
-                                    <section className="styleBlock">
-                                        <div className="container">
-                                            <div className="row">
-                                                <div className="col-12 col-sm-6">
-                                                    <SiteHeadline text="Recommended For You" />
-                                                </div>
-                                                <div className="col-12 col-md-6">
-                                                    <div className="d-flex justify-content-end">
-                                                        <MyButton text="ALL CATALOG" href="/catalog" variant="outlined" color="default" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="row">
+                                    </Container>
+
+
+                                    <section className={classes.styleBlock}>
+                                        <Container>
+                                            <Grid container className={classes.styleHeadline}>
+                                                <SiteHeadline text="Recommended For You" />
+                                                <MyButton text="ALL CATALOG" href="/catalog" variant="outlined" color="default" />
+                                            </Grid>
+                                            <Grid container direction="row" justify="center">
                                                 <Slider id="multiCarousel3" a="#multiCarousel3" />
-                                            </div>
-
-                                            <div className="row">
-                                                <div className="col-12 btnWidth">
-                                                    <MyButton text="All CATALOG" href="/catalog" variant="outlined" color="default" />
-                                                </div>
-                                            </div>
-                                        </div>
+                                            </Grid>
+                                            <Grid container className={classes.styleBtn}>
+                                                <MyButton text="All CATALOG" href="/catalog" variant="outlined" color="default" fullWidth />
+                                            </Grid>
+                                        </Container>
                                     </section>
 
 
-                                    <section className="reviewBlock">
-                                        <div className="container">
-                                            <div className="row">
-                                                <div className="col-6">
-                                                    <SiteHeadline text="Reviews" />
-                                                </div>
-                                                <div className="col-6  d-flex justify-content-end">
-                                                    <MyButton onClick={() => props.setItemOfReview(item)} href={`/feedback/${item._id}`} text="WRITE A REVIEW" variant="outlined" color="secondary" />
-                                                </div>
-                                            </div>
-                                            {!item.review.length ? <SiteMessage text="На даный момент у этого товара нет отзывов" /> : null}
+                                    <section>
+                                        <Container>
+                                            <Grid container className={classes.styleHeadline}>
+                                                <SiteHeadline text="Reviews" />
+                                                <MyButton onClick={() => props.setItemOfReview(item)} href={`/feedback/${item._id}`} text="WRITE A REVIEW" variant="outlined" color="secondary" />
+                                            </Grid>
+
                                             {item.review.map((item: ReviewType) =>
                                                 <ReviewItem
+                                                    classes={classes}
                                                     _id={item._id}
                                                     photo={item.photo}
                                                     rating={item.rating}
                                                     reviewText={item.reviewText}
                                                     name={item.name} />)}
-                                            <div className="row">
-                                                <div className="col-12 d-flex justify-content-center">
-                                                    <MyRating readOnly={true} defaultValue={item.good.rating} />
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                            <Grid container justify="center" className={classes.reviewRating}>
+                                                <MyRating readOnly={true} defaultValue={item.good.rating} />
+                                            </Grid>
+                                            {!item.review.length ? <SiteMessage text="На даный момент у этого товара нет отзывов" /> : null}
+                                        </Container>
                                     </section>
+
                                 </section>
 
-           )
-                </div>)}
+                            )
+                </div>)
+                            }
                         </div>
                     )
                 }}
-            </ModalConsumer> : <Preloader loading={props.loading} />}
+            </ModalConsumer> : <Preloader loading={props.loading} />
+            }
         </>
     )
 }
 
 
-export default DetailsPage
+export default withStyles(styles)(DetailsPage)
 
 
 
@@ -166,5 +158,6 @@ export type ProductPropsType = {
     addToCart: (object: object) => void,
     setItemOfReview: (item: object) => void,
     onSubmit: (payload: any) => void,
-    loading: boolean
+    loading: boolean,
+
 }

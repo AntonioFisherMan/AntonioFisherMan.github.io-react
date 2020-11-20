@@ -1,69 +1,65 @@
 import React from 'react'
-import './HelpPage.css'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
-import { ServerMessageData } from '../../hoc/ServerMessageData'
-import { Textarea } from '../../components/common/FormsControls/Textarea'
-import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { sendHelpMessage } from '../../redux/reducers/InformReducer'
-import { required } from '../../utils/Validators/validators'
-import { H6 } from '../../components/Typography/H6'
+import { Container, Grid, makeStyles } from '@material-ui/core'
+import { ReduxHelpForm } from '../../redux/reduxForms/ReduxHelpForm'
+import { LoadingDataHOC } from '../../hoc/LoaingData'
+import { reset } from 'redux-form'
+const useStyles = makeStyles({
+    headline: {
+        marginTop: 35,
+        marginBottom: 21
+    },
+    btn: {
+        marginBottom: 53,
+        marginTop: 66
+    }
+})
 
 const HelpPage = (props) => {
     const onSubmit = (formData) => {
         props.sendHelpMessage(formData.helpMessage)
+        props.reset('help')
     }
-
+    const classes = useStyles()
     return (
-        <div>
+        <>
             <HeaderBottom />
             <section className="helpBlock">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            <SiteHeadline text="Help & Contact" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12 col-md-3">
+
+                <Container>
+                    <Grid container className={classes.headline}>
+                        <SiteHeadline text="Help & Contact" />
+                    </Grid>
+
+                    <Grid container>
+                        <Grid item xs={12} md={2}>
                             <Sidebar />
-                        </div>
-                        <div className="col-2"></div>
-                        <ReduxHelpForm onSubmit={onSubmit} />
-                    </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="returnLink">
-                                <MyButton href="/catalog" text="Return to catalogue" variant="text" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                        </Grid>
+                        <Grid item xs={12} md={2}></Grid>
+                        <Grid item xs={12} md={8}>
+                            <ReduxHelpForm onSubmit={onSubmit} loading={props.loading} />
+                        </Grid>
+                    </Grid>
+                    <Grid container className={classes.btn}>
+                        <MyButton href="/catalog" text="Return to catalogue" variant="text" size="large" />
+                    </Grid>
+                </Container>
             </section>
-        </div>
+        </>
     )
 }
 
-const HelpForm = (props) => {
-    return (
-        <form className="col-12 col-md-7 helpInform" onSubmit={props.handleSubmit}>
-            <H6 text="Your question" />
-            <Field component={Textarea} name="helpMessage" validate={[required]} className="form-control" placeholder="text..." />
-            <button style={{ marginTop: '20px' }}> <MyButton text="send" href="" /></button>
-        </form>
-    )
-
-}
-const ReduxHelpForm = reduxForm({ form: 'help' })(HelpForm)
 
 
 export default compose(
+    LoadingDataHOC,
     WithAuthRedirect,
-    connect(null, { sendHelpMessage })
+    connect(null, { sendHelpMessage, reset })
 )(HelpPage)

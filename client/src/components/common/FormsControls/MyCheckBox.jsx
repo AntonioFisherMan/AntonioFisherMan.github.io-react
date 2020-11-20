@@ -6,9 +6,13 @@ const useStyles = makeStyles({
     marginLeft: 11,
     fontSize: 12
   },
+  checked: {
+    color: "#e77e83",
+    borderWidth: '3px'
+  }
 });
 
-export const MyCheckBox = ({ input, label }) => {
+export const MyCheckBox = ({ input, label, }) => {
   const classes = useStyles()
   return (
     <div>
@@ -18,6 +22,9 @@ export const MyCheckBox = ({ input, label }) => {
         }}
         control={
           <Checkbox
+            classes={{
+              root: classes.checked
+            }}
             color="primary"
             checked={input.value ? true : false}
             onChange={input.onChange}

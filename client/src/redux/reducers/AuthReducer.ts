@@ -5,11 +5,17 @@ import { Dispatch } from 'react'
 import { authAPI } from '../../api/authAPI'
 import { appActions, AppActionsTypes } from './AppReducer'
 import { reset } from 'redux-form'
+
+const token = sessionStorage.getItem('token')
+const isAuth = sessionStorage.getItem('isAuth')
+const user: UserType = JSON.parse(sessionStorage.getItem('user') as string)
+const userInform = JSON.parse(sessionStorage.getItem('userInform') as string)
+
 const initialState = {
-    token: sessionStorage.getItem('token') as string | '',
-    isAuth: false as boolean | false,
-    user: {} as UserType,
-    userInform: {} as object,
+    token: token as string,
+    isAuth: Boolean(isAuth) as boolean | false,
+    user: user as UserType,
+    userInform: userInform as object,
     forgotEmail: '' as string,
     emailSent: false as boolean,
 }
@@ -17,20 +23,22 @@ const initialState = {
 const AuthReducer = (state = initialState, action: AuthActionsType): typeof initialState => {
     switch (action.type) {
         case 'USER_LOADED':
-            sessionStorage.setItem('token', action.token)
-            return { ...state, isAuth: true, user: action.user, userInform: action.userInform }
-
+            sessionStorage.setItem('token', JSON.stringify(action.token))
+            sessionStorage.setItem('isAuth', JSON.stringify(true))
+            sessionStorage.setItem('user', JSON.stringify(action.user))
+            sessionStorage.setItem('userInform', JSON.stringify(action.userInform))
+            return { ...state, isAuth: true, user: action.user, userInform: action.userInform, token: action.token }
         case 'FORGOT_PASS':
             return { ...state, forgotEmail: action.forgotEmail }
         case 'EMAIL_SENT':
             return { ...state, emailSent: action.bool }
         case 'FORGOT_PASS_RESET':
             return { ...state, forgotEmail: action.forgotEmail, emailSent: false }
-        case 'AUTH_SUCCESS':
-            sessionStorage.setItem('token', action.token)
-            return { ...state, isAuth: true }
-        case 'AUTH_ERROR':
+        case 'LOGOUT':
             sessionStorage.removeItem('token')
+            sessionStorage.removeItem('isAuth')
+            sessionStorage.removeItem('user')
+            sessionStorage.removeItem('userInform')
             return { ...state, isAuth: false, user: { _id: '', name: '', email: '' }, userInform: {}, token: '' }
         default:
             return state
@@ -42,37 +50,21 @@ type DispatchType = Dispatch<MessageActions | AuthActionsType | AppActionsTypes>
 export type AuthActionsType = InferActionsTypes<typeof authActions>
 
 export const authActions = {
-    userLoad: (token: string, user: UserType, userInform: object) => ({ type: 'USER_LOADED', token, user, userInform } as const),
+    userLoad: (token: string, user: any, userInform: any) => ({ type: 'USER_LOADED', token, user, userInform } as const),
     changePass: (forgotEmail: string) => ({ type: 'FORGOT_PASS', forgotEmail } as const),
     emailSent: (bool: boolean) => ({ type: 'EMAIL_SENT', bool } as const),
     resetEmailSentClear: (forgotEmail: string) => ({ type: 'FORGOT_PASS_RESET', forgotEmail } as const),
-    authSuccess: (token: string) => ({ type: 'AUTH_SUCCESS', token } as const),
-    authError: () => ({ type: 'AUTH_ERROR' } as const),
+    logout: () => ({ type: 'LOGOUT' } as const),
 }
 
-export const getAuth = () => async (dispatch: DispatchType, getState: GetStateType) => {
-    try {
-        dispatch(appActions.setLoading(true))
-        const token = getState().auth.token
-        const data = await authAPI.getAuth()
-        dispatch(authActions.userLoad(token, data.user, {}))
-        dispatch(appActions.setLoading(false))
-    } catch (err) {
-        dispatch({ type: 'AUTH_ERROR' })
-        dispatch(appActions.setLoading(false))
-    }
-}
 export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: DispatchType) => {
     try {
         dispatch(appActions.setLoading(true))
         const data = await authAPI.login(email, password, rememberMe)
         dispatch(authActions.userLoad(data.token, data.user, data.inform))
-        dispatch(authActions.authSuccess(data.token))
         dispatch(appActions.setLoading(false))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.status, 'LOGIN_FAIL'))
-
-        dispatch({ type: 'AUTH_ERROR' })
         dispatch(appActions.setLoading(false))
     }
 }
@@ -81,12 +73,10 @@ export const register = (name: string, email: string, password: string) => async
     try {
         dispatch(appActions.setLoading(true))
         const data = await authAPI.register(name, email, password)
-        dispatch(authActions.authSuccess(data.token))
         dispatch(authActions.userLoad(data.token, data.user, {}))
         dispatch(appActions.setLoading(false))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.status, 'REGISTER_FAIL'))
-        dispatch({ type: 'AUTH_ERROR' })
         dispatch(appActions.setLoading(false))
     }
 }
@@ -153,7 +143,7 @@ export const subscribeNewUser = (email: string) => async (dispatch: DispatchType
 }
 
 export const logout = () => (dispatch: DispatchType) => {
-    dispatch({ type: 'AUTH_ERROR' })
+    dispatch(authActions.logout())
 }
 
 export default AuthReducer

@@ -18,18 +18,27 @@ type Dispatch = {
 }
 type RatingType = Dispatch & Props & MyRating
 
-const MyRating: React.FC<any> = ({ changeRating, defaultValue, goodsId, readOnly }) => {
+const MyRating: React.FC<any> = ({ changeRating, defaultValue, goodsId, readOnly, handleRating }) => {
+        const handleChange = (value: any) => {
 
+                if (handleRating) {
+                        handleRating(value)
+                } else {
+                        changeRating(value, goodsId)
+                }
+
+        }
         return (
                 <Rating
                         emptyIcon={<MyStartIcon filled={false} />}
                         icon={<MyStartIcon filled={true} />}
                         name="customized-empty"
                         onChange={(event, newValue) => {
-                                changeRating(newValue, goodsId)
+                                handleChange(newValue)
                         }}
                         defaultValue={defaultValue}
                         precision={1}
+                        readOnly={readOnly ? true : false}
                 />
         )
 }

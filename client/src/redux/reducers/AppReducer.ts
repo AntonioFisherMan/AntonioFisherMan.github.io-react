@@ -1,8 +1,6 @@
-import { truncate } from 'lodash'
 import { Dispatch } from 'redux'
 import { profileAPI } from '../../api/profileAPI'
 import { InferActionsTypes } from '../ReduxStore'
-import { getAuth } from './AuthReducer'
 export interface CountryType {
     code: string
     label: string
@@ -36,11 +34,11 @@ export const appActions = {
     setCountry: (countries: Array<CountryType>) => ({ type: 'SET_COUNTRY', countries } as const),
 }
 
-export const initializeThunkApp = () => (dispatch: any) => {
-    let promise = dispatch(getAuth())
-    Promise.all([promise]).then(() => {
-        dispatch(appActions.setInitialize())
-    })
+export const initializeThunkApp = () => (dispatch: any, getState: any) => {
+    dispatch(appActions.setLoading(true))
+    const isAuth = getState().auth.isAuth
+    dispatch(appActions.setInitialize())
+    dispatch(appActions.setLoading(false))
 }
 export const uploadCountries = () => async (dispatch: any) => {
     appActions.setLoading(true)

@@ -3,34 +3,36 @@ import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
 import CheckoutForm from '../../components/Forms/Checkout/CheckoutForm'
 import { reduxForm } from 'redux-form'
+import { Container, Grid, createStyles, withStyles } from '@material-ui/core'
 
-
-export const CheckoutPage = (props) => {
+const styles = theme => createStyles({
+    headline: {
+        marginTop: 35,
+        marginBottom: 36
+    }
+})
+export const CheckoutPage = withStyles(styles)((props) => {
+    const { classes } = props
     return (
-        <div>
+        <>
             <HeaderBottom />
-            <section className="checkoutBlock">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            <SiteHeadline text="Check Out" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12 col-md-9">
-                            <ReduxCheckoutForm onSubmit={props.onSubmit} btn="continue" initialValues={props.userInform} />
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Container>
+                <Grid container className={classes.headline}>
+                    <SiteHeadline text="Check Out" />
+                </Grid>
+                <Grid container>
+                    <Grid item xs={1} md={1}></Grid>
+                    <Grid item xs={12} md={8}>
+                        <ReduxCheckoutForm onSubmit={props.onSubmit} btn="continue" initialValues={props.userInform} />
+                    </Grid>
+                </Grid>
+            </Container>
 
-        </div>
+        </>
     )
-}
+})
 
 
-const ReduxCheckoutForm = reduxForm({
-    form: 'inform'
-})(CheckoutForm)
+const ReduxCheckoutForm = reduxForm({ form: 'inform' })(CheckoutForm)
 
 

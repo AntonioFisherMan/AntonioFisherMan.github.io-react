@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
         const users = Users.find()
         res.json(users)
     } catch (err) {
-        res.status(404).json(err)
+        res.status(404).json({ message: err })
     }
 })
 

@@ -7,149 +7,136 @@ import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { PinkText } from '../../components/common/elements/PinkText'
+import { InformCard } from '../../components/InformCard/InformCard'
+import { Grid, Container, withStyles, Box } from '@material-ui/core'
+import { styles } from './styles'
+import { Subtitle1 } from '../../components/Typography/Subtitle1'
 
-const ReturnPage = () => {
+
+const ReturnPage = (props) => {
+    const { classes } = props
     return (
         <div>
             <HeaderBottom />
 
-            <section className="returnBlock">
-                <div className="container">
-
-                    <div className="row">
-                        <div className="col-12">
-                            <SiteHeadline text="My return" />
-                        </div>
-                    </div>
-                    <div className="returnInform">
-                        <div>
-                            <div className="row">
-                                <div className="col-12 col-lg-2">
-                                    <Sidebar />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="">
-                            <div className="row">
-                                <div className="col-12 col-lg-10">
-                                    <div className="returnText">
-                                        <p><PinkText text="Return is included in your order!" /> <br />
-                                        In your box you will find a pre-payed return label that you need to place on
+            <section className={classes.returnBlock}>
+                <Container>
+                    <Grid container className={classes.headline}>
+                        <SiteHeadline text="My return" />
+                    </Grid>
+                    <Grid container direction="row">
+                        <Grid item xs={12} md={2}>
+                            <Sidebar />
+                        </Grid>
+                        <Grid container md={10}>
+                            <Container>
+                                <Grid container>
+                                    <Box className={classes.returnText}>
+                                        <PinkText text="Return is included in your order!" />
+                                        <Subtitle1 text="  In your box you will find a pre-payed return label that you need to place on
                                         your box
-                                        and drop off at the nearest post office.
-                                    </p>
-                                    </div>
-                                </div>
-                            </div>
+                                        and drop off at the nearest post office."/>
+                                    </Box>
+                                </Grid>
 
-                            <div className="returnLinks">
-                                <div className="container">
-                                    <div className="row  d-flex align-items ">
-                                        <div className="col-4">
-                                            <p>Item</p>
-                                        </div>
-                                        <div className="col-2 ">
-                                            <p>Order NO.</p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p>Returns NO.</p>
-                                        </div>
-                                        <div className="col-4 d-flex justify-content-center">Status</div>
-                                    </div>
-                                </div>
-                            </div>
+                                <Grid container className={classes.returnLinks}>
 
-                            <div className="returnItem">
+                                    <Grid item md={6}>
+                                        <Subtitle1 text="Item" />
+                                    </Grid>
+                                    <Grid item md={2}>
+                                        <Subtitle1 text="Order NO." />
+                                    </Grid>
+                                    <Grid item md={2}>
+                                        <Subtitle1 text="Returns NO." />
+                                    </Grid>
+                                    <Grid item md={2}>
+                                        <Subtitle1 text="Status" />
+                                    </Grid>
 
-                                <div className="row">
-                                    <div className="col-4">
-                                        <p className="bagCard__slogan">maxi DRESS</p>
-                                        <div className="bagCard__list">
-                                            <p>A perfect flirty number for Balls and Black Tie.</p>
-                                        </div>
-                                        <div className="bagCard__size d-flex">
-                                            <p>Size: XS</p>
-                                            <img src="images/svg/Vector (11).svg" alt="" />
-                                        </div>
-                                        <p className="bagCard__p">Rental period* : 7 days</p>
-                                        <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
-                                    </div>
-                                    <div className="col-2">
-                                        <p style={{ fontSize: '12px' }}>4146567738</p>
-                                    </div>
-                                    <div className="col-3">
-                                        <p style={{ fontSize: '12px' }}>9tmlAIDfmx8B</p>
-                                    </div>
-                                    <div className="col-3">
-                                        <div className="returnItem-column">
+                                </Grid>
+
+
+                                <Grid container className={classes.returnItem} >
+                                    <Grid item md={6}>
+                                        <InformCard text="A perfect flirty number for Balls and Black Tie"
+                                            style="maxi DRESS"
+                                            size="XS"
+                                            startDate="Mar 17, 2020 "
+                                            endDate=" Mar 24, 2020"
+                                        />
+                                    </Grid>
+                                    <Grid item md={2}>
+                                        <Subtitle1 text="4146567738" />
+                                    </Grid>
+                                    <Grid item md={2}>
+                                        <Subtitle1 text="9tmlAIDfmx8B" />
+                                    </Grid>
+                                    <Grid item md={2}>
+                                        <Box className={classes.returnItemColumn}>
                                             <img src="images/svg/Vector (24).svg" alt="" />
-                                            <p style={{ fontSize: '12px' }}>Return received on Mar 17, 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <Subtitle1 text="Return received on Mar 17, 2020" />
+                                        </Box>
+                                    </Grid>
+                                </Grid>
 
-                            </div>
-
-                        </div>
+                            </Container>
 
 
 
-                        <div className="row">
-                            <div className="col-3 returnItem-active">
-                                <p>Item</p>
-                                <p>Order NO.</p>
-                                <p>Returns NO.</p>
-                                <p>Status</p>
-                            </div>
-                            <div className="col-9 col-lg-4 returnInform-active">
-                                <div className="returnInformItem-active">
+                        </Grid>
+                    </Grid>
+                    <Grid container>
+                        <MyButton href="/catalog" text="Return to catalogue" variant="text" size="large" />
 
-                                    <p className="bagCard__slogan">maxi DRESS</p>
-                                    <div className="bagCard__list">
-                                        <p>A perfect flirty number for Balls and Black Tie.</p>
-                                    </div>
-                                    <div className="bagCard__size d-flex">
-                                        <p>Size: XS</p>
-                                        <img src="images/svg/Vector (11).svg" alt="" />
-                                    </div>
-                                    <p className="bagCard__p">Rental period* : 7 days</p>
-                                    <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
-                                </div>
+                    </Grid>
+                </Container>
 
 
-                                <p>4146567738</p>
 
 
-                                <p>9tmlAIDfmx8B</p>
 
-
-                                <div className="returnItem-column">
-                                    <img src="images/svg/Vector (24).svg" alt="" />
-                                    <p>Return received on Mar 17, 2020</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="container">
-                        <div className="col-12">
-                            <div className="returnLink">
-                                <MyButton href="/catalog" text="Return to catalogue" variant="text" />
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
             </section>
-        </div>
+        </div >
     )
 }
 
-export default compose(WithAuthRedirect)(ReturnPage)
+export default compose(WithAuthRedirect, withStyles(styles))(ReturnPage)
+
+
+// <div className="row">
+//                             <div className="col-3 returnItem-active">
+//                                 <p>Item</p>
+//                                 <p>Order NO.</p>
+//                                 <p>Returns NO.</p>
+//                                 <p>Status</p>
+//                             </div>
+//                             <div className="col-9 col-lg-4 returnInform-active">
+//                                 <div className="returnInformItem-active">
+
+//                                     <p className="bagCard__slogan">maxi DRESS</p>
+//                                     <div className="bagCard__list">
+//                                         <p>A perfect flirty number for Balls and Black Tie.</p>
+//                                     </div>
+//                                     <div className="bagCard__size d-flex">
+//                                         <p>Size: XS</p>
+//                                         <img src="images/svg/Vector (11).svg" alt="" />
+//                                     </div>
+//                                     <p className="bagCard__p">Rental period* : 7 days</p>
+//                                     <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
+//                                 </div>
+
+
+//                                 <p>4146567738</p>
+
+
+//                                 <p>9tmlAIDfmx8B</p>
+
+
+//                                 <div className="returnItem-column">
+//                                     <img src="images/svg/Vector (24).svg" alt="" />
+//                                     <p>Return received on Mar 17, 2020</p>
+//                                 </div>
+
+//                             </div>
+//                         </div>

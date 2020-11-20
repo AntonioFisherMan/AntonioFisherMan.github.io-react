@@ -12,7 +12,7 @@ export const goodsAPI = {
     getReviews() {
         return instance.get('goods/reviews').then((res) => res.data)
     },
-    setReviews(name: string, photo: string, files: any, goodsId: string, rating = 100) {
+    setReviews(name: string, photo: string, files: any, goodsId: string, rating: number) {
         files.append('name', name)
         files.append('photo', photo)
         files.append('rating', rating)

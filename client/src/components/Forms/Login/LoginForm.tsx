@@ -12,7 +12,8 @@ import { MyCheckBox } from '../../common/FormsControls/MyCheckBox'
 export const useStylesSign = makeStyles((theme: Theme) =>
     createStyles({
         box: {
-            marginBottom: 23
+            marginBottom: 23,
+            width: 390
         },
         headline: {
             marginBottom: 13
@@ -85,17 +86,22 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = (props) => {
                     type="email"
                     label="Email"
                     required
+                    fullWidth
                 />
             </Box>
-            <Field
-                placeholder="Password"
-                name="password"
-                validate={[required, MinLengthCreator5, MaxLengthCreator20]}
-                component={MyInput}
-                type="password"
-                label="Password"
-                required
-            />
+            <Box className={classes.box}>
+                <Field
+                    placeholder="Password"
+                    name="password"
+                    validate={[required, MinLengthCreator5, MaxLengthCreator20]}
+                    component={MyInput}
+                    type="password"
+                    label="Password"
+                    required
+                    fullWidth
+                />
+            </Box>
+
             <Box className={classes.checkBoxBlock}>
                 <Field name="rememberMe" type="checkbox" component={MyCheckBox} label="Remember Me" className={classes.checkBox} />
                 <PinkText text="(PrivacyPolicy)" variant="body" />

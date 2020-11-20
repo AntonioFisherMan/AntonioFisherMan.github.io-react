@@ -5,13 +5,15 @@ const config = require('config')
 const path = require('path')
 require('dotenv').config()
 var cookieParser = require('cookie-parser')
-
+const bodyParser = require('body-parser')
 const app = new express()
 
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
 app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const db = config.get('mongoURI')
 

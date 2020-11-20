@@ -13,12 +13,13 @@ router.get('/:id', async (req, res) => {
     }
 })
 router.post('/', async (req, res) => {
-    const newOrders = new Orders({
-        userId: req.body.userId,
-        items: req.body.items,
-        inform: req.body.inform,
-    })
     try {
+        const newOrders = new Orders({
+            userId: req.body.userId,
+            items: req.body.items.items,
+            inform: req.body.items.inform,
+        })
+        console.log(req.body)
         const order = await newOrders.save()
         res.status(200).json({ order, message: 'Orders successfuly added' })
     } catch (err) {

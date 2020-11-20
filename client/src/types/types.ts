@@ -39,7 +39,7 @@ export type UserType = {
     email: string
 }
 export type TypographyType = {
-    text: string | undefined
+    text: string | undefined | number
     align?: 'inherit' | 'left' | 'center' | 'right' | 'justify' | undefined
     classes?: any
 }

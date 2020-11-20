@@ -34,7 +34,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, classes,
                                 <Button
                                         disabled={loading}
                                         variant={variant ? variant : "contained"}
-                                        startIcon={variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
+                                        startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                         href={href}
                                         color={color ? color : "primary"}
                                         className={!variant ? classes.primary : classes.secondary}

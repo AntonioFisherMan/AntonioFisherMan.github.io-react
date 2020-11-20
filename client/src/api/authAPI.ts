@@ -31,9 +31,6 @@ export const authAPI = {
         const { email } = user
         return instance.post('users/change_password', { oldPass, newPassword, verifyPassword, email }).then((res) => res.data)
     },
-    getAuth() {
-        return instance.get('auth/user').then((res) => res.data)
-    },
     subscribeNewUser(email: any) {
         return instance.post('auth/subscribe', { email }).then((res) => res.data)
     },

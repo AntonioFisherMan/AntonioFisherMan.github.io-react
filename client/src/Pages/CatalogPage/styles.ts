@@ -32,16 +32,32 @@ export const styles = (theme: Theme) =>
             marginLeft: 30,
         },
         productsFilter: {
-            marginTop: 41,
+            marginTop: 51,
         },
         h5: {
-            marginBottom: 20,
+            marginBottom: 25,
+            fontWeight: 500,
         },
         headline: {
-            marginTop: 5,
+            marginTop: 20,
+            marginLeft: 30,
         },
+        sidebarMenu: {},
         '@media (max-width: 1024px)': {},
-        '@media (max-width: 600px)': {},
+        '@media (max-width: 600px)': {
+            catalogList: {
+                marginLeft: 0,
+            },
+            filterIconClose: {
+                position: 'absolute',
+                right: 0,
+                marginTop: 5,
+                marginRight: 5,
+            },
+            h5: {
+                textAlign: 'center',
+            },
+        },
     })
 
 //

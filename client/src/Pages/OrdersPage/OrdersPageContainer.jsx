@@ -5,6 +5,8 @@ import { getOrders } from '../../redux/reducers/OrdersReducer'
 import { compose } from 'redux';
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { reviewsActions } from '../../redux/reducers/ReviewsReducer'
+import { LoadingDataHOC } from '../../hoc/LoaingData';
+import Preloader from '../../components/common/Preloader';
 
 class OrdersPageContainer extends React.Component {
   componentDidMount() {
@@ -14,8 +16,7 @@ class OrdersPageContainer extends React.Component {
   render() {
     return (
       <>
-        <OrdersPage {...this.props}
-        />
+        {this.props.loading ? <Preloader loading={this.props.loading} /> : <OrdersPage {...this.props} />}
       </>
     )
   }
@@ -28,6 +29,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
+  LoadingDataHOC,
   WithAuthRedirect,
   connect(mapStateToProps, { getOrders, ...reviewsActions })
 )(OrdersPageContainer)

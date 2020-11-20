@@ -36,7 +36,7 @@ let mapStateToProps = (state) => {
         return {
                 items: state.card.items,
                 auth: state.auth,
-                userInform: state.auth.userInform.inform,
+                userInform: state.auth.userInform,
                 serverCode: state.messages.code
         }
 }

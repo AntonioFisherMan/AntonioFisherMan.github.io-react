@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextField, IconButton, createStyles, withStyles } from '@material-ui/core'
+import { TextField, IconButton, createStyles, withStyles, Box } from '@material-ui/core'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import MaskedInput from 'react-text-mask'
@@ -7,10 +7,10 @@ import MaskedInput from 'react-text-mask'
 
 const stylesInput = theme => createStyles({
     textField: {
-        width: '390px',
-        height: '45px',
-
+        height: 45,
         background: '#F7F8FC',
+        border: '1px solid #E9ECF0',
+
     },
     helperText: {
         fontSize: 12,
@@ -19,8 +19,8 @@ const stylesInput = theme => createStyles({
     label: {
         color: theme.palette.default.dark
     },
-    notchedOutline: {
-        border: '1px solid red'
+    margin: {
+        marginBottom: 30,
     }
 })
 
@@ -37,11 +37,11 @@ export const MyInput = withStyles(stylesInput)((props) => {
     }
 
     return (
-        <>
+        <Box className={classes.margin}>
             <TextField
+                fullWidth={custom.fullWidth ? true : false}
                 InputProps={{
-
-                    classes: { root: classes.textField },
+                    classes: { root: custom.propsClasses ? custom.propsClasses && classes.textField : classes.textField },
                     endAdornment: isPass ? <IconButton
                         color={showPass ? "primary" : "default"}
                         aria-label="toggle password visibility"
@@ -62,7 +62,7 @@ export const MyInput = withStyles(stylesInput)((props) => {
                 FormHelperTextProps={{ classes: { root: classes.helperText } }}
                 {...input}
             />
-        </>
+        </Box>
 
     )
 })

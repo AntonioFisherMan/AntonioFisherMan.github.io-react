@@ -23,12 +23,15 @@ const RegisterForm = (props) => {
                 <Divider className={classes.divider} />
             </Box>
             <Box className={classes.box}>
-                <Field type="Name" label="Name" id="registerName" component={MyInput} validate={[required, MaxLengthCreator50]} name="registerName" placeholder="Enter  name" required />
+                <Field type="Name" label="Name" id="registerName" component={MyInput} validate={[required, MaxLengthCreator50]} name="registerName" placeholder="Enter  name" fullWidth required />
             </Box>
             <Box className={classes.box}>
-                <Field type="email" label="Email" id="registerEmail" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerEmail" placeholder="Enter  email" required />
+                <Field type="email" label="Email" id="registerEmail" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerEmail" fullWidth placeholder="Enter  email" required />
             </Box>
-            <Field type="password" label="Password" id="registerPass" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerPassword" placeholder="Enter  password" required />
+            <Box className={classes.box}>
+                <Field type="password" label="Password" id="registerPass" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerPassword" fullWidth placeholder="Enter  password" required />
+
+            </Box>
             <Subtitle1 text="By joining I agree to receive emails from DressItBox" classes={classes.greyText} />
             <button> <MyButton text="register" href="" /></button>
         </form>

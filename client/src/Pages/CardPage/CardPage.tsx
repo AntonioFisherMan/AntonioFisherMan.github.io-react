@@ -1,5 +1,4 @@
 import React from 'react'
-import './CardPage.css'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
@@ -9,42 +8,46 @@ import { H5 } from '../../components/Typography/H5'
 import { MyCloseIcon } from '../../assets/icons/icons'
 import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
 import { CardItem } from '../../components/CardItem/CardItem'
+import { styles } from './styles'
+import { Box, Container, Grid, Typography, withStyles } from '@material-ui/core'
+import { Subtitle1 } from '../../components/Typography/Subtitle1'
+import GreyText from '../../components/Typography/GreyText'
+
 
 const CardPage = (props: any) => {
-
+    const { classes } = props
 
     return (
-        <div>
+        <>
             <HeaderBottom />
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <SiteHeadline text="Your bag" />
-                    </div>
-                </div>
-            </div>
+            <Container>
+                <Grid container className={classes.headline}>
+                    <SiteHeadline text="Your bag" />
+                </Grid>
+            </Container>
+
             {props.items.length ? <>
-                <div className="container">
-                    <section className="cardLink">
-                        <div className="row">
-                            <div className="col-3"></div>
-                            <div className="col-4 d-flex align-items">
-                                <p>Item</p>
-                            </div>
-                            <div className="col-2 d-flex align-items">
-                                <p className="ml-auto">Price</p>
-                            </div>
-                            <div className="col-3 d-flex justify-content-center">
-                                <p>Quantity</p>
-                            </div>
-                        </div>
-
+                <Container>
+                    <section className={classes.cardLink}>
+                        <Grid container>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={4}>
+                                <Subtitle1 text="Item" />
+                            </Grid>
+                            <Grid item xs={2} className={classes.center} >
+                                <Subtitle1 text="Price" />
+                            </Grid>
+                            <Grid item xs={3} className={classes.center} >
+                                <Subtitle1 text="Quantity" />
+                            </Grid>
+                        </Grid>
                     </section>
-                </div>
+                </Container>
 
-                <section className="cardBlock">
-                    <div className="container">
+                <section className={classes.cardBlock}>
+                    <Container>
                         {props.items.map((item: CardItemType) => <CardItem
+                            classes={classes}
                             _id={item._id}
                             price={item.price}
                             quantity={item.quantity}
@@ -59,7 +62,35 @@ const CardPage = (props: any) => {
                             isInsurance={item.isInsurance}
 
                         />)}
-                        <div className="row cardActive" >
+                        <Box className={classes.cardExtraText}>
+                            <Grid container>
+                                <Grid item xs={10}>
+                                    <Box className="d-flex"><PinkText text="*" />  <Subtitle1 text="Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
+                                and keep all 3 outfits for 21 days!
+                                Wear all outfits for as many times as you want."/></Box>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                        <Box className={classes.cardInform}>
+                            <Grid container className={classes.cardInformList}>
+                                <Grid item xs={12} md={3}>
+                                    <MyButton href="/catalog" text="Rent more" variant="text" color="primary" />
+                                </Grid>
+                                <Grid item xs={12} md={9}>
+                                    <H5 text={`Subtotal: € ${props.totalPrice}`} classes={classes.totalPrice} />
+                                    <Box className={classes.cardInformListText}>
+                                        <MyButton text="order" href="/buy" />
+                                        <Box className={classes.totalText}> <GreyText text="By proceeding you are agreeing to our " /><PinkText text=" Terms & Conditions" /></Box>
+                                    </Box>
+
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                    </Container>
+
+
+                    {/* <div className="row cardActive" >
                             <div className="col-3 cardLinkActive">
                                 <p >Item</p>
                                 <p >Price</p>
@@ -101,37 +132,14 @@ const CardPage = (props: any) => {
 
                             </div>
 
-                        </div>
-                        <div className="cardExtraText">
-                            <div className="row">
-                                <div className="col-10">
-                                    <p><PinkText text="*" />Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
-                                and keep all 3 outfits for 21 days!
-                                Wear all outfits for as many times as you want.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="cardInform">
-                            <div className="row cardInformList">
-                                <div className="col-12 col-md-3">
-                                    <MyButton href="/catalog" text="Rent more" variant="text" />
-                                </div>
-                                <div className="col-12 col-md-9">
-                                    <div className="cardInformListText d-flex">
-                                        <H5 text={`Subtotal: € ${props.totalPrice}`} />
-                                        <MyButton text="order" href="/buy" />
-                                        <p>By proceeding you are agreeing to our <PinkText text="Terms & Conditions" /></p>
+                        </div> */}
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </section></> : <div><SiteMessage text="Your card is empty" /></div>}
 
-        </div>
+        </>
     )
 }
 
 
-export default CardPage
+export default withStyles(styles)(CardPage)

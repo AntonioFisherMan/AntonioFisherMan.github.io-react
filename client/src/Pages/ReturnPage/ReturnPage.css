@@ -1,12 +1,5 @@
 /******* RETURN PAGE ********/
 
-.returnText {
-    margin-top: 50px;
-}
-
-.returnInform {
-    display: flex;
-}
 
 .returnInform-active {
     display: none;
@@ -15,13 +8,6 @@
     font-size: 15px;
 }
 
-.returnLinks {
-    display: flex;
-    align-items: center;
-    background: #E9EBF0;
-    height: 45px;
-    margin-top: 15px;
-}
 
 .returnLinks p {
     font-size: 15px;
@@ -29,10 +15,7 @@
     color: #000000;
 }
 
-.returnItem {
-    margin-top: 15px;
-    margin-bottom: 20px;
-}
+
 
 .returnItem-active {
     display: none;

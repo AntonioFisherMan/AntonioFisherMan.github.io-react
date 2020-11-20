@@ -15,6 +15,7 @@ type InitialStateType = typeof initialState
 let OrdersReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case 'ADD_ORDERS':
+            debugger
             return { ...state, orders: [...action.data] }
         case 'ADD_UNLOGINORDER':
             return { ...state, unloginOrder: action.data }
@@ -41,10 +42,15 @@ export const addUnloginOrdersThunk = (obj: any) => async (dispatch: any) => {
     }
 }
 export const getOrders = (id: any) => async (dispatch: any) => {
-    let data = await ordersAPI.getOrders(id)
     try {
+        dispatch(appActions.setLoading(true))
+        let data = await ordersAPI.getOrders(id)
+        debugger
+        dispatch(appActions.setLoading(false))
         dispatch(ordersActions.addOrders(data))
-    } catch (err) {}
+    } catch (err) {
+        dispatch(appActions.setLoading(false))
+    }
 }
 
 export const addOrdersThunk = (items: any, inform: any) => async (dispatch: any, getState: any) => {

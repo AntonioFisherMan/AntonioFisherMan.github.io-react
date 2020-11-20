@@ -39,7 +39,8 @@ import { font } from './fonts/Montserrat/font'
 import Test from './Pages/Test'
 import ServerMessage from './components/common/ServerMessages/ServerMessage'
 import CheckoutPageContainer from './Pages/CheckoutPage/CheckoutPageContainer'
-
+import { compose } from 'redux'
+import { LoadingDataHOC } from './hoc/LoaingData'
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const theme = createMuiTheme({
@@ -64,6 +65,9 @@ const theme = createMuiTheme({
         },
         color: {
             white: '#fff',
+        },
+        grey: {
+            A700: '#979797',
         },
     },
     typography: {
@@ -124,7 +128,7 @@ class App extends React.Component {
 
     render() {
         if (!this.props.isInitialized) {
-            return <Preloader />
+            return <Preloader loading={this.props.loading} />
         } else {
             return (
                 <MuiPickersUtilsProvider utils={DateUtils}>
@@ -155,7 +159,6 @@ class App extends React.Component {
                                     <Route component={NotFound} />
                                 </Switch>
                                 <Modal />
-
                                 <FooterContainer />
                             </Suspense>
                         </Router>
@@ -172,4 +175,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { initializeThunkApp })(App)
+export default compose(LoadingDataHOC, connect(mapStateToProps, { initializeThunkApp }))(App)

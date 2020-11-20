@@ -1,23 +1,22 @@
 import React from 'react'
+import { Box, Chip, Container, FormControl, Grid, Hidden, MenuItem, Select, withStyles } from '@material-ui/core'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { SiteHeadline } from '../../components/Typography/SiteHeadline'
 import Paginator from '../../components/common/Paginator/Paginator'
 import Preloader from '../../components/common/Preloader'
 import { H5 } from '../../components/Typography/H5'
 import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
-import { H6 } from '../../components/Typography/H6'
-import { Box, Button, Chip, Container, FormControl, Grid, Hidden, Menu, MenuItem, Select, withStyles } from '@material-ui/core'
 import { Good } from '../../components/Good/Good'
 import { ReduxFilterForm } from '../../redux/reduxForms/ReduxFilterForm'
 import { styles } from './styles'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MyButton from '../../components/SiteButton/MyButton/MyButton'
+import { FilterDrawer } from './FilterDrawer'
 
 const CatalogPage = (props: any) => {
+
     const { classes } = props
     return (
         <>
             {!props.loading ? <>
-
                 <section className={classes.linkBlock}>
                     <Container>
                         <Grid container>
@@ -76,6 +75,9 @@ const CatalogPage = (props: any) => {
                             </Grid>
                             <Grid item xs={12} sm={10}>
                                 <SiteHeadline text="All our products" classes={classes.headline} />
+                                <Hidden smUp>
+                                    <FilterDrawer classes={classes} {...props} />
+                                </Hidden>
                                 <Box className={classes.catalog}>
                                     <Box className={classes.catalogList}>
                                         {props.goods.length > 0 ? props.goods.map((item: any) => <Good good={item} />) : <SiteMessage text="К сожалению по выбранному запросу товаров нет в наличии" />}

@@ -52,12 +52,15 @@ export const setInform = (inform: any) => async (dispatch: any, getState: any) =
     }
 }
 
-export const sendHelpMessage = (helpMessage: any) => async (dispatch: any, getState: any) => {
+export const sendHelpMessage = (helpMessage: string) => async (dispatch: any, getState: any) => {
     try {
+        dispatch(appActions.setLoading(true))
         let data = await profileAPI.sendHelpMessage(helpMessage, getState().auth.userId)
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_HELP_MESSAGE'))
+        dispatch(appActions.setLoading(false))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.status, 'ERROR_HELP_MESSAGE'))
+        dispatch(appActions.setLoading(false))
     }
 }
 

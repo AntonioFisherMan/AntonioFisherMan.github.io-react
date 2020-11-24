@@ -10,16 +10,17 @@ class Checkout extends React.Component {
                 if (!this.props.auth.isAuth) {
                         data = { items: this.props.items, formData }
                         this.props.addUnloginOrdersThunk(data)
-                        if (this.props.serverCode === "success") {
-                                this.props.history.push("/order")
-                        }
+
+
+
                 }
                 else {
                         data = { items: this.props.items, inform: formData, id: this.props.auth.userId }
                         this.props.addOrdersThunk(data)
-                        if (this.props.serverCode === "success") {
-                                this.props.history.push("/orders")
-                        }
+                        debugger
+
+                        this.props.history.push("/orders")
+
                 }
         }
 
@@ -36,7 +37,7 @@ let mapStateToProps = (state) => {
         return {
                 items: state.card.items,
                 auth: state.auth,
-                userInform: state.auth.userInform,
+                userInform: state.auth.userInform.inform,
                 serverCode: state.messages.code
         }
 }

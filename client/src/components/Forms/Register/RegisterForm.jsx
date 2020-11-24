@@ -1,12 +1,12 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
-import { MyInput } from '../../common/FormsControls/MyInput'
-import { required, MinLength, MaxLength } from '../../../utils/Validators/validators'
+import { MyInput } from '../../../common/FormsControls/MyInput'
+import { required, MinLength, MaxLength } from '../../../utils/validators/validators'
 import MyButton from '../../SiteButton/MyButton/MyButton'
 import { useStylesSign } from '../Login/LoginForm'
 import { Box, Divider } from '@material-ui/core'
-import { IconOr } from '../../common/elements/IconOr'
-import { Subtitle1 } from '../../Typography/Subtitle1'
+import { IconOr } from '../../../common/elements/IconOr'
+import { Subtitle1 } from '../../../common/Typography/Subtitle1'
 
 const MaxLengthCreator50 = MaxLength(50)
 const MinLengthCreator5 = MinLength(5)
@@ -28,11 +28,11 @@ const RegisterForm = (props) => {
             <Box className={classes.box}>
                 <Field type="email" label="Email" id="registerEmail" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerEmail" fullWidth placeholder="Enter  email" required />
             </Box>
-            <Box className={classes.box}>
-                <Field type="password" label="Password" id="registerPass" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerPassword" fullWidth placeholder="Enter  password" required />
 
-            </Box>
-            <Subtitle1 text="By joining I agree to receive emails from DressItBox" classes={classes.greyText} />
+            <Field type="password" label="Password" id="registerPass" component={MyInput} validate={[required, MinLengthCreator5, MaxLengthCreator50]} name="registerPassword" fullWidth placeholder="Enter  password" required propsClasses={classes.margin} />
+
+
+            <Subtitle1 text="By joining I agree to receive emails from DressItBox" propsClasses={classes.greyText} />
             <button> <MyButton text="register" href="" /></button>
         </form>
     )

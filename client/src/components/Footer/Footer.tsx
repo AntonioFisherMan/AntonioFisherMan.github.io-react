@@ -1,9 +1,9 @@
 import React from 'react'
 import { styles } from './styles'
 import { ReduxFormEmailSent } from '../../redux/reduxForms/ReduxEmailSendForm'
-import { PinkText } from '../common/elements/PinkText'
+import { PinkText } from '../../common/Typography/PinkText'
 import { Box, Container, Divider, Grid, ThemeProvider, Typography, withStyles, WithStyles } from '@material-ui/core'
-import { Subtitle1 } from '../Typography/Subtitle1'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
 import Link from '@material-ui/core/Link';
 import clsx from 'clsx'
 type Props = {
@@ -31,7 +31,7 @@ const Footer: React.FC<WithStyles<typeof styles> & Props> = ({ classes, subscrib
                         <Grid item xs={12} sm={6} md={2} >
                             <Box className={classes.footerItem}>
 
-                                <Subtitle1 text="Help" classes={classes.headline} />
+                                <Subtitle1 text="Help" propsClasses={classes.headline} />
                                 <MyLink text="How it Works" href="#" />
                                 <MyLink text="FAQs" href="#" />
                                 <MyLink text="Size Charts" href="#" />
@@ -43,7 +43,7 @@ const Footer: React.FC<WithStyles<typeof styles> & Props> = ({ classes, subscrib
 
                         <Grid item xs={12} sm={6} md={3}>
                             <Box className={classes.footerItem}>
-                                <Subtitle1 text="About Us" classes={classes.headline} />
+                                <Subtitle1 text="About Us" propsClasses={classes.headline} />
                                 <MyLink text="About Dress IT Box" href="#" />
                                 <MyLink text="Privacy & Cookie Policy" href="#" />
                                 <MyLink text="Terms & Conditions" href="#" />
@@ -52,7 +52,7 @@ const Footer: React.FC<WithStyles<typeof styles> & Props> = ({ classes, subscrib
 
                         <Grid item xs={12} sm={6} md={2}>
                             <Box className={classes.footerItem}>
-                                <Subtitle1 text="Quick Links" classes={classes.headline} />
+                                <Subtitle1 text="Quick Links" propsClasses={classes.headline} />
                                 <MyLink text="Blog" href="#" />
                                 <MyLink text="Refer a friend" href="#" />
                             </Box>

@@ -8,6 +8,6 @@ const getGoods = (state: AppStateType) => {
 export const getFilterBy = (state: AppStateType) => {
     return state.goods.filterBy
 }
-export const getTotalGoods = createSelector([getGoods, getFilterBy], (items, filterBy) => {
+export const getTotalGoods = createSelector([getGoods, getFilterBy], (items, filterBy: string) => {
     return sortBy(items, filterBy)
 })

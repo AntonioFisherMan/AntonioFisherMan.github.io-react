@@ -2,9 +2,9 @@
 import { Box, Divider, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import { MyCheckBox } from '../../components/common/FormsControls/MyCheckBox'
+import { MyCheckBox } from '../../common/FormsControls/MyCheckBox'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
-import { H6 } from '../../components/Typography/H6'
+import { H6 } from '../../common/Typography/H6'
 
 const useStyles = makeStyles({
         sidebarText: {
@@ -43,7 +43,7 @@ const FilterForm: React.FC<InjectedFormProps> = (props) => {
                         <Box className={classes.sidebarItem}>
 
                                 <Box className={classes.sidebarText}>
-                                        <H6 text="SIZE" classes={classes.h6} />
+                                        <H6 text="SIZE" propsClasses={classes.h6} />
                                         <img src="images/svg/Vector (7).svg" alt="" />
                                 </Box>
                                 <ul className={classes.sidebarMenu}>
@@ -60,7 +60,7 @@ const FilterForm: React.FC<InjectedFormProps> = (props) => {
                         <Divider />
                         <Box className={classes.sidebarItem}>
                                 <Box className={classes.sidebarText}>
-                                        <H6 text="COLOUR" classes={classes.h6} />
+                                        <H6 text="COLOUR" propsClasses={classes.h6} />
                                 </Box>
                                 <ul className={classes.sidebarMenu}>
                                         <Field type="checkbox" component={MyCheckBox} name="Black" label="BLACK" />
@@ -75,7 +75,7 @@ const FilterForm: React.FC<InjectedFormProps> = (props) => {
                         <Divider />
                         <Box className={classes.sidebarItem}>
                                 <Box className={classes.sidebarText}>
-                                        <H6 text="STYLE" classes={classes.h6} />
+                                        <H6 text="STYLE" propsClasses={classes.h6} />
                                 </Box>
                                 <ul className={classes.sidebarMenu}>
                                         <Field type="checkbox" component={MyCheckBox} name="Mini" label="MINI" />

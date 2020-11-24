@@ -3,9 +3,11 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 export const styles = (theme: Theme) =>
     createStyles({
-        headline: {
-            marginTop: 35,
-            marginBottom: 20,
+        table: {
+            width: 120,
+        },
+        tableText: {
+            flex: '0 0 auto',
         },
         list: {
             width: 100,
@@ -146,6 +148,7 @@ export const styles = (theme: Theme) =>
             flexDirection: 'column',
             display: 'flex',
         },
+        reviewBtn: {},
         '@media (max-width: 887px)': {
             reviewItem: {
                 justifyContent: 'center',
@@ -154,6 +157,11 @@ export const styles = (theme: Theme) =>
                 borderBottom: 'none',
                 paddingBottom: 0,
                 marginBottom: 20,
+            },
+            reviewBtn: {
+                width: '100%',
+                borderRadius: 50,
+                color: '#111111',
             },
         },
     })

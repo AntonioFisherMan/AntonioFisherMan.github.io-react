@@ -1,13 +1,13 @@
 import React from 'react'
 import { ReviewType } from '../../types/types'
 import MyRating from '../Rating/MyRating'
-import { H6 } from '../Typography/H6'
-import { Subtitle1 } from '../Typography/Subtitle1'
+import { H6 } from '../../common/Typography/H6'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
 import userPhoto from '../../assets/user.png'
 import Avatar from '@material-ui/core/Avatar';
 import { Box, Grid, Divider } from '@material-ui/core'
-import { PinkText } from '../common/elements/PinkText'
-import { H5 } from '../Typography/H5'
+import { PinkText } from '../../common/Typography/PinkText'
+import { H5 } from '../../common/Typography/H5'
 
 type Props = {
         classes: any

@@ -5,11 +5,11 @@ import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined'
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom'
 import { compose } from 'redux'
 import { LoadingDataHOC } from '../../../hoc/LoaingData'
-import Preloader from '../../common/Preloader'
+import Preloader from '../../../common/Preloader'
 import { styles } from './style'
 
 
-const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, classes, variant, color, loading, size, fullWidth }) => {
+const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, propsClasses, classes, variant, color, loading, size, fullWidth, onClick }) => {
 
         if (href !== "") {
                 return (
@@ -17,27 +17,30 @@ const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, classes,
                                 component={React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => (
                                         <RouterLink to={href} ref={ref} {...itemProps} />
                                 ))}
+                                onClick={onClick}
                                 variant={variant ? variant : "contained"}
                                 startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                 href={href}
                                 color={color ? color : "primary"}
                                 size={size}
                                 fullWidth={fullWidth ? fullWidth : false}
-                                className={!variant ? classes.primary : classes.secondary} >
+                                className={propsClasses ? propsClasses : color === "default" ? classes.default : !variant ? classes.primary : classes.secondary}
+                        >
                                 {text}
-                        </Button>
+                        </Button >
 
                 )
         } else {
                 return (
                         <Box className={classes.wrapper}>
                                 <Button
+                                        onClick={onClick}
                                         disabled={loading}
                                         variant={variant ? variant : "contained"}
                                         startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                         href={href}
                                         color={color ? color : "primary"}
-                                        className={!variant ? classes.primary : classes.secondary}
+                                        className={propsClasses ? propsClasses : color === "default" ? classes.default : !variant ? classes.primary : classes.secondary}
                                         fullWidth={fullWidth ? fullWidth : false}
                                         size={size}>
 
@@ -65,6 +68,8 @@ type PropsType = {
         color?: "inherit" | "primary" | "secondary" | "default" | undefined,
         loading: boolean,
         isIcon?: boolean,
-        fullWidth?: boolean
+        fullWidth?: boolean,
+        onClick: () => void,
+        propsClasses: any
 }
 export type MyButtonProps = PropsType & WithStyles<typeof styles>

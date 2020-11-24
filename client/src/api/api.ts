@@ -6,4 +6,5 @@ export const instance = axios.create({
         'x-auth-token': sessionStorage.getItem('token'),
     },
 })
-export const multiData = {}
+
+export const config = { headers: { 'Content-Type': 'multipart/form-data' } }

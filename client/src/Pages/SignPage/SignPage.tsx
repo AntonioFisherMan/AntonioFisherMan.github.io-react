@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
-import { SiteHeadline } from '../../components/Typography/SiteHeadline'
+import { SiteHeadline } from '../../common/Typography/SiteHeadline'
 import Login from '../../components/Forms/Login/Login'
 import Register from '../../components/Forms/Register/Register'
 import FacebookLogin from '../../components/Forms/FacebookGoogle/Facebook'
 import GoogleLogin from '../../components/Forms/FacebookGoogle/Google'
-import { H6 } from '../../components/Typography/H6'
+import { H6 } from '../../common/Typography/H6'
 import { styles } from './styles'
 import { AppStateType } from '../../redux/ReduxStore'
 
@@ -31,7 +31,7 @@ class SignPage extends React.Component<WithStyles<typeof styles> & Props> {
                 <HeaderBottom />
                 <Container className={classes.signBlock}>
                     <Grid container >
-                        <Grid item xs={12} className={classes.headline}>
+                        <Grid item xs={12} >
                             <SiteHeadline text="Sign-In" />
                         </Grid>
                     </Grid>
@@ -47,7 +47,7 @@ class SignPage extends React.Component<WithStyles<typeof styles> & Props> {
                         </Grid>
                         <Grid item md={2}></Grid>
                         <Grid item xs={12} md={5}>
-                            <H6 text="Not a member? Sign Up" classes={classes.text} />
+                            <H6 text="Not a member? Sign Up" propsClasses={classes.text} />
                             <FacebookLogin />
                             <GoogleLogin />
                             <Register />

@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { reviewsActions } from '../../redux/reducers/ReviewsReducer'
 import { LoadingDataHOC } from '../../hoc/LoaingData';
-import Preloader from '../../components/common/Preloader';
+import Preloader from '../../common/Preloader';
 
 class OrdersPageContainer extends React.Component {
   componentDidMount() {

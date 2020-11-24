@@ -41,7 +41,7 @@ export type UserType = {
 export type TypographyType = {
     text: string | undefined | number
     align?: 'inherit' | 'left' | 'center' | 'right' | 'justify' | undefined
-    classes?: any
+    propsClasses?: any
 }
 
 export type SiteMessageType = {

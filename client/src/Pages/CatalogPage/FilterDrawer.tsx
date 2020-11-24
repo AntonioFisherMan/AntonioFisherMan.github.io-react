@@ -2,7 +2,7 @@ import { Drawer, Box, Chip } from '@material-ui/core'
 import React, { useState } from 'react'
 import { MyCloseIcon } from '../../assets/icons/icons'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
-import { H5 } from '../../components/Typography/H5'
+import { H5 } from '../../common/Typography/H5'
 import { ReduxFilterForm } from '../../redux/reduxForms/ReduxFilterForm'
 
 type Props = {

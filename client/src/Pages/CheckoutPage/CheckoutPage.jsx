@@ -1,23 +1,18 @@
 import React from 'react'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
-import { SiteHeadline } from '../../components/Typography/SiteHeadline'
+import { SiteHeadline } from '../../common/Typography/SiteHeadline'
 import CheckoutForm from '../../components/Forms/Checkout/CheckoutForm'
 import { reduxForm } from 'redux-form'
-import { Container, Grid, createStyles, withStyles } from '@material-ui/core'
+import { Container, Grid, } from '@material-ui/core'
 
-const styles = theme => createStyles({
-    headline: {
-        marginTop: 35,
-        marginBottom: 36
-    }
-})
-export const CheckoutPage = withStyles(styles)((props) => {
-    const { classes } = props
+
+export const CheckoutPage = (props) => {
+    debugger
     return (
         <>
             <HeaderBottom />
             <Container>
-                <Grid container className={classes.headline}>
+                <Grid container >
                     <SiteHeadline text="Check Out" />
                 </Grid>
                 <Grid container>
@@ -30,7 +25,7 @@ export const CheckoutPage = withStyles(styles)((props) => {
 
         </>
     )
-})
+}
 
 
 const ReduxCheckoutForm = reduxForm({ form: 'inform' })(CheckoutForm)

@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { NavAccount, NavCart, NavSearch, NavLogo } from '../NavElements/NavElements'
-import { colors } from '../../common/all/colors'
+import { colors } from '../../../constants/colors'
 
 const styles = theme => ({
         root: {

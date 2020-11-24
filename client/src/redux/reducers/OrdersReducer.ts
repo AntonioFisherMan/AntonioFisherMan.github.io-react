@@ -2,6 +2,7 @@ import { ordersAPI } from '../../api/ordersAPI'
 import { appActions } from './AppReducer'
 import { cardActions } from './CardReducer'
 import { messageActions } from './ServerMessageReducer'
+import { push } from 'react-router-redux'
 
 type OrderType = {}
 let initialState = {
@@ -15,7 +16,6 @@ type InitialStateType = typeof initialState
 let OrdersReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case 'ADD_ORDERS':
-            debugger
             return { ...state, orders: [...action.data] }
         case 'ADD_UNLOGINORDER':
             return { ...state, unloginOrder: action.data }
@@ -36,6 +36,7 @@ export const addUnloginOrdersThunk = (obj: any) => async (dispatch: any) => {
         dispatch(ordersActions.addUnloginOrders(data.order.inform))
         dispatch(appActions.setLoading(false))
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_ADD_UNLOGIN_ORDER'))
+        dispatch(push('/order'))
         dispatch(cardActions.clearCardItems())
     } catch (err) {
         dispatch(messageActions.returnErrors(err.data.message, err.data.status, 'ERROR_ADD_UNLOGIN_ORDER'))
@@ -45,7 +46,7 @@ export const getOrders = (id: any) => async (dispatch: any) => {
     try {
         dispatch(appActions.setLoading(true))
         let data = await ordersAPI.getOrders(id)
-        debugger
+
         dispatch(appActions.setLoading(false))
         dispatch(ordersActions.addOrders(data))
     } catch (err) {
@@ -58,6 +59,7 @@ export const addOrdersThunk = (items: any, inform: any) => async (dispatch: any,
         let data = await ordersAPI.setOrders(items, inform, getState().auth.user.id)
         dispatch(cardActions.clearCardItems())
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_ADD_ORDER'))
+        dispatch(push('/orders'))
     } catch (err) {
         dispatch(messageActions.returnErrors(err.data.message, err.data.status, 'ERROR_ADD_LOGIN_ORDER'))
     }

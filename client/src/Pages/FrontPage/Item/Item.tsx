@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, Box } from '@material-ui/core'
-import { H5 } from '../../../components/Typography/H5'
-import { Subtitle1 } from '../../../components/Typography/Subtitle1'
+import { H5 } from '../../../common/Typography/H5'
+import { Subtitle1 } from '../../../common/Typography/Subtitle1'
 
 const useStyles = makeStyles({
     item: {
@@ -37,8 +37,8 @@ const Item: React.FC<Props> = ({ img, text, headline }) => {
     return (
         <Box className={classes.item}>
             <img src={img} alt="" className={classes.img} />
-            <H5 text={headline} classes={classes.headline} />
-            <Subtitle1 text={text} classes={classes.text} />
+            <H5 text={headline} propsClasses={classes.headline} />
+            <Subtitle1 text={text} propsClasses={classes.text} />
         </Box>
     )
 }

@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow'
 import { Box } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import { CircularProgress, Typography } from '@material-ui/core'
-import { PinkText } from '../common/elements/PinkText'
+import { PinkText } from '../../common/Typography/PinkText'
 import { MyCloseIcon } from '../../assets/icons/icons'
 
 

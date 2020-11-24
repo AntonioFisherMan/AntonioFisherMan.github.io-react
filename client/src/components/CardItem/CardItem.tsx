@@ -4,12 +4,12 @@ import AddIcon from '@material-ui/icons/Add';
 import { figureOutDate } from '../../utils/helperFunctions/figureOutDate'
 import { CardItemType } from '../../types/types'
 import { MyAddIcon, MyCloseIcon } from '../../assets/icons/icons'
-import { PinkText } from '../common/elements/PinkText';
+import { PinkText } from '../../common/Typography/PinkText';
 
 import { Box, Grid, Typography } from '@material-ui/core';
-import { Subtitle1 } from '../Typography/Subtitle1';
-import { H5 } from '../Typography/H5';
-import GreyText from '../Typography/GreyText';
+import { Subtitle1 } from '../../common/Typography/Subtitle1';
+import { H5 } from '../../common/Typography/H5';
+import GreyText from '../../common/Typography/GreyText';
 import { InformCard } from '../InformCard/InformCard';
 
 type CardItemDispatch = {
@@ -22,6 +22,7 @@ type CardItemDispatch = {
 export const CardItem: React.FC<CardItemType & CardItemDispatch> = ({ classes, _id, price, quantity, photo, size, startDate, endDate, isInsurance, removeProduct, addInsurance, removeInsurance, changeQuantity }) => {
 
         const increaseQuantity = (quantity: number) => {
+                debugger
                 quantity = quantity + 1;
                 changeQuantity(_id, quantity)
         }

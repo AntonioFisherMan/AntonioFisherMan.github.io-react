@@ -1,19 +1,19 @@
 import React from 'react'
 import { reduxForm, Field, InjectedFormProps } from 'redux-form'
-import { MyInput } from '../../common/FormsControls/MyInput'
-import { required, MinLength, MaxLength, email } from '../../../utils/Validators/validators'
+import { MyInput } from '../../../common/FormsControls/MyInput'
+import { required, MinLength, MaxLength, email } from '../../../utils/validators/validators'
 import MyButton from '../../SiteButton/MyButton/MyButton'
-import { PinkText } from '../../common/elements/PinkText'
-import { H6 } from '../../Typography/H6'
+import { PinkText } from '../../../common/Typography/PinkText'
+import { H6 } from '../../../common/Typography/H6'
 import { Box, createStyles, makeStyles, Theme } from '@material-ui/core'
-import { MyCheckBox } from '../../common/FormsControls/MyCheckBox'
+import { MyCheckBox } from '../../../common/FormsControls/MyCheckBox'
 
 
 export const useStylesSign = makeStyles((theme: Theme) =>
     createStyles({
         box: {
             marginBottom: 23,
-            width: 390
+            maxWidth: 390
         },
         headline: {
             marginBottom: 13
@@ -53,13 +53,42 @@ export const useStylesSign = makeStyles((theme: Theme) =>
             marginTop: 10,
             marginBottom: 20
         },
+        margin: {
+            margin: 0,
+            maxWidth: 390
+        },
         loginForm: {
 
+        },
+        pink: {
+            fontSize: 12,
+            alignItems: 'center',
+            display: 'flex'
+        },
+        span: {
+            display: 'flex'
         },
         '@media (max-width: 960px)': {
             loginForm: {
                 marginBottom: 30
             }
+        },
+        '@media (max-width: 600px)': {
+            divider: {
+                width: 100,
+            },
+            iconBlock: {
+                justifyContent: 'center',
+            },
+            checkBoxBlock: {
+                marginLeft: 0,
+                marginTop: 10,
+                flexDirection: 'column'
+            },
+
+            loginForm: {
+                textAlign: 'center'
+            },
         },
 
     }),
@@ -89,22 +118,25 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = (props) => {
                     fullWidth
                 />
             </Box>
-            <Box className={classes.box}>
-                <Field
-                    placeholder="Password"
-                    name="password"
-                    validate={[required, MinLengthCreator5, MaxLengthCreator20]}
-                    component={MyInput}
-                    type="password"
-                    label="Password"
-                    required
-                    fullWidth
-                />
-            </Box>
+
+            <Field
+                placeholder="Password"
+                name="password"
+                validate={[required, MinLengthCreator5, MaxLengthCreator20]}
+                component={MyInput}
+                type="password"
+                label="Password"
+                required
+                fullWidth
+                propsClasses={classes.margin}
+            />
+
 
             <Box className={classes.checkBoxBlock}>
-                <Field name="rememberMe" type="checkbox" component={MyCheckBox} label="Remember Me" className={classes.checkBox} />
-                <PinkText text="(PrivacyPolicy)" variant="body" />
+                <Box className={classes.span}>
+                    <Field name="rememberMe" type="checkbox" component={MyCheckBox} label="Remember Me" className={classes.checkBox} />
+                    <PinkText text="(PrivacyPolicy)" variant="body" classes={classes.pink} />
+                </Box>
                 <MyButton text="forgot password?" href="/forgotpassword" color="primary" isIcon={false} variant="text" />
             </Box>
             <button className={classes.btn}><MyButton text="Login" href="" /></button>

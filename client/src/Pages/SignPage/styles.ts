@@ -10,10 +10,6 @@ export const styles = (theme: Theme) =>
         signReturnBlock: {
             marginTop: 192,
         },
-        headline: {
-            marginTop: 20,
-            marginBottom: 45,
-        },
         text: {
             marginBottom: 10,
             marginTop: 5,

@@ -24,7 +24,10 @@ const GoogleLogin = (props) => {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             render={renderProps => (
-                <img src="images/svg/Vector (23).svg" onClick={renderProps.onClick} disabled={renderProps.disabled} alt="" className="googleIcon" />
+                <div className="googleIconBlock">
+                    <img src="images/svg/Vector (23).svg" onClick={renderProps.onClick} disabled={renderProps.disabled} alt="" className="googleIcon" />
+
+                </div>
             )}
             cookiePolicy={'single_host_origin'}
         />

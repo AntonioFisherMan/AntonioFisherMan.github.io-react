@@ -11,7 +11,8 @@ class FeedbackContainer extends React.Component {
         super(props)
         this.state = {
             goodsId: this.props.match.params.id,
-            rating: 0
+            rating: 0,
+            files: []
         }
 
     }
@@ -24,19 +25,23 @@ class FeedbackContainer extends React.Component {
     }
     onSubmit = (data) => {
         let formData = new FormData();
-        if (data.images) {
-            for (var i = 0; i < data.images.length; i++) {
-                formData.append("file", data.images[i])
-            }
+        for (var i = 0; i < this.state.files.length; i++) {
+            formData.append("file", this.state.files[i])
         }
-        formData.append("reviewText", data.feedbackTextarea)
-        this.props.setReviews(formData, this.state.goodsId, this.state.rating);
+        formData.append('rating', this.state.rating)
+        formData.append('text', data.feedbackTextarea)
+        this.props.setReviews(formData, this.state.goodsId)
+    }
+    onSaveFiles = (files) => {
+
+
+        this.setState({ files: files })
     }
 
     render() {
 
         return (
-            <FeedbackPage {...this.props} onSubmit={this.onSubmit} removeItem={this.removeItem} goodsId={this.state.goodsId} handleRating={this.handleRating} loading={this.props.loading} />
+            <FeedbackPage {...this.props} onSubmit={this.onSubmit} removeItem={this.removeItem} goodsId={this.state.goodsId} handleRating={this.handleRating} loading={this.props.loading} onSaveFiles={this.onSaveFiles} />
         )
     }
 }

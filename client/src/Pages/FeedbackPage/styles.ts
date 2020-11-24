@@ -2,10 +2,6 @@ import { createStyles, Theme } from '@material-ui/core'
 
 export const styles = (theme: Theme) =>
     createStyles({
-        headline: {
-            marginTop: 35,
-            marginBottom: 21,
-        },
         feedbackBlock: {
             marginBottom: 53,
         },
@@ -30,6 +26,10 @@ export const styles = (theme: Theme) =>
         },
         textBox: {
             marginTop: 20,
+        },
+        text: {
+            marginTop: 117,
+            marginBottom: 10,
         },
         feedbackItemActive: {
             display: 'none',

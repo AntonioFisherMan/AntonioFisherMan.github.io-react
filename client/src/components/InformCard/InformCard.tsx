@@ -1,8 +1,8 @@
 import { Grid, Box, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import { figureOutDate } from '../../utils/helperFunctions/figureOutDate'
-import { PinkText } from '../common/elements/PinkText'
-import { Subtitle1 } from '../Typography/Subtitle1'
+import { PinkText } from '../../common/Typography/PinkText'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
 
 const useStyles = makeStyles({
         sizeBlock: { display: 'flex' },
@@ -32,6 +32,6 @@ type InformCard = {
         style?: string,
         text?: string,
         size?: string,
-        startDate?: Date,
-        endDate?: Date
+        startDate: Date,
+        endDate: Date
 }

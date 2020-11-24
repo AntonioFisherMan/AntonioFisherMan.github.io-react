@@ -22,7 +22,13 @@ export const styles = (theme: Theme) =>
         greyText: {
             marginLeft: 8,
         },
-        '@media (max-width: 860px)': {
+        btn: {
+            display: 'flex',
+            alignItems: 'flex-end',
+            marginTop: 66,
+            whiteSpace: 'nowrap',
+        },
+        '@media (max-width: 960px)': {
             sidebar: {
                 width: '100%',
                 display: 'flex',

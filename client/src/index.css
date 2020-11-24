@@ -1,19 +1,5 @@
-
-
-.error{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-.error>div{
-  position: absolute;
-  top:50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-height: 150px;
-z-index: 2;
+body {
+  background-color: #ffffff !important;
 }
 li{
   list-style-type: none;
@@ -32,77 +18,42 @@ h1,h2,h3,h4,h5,h6{
 }
 
 ul{
-  padding:0 !important;
-  margin: 0 !important;
+  padding:0;
+  margin: 0 ;
 }
 button{
   display: block;
   border: none;
   background-color: transparent;
 }
-img {
-  max-width: 100%;
-  display: block !important;
-}
-hr{
-  margin: 0 !important;
-  border: 1px solid #EEEEEE !important; 
-}
 ::placeholder, select {
-  font-weight: normal !important;
-  font-size: 15px !important;
-  line-height: 18px !important;
-  color: #000000 !important;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000 ;
 }
 textarea::placeholder{
   font-size: 15px;
   line-height: 18px;
-  color: #707070 !important;
-}
-label{
-  margin:0 !important;
-}
-.returnLink{
-  margin-top: 15px;
-  margin-bottom: 15px;
+  color: #707070 ;
 }
 
-select{
-border: none;
-position: relative;
-outline: none;
-background: none;
-}
 
-.MuiToolbar-regular{
-  min-height: 84 !important;
-}
 
 .MuiButton-iconSizeMedium > *:first-child {
    font-size: 12px
 }
-.MyButton-wrapper-14{
-  margin:0 !important;
-}
-button:active, button:focus {
+button:active,button:focus {
   outline: none;
 }
 button::-moz-focus-inner {
   border: 0;
 }
-.MyButton-wrapper-31{
-  margin:0 !important;
+label{
+  margin:0
 }
-.MyButton-wrapper-44{
-  margin:0 !important;
-}
-.MuiTableCell-root{
+
+.MuiInput-underline:before, .MuiInput-underline:after{
   border-bottom: none !important;
-}
-.MyButton-wrapper-50{
-  margin:0 !important;
-}
-body {
-  background-color: #ffffff !important;
 }
 

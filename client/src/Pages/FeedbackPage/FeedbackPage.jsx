@@ -1,18 +1,15 @@
 import React from 'react'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import Sidebar from '../../components/Sidebar/Sidebar'
-import { SiteHeadline } from '../../components/Typography/SiteHeadline'
+import { SiteHeadline } from '../../common/Typography/SiteHeadline'
 import MyRating from '../../components/Rating/MyRating'
-import { figureOutDate } from '../../utils/helperFunctions/figureOutDate'
-import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
+import { SiteMessage } from '../../common/Messages/SiteMessage'
 import { ReduxFeedbackForm } from '../../redux/reduxForms/ReduxFeedbackForm'
-import { Subtitle1 } from '../../components/Typography/Subtitle1'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
 import { styles } from './styles'
-import { PinkText } from '../../components/common/elements/PinkText'
 import { Grid, Box, Container, withStyles } from '@material-ui/core'
 import { InformCard } from '../../components/InformCard/InformCard'
-import UploadFile from '../../components/common/UploadFile/UploadFile'
-import GreyText from '../../components/Typography/GreyText'
+import GreyText from '../../common/Typography/GreyText'
 
 
 const FeedbackPage = (props) => {
@@ -23,11 +20,11 @@ const FeedbackPage = (props) => {
             <HeaderBottom />
             <section className={classes.feedbackBlock}>
                 <Container >
-                    <Grid container className={classes.headline}>
+                    <Grid container >
                         <SiteHeadline text="Profile" />
                     </Grid>
                     <Grid container spacing={3} direction="row">
-                        <Grid item xs={12} md={2}>
+                        <Grid item container xs={12} md={2}>
                             <Sidebar />
                         </Grid>
                         {props.review.length > 0 ?
@@ -61,8 +58,7 @@ const FeedbackPage = (props) => {
                                                 <Subtitle1 text="Show others how this outfit looks on you!" />
                                                 <Subtitle1 text="Upload pictures here" />
                                             </Box>
-                                            {/* 
-                                            <UploadFile name={"images"} /> */}
+
                                         </Grid>
                                         <Grid item md={5} >
                                             <Box className={classes.feedbackItemColumn2}>
@@ -71,8 +67,11 @@ const FeedbackPage = (props) => {
                                                 <GreyText text="Rate your rented outfit." />
                                                 <GreyText text="Let others know what you think!" />
                                             </Box>
-                                            <ReduxFeedbackForm onSubmit={props.onSubmit} loading={props.loading} />
+                                            <Subtitle1 text="Review" propsClasses={classes.text} />
                                         </Grid>
+                                    </Grid>
+                                    <Grid container>
+                                        <ReduxFeedbackForm onSubmit={props.onSubmit} loading={props.loading} onSaveFiles={props.onSaveFiles} />
                                     </Grid>
                                 </Box>)}
 

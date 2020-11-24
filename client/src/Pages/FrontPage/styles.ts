@@ -22,6 +22,11 @@ export const styles = (theme: Theme) =>
             fontWeight: 300,
             textAlign: 'left',
         },
+        btnWhite: {
+            border: 'none',
+            background: 'white',
+            borderRadius: 50,
+        },
         headline: {
             marginTop: 51,
         },

@@ -1,7 +1,8 @@
-import { instance, multiData } from './api'
+import { instance, config } from './api'
 
 export const goodsAPI = {
-    changeFilter(pageNumber = 1, pageSize = 10, data: any) {
+    changeFilter(pageNumber: number, pageSize: number, data: any) {
+        debugger
         return instance.post(`goods?page=${pageNumber}&pageSize=${pageSize}`, { data }).then((res) => res.data)
     },
     getGood(id: string) {
@@ -12,11 +13,10 @@ export const goodsAPI = {
     getReviews() {
         return instance.get('goods/reviews').then((res) => res.data)
     },
-    setReviews(name: string, photo: string, files: any, goodsId: string, rating: number) {
+    setReviews(files: any, goodsId: string, name: string, userImage: any) {
         files.append('name', name)
-        files.append('photo', photo)
-        files.append('rating', rating)
-        return instance.post(`goods/reviews/${goodsId}`, files, multiData).then((res) => res.data)
+        files.append('userImage', userImage)
+        return instance.post(`goods/reviews/${goodsId}`, files, config).then((res) => res.data)
     },
     changeRating(rating: number | null, goodsId: string) {
         return instance.post(`goods/rating/${goodsId}`, { rating })

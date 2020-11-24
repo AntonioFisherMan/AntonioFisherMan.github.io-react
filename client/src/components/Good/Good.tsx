@@ -3,9 +3,9 @@ import { Box, makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { ProductType } from '../../types/types'
 import MyButton from '../SiteButton/MyButton/MyButton'
-import { H5 } from '../Typography/H5'
-import { Subtitle1 } from '../Typography/Subtitle1'
-import { PinkText } from '../common/elements/PinkText'
+import { H5 } from '../../common/Typography/H5'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
+import { PinkText } from '../../common/Typography/PinkText'
 
 
 const useStyles = makeStyles({
@@ -38,10 +38,10 @@ export const Good: React.FC<ProductType> = ({ good }) => {
         const classes = useStyles()
         return (
                 <Box className={classes.goodItem} key={good._id}>
-                        <Link to={`details/${good._id}`}><img src={good.photos.middle} alt="" className={classes.img} /></Link>
+                        <Link to={`catalog/${good._id}`}><img src={good.photos.middle} alt="" className={classes.img} /></Link>
                         <Subtitle1 text={good.text} />
                         <PinkText text={`${good.style} Dress`} classes={classes.pinkText} />
-                        <H5 text={`€ ${good.price}`} classes={classes.h5} />
+                        <H5 text={`€ ${good.price}`} propsClasses={classes.h5} />
                         <MyButton href={`details/${good._id}`} text="Подробнее" />
                 </Box>
         )

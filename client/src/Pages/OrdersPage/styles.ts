@@ -2,10 +2,6 @@ import { createStyles, Theme } from '@material-ui/core'
 
 export const styles = (theme: Theme) =>
     createStyles({
-        headline: {
-            marginTop: 35,
-            marginBottom: 21,
-        },
         ordersBlock: {
             marginLeft: 25,
             display: 'flex',

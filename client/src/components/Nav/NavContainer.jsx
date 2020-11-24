@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { logout } from '../../redux/reducers/AuthReducer'
 import { MyToolbar } from './Toolbar/MyToolbar'
 import { MyDrawer } from './Drawer/MyDrawer'
-import { Grid, Container } from '@material-ui/core'
 
 class Nav extends React.Component {
   constructor(props) {

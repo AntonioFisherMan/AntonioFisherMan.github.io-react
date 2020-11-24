@@ -1,21 +1,25 @@
 import React from 'react'
-import './NotFound.css'
 import { Link } from 'react-router-dom'
-
+import { Box } from '@material-ui/core'
+import { H4 } from '../../common/Typography/H4'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
+import { useStyles } from './styles'
 
 const NotFound = () => {
+	const classes = useStyles()
 	return (
-		<div id="notfound">
-			<div className="notfound">
-				<div className="notfound-404">
-					<h1>404</h1>
-				</div>
-				<h2>Oops,The Page you are looking for can't be found!</h2>
-				<Link to="/"><span className="arrow"></span>Return To Homepage</Link>
-			</div>
-		</div>
+
+		<Box className={classes.notfound}>
+			<Box className={classes.text}>
+				<Subtitle1 text="404" propsClasses={classes.headline} />
+			</Box>
+			<H4 text="Oops,The Page you are looking for can't be found!" propsClasses={classes.h4} />
+			<Link to="/" className={classes.link}><span className={classes.arrow}></span>Return To Homepage</Link>
+		</Box>
+
 	)
 }
 
 
 export default NotFound
+

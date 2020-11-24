@@ -2,10 +2,6 @@ import { createStyles, Theme } from '@material-ui/core'
 
 export const styles = (theme: Theme) =>
     createStyles({
-        headline: {
-            marginTop: 35,
-            marginBottom: 12,
-        },
         cardLink: {
             height: 45,
             background: '#E9EBF0',

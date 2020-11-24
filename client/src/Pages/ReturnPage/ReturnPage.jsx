@@ -2,15 +2,15 @@ import React from 'react'
 import './ReturnPage.css'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
-import { SiteHeadline } from '../../components/Typography/SiteHeadline'
+import { SiteHeadline } from '../../common/Typography/SiteHeadline'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { compose } from 'redux'
 import { WithAuthRedirect } from '../../hoc/WithAuthRedirect'
-import { PinkText } from '../../components/common/elements/PinkText'
+import { PinkText } from '../../common/Typography/PinkText'
 import { InformCard } from '../../components/InformCard/InformCard'
 import { Grid, Container, withStyles, Box } from '@material-ui/core'
 import { styles } from './styles'
-import { Subtitle1 } from '../../components/Typography/Subtitle1'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
 
 
 const ReturnPage = (props) => {
@@ -21,7 +21,7 @@ const ReturnPage = (props) => {
 
             <section className={classes.returnBlock}>
                 <Container>
-                    <Grid container className={classes.headline}>
+                    <Grid container >
                         <SiteHeadline text="My return" />
                     </Grid>
                     <Grid container direction="row">
@@ -86,10 +86,7 @@ const ReturnPage = (props) => {
 
                         </Grid>
                     </Grid>
-                    <Grid container>
-                        <MyButton href="/catalog" text="Return to catalogue" variant="text" size="large" />
 
-                    </Grid>
                 </Container>
 
 

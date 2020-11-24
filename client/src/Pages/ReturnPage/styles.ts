@@ -3,10 +3,6 @@ import { Theme, createStyles } from '@material-ui/core'
 export const styles = (theme: Theme) =>
     createStyles({
         returnBlock: {},
-        headline: {
-            marginTop: 35,
-            marginBottom: 21,
-        },
         returnText: {
             marginTop: 50,
         },

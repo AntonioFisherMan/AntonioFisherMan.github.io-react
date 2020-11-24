@@ -1,17 +1,17 @@
 import React from 'react'
 import HeaderBottom from '../../components/HeaderBottom/HeaderBottom'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
-import { SiteHeadline } from '../../components/Typography/SiteHeadline'
+import { SiteHeadline } from '../../common/Typography/SiteHeadline'
 import { CardItemType } from '../../types/types'
-import { PinkText } from '../../components/common/elements/PinkText'
-import { H5 } from '../../components/Typography/H5'
+import { PinkText } from '../../common/Typography/PinkText'
+import { H5 } from '../../common/Typography/H5'
 import { MyCloseIcon } from '../../assets/icons/icons'
-import { SiteMessage } from '../../components/common/ServerMessages/SiteMessage'
+import { SiteMessage } from '../../common/Messages/SiteMessage'
 import { CardItem } from '../../components/CardItem/CardItem'
 import { styles } from './styles'
 import { Box, Container, Grid, Typography, withStyles } from '@material-ui/core'
-import { Subtitle1 } from '../../components/Typography/Subtitle1'
-import GreyText from '../../components/Typography/GreyText'
+import { Subtitle1 } from '../../common/Typography/Subtitle1'
+import GreyText from '../../common/Typography/GreyText'
 
 
 const CardPage = (props: any) => {
@@ -21,7 +21,7 @@ const CardPage = (props: any) => {
         <>
             <HeaderBottom />
             <Container>
-                <Grid container className={classes.headline}>
+                <Grid container >
                     <SiteHeadline text="Your bag" />
                 </Grid>
             </Container>
@@ -77,7 +77,7 @@ const CardPage = (props: any) => {
                                     <MyButton href="/catalog" text="Rent more" variant="text" color="primary" />
                                 </Grid>
                                 <Grid item xs={12} md={9}>
-                                    <H5 text={`Subtotal: € ${props.totalPrice}`} classes={classes.totalPrice} />
+                                    <H5 text={`Subtotal: € ${props.totalPrice}`} propsClasses={classes.totalPrice} />
                                     <Box className={classes.cardInformListText}>
                                         <MyButton text="order" href="/buy" />
                                         <Box className={classes.totalText}> <GreyText text="By proceeding you are agreeing to our " /><PinkText text=" Terms & Conditions" /></Box>

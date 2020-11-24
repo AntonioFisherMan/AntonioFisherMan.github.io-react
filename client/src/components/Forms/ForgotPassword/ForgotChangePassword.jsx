@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { resetPass } from '../../../redux/reducers/AuthReducer'
-import { MyInput } from '../../common/FormsControls/MyInput'
+import { MyInput } from '../../../common/FormsControls/MyInput'
 import { Field, reduxForm } from 'redux-form'
 import MyButton from '../../SiteButton/MyButton/MyButton'
 import { compose } from 'redux'

@@ -4,16 +4,16 @@ import { Typography, Grid, Box, withStyles, WithStyles, Container, Hidden } from
 import { styles } from './styles'
 
 import MyButton from "../../components/SiteButton/MyButton/MyButton"
-import { SiteHeadline } from '../../components/Typography/SiteHeadline'
+import { SiteHeadline } from '../../common/Typography/SiteHeadline'
 import Item from "./Item/Item"
 import Slider from "../../components/Slider/Slider"
 import Slider2 from "../../components/Slider/Slider2"
-import { H5 } from "../../components/Typography/H5"
-import { H6 } from "../../components/Typography/H6"
-import { H4 } from "../../components/Typography/H4"
+import { H5 } from "../../common/Typography/H5"
+import { H4 } from "../../common/Typography/H4"
+import { Subtitle1 } from "../../common/Typography/Subtitle1"
 import { items } from "./data"
 import { items2 } from "./data"
-import { IconOr } from "../../components/common/elements/IconOr"
+import { IconOr } from "../../common/elements/IconOr"
 
 
 const FrontPage: React.FC<WithStyles<typeof styles>> = ({ classes }) => {
@@ -26,8 +26,8 @@ const FrontPage: React.FC<WithStyles<typeof styles>> = ({ classes }) => {
             <Box className={classes.introText}>
               <Typography variant="h1">One Box<br /></Typography>
               <Typography variant="h2">Unlimited Choice</Typography>
-              <H5 text="decided to rent dress?" classes={classes.text} />
-              <MyButton href="/" text="RENT NOW" color="default" variant="contained" />
+              <H5 text="decided to rent dress?" propsClasses={classes.text} />
+              <MyButton href="/" text="RENT NOW" color="default" variant="contained" propsClasses={classes.btnWhite} />
             </Box>
           </Grid>
         </Grid>
@@ -93,7 +93,7 @@ const FrontPage: React.FC<WithStyles<typeof styles>> = ({ classes }) => {
           </Grid>
         </Grid>
         <Grid container direction="row" justify="center" >
-          <H4 text="Decided to rent the dress? You’ve just" classes={classes.benefitsText} />
+          <H4 text="Decided to rent the dress? You’ve just" propsClasses={classes.benefitsText} />
         </Grid>
         <Grid container>
           {items2.map(item => {
@@ -125,7 +125,7 @@ const FrontPage: React.FC<WithStyles<typeof styles>> = ({ classes }) => {
           <Slider2 id="multiCarousel2" a="#multiCarousel2" />
         </Grid>
         <Grid container direction="row" justify="center">
-          <H4 text="Follow us on Instagram @dressitbox" classes={classes.followText} />
+          <H4 text="Follow us on Instagram @dressitbox" propsClasses={classes.followText} />
         </Grid>
       </Container>
 

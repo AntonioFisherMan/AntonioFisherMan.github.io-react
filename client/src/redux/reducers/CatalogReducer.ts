@@ -7,8 +7,8 @@ import { appActions, AppActionsTypes } from './AppReducer'
 let initialState = {
     goods: [] as Array<GoodType>,
     filter: [] as Array<string>,
-    filterBy: ['Рекомендации'] as Array<string>,
-    pageSize: 3 as number,
+    filterBy: '' as string,
+    pageSize: 4 as number,
     totalCount: 0 as number,
     pageNumber: 1 as number,
     goodItem: [] as Array<ProductType>,
@@ -47,7 +47,7 @@ type CatalogDispatchType = Dispatch<ActionsTypes | AppActionsTypes>
 export const catalogActions = {
     changePageSize: (pageSize: number) => ({ type: 'CHANGE_PAGE_SIZE_GOODS', pageSize } as const),
     changePageNumber: (pageNumber: number) => ({ type: 'CHANGE_PAGE_NUMBER_GOODS', pageNumber } as const),
-    changeSortBy: (filterBy: any) => ({ type: 'CHANGE_SORT_BY', filterBy } as const),
+    changeSortBy: (filterBy: string) => ({ type: 'CHANGE_SORT_BY', filterBy } as const),
     getGoods: (dataGoods: any) => ({ type: 'GET_GOODS', dataGoods } as const),
     getGood: (goodItem: any) => ({ type: 'GET_GOODBYID', goodItem } as const),
     changeFilter: (filter: Array<string>) => ({ type: 'CHANGE_FILTER', filter } as const),
@@ -58,7 +58,7 @@ export const catalogActions = {
 
 export const getGoodsForSlider = () => async (dispatch: CatalogDispatchType) => {
     try {
-        let data = await goodsAPI.changeFilter(1, 10, '')
+        let data = await goodsAPI.changeFilter(1, 4, '')
         dispatch(catalogActions.getGoods(data.payload))
     } catch (err) {}
 }

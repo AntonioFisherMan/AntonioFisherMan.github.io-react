@@ -38,6 +38,7 @@ class CatalogPageContainer extends React.Component<any> {
     this.props.changePageNumber(pageNumber)
   }
   changePageSize = (pageSize: number, pageNumber = 1) => {
+    debugger
     this.props.getGoodsThunk(pageNumber, pageSize, this.props.filter)
   }
   changeFilter = (filter: Array<string>) => {
@@ -56,7 +57,7 @@ class CatalogPageContainer extends React.Component<any> {
 
 type MapStateToPropsType = {
   goods: Array<GoodType>,
-  filterBy: Array<string>,
+  filterBy: string,
   filter: Array<string>,
   token: string | null,
   items: Array<CardItemType>,

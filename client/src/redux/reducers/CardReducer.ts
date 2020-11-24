@@ -15,7 +15,18 @@ const CardReducer = (state = initialState, action: any): typeof initialState => 
         case 'REMOVE_CARD_ITEMS':
             return { ...state, items: [], totalPrice: null }
         case 'CHANGE_ITEMS_QUANTITY':
-            return { ...state, items: state.items.filter((i) => (i._id === action.id ? i.quantity : action.quantity)) }
+            return {
+                ...state,
+                items: state.items.map((item) => {
+                    if (item._id === action.id) {
+                        return {
+                            ...item,
+                            quantity: action.quantity,
+                        }
+                    }
+                    return item
+                }),
+            }
         case 'CARD_ADD_INSURANCE':
             const id = action.id
             return {

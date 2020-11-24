@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { mongoObjectId } from '../../utils/helperFunctions/objectId'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
-import Preloader from '../../components/common/Preloader'
+import Preloader from '../../common/Preloader'
 import { compose } from 'redux'
 import { LoadingDataHOC } from '../../hoc/LoaingData'
 

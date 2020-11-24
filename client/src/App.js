@@ -1,125 +1,37 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { initializeThunkApp } from './redux/reducers/AppReducer'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateUtils from '@date-io/moment'
-//PAGES
+import { ThemeProvider } from '@material-ui/core'
 
-import ChangepassPage from './Pages/ChangepassPage/ChangepassPage'
-import HelpPage from './Pages/HelpPage/HelpPage'
-import ReturnPage from './Pages/ReturnPage/ReturnPage'
+//PAGES
+import ChangepassPage from './pages/ChangepassPage/ChangepassPage'
+import HelpPage from './pages/HelpPage/HelpPage'
+import ReturnPage from './pages/ReturnPage/ReturnPage'
 import NavContainer from './components/Nav/NavContainer'
-import CatalogPageContainer from './Pages/CatalogPage/CatalogPageContainer'
-import SignPage from './Pages/SignPage/SignPage'
-import Preloader from './components/common/Preloader'
-import FrontPage from './Pages/FrontPage/FrontPage'
-import CardPageContainer from './Pages/CardPage/CardPageContainer'
-import FeedbackContainer from './Pages/FeedbackPage/FeedbackContainer'
-import OrdersPageContainer from './Pages/OrdersPage/OrdersPageContainer'
-import Order from './Pages/OrdersPage/UnloginOrderPage'
-import InformContainer from './Pages/InformPage/InformContainer'
+import CatalogPageContainer from './pages/CatalogPage/CatalogPageContainer'
+import SignPage from './pages/SignPage/SignPage'
+import Preloader from './common/Preloader'
+import FrontPage from './pages/FrontPage/FrontPage'
+import CardPageContainer from './pages/CardPage/CardPageContainer'
+import FeedbackContainer from './pages/FeedbackPage/FeedbackContainer'
+import OrdersPageContainer from './pages/OrdersPage/OrdersPageContainer'
+import Order from './pages/OrdersPage/UnloginOrderPage'
+import InformContainer from './pages/InformPage/InformContainer'
 import ForgotChangePassword from './components/Forms/ForgotPassword/ForgotChangePassword'
 import ForgotPassword from './components/Forms/ForgotPassword/ForgotPassword'
-import DetailsContainer from './Pages/DetailsPage/DetailsContainer'
-import Test2 from './Pages/Test2'
-// const DetailsContainer = React.lazy(() =>
-// import("./components/Pages/DetailsPage/DetailsContainer")
-// );
-// const FrontPage = React.lazy(() =>
-//   import('../src/components/Pages/FrontPage/FrontPage')
-// );
+import DetailsContainer from './pages/DetailsPage/DetailsContainer'
+import NotFound from './pages/NotFound/NotFound'
 
-import Modal from './components/common/Modal/Modal'
-import NotFound from './Pages/NotFound/NotFound'
+import Modal from './common/Modal/Modal'
 import FooterContainer from './components/Footer/FooterContainer'
-import { ThemeProvider, createMuiTheme } from '@material-ui/core'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { font } from './fonts/Montserrat/font'
-import Test from './Pages/Test'
-import ServerMessage from './components/common/ServerMessages/ServerMessage'
-import CheckoutPageContainer from './Pages/CheckoutPage/CheckoutPageContainer'
-import { compose } from 'redux'
+import { initializeThunkApp } from './redux/reducers/AppReducer'
+import ServerMessage from './common/Messages/ServerMessage'
+import CheckoutPageContainer from './pages/CheckoutPage/CheckoutPageContainer'
 import { LoadingDataHOC } from './hoc/LoaingData'
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            light: '#ffafb2',
-            main: '#e77e83',
-            dark: '#b24f56',
-            contrastText: '#000',
-        },
-        secondary: {
-            light: '#ff7961',
-            main: '#f44336',
-            dark: '#ba000d',
-            contrastText: '#e77e83',
-        },
-        default: {
-            light: '#373737',
-            main: '#111111',
-            dark: '#000000',
-            contrastText: '#ffffff',
-        },
-        color: {
-            white: '#fff',
-        },
-        grey: {
-            A700: '#979797',
-        },
-    },
-    typography: {
-        fontFamily: 'Montserrat',
-        caption: {
-            fontWeight: 300,
-            fontSize: '3.125rem',
-        },
-        h6: {
-            fontWeight: 600,
-            fontSize: '15px',
-        },
-        h5: {
-            fontWeight: 700,
-            fontSize: '20px',
-        },
-        subtitle1: {
-            fontWeight: 400,
-            fontSize: '15px',
-            lineHeight: '24px',
-        },
-    },
-    overrides: {
-        MuiCssBaseline: {
-            '@global': {
-                '@font-face': [font],
-            },
-        },
-        MuiButton: {
-            root: {
-                width: 164,
-                height: 50,
-                fontSize: 12,
-                fontWeight: 600,
-            },
-            sizeSmall: {
-                width: 128,
-                height: 45,
-            },
-            sizeLarge: {
-                width: 227,
-                height: 55,
-            },
-        },
-        MuiOutlinedInput: {
-            notchedOutline: {
-                border: '1px solid',
-                borderColor: '#F7F8FC',
-            },
-        },
-    },
-})
+import { theme } from './materialUi/theme'
 
 class App extends React.Component {
     componentDidMount() {
@@ -133,15 +45,14 @@ class App extends React.Component {
             return (
                 <MuiPickersUtilsProvider utils={DateUtils}>
                     <ThemeProvider theme={theme}>
-                        <CssBaseline />
                         <Router>
                             <Suspense fallback={<div>Загрузка...</div>}>
                                 <NavContainer />
                                 <ServerMessage code={this.props.code} />
                                 <Switch>
                                     <Route exact path="/" component={FrontPage} />
-                                    <Route path="/catalog" component={CatalogPageContainer} />
-                                    <Route path="/details/:id?" component={DetailsContainer} />
+                                    <Route exact path="/catalog" component={CatalogPageContainer} />
+                                    <Route path="/catalog/:id?" component={DetailsContainer} />
                                     <Route path="/card" component={CardPageContainer} />
                                     <Route path="/changepass" component={ChangepassPage} />
                                     <Route path="/feedback/:id?" component={FeedbackContainer} />
@@ -154,8 +65,6 @@ class App extends React.Component {
                                     <Route path="/forgotchangepass/:token?" component={ForgotChangePassword} />
                                     <Route path="/buy" component={CheckoutPageContainer} />
                                     <Route path="/order" component={Order} />
-                                    <Route path="/test" component={Test} />
-                                    <Route path="/test2" component={Test2} />
                                     <Route component={NotFound} />
                                 </Switch>
                                 <Modal />

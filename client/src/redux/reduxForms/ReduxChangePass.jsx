@@ -2,9 +2,9 @@
 import React from "react"
 import { Field, reduxForm } from "redux-form"
 import { Box, makeStyles } from '@material-ui/core'
-import { H6 } from '../../components/Typography/H6'
-import { MyInput } from '../../components/common/FormsControls/MyInput'
-import { required } from '../../utils/Validators/validators'
+import { H6 } from '../../common/Typography/H6'
+import { MyInput } from '../../common/FormsControls/MyInput'
+import { required } from '../../utils/validators/validators'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
 
 const useStyles = makeStyles({

@@ -75,45 +75,33 @@ let storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}_${file.originalname}`)
     },
-    fileFilter: (req, file, cb) => {
-        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-            return cb(new Error('Only image files are allowed!'), false)
-        }
-        cb(null, true)
-    },
 })
 
 let upload = multer({ storage: storage }).array('file', 3)
 
-router.post('/reviews/:goodsId', (req, res) => {
-    upload(req, res, async (err) => {
-        let finalImage = []
-        let str2 = 'public/'
-
-        Object.keys(req.files).forEach((key) => {
-            finalImage.push(req.files[key].path.replace(str2, ''))
-        })
-        if (err) {
-            return res.json({ success: false, message: err.message })
-        } else if (!res.req.files) {
-            res.status(404).json({ success: false, message: 'No files is selected' })
-        } else {
-            const newReviews = new Reviews({
-                name: req.body.name,
-                photo: req.body.photo,
-                images: finalImage,
-                rating: req.body.rating,
-                reviewText: req.body.reviewText,
-                goodsId: req.params.goodsId,
-            })
-            const review = await newReviews.save()
-            try {
-                res.status(200).json({ review, success: true, message: 'Your review successfuly upload' })
-            } catch (error) {
-                res.status(400).json({ message: error.message })
-            }
-        }
+router.post('/reviews/:goodsId', upload, async (req, res) => {
+    const files = req.files
+    if (files.length === 0) {
+        return res.status(400).json({ message: 'Please choose files' })
+    }
+    let finalImage = []
+    let str2 = 'public/'
+    Object.keys(files).forEach((key) => {
+        finalImage.push(files[key].path.replace(str2, ''))
     })
+    const newReviews = new Reviews({
+        name: res.req.body.name,
+        photo: res.req.body.photo,
+        images: finalImage,
+        rating: res.req.body.rating,
+        reviewText: res.req.body.text,
+        goodsId: req.params.goodsId,
+    })
+    try {
+        const data = await newReviews.save()
+        return res.json({ data: data, message: 'Your review successfuly added' })
+    } catch (error) {
+        return res.json({ message: error })
+    }
 })
-
 module.exports = router

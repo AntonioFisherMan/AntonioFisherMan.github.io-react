@@ -9,17 +9,33 @@ export const styles = (theme: Theme) =>
             display: 'flex',
             alignItems: 'center',
         },
+        linkItem: {
+            display: 'flex',
+            alignItems: 'center',
+        },
         select: {
             background: '#7ECB80',
             color: 'white',
             borderRadius: 3,
-            width: 45,
-            height: 31,
+            paddingRight: 14,
+            paddingLeft: 10,
+            fontWeight: 600,
+            marginLeft: 10,
+        },
+        selectIcon: {
+            color: 'white',
+        },
+        sortIcon: {
+            color: '#111111',
+            paddingLeft: 5,
         },
         sortBtn: {
             textTransform: 'uppercase',
             color: '#111111',
             background: 'none',
+            backgroundColor: 'none',
+            fontSize: 12,
+            fontWeight: 600,
         },
         catalog: {
             display: 'flex',

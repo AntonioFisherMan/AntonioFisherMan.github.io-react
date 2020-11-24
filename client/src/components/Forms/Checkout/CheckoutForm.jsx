@@ -2,21 +2,21 @@ import React from 'react'
 import { withStyles, Box, Grid, FormGroup } from '@material-ui/core'
 import MyButton from '../../SiteButton/MyButton/MyButton'
 import { Field } from 'redux-form'
-import { MyInput } from '../../common/FormsControls/MyInput'
-import { required } from '../../../utils/Validators/validators'
-import { H6 } from '../../Typography/H6'
-import { MyCheckBox } from '../../common/FormsControls/MyCheckBox'
-import { MySelect } from '../../common/FormsControls/MySelect'
+import { MyInput } from '../../../common/FormsControls/MyInput'
+import { required } from '../../../utils/validators/validators'
+import { H6 } from '../../../common/Typography/H6'
+import { MySelect } from '../../../common/FormsControls/MySelect'
 import { compose } from 'redux'
 import { LoadingDataHOC } from '../../../hoc/LoaingData'
 import { styles } from './styles'
+import UploadFile from '../../UploadFile/UploadFile'
 
 const CheckoutForm = (props) => {
     const { classes } = props
     return (
         <>
             <form className={classes.checkoutForm} onSubmit={props.handleSubmit}>
-                <H6 text="Shipping address" classes={classes.headline} />
+                <H6 text="Shipping address" propsClasses={classes.headline} />
                 <Grid item>
                     <FormGroup row={true}>
                         <Grid item xs={12} sm={6} className={classes.margin}>
@@ -46,15 +46,14 @@ const CheckoutForm = (props) => {
                     </FormGroup>
                 </Grid>
                 <Field type="number" validate={[required]} component={MyInput} label="Телефон" name="phone" placeholder="Номер телефона" fullWidth />
-                <H6 text="Billing Address" />
-                <Field type="checkbox" component={MyCheckBox} name="check" label="same as Shipping Address" />
+                {props.form === "userInform" ? <UploadFile onSaveFiles={props.onSaveFiles} /> : null}
                 <Box className={classes.btnBlock}>
-                    <MyButton href="/catalog" text="Return to catalogue" variant="text" />
-                    {props.isAddInform ? <div className="ml-auto">
+                    {props.form === "userInform" ? <MyButton href="" text="Return to card" variant="text" size="large" onClick={() => props.changeLayout(true)} /> : null}
+                    {props.isAddInform ? <Box className="ml-auto">
                         <button ><MyButton text="Обновить" href="" loading={props.loading} /></button>
-                    </div> : <div className="ml-auto">
+                    </Box> : <Box className="ml-auto">
                             <button ><MyButton text={props.btn} href="" loading={props.loading} /></button>
-                        </div>}
+                        </Box>}
                 </Box>
             </form>
         </>

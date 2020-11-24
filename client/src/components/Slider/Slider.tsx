@@ -8,6 +8,7 @@ import { catalogActions } from '../../redux/reducers/CatalogReducer'
 import { AppStateType } from '../../redux/ReduxStore'
 import { GoodType } from '../../types/types'
 import { MyFab } from '../SiteButton/MyFab'
+import { Box } from '@material-ui/core'
 
 class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
     componentWillUnmount() {
@@ -23,12 +24,12 @@ class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
     }
     render() {
         return (
-            <div>
+            <>
                 {this.props.goods.length > 0 ? (
-                    <div id={this.props.id} className="carousel slide w-100" data-ride="carousel">
-                        <div className="carousel-inner w-100" role="listbox">
-                            <div className="carousel-item active">
-                                <div className="col-12 col-sm-6 col-md-4 col-lg-3  style__item">
+                    <Box id={this.props.id} className="carousel slide w-100" data-ride="carousel">
+                        <Box className="carousel-inner w-100" role="listbox">
+                            <Box className="carousel-item active">
+                                <Box className="col-12 col-sm-6 col-md-4 col-lg-3  style__item">
                                     <SliderItem
                                         img="/images/Mask-3.png"
                                         headline="Shake It Off Embellished"
@@ -36,11 +37,11 @@ class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
                                         price="112"
                                         id={this.props.goods[0]._id}
                                     />
-                                </div>
-                            </div>
+                                </Box>
+                            </Box>
                             {this.props.goods.map((good: GoodType) => (
-                                <div className="carousel-item" key={good._id}>
-                                    <div className="col-12 col-sm-6 col-md-4  col-lg-3 style__item">
+                                <Box className="carousel-item" key={good._id}>
+                                    <Box className="col-12 col-sm-6 col-md-4  col-lg-3 style__item">
                                         <SliderItem
                                             img={good.photos.middle}
                                             headline={good.text}
@@ -48,27 +49,25 @@ class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
                                             price={good.price}
                                             id={good._id}
                                         />
-                                    </div>
-                                </div>
+                                    </Box>
+                                </Box>
                             ))}
-                        </div>
+                        </Box>
                         <a className="carousel-control-prev" href={this.props.a} id="arrow-prev" role="button" data-slide="prev">
-                            <div className="arrow">
+                            <Box className="arrow">
                                 <i className="carousel-control-prev-icon fas fa-chevron-left" aria-hidden="true"></i>
-                                <span className="sr-only">Предыдущий</span>
-                            </div>
+
+                            </Box>
                         </a>
 
                         <a className="carousel-control-next" href={this.props.a} id="arrow-next" role="button" data-slide="next">
-                            <div className="arrow">
+                            <Box className="arrow">
                                 <i className="carousel-control-next-icon fas fa-chevron-right" aria-hidden="true"></i>
-
-                                <span className="sr-only">Cледующий</span>
-                            </div>
+                            </Box>
                         </a>
-                    </div>
+                    </Box>
                 ) : null}
-            </div>
+            </>
         )
     }
 }

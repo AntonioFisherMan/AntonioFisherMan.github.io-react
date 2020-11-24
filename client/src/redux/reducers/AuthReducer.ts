@@ -5,6 +5,7 @@ import { Dispatch } from 'react'
 import { authAPI } from '../../api/authAPI'
 import { appActions, AppActionsTypes } from './AppReducer'
 import { reset } from 'redux-form'
+import { informActions } from './InformReducer'
 
 const token = sessionStorage.getItem('token')
 const isAuth = sessionStorage.getItem('isAuth')
@@ -142,8 +143,9 @@ export const subscribeNewUser = (email: string) => async (dispatch: DispatchType
     }
 }
 
-export const logout = () => (dispatch: DispatchType) => {
+export const logout = () => (dispatch: any) => {
     dispatch(authActions.logout())
+    dispatch(informActions.clearInform())
 }
 
 export default AuthReducer

@@ -21,8 +21,14 @@ export const styles = (theme: Theme) =>
             '&:hover': {
                 color: theme.palette.primary,
                 fontWeight: 'bold',
-                background: 'none',
             },
+        },
+        default: {
+            '&:hover': {
+                border: `1px solid ${theme.palette.primary.main} `,
+            },
+            border: '1px solid #111111',
+            borderRadius: 50,
         },
         icon: {
             fontSize: 12,

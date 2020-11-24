@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import { required, MaxLength, MinLength } from '../../utils/Validators/validators'
+import { required, MaxLength, MinLength } from '../../utils/validators/validators'
 import { Box, makeStyles, } from '@material-ui/core'
 import MyButton from '../../components/SiteButton/MyButton/MyButton'
 import { MyInput2 } from './MyInput2'

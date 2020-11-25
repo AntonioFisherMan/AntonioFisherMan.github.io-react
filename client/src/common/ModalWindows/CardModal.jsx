@@ -9,7 +9,7 @@ import GreyText from "../Typography/GreyText";
 
 const MyTransition = props => <Slide direction="down" {...props} />
 
-const DialogWindow = ({ classes }) => {
+const CardModal = ({ classes }) => {
   return (
     <ModalConsumer>
       {value => {
@@ -43,7 +43,7 @@ const DialogWindow = ({ classes }) => {
   )
 }
 
-export default withStyles(styles)(DialogWindow)
+export default withStyles(styles)(CardModal)
 
 
 

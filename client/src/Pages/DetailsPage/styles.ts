@@ -13,10 +13,12 @@ export const styles = (theme: Theme) =>
             width: 100,
             alignItems: 'flex-start',
         },
+        detailsPhotoBlock: {},
         detailsPhoto: {
-            width: 321,
+            width: '100%',
             height: 750,
         },
+        carouserVertical: {},
         pinkText: {
             fontSize: 10,
         },
@@ -149,7 +151,7 @@ export const styles = (theme: Theme) =>
             display: 'flex',
         },
         reviewBtn: {},
-        '@media (max-width: 887px)': {
+        '@media (max-width: 960px)': {
             reviewItem: {
                 justifyContent: 'center',
             },
@@ -162,6 +164,25 @@ export const styles = (theme: Theme) =>
                 width: '100%',
                 borderRadius: 50,
                 color: '#111111',
+            },
+            detailsPhotoBlock: {
+                display: 'flex',
+                justifyContent: 'center',
+            },
+            detailsPhoto: {
+                width: 321,
+                height: 750,
+            },
+            carouserVertical: {
+                justifyContent: 'center',
+            },
+            selectSize: {
+                width: 111,
+            },
+        },
+        '@media (max-width: 600px)': {
+            detailsPhoto: {
+                height: 500,
             },
         },
     })

@@ -1,11 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { Hidden } from '@material-ui/core';
 export const CarouselVertical = ({ photos }) => {
         return (
                 <div id="multiCarousel_3" className="carousel slide w-100" data-ride="carousel">
-                        <div className="carousel-inner-2 w-100" role="listbox">
+                        <a to="#" href="#multiCarousel_3" className="smallNext" role="button" data-slide="prev">
+                                <Hidden smDown>
+                                        <ExpandLessIcon />
+                                </Hidden>
+                                <Hidden mdUp>
+                                        <ChevronLeftIcon />
+                                </Hidden>
+                        </a>
+                        <div className="carousel-inner-2" role="listbox">
                                 <div className="carousel-item active">
                                         <img className="carousel__img" src="/images/photo4.png" alt="" />
                                 </div>
@@ -14,22 +25,14 @@ export const CarouselVertical = ({ photos }) => {
                                                 <img className="carousel__img" src={photo} alt="" />
                                         </div>)}
                         </div>
-                        <Link id="arrow-prev1" to="#" href="#multiCarousel_3" role="button" data-slide="prev">
-                                <div className="arrow-1">
-                                        <i className="big fas fa-chevron-up" aria-hidden="true"></i>
-                                        <i className="smallLeft fas fa-chevron-left" aria-hidden="true"></i>
-                                        <span className="sr-only">Предыдущий</span>
-                                </div>
-                        </Link>
-
-                        <Link id="arrow-next1" to="#" href="#multiCarousel_3" role="button"
-                                data-slide="next">
-                                <div className="arrow-1">
-                                        <i className="big fas fa-chevron-down" aria-hidden="true"></i>
-                                        <i className="smallRight fas fa-chevron-right" aria-hidden="true"></i>
-                                        <span className="sr-only">Cледующий</span>
-                                </div>
-                        </Link>
+                        <a to="#" className="smallPrev" href="#multiCarousel_3" role="button" data-slide="next">
+                                <Hidden smDown>
+                                        <ExpandMoreIcon />
+                                </Hidden>
+                                <Hidden mdUp>
+                                        <NavigateNextIcon />
+                                </Hidden>
+                        </a>
                 </div>
         )
 }

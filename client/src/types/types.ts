@@ -31,6 +31,8 @@ export type CardItemType = {
     endDate: Date
     photo: string
     size: string
+    style?: string
+    text?: string
     isInsurance: boolean
 }
 export type UserType = {

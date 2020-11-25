@@ -9,10 +9,13 @@ import { MyCloseIcon } from '../../assets/icons/icons'
 import { SiteMessage } from '../../common/Messages/SiteMessage'
 import { CardItem } from '../../components/CardItem/CardItem'
 import { styles } from './styles'
-import { Box, Container, Grid, Typography, withStyles } from '@material-ui/core'
+import { Box, Container, Grid, Hidden, Typography, withStyles } from '@material-ui/core'
 import { Subtitle1 } from '../../common/Typography/Subtitle1'
 import GreyText from '../../common/Typography/GreyText'
-
+import { InformCard } from '../../components/InformCard/InformCard'
+import { CardDiscount } from '../../components/CardItem/CardDiscount'
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
 
 const CardPage = (props: any) => {
     const { classes } = props
@@ -28,25 +31,29 @@ const CardPage = (props: any) => {
 
             {props.items.length ? <>
                 <Container>
-                    <section className={classes.cardLink}>
-                        <Grid container>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={4}>
-                                <Subtitle1 text="Item" />
+                    <Hidden xsDown>
+                        <section className={classes.cardLink}>
+                            <Grid container>
+                                <Grid item xs={3}></Grid>
+                                <Grid item xs={4}>
+                                    <Subtitle1 text="Item" />
+                                </Grid>
+                                <Grid item xs={2} className={classes.center} >
+                                    <Subtitle1 text="Price" />
+                                </Grid>
+                                <Grid item xs={3} className={classes.center} >
+                                    <Subtitle1 text="Quantity" />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={2} className={classes.center} >
-                                <Subtitle1 text="Price" />
-                            </Grid>
-                            <Grid item xs={3} className={classes.center} >
-                                <Subtitle1 text="Quantity" />
-                            </Grid>
-                        </Grid>
-                    </section>
+                        </section>
+                    </Hidden>
+
                 </Container>
 
                 <section className={classes.cardBlock}>
+
                     <Container>
-                        {props.items.map((item: CardItemType) => <CardItem
+                        {props.items.map((item: CardItemType) => <Hidden xsDown><CardItem
                             classes={classes}
                             _id={item._id}
                             price={item.price}
@@ -58,14 +65,16 @@ const CardPage = (props: any) => {
                             removeProduct={props.removeProduct}
                             addInsurance={props.addInsurance}
                             removeInsurance={props.removeInsurance}
-                            changeQuantity={props.changeQuantity}
                             isInsurance={item.isInsurance}
+                            increaseQuantity={props.increaseQuantity}
+                            decreaseQuantity={props.decreaseQuantity}
 
-                        />)}
+                        /></Hidden>)}
+
                         <Box className={classes.cardExtraText}>
                             <Grid container>
                                 <Grid item xs={10}>
-                                    <Box className="d-flex"><PinkText text="*" />  <Subtitle1 text="Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
+                                    <Box className={classes.tip}><PinkText text="*" />  <Subtitle1 text="Tip: Rent 2nd outfit now and keep both outfits for 14 days in total. Upgrade to 3rd outfit
                                 and keep all 3 outfits for 21 days!
                                 Wear all outfits for as many times as you want."/></Box>
                                 </Grid>
@@ -73,8 +82,8 @@ const CardPage = (props: any) => {
                         </Box>
                         <Box className={classes.cardInform}>
                             <Grid container className={classes.cardInformList}>
-                                <Grid item xs={12} md={3}>
-                                    <MyButton href="/catalog" text="Rent more" variant="text" color="primary" />
+                                <Grid item xs={12} md={3} className={classes.linkBlock}>
+                                    <MyButton href="/catalog" text="Rent more" variant="text" color="primary" propsClasses={classes.link} />
                                 </Grid>
                                 <Grid item xs={12} md={9}>
                                     <H5 text={`Subtotal: € ${props.totalPrice}`} propsClasses={classes.totalPrice} />
@@ -90,49 +99,42 @@ const CardPage = (props: any) => {
                     </Container>
 
 
-                    {/* <div className="row cardActive" >
-                            <div className="col-3 cardLinkActive">
-                                <p >Item</p>
-                                <p >Price</p>
-                                <p>Price</p>
-                            </div>
-                            <div className="col-9  d-flex flex-column" style={{ marginTop: '20px' }}>
+                    {/************************  Small Screeen ****************/}
+                    <Hidden smUp>
+                        {props.items.map((item: CardItemType) => <Grid container direction="row" className={classes.cardActiveItem}>
 
-                                <div className="d-flex cardActiveInform">
-                                    <div>
-                                        <img className="cardPhotoActive" src="images/Mask-3.png" alt="" />
-                                    </div>
-                                    <div className="cardText">
+                            <Grid item className={classes.cardLinkActive} xs={3}>
+                                <Subtitle1 text="Item" propsClasses={classes.p1} />
+                                <Subtitle1 text="Price" propsClasses={classes.p2} />
+                                <Subtitle1 text="Quantity" propsClasses={classes.p3} />
+                            </Grid>
 
-                                        <MyCloseIcon />
-                                        <p className="cardSlogan">maxi DRESS</p>
-                                        <p>A perfect flirty number for Balls and Black Tie.</p>
-                                        <div className="cardSize d-flex">
-                                            <p>Size: XS{props.items.size}</p>
-                                            <img src="images/svg/Vector (11).svg" alt="" />
-                                        </div>
-                                        <p className="cardText" >Rental period<PinkText text="*" /> : 7 days</p>
-                                        <p>Dates: Mar 17, 2020 - Mar 24, 2020 </p>
-                                    </div>
+                            <Grid item className={classes.cardActive} xs={9}>
+                                <Box>
+                                    <Box className={classes.cardActiveInform}>
+                                        <img className={classes.cardPhotoActive} src={item.photo} alt="" />
+                                        <Box>
+                                            <Box className={classes.closeIcon}>
+                                                <MyCloseIcon onClick={() => props.removeProduct(item._id)} classes={classes.closeIcon} />
+                                            </Box>
+                                            <InformCard size={item.size} startDate={item.startDate} endDate={item.endDate} style={item.style} text={item.text} />
+                                        </Box>
+                                    </Box>
 
-                                </div>
-                                <p className="cardPrice d-flex justify-content-center" >€61.17</p>
-                                <p className="cardPrice ">€61.17</p>
-                                <div className="cardDiscount">
-                                    <div>
+                                    <Subtitle1 propsClasses={classes.p2} text={`€${item.price}`} />
+                                    <Box className={classes.center}>
+                                        <Subtitle1 propsClasses={classes.p3} text={item.quantity} />
+                                        <AddIcon onClick={() => props.increaseQuantity(item.quantity, item._id)} color="primary" fontSize="small" />
+                                        <RemoveIcon onClick={() => props.decreaseQuantity(item.quantity, item._id)} color="primary" fontSize="small" />
+                                    </Box>
+                                    <CardDiscount classes={classes} isInsurance={item.isInsurance} _id={item._id} addInsurance={props.addInsurance} removeInsurance={props.removeInsurance} />
+                                </Box>
+                            </Grid>
 
-                                        <img src="images/svg/Vector (15).svg" alt="" />
-                                    </div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <p><PinkText text="Add" /> insurance for this item for €5</p>
-                                        <p className="cardTextGrey" >This will cover accidental damage (example: zip break) but not unrepairable damage</p>
-                                    </div>
 
-                                </div>
+                        </Grid>)}
+                    </Hidden>
 
-                            </div>
-
-                        </div> */}
 
 
                 </section></> : <div><SiteMessage text="Your card is empty" /></div>}

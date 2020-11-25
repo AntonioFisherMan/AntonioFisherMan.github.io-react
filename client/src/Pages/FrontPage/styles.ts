@@ -65,7 +65,7 @@ export const styles = (theme: Theme) =>
             marginBottom: 74,
         },
 
-        '@media (max-width: 1024px)': {
+        '@media (max-width: 960px)': {
             introText: {
                 margin: '0 auto',
                 marginTop: 51,
@@ -80,6 +80,10 @@ export const styles = (theme: Theme) =>
             },
             worksBlock: {
                 marginTop: 50,
+            },
+            introBlock: {
+                display: 'flex',
+                alignItems: 'center',
             },
         },
         '@media (max-width: 600px)': {

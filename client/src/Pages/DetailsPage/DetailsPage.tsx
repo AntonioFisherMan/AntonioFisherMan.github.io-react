@@ -39,15 +39,13 @@ const DetailsPage: React.FC<ProductPropsType & WithStyles<typeof styles>> = (pro
                                         </Grid>
                                     </Grid>
                                     <Grid container>
-                                        <Grid item xs={12} lg={2}>
+                                        <Grid item container xs={12} md={2} className={classes.carouserVertical}>
                                             <CarouselVertical photos={item.good.photos} />
                                         </Grid>
-                                        <Grid item xs={12} sm={4} >
-
+                                        <Grid item xs={12} md={4} className={classes.detailsPhotoBlock} >
                                             <img className={classes.detailsPhoto} src={item.good.photos.large} alt="" />
-
                                         </Grid>
-                                        <Grid item xs={12} sm={8} lg={6}>
+                                        <Grid item xs={12} md={6}>
                                             <Box >
                                                 <Box >
                                                     <PinkText text={`${item.good.style} Dress`} variant="overline" classes={classes.pinkText} />

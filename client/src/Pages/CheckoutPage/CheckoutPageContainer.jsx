@@ -10,15 +10,10 @@ class Checkout extends React.Component {
                 if (!this.props.auth.isAuth) {
                         data = { items: this.props.items, formData }
                         this.props.addUnloginOrdersThunk(data)
-
-
-
                 }
                 else {
                         data = { items: this.props.items, inform: formData, id: this.props.auth.userId }
                         this.props.addOrdersThunk(data)
-                        debugger
-
                         this.props.history.push("/orders")
 
                 }
@@ -37,7 +32,7 @@ let mapStateToProps = (state) => {
         return {
                 items: state.card.items,
                 auth: state.auth,
-                userInform: state.auth.userInform.inform,
+                userInform: state.auth.userInform,
                 serverCode: state.messages.code
         }
 }

@@ -49,11 +49,10 @@ class Slider2 extends React.Component {
                         </div>
                     </div>
                 </div>
-                <a className="carousel-control-prev" id="arrow-prev" href={this.props.a} role="button" data-slide="prev">
+                <a className="prev" href={this.props.a} role="button" data-slide="prev">
                     <MyFab side="left" />
                 </a>
-
-                <a className="carousel-control-next" id="arrow-next" href={this.props.a} role="button" data-slide="next">
+                <a className="next" href={this.props.a} role="button" data-slide="next">
                     <MyFab side="right" />
                 </a>
             </div>

@@ -20,11 +20,10 @@ const CheckoutForm = (props) => {
                 <Grid item>
                     <FormGroup row={true}>
                         <Grid item xs={12} sm={6} className={classes.margin}>
-                            <Field type="text" label="Фамилия" validate={[required]} component={MyInput} name="surname" placeholder="Фамилия" fullWidth />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
                             <Field type="text" label="Имя" validate={[required]} component={MyInput} name="name" placeholder="Имя" fullWidth />
-
+                        </Grid>
+                        <Grid item xs={12} sm={6} >
+                            <Field type="text" label="Фамилия" validate={[required]} component={MyInput} name="surname" placeholder="Фамилия" fullWidth />
                         </Grid>
                     </FormGroup>
 
@@ -38,7 +37,8 @@ const CheckoutForm = (props) => {
                                 <option defaultValue>Country</option>
                                 <option>Ukraine</option>
                                 <option>Russia</option>
-                            </Field>                        </Grid>
+                            </Field>
+                        </Grid>
                         <Grid item sm={6} xs={12}>
                             <Field type="text" validate={[required]} component={MyInput} name="code" label="Post code" placeholder="Post code" id="inputZip" fullWidth />
 

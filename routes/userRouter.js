@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 let User = require('../models/user.model')
 let HelpMessage = require('../models/helpMessage.model')
 
-let userHandlers = require('./controllers/userController')
+let userHandlers = require('../controllers/userController')
 
 router.post('/forgot_password', userHandlers.forgot_password)
 router.post('/reset_password', userHandlers.reset_password)

@@ -7,8 +7,8 @@ import { getGoodsForSlider } from '../../redux/reducers/CatalogReducer'
 import { catalogActions } from '../../redux/reducers/CatalogReducer'
 import { AppStateType } from '../../redux/ReduxStore'
 import { GoodType } from '../../types/types'
-import { MyFab } from '../SiteButton/MyFab'
 import { Box } from '@material-ui/core'
+import { MyFab } from '../SiteButton/MyFab'
 
 class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
     componentWillUnmount() {
@@ -27,6 +27,9 @@ class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
             <>
                 {this.props.goods.length > 0 ? (
                     <Box id={this.props.id} className="carousel slide w-100" data-ride="carousel">
+                        <a className="prev" href={this.props.a} role="button" data-slide="prev">
+                            <MyFab side="left" />
+                        </a>
                         <Box className="carousel-inner w-100" role="listbox">
                             <Box className="carousel-item active">
                                 <Box className="col-12 col-sm-6 col-md-4 col-lg-3  style__item">
@@ -52,19 +55,10 @@ class Slider extends React.Component<SliderPropsTypes & PropsTypes> {
                                     </Box>
                                 </Box>
                             ))}
+                            <a className="next" href={this.props.a} role="button" data-slide="next">
+                                <MyFab side="right" />
+                            </a>
                         </Box>
-                        <a className="carousel-control-prev" href={this.props.a} id="arrow-prev" role="button" data-slide="prev">
-                            <Box className="arrow">
-                                <i className="carousel-control-prev-icon fas fa-chevron-left" aria-hidden="true"></i>
-
-                            </Box>
-                        </a>
-
-                        <a className="carousel-control-next" href={this.props.a} id="arrow-next" role="button" data-slide="next">
-                            <Box className="arrow">
-                                <i className="carousel-control-next-icon fas fa-chevron-right" aria-hidden="true"></i>
-                            </Box>
-                        </a>
                     </Box>
                 ) : null}
             </>

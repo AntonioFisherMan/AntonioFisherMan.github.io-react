@@ -5,14 +5,15 @@ import React from 'react'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import FormHelperText from '@material-ui/core/FormHelperText'
-import { createStyles } from '@material-ui/core'
-const stylesInput = theme => createStyles({
+import { makeStyles } from '@material-ui/core'
+const useStyles = makeStyles({
+
   helperText: {
     fontSize: 12,
-    fontWeight: 600
-  }
+    fontWeight: 600,
+    margin: 0
+  },
 })
-
 export const MySelect = ({ input, label, meta: { touched, error }, children, ...custom }) => (
   <FormControl error={touched && error}>
     <Select
@@ -21,21 +22,20 @@ export const MySelect = ({ input, label, meta: { touched, error }, children, ...
       native
       {...input}
       {...custom}
-      inputProps={{
-      }}
+
     >
       {children}
     </Select>
-    {renderFromHelper({ touched, error })}
+    <RenderFromHelper touched={touched} error={error} />
   </FormControl>
 )
 
 
-const renderFromHelper = ({ touched, error }) => {
-  const classes = stylesInput()
+const RenderFromHelper = ({ touched, error }) => {
+  const classes = useStyles()
   if (!(touched && error)) {
-    return
+    return null
   } else {
-    return <FormHelperText className={classes.helperText}>{touched && error}</FormHelperText>
+    return <FormHelperText classes={{ error: classes.helperText }}>{touched && error}</FormHelperText>
   }
 }

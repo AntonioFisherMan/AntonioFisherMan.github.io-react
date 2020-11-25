@@ -27,7 +27,7 @@ export const styles = (theme: Theme) =>
         },
         orders__photo: {
             border: '1px solid #EFEFEF',
-            width: 180,
+            width: '90%',
             height: 225,
         },
         orders__item: {

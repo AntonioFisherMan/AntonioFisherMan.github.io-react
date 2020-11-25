@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { MessageActions } from '../../../redux/reducers/ServerMessageReducer'
 import { AppStateType } from '../../../redux/ReduxStore'
 import MyButton from '../../SiteButton/MyButton/MyButton'
+import { Container, Grid } from '@material-ui/core'
 
 
 const ForgotPassword: React.FC<ForgotPasswordType> = (props) => {
@@ -24,20 +25,16 @@ const ForgotPassword: React.FC<ForgotPasswordType> = (props) => {
     }
     return (
 
-        <div>
-            <div className="container">
-                <div className="row ">
-                    <div className="col-12 d-flex justify-content-center">
-                        <form onSubmit={handleSubmit}>
-                            <input className="form-control" type="email" value={email} onChange={handleChangePass} placeholder="Enter your email" />
-                            <button ><MyButton text="Отправить" href="" /></button>
-                        </form>
+        <Container>
+            <Grid container justify="center">
+                <form onSubmit={handleSubmit} style={{ marginTop: '30px' }}>
+                    <input className="form-control" type="email" value={email} onChange={handleChangePass} placeholder="Enter your email" />
+                    <button ><MyButton text="Отправить" href="" /></button>
+                </form>
+            </Grid>
+        </Container>
 
-                    </div>
-                </div>
 
-            </div>
-        </div>
     )
 }
 

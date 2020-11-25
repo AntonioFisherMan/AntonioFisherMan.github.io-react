@@ -1,31 +1,28 @@
-import { Grid, Box, makeStyles, Typography } from '@material-ui/core'
+import { Box, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import { figureOutDate } from '../../utils/helperFunctions/figureOutDate'
 import { PinkText } from '../../common/Typography/PinkText'
-import { Subtitle1 } from '../../common/Typography/Subtitle1'
+
 
 const useStyles = makeStyles({
-        sizeBlock: { display: 'flex' },
+        sizeBlock: { display: 'flex', marginTop: 5 },
         sizeIcon: { marginLeft: 10 },
-        text: { marginBottom: 11 }
+        text: {}
 })
 
 export const InformCard: React.FC<InformCard> = ({ style, text, size, startDate, endDate }) => {
         const classes = useStyles()
         return (
-
                 <Box>
                         {style && <PinkText text={`${style} DRESS`} variant="overline" />}
-                        <Subtitle1 text={text} />
+                        <Typography>{text} </Typography>
                         <Box className={classes.sizeBlock}>
-                                <Subtitle1 text={`Size: ${size}`} />
+                                <Typography>{`Size: ${size}`} </Typography>
                                 <img src="images/svg/Vector (11).svg" alt="" className={classes.sizeIcon} />
                         </Box>
                         <Typography className={classes.text}>Rental period <PinkText text="* :" />{figureOutDate(startDate, endDate)} days</Typography>
-                        <Subtitle1 text={`Dates: ${startDate}-${endDate}`} />
+                        <Typography>{`Dates: ${startDate} - ${endDate}`}</Typography>
                 </Box>
-
-
         )
 }
 type InformCard = {

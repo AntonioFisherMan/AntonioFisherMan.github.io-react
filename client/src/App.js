@@ -25,13 +25,14 @@ import ForgotPassword from './components/Forms/ForgotPassword/ForgotPassword'
 import DetailsContainer from './pages/DetailsPage/DetailsContainer'
 import NotFound from './pages/NotFound/NotFound'
 
-import Modal from './common/Modal/Modal'
+import CardModal from './common/ModalWindows/CardModal'
 import FooterContainer from './components/Footer/FooterContainer'
 import { initializeThunkApp } from './redux/reducers/AppReducer'
 import ServerMessage from './common/Messages/ServerMessage'
 import CheckoutPageContainer from './pages/CheckoutPage/CheckoutPageContainer'
 import { LoadingDataHOC } from './hoc/LoaingData'
 import { theme } from './materialUi/theme'
+import { SiteWindow } from './common/ModalWindows/SiteWindow'
 
 class App extends React.Component {
     componentDidMount() {
@@ -67,7 +68,8 @@ class App extends React.Component {
                                     <Route path="/order" component={Order} />
                                     <Route component={NotFound} />
                                 </Switch>
-                                <Modal />
+                                <CardModal />
+                                {/* <SiteWindow /> */}
                                 <FooterContainer />
                             </Suspense>
                         </Router>

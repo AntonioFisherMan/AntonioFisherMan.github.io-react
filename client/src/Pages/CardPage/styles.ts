@@ -18,12 +18,11 @@ export const styles = (theme: Theme) =>
             marginTop: 30,
             position: 'relative',
         },
-
         cardPhoto: {
             border: '1px solid #EFEFEF',
             boxSizing: 'border-box',
             transform: 'matrix(-1, 0, 0, 1, 0, 0)',
-            width: 285,
+            width: '100%',
             height: 345,
             marginBottom: 32,
         },
@@ -46,6 +45,9 @@ export const styles = (theme: Theme) =>
             display: 'flex',
             alignItems: 'flex-start',
         },
+        cardDiscountText: {
+            marginLeft: 10,
+        },
         cardExtraText: {
             display: 'flex',
             alignItems: 'center',
@@ -56,6 +58,10 @@ export const styles = (theme: Theme) =>
 
         cardInform: {
             marginTop: 36,
+        },
+        tip: {
+            paddingLeft: 40,
+            display: 'flex',
         },
 
         cardInformListText: {
@@ -81,63 +87,64 @@ export const styles = (theme: Theme) =>
             marginTop: 13,
             display: 'flex',
         },
+        link: {
+            height: 0,
+        },
+        '@media (max-width: 600px)': {
+            cardActive: {
+                display: 'flex',
+                position: 'relative',
+            },
+            cardLinkActive: {
+                display: 'block',
+                background: '#E9EBF0',
+            },
+            cardActiveInform: {
+                minHeight: 230,
+                display: 'flex',
+            },
+            cardActiveItem: {
+                marginTop: 10,
+            },
+            cardPhotoActive: {
+                width: 100,
+                height: 200,
+            },
+            p1: {
+                minHeight: 230,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            },
+            p2: {
+                minHeight: 50,
+                textAlign: 'center',
+            },
+            p3: {
+                minHeight: 50,
+                textAlign: 'center',
+            },
+            cardDiscount: {
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+            },
+            cardBlock: {
+                display: 'flex',
+                flexDirection: 'column-reverse',
+            },
+            cardInformList: {
+                display: 'flex',
+                flexDirection: 'column-reverse',
+            },
+            linkBlock: {
+                display: 'flex',
+                justifyContent: 'center',
+            },
+            link: {
+                fontWeight: 'normal',
+                fontSize: 15,
+                marginTop: 10,
+            },
+        },
     })
-
-// @media (max-width: 57598px) :{
-//     cardLink, cardItem:{
-//         display: none;
-//     }
-
-//     cardList:{
-//         display: flex;
-//         flex-direction: column-reverse;
-//     }
-//     cardText, cardInformText :{
-//         display: flex;
-//         justifyContent: center;
-//         text-align: left;
-//         margin-left: 10px;
-//         flex-direction: column;
-//     }
-//     cardInformText p:{
-//         text-align: center;
-//         padding-bottom: 20px;
-//     }
-//     cardActive:{
-//         display: flex !important;
-//     }
-//     cardLinkActive:{
-//         display: block !important;
-//         background: #E9EBF0;
-//         marginTop: 20px;
-//     }
-//     cardLinkActive p:first-child:{
-//         min-height: 230px;
-//     }
-//     cardLinkActive p:last-child:{
-//         min-height: 50px;
-//     }
-//     cardLinkActive p:nth-child(2):{
-//         min-height: 50px;
-//     }
-//     cardLinkActive p:{
-//         display: flex;
-//         justifyContent: center;
-//         align-items: center;
-//         text-align: center;
-//     }
-//     cardPhotoActive:{
-//         border: 1px solid #EFEFEF !important;
-//         width: 180px;
-//         height: 225px;
-//     }
-//     cardActiveInform:{
-//         min-height: 230px;
-//     }
-//     cardPrice:{
-//         min-height: 50px;
-//         display: flex;
-//         justifyContent: center;
-//         align-items:center;
-//     }
-// }

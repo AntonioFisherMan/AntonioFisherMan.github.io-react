@@ -35,7 +35,7 @@ export const styles = (theme: Theme) =>
         margin: {
             marginBottom: 10,
         },
-        '@media (max-width:1024px) ': {
+        '@media (max-width:960px) ': {
             footerForm: {
                 marginTop: 19,
                 flexDirection: 'column',

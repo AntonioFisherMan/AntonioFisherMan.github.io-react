@@ -21,7 +21,7 @@ export const styles = (theme: Theme) =>
         feedbackItemImg: {
             border: '1px solid #EFEFEF',
             boxSizing: 'border-box',
-            width: 180,
+            width: '90%',
             height: 225,
         },
         textBox: {
@@ -31,11 +31,19 @@ export const styles = (theme: Theme) =>
             marginTop: 117,
             marginBottom: 10,
         },
+        feedbackItemColumn2: {
+            position: 'relative',
+        },
         feedbackItemActive: {
             display: 'none',
         },
         feedbackListActive: {
             display: 'none',
+        },
+        closeIcon: {
+            position: 'absolute',
+            right: 0,
+            top: 0,
         },
     })
 

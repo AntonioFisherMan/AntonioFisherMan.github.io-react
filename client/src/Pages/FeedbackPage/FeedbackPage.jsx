@@ -62,7 +62,7 @@ const FeedbackPage = (props) => {
                                         </Grid>
                                         <Grid item md={5} >
                                             <Box className={classes.feedbackItemColumn2}>
-                                                <img onClick={() => { props.removeItem() }} src="/images/svg/Vector (14).svg" alt="" className="ml-auto" />
+                                                <img onClick={() => { props.removeItem() }} src="/images/svg/Vector (14).svg" alt="" className={classes.closeIcon} />
                                                 <MyRating defaultValue={0} handleRating={props.handleRating} />
                                                 <GreyText text="Rate your rented outfit." />
                                                 <GreyText text="Let others know what you think!" />

@@ -32,6 +32,7 @@ export const ordersActions = {
 export const addUnloginOrdersThunk = (obj: any) => async (dispatch: any) => {
     try {
         dispatch(appActions.setLoading(true))
+
         let data = await ordersAPI.setUnloginOrders(obj)
         dispatch(ordersActions.addUnloginOrders(data.order.inform))
         dispatch(appActions.setLoading(false))
@@ -39,14 +40,13 @@ export const addUnloginOrdersThunk = (obj: any) => async (dispatch: any) => {
         dispatch(push('/order'))
         dispatch(cardActions.clearCardItems())
     } catch (err) {
-        dispatch(messageActions.returnErrors(err.data.message, err.data.status, 'ERROR_ADD_UNLOGIN_ORDER'))
+        dispatch(messageActions.returnErrors(err.response.data.message, err.response.data.status, 'ERROR_ADD_UNLOGIN_ORDER'))
     }
 }
 export const getOrders = (id: any) => async (dispatch: any) => {
     try {
         dispatch(appActions.setLoading(true))
         let data = await ordersAPI.getOrders(id)
-
         dispatch(appActions.setLoading(false))
         dispatch(ordersActions.addOrders(data))
     } catch (err) {
@@ -61,7 +61,7 @@ export const addOrdersThunk = (items: any, inform: any) => async (dispatch: any,
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_ADD_ORDER'))
         dispatch(push('/orders'))
     } catch (err) {
-        dispatch(messageActions.returnErrors(err.data.message, err.data.status, 'ERROR_ADD_LOGIN_ORDER'))
+        dispatch(messageActions.returnErrors(err.response.data.message, err.response.data.status, 'ERROR_ADD_LOGIN_ORDER'))
     }
 }
 

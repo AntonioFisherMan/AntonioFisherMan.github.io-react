@@ -21,7 +21,7 @@ export const MyFab: React.FC<MyFab> = ({ side }) => {
         const classes = useStyles();
         return (
                 <Fab color="default" size="large" className={classes.tab}>
-                        {side === 'left' ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />}
+                        {side === 'left' ? <ArrowBackIosIcon fontSize="small" /> : <ArrowForwardIosIcon fontSize="small" />}
                 </Fab>
         )
 }

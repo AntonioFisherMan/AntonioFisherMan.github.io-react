@@ -9,8 +9,18 @@ import { CardItemType } from '../../types/types'
 
 
 class CarpPageContainer extends React.Component<ComponentType> {
+    increaseQuantity = (quantity: number, _id: string) => {
+        quantity = quantity + 1;
+        this.props.changeQuantity(_id, quantity)
+    }
+    decreaseQuantity = (quantity: number, _id: string) => {
+        if (quantity > 1) {
+            quantity = quantity - 1;
+            this.props.changeQuantity(_id, quantity)
+        }
+    }
     render() {
-        return <CardPage {...this.props} />
+        return <CardPage {...this.props} increaseQuantity={this.increaseQuantity} decreaseQuantity={this.decreaseQuantity} />
     }
 }
 type PropsType = {

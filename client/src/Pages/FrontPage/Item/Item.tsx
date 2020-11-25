@@ -16,6 +16,9 @@ const useStyles = makeStyles({
     },
     headline: {
         marginTop: 51,
+        fontWeight: 600,
+        fontSize: 20,
+        color: '#111111'
     },
     text: {
         marginTop: 37,

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         },
         footerBox: {
                 display: 'flex',
-                alignItems: 'flex-start',
+                alignItems: 'center',
         }
 })
 

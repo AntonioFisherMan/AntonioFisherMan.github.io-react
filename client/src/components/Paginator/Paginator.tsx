@@ -10,7 +10,6 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'flex-end',
         marginTop: 100,
-        marginBottom: 85
     },
     text: {
         color: '#111111',

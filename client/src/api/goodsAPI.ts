@@ -2,7 +2,6 @@ import { instance, config } from './api'
 
 export const goodsAPI = {
     changeFilter(pageNumber: number, pageSize: number, data: any) {
-        debugger
         return instance.post(`goods?page=${pageNumber}&pageSize=${pageSize}`, { data }).then((res) => res.data)
     },
     getGood(id: string) {

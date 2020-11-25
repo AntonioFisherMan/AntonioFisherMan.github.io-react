@@ -21,7 +21,10 @@ const FrontPage: React.FC<WithStyles<typeof styles>> = ({ classes }) => {
     <>
       <Box className={classes.introBlock}>
         <Grid container >
-          <Grid item xs={12} md={7}></Grid>
+          <Hidden smDown>
+            <Grid item xs={12} md={7}></Grid>
+          </Hidden>
+
           <Grid item xs={12} md={5} >
             <Box className={classes.introText}>
               <Typography variant="h1">One Box<br /></Typography>
@@ -69,7 +72,7 @@ const FrontPage: React.FC<WithStyles<typeof styles>> = ({ classes }) => {
           </Grid>
           <Hidden only={['sm', 'xs']}>
             <Grid item >
-              <MyButton href="/follow" text="follow us" variant="outlined" color="default" />
+              <MyButton href="/follow" text="All catalog" variant="outlined" color="default" />
             </Grid>
           </Hidden>
 

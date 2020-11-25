@@ -1,11 +1,12 @@
 body {
-  background-color: #ffffff !important;
+  background-color: #ffffff;
 }
 li{
   list-style-type: none;
 }
 a{
   text-decoration: none;
+  color:#111111 ;
 }
 a:hover{
   border:"none";
@@ -16,7 +17,9 @@ h1,h2,h3,h4,h5,h6{
   margin:0 ;
   padding:0 ;
 }
-
+p{
+  margin:0
+}
 ul{
   padding:0;
   margin: 0 ;
@@ -57,3 +60,9 @@ label{
   border-bottom: none !important;
 }
 
+.MuiPickersCalendarHeader-daysHeader{
+  font-size: 10 !important;
+}
+.MuiPickersCalendarHeader-dayLabel {
+  font-size: 10 !important;
+}

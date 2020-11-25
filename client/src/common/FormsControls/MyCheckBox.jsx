@@ -4,7 +4,8 @@ import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
   label: {
     marginLeft: 11,
-    fontSize: 12
+    fontSize: 12,
+    color: '#666666'
   },
   checked: {
     color: "#e77e83",

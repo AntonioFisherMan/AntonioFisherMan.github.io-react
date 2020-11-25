@@ -7,7 +7,6 @@ import { Container, Grid, } from '@material-ui/core'
 
 
 export const CheckoutPage = (props) => {
-    debugger
     return (
         <>
             <HeaderBottom />
@@ -18,7 +17,7 @@ export const CheckoutPage = (props) => {
                 <Grid container>
                     <Grid item xs={1} md={1}></Grid>
                     <Grid item xs={12} md={8}>
-                        <ReduxCheckoutForm onSubmit={props.onSubmit} btn="continue" initialValues={props.userInform} />
+                        <ReduxCheckoutForm onSubmit={props.onSubmit} btn="continue" initialValues={props.userInform !== null ? props.userInform.inform : props.userInform} />
                     </Grid>
                 </Grid>
             </Container>

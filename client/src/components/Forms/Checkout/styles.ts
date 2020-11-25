@@ -15,10 +15,9 @@ export const styles = (theme: Theme) =>
         },
         select: {
             background: '#F7F8FC',
-            width: '100% !important',
+            maxWidth: '100%',
             height: 45,
             border: '1px solid #E9ECF0',
-            marginBottom: 30,
         },
         margin: {
             paddingRight: 30,

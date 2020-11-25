@@ -5,7 +5,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { Box } from '@material-ui/core'
+import { Box, TableContainer } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
 import { CircularProgress, Typography } from '@material-ui/core'
 import { PinkText } from '../../common/Typography/PinkText'
@@ -16,7 +16,6 @@ const usePaperStyles = makeStyles(theme => ({
         box: { position: 'absolute', zIndex: 1 },
         root: {
                 position: 'relative',
-                margin: theme.spacing(2),
                 paddingLeft: theme.spacing(5),
                 paddingRight: theme.spacing(5),
                 paddingTop: theme.spacing(3),
@@ -24,9 +23,15 @@ const usePaperStyles = makeStyles(theme => ({
                 textAlign: "center"
         },
         cell: { borderBottom: `2px solid ${theme.palette.primary.light} !important` },
-        table: { paddingLeft: 10, paddingRight: 10 },
+        table: { paddingLeft: 10, paddingRight: 10, },
         icon: { position: 'absolute', right: 0, top: 0, margin: theme.spacing(1), },
         text: { color: theme.palette.grey[700], marginBottom: '20px !important' },
+        '@media (max-width: 600px)': {
+                table: {
+                        maxWidth: 300
+                },
+                box: { maxWidth: 300 },
+        },
 
 }))
 
@@ -66,37 +71,39 @@ right size please contact <PinkText text="hello@dressitbox.com" /> </Typography>
                                 <Box className={classes.icon} onClick={handleCloseTable}>
                                         <MyCloseIcon color="primary" />
                                 </Box>
+                                <TableContainer>
+                                        <Table className={classes.table}>
+                                                <TableHead>
+                                                        <TableRow >
 
-                                <Table className={classes.table}>
-                                        <TableHead>
-                                                <TableRow >
+                                                                <TableCell align="left" className={classes.cell}></TableCell>
+                                                                <TableCell align="center" className={classes.cell}> xs</TableCell>
+                                                                <TableCell align="center" className={classes.cell}>s</TableCell>
+                                                                <TableCell align="center" className={classes.cell}>m</TableCell>
+                                                                <TableCell align="center" className={classes.cell}>l</TableCell>
+                                                                <TableCell align="center" className={classes.cell}>xl</TableCell>
+                                                        </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                        {items.map(item => {
+                                                                return (
+                                                                        <TableRow key={item.id}>
 
-                                                        <TableCell align="left" className={classes.cell}></TableCell>
-                                                        <TableCell align="center" className={classes.cell}> xs</TableCell>
-                                                        <TableCell align="center" className={classes.cell}>s</TableCell>
-                                                        <TableCell align="center" className={classes.cell}>m</TableCell>
-                                                        <TableCell align="center" className={classes.cell}>l</TableCell>
-                                                        <TableCell align="center" className={classes.cell}>xl</TableCell>
-                                                </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                                {items.map(item => {
-                                                        return (
-                                                                <TableRow key={item.id}>
+                                                                                <TableCell align="left">
+                                                                                        {item.name}
+                                                                                </TableCell>
+                                                                                <TableCell align="center">{item.xs}</TableCell>
+                                                                                <TableCell align="center">{item.s}</TableCell>
+                                                                                <TableCell align="center">{item.m}</TableCell>
+                                                                                <TableCell align="center">{item.l}</TableCell>
+                                                                                <TableCell align="center">{item.xl}</TableCell>
+                                                                        </TableRow>
+                                                                )
+                                                        })}
+                                                </TableBody>
+                                        </Table>
+                                </TableContainer>
 
-                                                                        <TableCell align="left">
-                                                                                {item.name}
-                                                                        </TableCell>
-                                                                        <TableCell align="center">{item.xs}</TableCell>
-                                                                        <TableCell align="center">{item.s}</TableCell>
-                                                                        <TableCell align="center">{item.m}</TableCell>
-                                                                        <TableCell align="center">{item.l}</TableCell>
-                                                                        <TableCell align="center">{item.xl}</TableCell>
-                                                                </TableRow>
-                                                        )
-                                                })}
-                                        </TableBody>
-                                </Table>
                                 {loading && <CircularProgress className={classes.progress} />}
                         </Paper>
                 </Box>

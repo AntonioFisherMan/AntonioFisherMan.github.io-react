@@ -42,10 +42,10 @@ export const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick, isAu
                 <AppBar className={classes.toolbar} position="relative">
                         <Toolbar>
                                 <Grid container>
-                                        <Grid item xs={6} sm={2} className={classes.navFlex}>
+                                        <Grid item xs={10} sm={6} md={4}>
                                                 <NavLogo />
                                         </Grid>
-                                        <Grid item xs={6} sm={4} className={classes.navFlex} >
+                                        <Grid item xs={2} sm={1} md={2} className={classes.navFlex} >
                                                 <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={onMenuClick}>
                                                         <MenuIcon />
                                                         <Typography variant="title" color="inherit" >
@@ -53,7 +53,7 @@ export const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick, isAu
                                                         </Typography>
                                                 </IconButton>
                                         </Grid>
-                                        <Grid item xs={4} sm={2} className={classes.navFlex} justify="center">
+                                        <Grid item xs={4} sm={1} md={2} className={classes.navFlex} justify="center">
                                                 <NavCart totalSizeCard={totalSizeCard} />
 
                                         </Grid>

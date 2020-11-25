@@ -3,6 +3,9 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 export const styles = (theme: Theme) =>
     createStyles({
+        ourProducts: {
+            marginBottom: 71,
+        },
         linkBlock: {
             background: '#E9ECF0',
             height: 51,
@@ -59,7 +62,7 @@ export const styles = (theme: Theme) =>
             marginLeft: 30,
         },
         sidebarMenu: {},
-        '@media (max-width: 1024px)': {},
+        '@media (max-width: 960px)': {},
         '@media (max-width: 600px)': {
             catalogList: {
                 marginLeft: 0,

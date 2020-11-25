@@ -42,7 +42,7 @@ export const Good: React.FC<ProductType> = ({ good }) => {
                         <Subtitle1 text={good.text} />
                         <PinkText text={`${good.style} Dress`} classes={classes.pinkText} />
                         <H5 text={`€ ${good.price}`} propsClasses={classes.h5} />
-                        <MyButton href={`details/${good._id}`} text="Подробнее" />
+                        <MyButton href={`catalog/${good._id}`} text="Подробнее" />
                 </Box>
         )
 }

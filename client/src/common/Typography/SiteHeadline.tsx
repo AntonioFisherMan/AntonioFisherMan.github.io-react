@@ -17,7 +17,6 @@ const useStyles = makeStyles({
         '@media (max-width: 600px)': {
                 headline: {
                         width: '100%',
-                        textAlign: 'center',
                         whiteSpace: 'pre-wrap'
                 }
         },

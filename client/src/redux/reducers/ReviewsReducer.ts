@@ -28,7 +28,9 @@ export const reviewsActions = {
 export const setReviews = (files: any, goodsId: string) => async (dispatch: any, getState: any) => {
     let userImage
     if (getState().auth.userInform) {
-        userImage = getState().auth.userInform.userImage
+        if (getState().auth.userInform.inform) {
+            userImage = getState().auth.userInform.inform.userImage
+        }
     }
     try {
         dispatch(appActions.setLoading(true))

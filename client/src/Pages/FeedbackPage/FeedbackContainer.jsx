@@ -33,8 +33,6 @@ class FeedbackContainer extends React.Component {
         this.props.setReviews(formData, this.state.goodsId)
     }
     onSaveFiles = (files) => {
-
-
         this.setState({ files: files })
     }
 

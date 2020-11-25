@@ -20,7 +20,7 @@ const InformPage = (props) => {
                     <SiteHeadline text="My information" />
                 </Grid>
                 <Grid container>
-                    <Grid item container xs={12} sm={12} md={3}>
+                    <Grid item xs={12} md={3} container direction="column" justify="space-between" >
                         <Sidebar />
                     </Grid>
                     <Grid item xs={12} sm={12} md={8}>

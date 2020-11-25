@@ -89,9 +89,10 @@ router.post('/reviews/:goodsId', upload, async (req, res) => {
     Object.keys(files).forEach((key) => {
         finalImage.push(files[key].path.replace(str2, ''))
     })
+    console.log(res.req.body)
     const newReviews = new Reviews({
         name: res.req.body.name,
-        photo: res.req.body.photo,
+        userImage: res.req.body.userImage,
         images: finalImage,
         rating: res.req.body.rating,
         reviewText: res.req.body.text,

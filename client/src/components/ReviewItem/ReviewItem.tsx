@@ -12,7 +12,7 @@ import { H5 } from '../../common/Typography/H5'
 type Props = {
         classes: any
 }
-export const ReviewItem: React.FC<ReviewType & Props> = ({ _id, photo, rating, reviewText, name, classes }) => {
+export const ReviewItem: React.FC<ReviewType & Props> = ({ _id, userImage, rating, reviewText, name, classes }) => {
         return (
 
                 <Grid container key={_id} className={classes.reviewItem}>
@@ -20,7 +20,9 @@ export const ReviewItem: React.FC<ReviewType & Props> = ({ _id, photo, rating, r
                         <Grid item md={2} >
                                 <Box className={classes.reviewInform}>
                                         <Box className={classes.reviewImgBlock}>
-                                                <Avatar className={classes.reviewImg} src={photo !== "undefined" ? `http://localhost:5000/${photo}` : userPhoto} />
+                                                {userImage !== 'undefined'
+                                                        ? <Avatar className={classes.reviewImg} src={`http://localhost:5001/${userImage}`} />
+                                                        : <Avatar className={classes.reviewImg} src={userPhoto} />}
                                         </Box>
                                         <Box className={classes.reviewInforDetails}>
                                                 <H5 text={name} align="left" />

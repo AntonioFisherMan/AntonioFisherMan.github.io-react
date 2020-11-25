@@ -30,7 +30,7 @@ const HelpPage = (props) => {
                     </Grid>
 
                     <Grid container>
-                        <Grid item container xs={12} md={2}>
+                        <Grid item xs={12} md={2} container direction="column" justify="space-between" >
                             <Sidebar />
                         </Grid>
                         <Grid item xs={12} md={2}></Grid>

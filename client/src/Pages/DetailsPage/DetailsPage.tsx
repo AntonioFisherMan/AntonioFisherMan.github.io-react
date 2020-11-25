@@ -24,6 +24,7 @@ import GreyText from '../../common/Typography/GreyText'
 const DetailsPage: React.FC<ProductPropsType & WithStyles<typeof styles>> = (props) => {
     const { classes } = props
     const [expanded, setExpanded] = useState(false)
+    debugger
     return (
         <>
             {!props.loading ? <ModalConsumer>
@@ -109,14 +110,14 @@ const DetailsPage: React.FC<ProductPropsType & WithStyles<typeof styles>> = (pro
                                     <Container>
                                         <Grid container className={classes.styleHeadline}>
                                             <SiteHeadline text="Reviews" />
-                                            <MyButton onClick={() => props.setItemOfReview(item)} href={`/feedback/${item._id}`} text="WRITE A REVIEW" variant="outlined" color="secondary" />
+                                            <MyButton onClick={() => props.setItemOfReview(item.good)} href={`/feedback/${item._id}`} text="WRITE A REVIEW" variant="outlined" color="secondary" />
                                         </Grid>
 
                                         {item.review.map((item: ReviewType) =>
                                             <ReviewItem
                                                 classes={classes}
                                                 _id={item._id}
-                                                photo={item.photo}
+                                                userImage={item.userImage}
                                                 rating={item.rating}
                                                 reviewText={item.reviewText}
                                                 name={item.name} />)}

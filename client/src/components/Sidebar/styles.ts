@@ -17,7 +17,12 @@ export const styles = (theme: Theme) =>
         sidebarItem: {
             display: 'flex',
             marginBottom: 27,
-            color: 'grey',
+
+            fontFamily: 'Montserrat',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            fontSize: 15,
+            color: '#707070',
         },
         greyText: {
             marginLeft: 8,
@@ -33,9 +38,15 @@ export const styles = (theme: Theme) =>
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
+                marginBottom: 15,
             },
             sidebarText: {
                 textAlign: 'center',
+            },
+        },
+        '@media (max-width: 600px)': {
+            sidebar: {
+                marginBottom: 15,
             },
         },
     })

@@ -33,11 +33,12 @@ const ChangepassPage = () => {
                         <SiteHeadline text="Profile" />
                     </Grid>
                     <Grid container>
-                        <Grid item container xs={12} sm={4} md={2}>
+
+                        <Grid item xs={12} sm={12} md={3} container direction="column" justify="space-between" >
                             <Sidebar />
                         </Grid>
-                        <Grid item xs={12} sm={1}></Grid>
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid item xs={12} sm={12} md={1}></Grid>
+                        <Grid item xs={12} sm={12} md={4}>
                             <ChangePass />
                         </Grid>
                     </Grid>

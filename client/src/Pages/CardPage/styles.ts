@@ -23,6 +23,7 @@ export const styles = (theme: Theme) =>
             boxSizing: 'border-box',
             transform: 'matrix(-1, 0, 0, 1, 0, 0)',
             width: '100%',
+            maxWidth: 285,
             height: 345,
             marginBottom: 32,
         },

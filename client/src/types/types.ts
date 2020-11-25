@@ -12,7 +12,7 @@ export type ProductType = {
     reviewQuantity?: number
 }
 export type ReviewType = {
-    photo: string
+    userImage: string
     _id: string
     rating: number
     name: string

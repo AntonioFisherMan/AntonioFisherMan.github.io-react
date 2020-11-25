@@ -51,6 +51,7 @@ let themee = createMuiTheme({
                 height: 50,
                 fontSize: 12,
                 fontWeight: 600,
+                lineHeight: 1,
             },
             sizeSmall: {
                 width: 128,

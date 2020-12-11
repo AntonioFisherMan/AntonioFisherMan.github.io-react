@@ -16,7 +16,6 @@ import { MyCloseIcon } from '../../assets/icons/icons'
 
 const FeedbackPage = (props) => {
     const { classes } = props
-    debugger
     return (
         <>
             <HeaderBottom />
@@ -90,7 +89,7 @@ const FeedbackPage = (props) => {
                                 </Grid>
                             </Hidden>
                         </>
-                            : <Grid container md={4} alignItems="center">
+                            : <Grid container md={6} alignItems="center">
                                 <SiteMessage text="Выберите товар для отзыва в вашых заказах или каталоге" />
                             </Grid>}
 

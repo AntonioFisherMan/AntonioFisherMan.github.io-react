@@ -3,7 +3,6 @@ import { appActions } from './AppReducer'
 import { cardActions } from './CardReducer'
 import { messageActions } from './ServerMessageReducer'
 
-import { useHistory } from 'react-router-dom'
 type OrderType = {}
 let initialState = {
     orders: [] as Array<OrderType>,
@@ -29,14 +28,15 @@ export const ordersActions = {
     addUnloginOrders: (data: any) => ({ type: 'ADD_UNLOGINORDER', data } as const),
 }
 
-export const addUnloginOrdersThunk = (items: any, formData: any) => async (dispatch: any) => {
+export const addUnloginOrdersThunk = (items: any, formData: any, history: any) => async (dispatch: any) => {
     try {
         dispatch(appActions.setLoading(true))
         let data = await ordersAPI.setUnloginOrders(items, formData)
         dispatch(ordersActions.addUnloginOrders(data.order.inform))
-        dispatch(appActions.setLoading(false))
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_ADD_UNLOGIN_ORDER'))
         dispatch(cardActions.clearCardItems())
+        dispatch(appActions.setLoading(false))
+        history.push('/catalog')
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.data.status, 'ERROR_ADD_UNLOGIN_ORDER'))
     }
@@ -52,11 +52,15 @@ export const getOrders = (id: any) => async (dispatch: any) => {
     }
 }
 
-export const addOrdersThunk = (items: any, inform: any) => async (dispatch: any, getState: any) => {
+export const addOrdersThunk = (data: any, history: any) => async (dispatch: any, getState: any) => {
     try {
-        let data = await ordersAPI.setOrders(items, inform, getState().auth.user.id)
+        dispatch(appActions.setLoading(true))
+        let response = await ordersAPI.setOrders(data)
         dispatch(cardActions.clearCardItems())
-        dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_ADD_ORDER'))
+        debugger
+        dispatch(messageActions.returnSuccess(response.message, 'SUCCESS_ADD_ORDER'))
+        dispatch(appActions.setLoading(false))
+        history.push('/orders')
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.data.status, 'ERROR_ADD_LOGIN_ORDER'))
     }

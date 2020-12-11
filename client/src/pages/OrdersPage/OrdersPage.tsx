@@ -86,7 +86,7 @@ const OrdersPage = (props: any) => {
                         </Hidden>
                     </>
                         :
-                        <Grid container direction="row" justify="center" xs={12}>
+                        <Grid container direction="row" justify="center" alignItems="center" xs={12} md={6}>
                             <SiteMessage text="У вас еще не было заказов" />
                         </Grid>}
                 </Grid>

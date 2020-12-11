@@ -8,11 +8,11 @@ class Checkout extends React.Component {
         onSubmit = (formData) => {
                 let data
                 if (!this.props.auth.isAuth) {
-                        this.props.addUnloginOrdersThunk(this.props.items, formData)
+                        this.props.addUnloginOrdersThunk(this.props.items, formData, this.props.history)
                 }
                 else {
-                        data = { items: this.props.items, inform: formData, id: this.props.auth.userId }
-                        this.props.addOrdersThunk(data)
+                        data = { items: this.props.items, inform: formData, id: this.props.auth.user.id }
+                        this.props.addOrdersThunk(data, this.props.history)
                 }
         }
 

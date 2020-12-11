@@ -12,7 +12,7 @@ const { jwtCheck } = require('../utils/jwtMiddleware')
 router.use('/api/profile', profileRouter)
 router.use('/api/goods', goodsRouter)
 router.use('/api/auth', authRouter)
-router.use('/api/orders', jwtCheck, ordersRouter)
+router.use('/api/orders', ordersRouter)
 router.use('/api/inform', jwtCheck, informRouter)
 router.use('/api/reviews', jwtCheck, reviewsRouter)
 

@@ -1,11 +1,12 @@
 import { instance } from './api'
 
 export const ordersAPI = {
-    setOrders(items: any, inform: any, id: any) {
+    setOrders(data: any) {
+        debugger
         return instance
             .post(
                 `orders`,
-                { items, inform, userId: id },
+                { data, userId: data.id },
                 {
                     headers: {
                         Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken') as string),

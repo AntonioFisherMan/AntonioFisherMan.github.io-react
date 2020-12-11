@@ -9,11 +9,11 @@ const informRouter = require('./inform.routes')
 const reviewsRouter = require('./reviews.routes')
 const { jwtCheck } = require('../utils/jwtMiddleware')
 
-router.use('/profile', profileRouter)
-router.use('/goods', goodsRouter)
-router.use('/auth', authRouter)
-router.use('/orders', jwtCheck, ordersRouter)
-router.use('/inform', jwtCheck, informRouter)
-router.use('/reviews', jwtCheck, reviewsRouter)
+router.use('/api/profile', profileRouter)
+router.use('/api/goods', goodsRouter)
+router.use('/api/auth', authRouter)
+router.use('/api/orders', jwtCheck, ordersRouter)
+router.use('/api/inform', jwtCheck, informRouter)
+router.use('/api/reviews', jwtCheck, reviewsRouter)
 
 module.exports = router

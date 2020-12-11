@@ -11,9 +11,9 @@ export const checkRefreshToken = () => {
     if (accessToken) {
         const { exp: expAccess } = decode(accessToken)
         const { exp: expRefresh } = decode(refreshToken)
-        if (expAccess < new Date().getTime() / 1000) {
+        if (expRefresh < new Date().getTime() / 1000) {
             return data
-        } else if (expRefresh < new Date().getTime() / 1000) {
+        } else if (expAccess < new Date().getTime() / 1000) {
             return { needLogout: true }
         }
     }

@@ -155,7 +155,10 @@ export const refreshTokenThunk = (refreshToken: string) => async (dispatch: any)
         const data = await authAPI.refreshToken(refreshToken)
         sessionStorage.setItem('refreshToken', JSON.stringify(data.tokens.refreshToken))
         sessionStorage.setItem('accessToken', JSON.stringify(data.tokens.accessToken))
-    } catch (err) {}
+    } catch (err) {
+        dispatch(authActions.logout())
+        dispatch(informActions.clearInform())
+    }
 }
 export const facebookAuth = (accessToken: string, userId: string) => async (dispatch: any) => {
     try {

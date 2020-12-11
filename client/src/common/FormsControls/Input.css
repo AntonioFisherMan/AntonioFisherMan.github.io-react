@@ -1,0 +1,25 @@
+.MuiInputLabel-outlined {
+  transform: translate(14px, 15px) scale(1) !important;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink{
+  transform: translate(14px, -6px) scale(0.75) !important;
+
+}
+
+.MuiIconButton-edgeEnd {
+  margin-right: 0 !important;
+}
+.custom-control{
+  padding:0 !important;
+}
+.MuiFilledInput-input{
+  padding:0  !important;
+}
+
+.MuiFilledInput-underline:before,.MuiFilledInput-underline::after{
+    border-bottom: none !important;
+}
+
+.MuiIconButton-root{
+  padding:0 !important;
+}

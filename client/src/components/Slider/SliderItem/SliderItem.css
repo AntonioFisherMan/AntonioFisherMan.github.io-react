@@ -1,0 +1,25 @@
+.item{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.item img{
+    margin-top: 52px;
+    margin:0 auto;
+    margin-bottom: 15px;
+}
+
+.item p{
+    font-weight: normal;
+font-size: 10px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: #E77E83;
+margin-top: 15px;
+}
+
+.item a {
+    margin: 0 auto;
+    margin-top: 15px;
+}

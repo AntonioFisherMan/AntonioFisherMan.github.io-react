@@ -1,0 +1,13 @@
+{
+    "MONGO_URI":"mongodb+srv://toxa_k_9:zxcv123580@cluster0-k5f2o.mongodb.net/Shop?retryWrites=true&w=majority",
+    "JWT_SECRET":"MySuP3R_z3kr3t",
+    "GOOGLE_ID":"2922402030-v5835l3tj0fftegkba8bs7425le4of8h.apps.googleusercontent.com",
+    "NODE_ENV":"production",
+    "PORT":5000,
+    "COOKIE_SECRET":"abcdef-12345",
+    "USER_GMAIL":"tooxa9@gmail.com",
+     "PASSWORD_GMAIL":"ZXcv123580",
+     "RESET_PASSWORD_KEY":"MySuP3R_z3kr3t"
+    
+
+}

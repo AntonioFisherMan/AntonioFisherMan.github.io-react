@@ -13,9 +13,13 @@ export const goodsAPI = {
     setReviews(files: any, goodsId: string, name: string, userImage: any) {
         files.append('name', name)
         files.append('userImage', userImage)
-        return instance.post(`reviews?goodsId=${goodsId}`, files, { headers: { Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken') as string) } }).then((res) => res.data)
+        return instance
+            .post(`reviews?goodsId=${goodsId}`, files, {
+                headers: { Authorization: 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken') as string) },
+            })
+            .then((res) => res.data)
     },
     changeRating(rating: number | null, goodsId: string) {
-        return instance.post(`goods/rating?goodsId=${goodsId}`, { rating })
+        return instance.put(`goods/?goodsId=${goodsId}`, { rating })
     },
 }

@@ -16,9 +16,9 @@ const GoogleLogin = (props) => {
             clientId="2922402030-v5835l3tj0fftegkba8bs7425le4of8h.apps.googleusercontent.com"
             buttonText="Login"
             autoLoad={false}
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            
+            onSuccess={(res) => responseGoogle(res)}
+            onFailure={(res) => responseGoogle(res)}
+
             render={renderProps => (
                 <Box className="googleIconBlock">
                     <img src="images/svg/Vector (23).svg" onClick={renderProps.onClick} disabled={renderProps.disabled} alt="" className="googleIcon" />

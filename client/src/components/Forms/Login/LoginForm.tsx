@@ -135,7 +135,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginValuesType>> = (props) => {
                 </Box>
                 <MyButton text="forgot password?" href="/forgotpassword" color="primary" isIcon={false} variant="text" />
             </Box>
-            <button className={classes.btn}><MyButton text="Login" href="" /></button>
+            <button className={classes.btn} ><MyButton text="Login" href="" btnLoad={true} /></button>
         </form>
     )
 }

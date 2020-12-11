@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Button } from '@material-ui/core'
 import { WithStyles, withStyles } from '@material-ui/core/styles'
 import ArrowBackIosOutlinedIcon from '@material-ui/icons/ArrowBackIosOutlined'
@@ -10,15 +10,14 @@ import { styles } from './style'
 
 
 const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, propsClasses, classes, variant, color, loading, size, fullWidth, onClick }) => {
-
+        const [onClicked, setOnClicked] = useState(false)
         if (href !== "") {
                 return (
                         <Button
                                 component={React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => (
                                         <RouterLink to={href} ref={ref} {...itemProps} />
                                 ))}
-                                disabled={loading}
-                                onClick={(e: any) => onClick()}
+                                onClick={onClick}
                                 variant={variant ? variant : "contained"}
                                 startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                 href={href}
@@ -35,8 +34,8 @@ const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, propsCla
                 return (
                         <Box className={classes.wrapper}>
                                 <Button
-                                        onClick={(e) => onClick()}
-                                        disabled={loading}
+                                        onClick={() => setOnClicked(true)}
+                                        disabled={onClicked && loading}
                                         variant={variant ? variant : "contained"}
                                         startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                         href={href}
@@ -47,7 +46,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, propsCla
 
                                         {text}
                                 </Button>
-                                { loading && <Box className={classes.buttonProgress}><Preloader size={18} loading={loading} /></Box>}
+                                {onClicked && loading && <Box className={classes.buttonProgress}><Preloader size={18} loading={loading} /></Box>}
                         </Box>
 
 
@@ -67,10 +66,11 @@ type PropsType = {
         text?: string,
         variant?: "text" | "outlined" | "contained" | undefined
         color?: "inherit" | "primary" | "secondary" | "default" | undefined,
-        loading: boolean,
+        loading?: boolean,
         isIcon?: boolean,
         fullWidth?: boolean,
         onClick: () => void,
-        propsClasses: any
+        propsClasses: any,
+        btnLoad?: boolean
 }
 export type MyButtonProps = PropsType & WithStyles<typeof styles>

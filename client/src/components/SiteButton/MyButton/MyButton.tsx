@@ -18,7 +18,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, propsCla
                                         <RouterLink to={href} ref={ref} {...itemProps} />
                                 ))}
                                 disabled={loading}
-                                onClick={onClick}
+                                onClick={(e: any) => onClick()}
                                 variant={variant ? variant : "contained"}
                                 startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}
                                 href={href}
@@ -35,7 +35,7 @@ const MyButton: React.FC<MyButtonProps> = ({ href, isIcon = true, text, propsCla
                 return (
                         <Box className={classes.wrapper}>
                                 <Button
-                                        onClick={onClick}
+                                        onClick={(e) => onClick()}
                                         disabled={loading}
                                         variant={variant ? variant : "contained"}
                                         startIcon={isIcon && variant === "text" ? <ArrowBackIosOutlinedIcon className={classes.icon} /> : null}

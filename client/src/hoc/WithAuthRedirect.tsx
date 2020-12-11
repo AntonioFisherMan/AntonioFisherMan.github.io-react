@@ -34,10 +34,11 @@ export function WithAuthRedirect<WCP>(WrappedComponent: React.ComponentType<WCP>
 
         }, [data.needRefresh])
 
-        if (!isAuth) {
-            return <Redirect to={'/sign'} />
-        } else {
+        if (isAuth === true) {
             return <WrappedComponent {...rest as unknown as WCP} />
+
+        } else {
+            return <Redirect to={'/sign'} />
         }
 
     }

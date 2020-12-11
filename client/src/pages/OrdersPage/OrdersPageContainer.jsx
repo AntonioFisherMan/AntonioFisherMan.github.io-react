@@ -33,8 +33,8 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-  LoadingDataHOC,
   WithAuthRedirect,
+  LoadingDataHOC,
   connect(mapStateToProps, { getOrders, ...reviewsActions })
 )(OrdersPageContainer)
 

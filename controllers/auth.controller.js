@@ -118,13 +118,13 @@ class AuthController {
 
     async logout(req, res) {
         const { refreshToken, userId } = req.body
-        const refreshTokenDb = await Tokens.findOne({ refreshToken })
-        if (!refreshTokenDb) {
-            return res.status(403).json({ message: 'TOKEN_EXPIRED/INVALID_SESSION' })
-        }
-        if (!refreshToken) {
-            return res.status(401).json({ message: 'Bad credentials' })
-        }
+        // const refreshTokenDb = await Tokens.findOne({ refreshToken })
+        // if (!refreshTokenDb) {
+        //     return res.status(403).json({ message: 'TOKEN_EXPIRED/INVALID_SESSION' })
+        // }
+        // if (!refreshToken) {
+        //     return res.status(401).json({ message: 'Bad credentials' })
+        // }
         await Tokens.findOneAndDelete({ userId: userId })
         return res.json({ success: true })
     }

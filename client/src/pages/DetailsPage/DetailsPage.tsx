@@ -110,7 +110,7 @@ const DetailsPage: React.FC<ProductPropsType & WithStyles<typeof styles>> = (pro
                                     <Container>
                                         <Grid container className={classes.styleHeadline}>
                                             <SiteHeadline text="Reviews" />
-                                            <MyButton onClick={() => props.setItemOfReview(item.good)} href={`/feedback/${item._id}`} text="WRITE A REVIEW" variant="outlined" color="secondary" />
+                                            <MyButton text="WRITE A REVIEW" variant="outlined" color="secondary" />
                                         </Grid>
 
                                         {item.review.map((item: ReviewType) =>

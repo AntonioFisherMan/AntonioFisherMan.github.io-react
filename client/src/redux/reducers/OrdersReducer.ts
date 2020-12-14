@@ -36,7 +36,7 @@ export const addUnloginOrdersThunk = (items: any, formData: any, history: any) =
         dispatch(messageActions.returnSuccess(data.message, 'SUCCESS_ADD_UNLOGIN_ORDER'))
         dispatch(cardActions.clearCardItems())
         dispatch(appActions.setLoading(false))
-        history.push('/catalog')
+        history.push('/order')
     } catch (err) {
         dispatch(messageActions.returnErrors(err.response.data.message, err.response.data.status, 'ERROR_ADD_UNLOGIN_ORDER'))
     }
@@ -57,7 +57,6 @@ export const addOrdersThunk = (data: any, history: any) => async (dispatch: any,
         dispatch(appActions.setLoading(true))
         let response = await ordersAPI.setOrders(data)
         dispatch(cardActions.clearCardItems())
-        debugger
         dispatch(messageActions.returnSuccess(response.message, 'SUCCESS_ADD_ORDER'))
         dispatch(appActions.setLoading(false))
         history.push('/orders')

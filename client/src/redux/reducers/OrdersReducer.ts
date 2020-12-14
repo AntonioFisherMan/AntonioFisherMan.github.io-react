@@ -57,7 +57,6 @@ export const addOrdersThunk = (data: any, history: any) => async (dispatch: any,
         dispatch(appActions.setLoading(true))
         let response = await ordersAPI.setOrders(data)
         dispatch(cardActions.clearCardItems())
-        debugger
         dispatch(messageActions.returnSuccess(response.message, 'SUCCESS_ADD_ORDER'))
         dispatch(appActions.setLoading(false))
         history.push('/orders')

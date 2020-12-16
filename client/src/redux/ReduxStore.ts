@@ -11,6 +11,30 @@ import InformReducer from './reducers/InformReducer'
 import ServerMessageReducer from './reducers/ServerMessageReducer'
 import ReviewsReducer from './reducers/ReviewsReducer'
 
+
+type Shoe={
+    purpose:string
+}
+class BalletFlat implements Shoe{
+    purpose='dancing'
+}
+class Boot implements Shoe {
+    purpose = 'woodcutting'
+    }
+    class Sneaker implements Shoe {
+        purpose = 'walking'
+        }
+
+let Shoe={
+    create(type:'balletFlat'|'boot'|'sneacker'):Shoe{
+        switch(type){
+            case 'balletFlat': return new BalletFlat
+case 'boot': return new Boot
+case 'sneacker': return new Sneaker
+        }
+    }
+}
+
 let reducers = combineReducers({
     auth: AuthReducer,
     goods: CatalogReducer,

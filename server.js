@@ -9,6 +9,9 @@ cookieSecret = config.get('COOKIE_SECRET')
 routes = require('./routes/index')
 require('dotenv').config()
 
+
+
+
 const app = new express()
 app.use(cookieParser(cookieSecret))
 // app.use(

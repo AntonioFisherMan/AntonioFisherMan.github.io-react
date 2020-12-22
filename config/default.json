@@ -3,7 +3,7 @@
     "JWT_SECRET":"MySuP3R_z3kr3t",
     "GOOGLE_ID":"2922402030-v5835l3tj0fftegkba8bs7425le4of8h.apps.googleusercontent.com",
     "NODE_ENV":"production",
-    "PORT":5000,
+    "PORT":5001,
     "COOKIE_SECRET":"abcdef-12345",
     "USER_GMAIL":"tooxa9@gmail.com",
      "PASSWORD_GMAIL":"ZXcv123580",

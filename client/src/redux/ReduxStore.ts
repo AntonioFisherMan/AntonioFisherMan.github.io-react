@@ -11,6 +11,12 @@ import InformReducer from './reducers/InformReducer'
 import ServerMessageReducer from './reducers/ServerMessageReducer'
 import ReviewsReducer from './reducers/ReviewsReducer'
 
+
+let a=['1',1]
+console.log(a);
+
+
+
 let reducers = combineReducers({
     auth: AuthReducer,
     goods: CatalogReducer,

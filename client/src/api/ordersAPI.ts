@@ -2,7 +2,6 @@ import { instance } from './api'
 
 export const ordersAPI = {
     setOrders(data: any) {
-        debugger
         return instance
             .post(
                 `orders`,

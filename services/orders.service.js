@@ -9,8 +9,8 @@ class OrdersService {
         if (data.userId) {
             const newOrders = new Orders({
                 userId: data.userId,
-                items: data.items.items,
-                inform: data.items.inform,
+                items: data.data.items,
+                inform: data.data.inform,
             })
             return newOrders.save()
         } else {
@@ -22,5 +22,6 @@ class OrdersService {
         }
     }
 }
+
 
 module.exports = new OrdersService()

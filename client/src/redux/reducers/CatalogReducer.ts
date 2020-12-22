@@ -42,6 +42,8 @@ const CatalogReducer = (state = initialState, action: ActionsTypes): InitialStat
 }
 
 type ActionsTypes = InferActionsTypes<typeof catalogActions>
+
+
 type CatalogDispatchType = Dispatch<ActionsTypes | AppActionsTypes>
 
 export const catalogActions = {

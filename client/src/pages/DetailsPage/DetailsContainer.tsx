@@ -13,14 +13,14 @@ import { LoadingDataHOC } from '../../hoc/LoadingData'
 
 class DetailsContainer extends React.Component<PropsType> {
     componentDidMount() {
-        this.refreshProfile();
+        this.getProfile();
     }
     componentDidUpdate(prevProps: any) {
         if (this.props.match.params.id !== prevProps.match.params.id) {
-            this.refreshProfile();
+            this.getProfile();
         }
     }
-    refreshProfile() {
+    getProfile() {
         const id = this.props.match.params.id;
         if (id) {
             this.props.getGoodsThunkById(id)

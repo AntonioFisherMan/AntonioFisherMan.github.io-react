@@ -17,7 +17,7 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/react-router-redux": "^5.0.18",
     "@types/redux-form": "^8.3.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dayjs": "^1.9.6",
     "jquery": "^3.5.1",
     "jwt-decode": "^3.1.2",
